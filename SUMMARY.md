@@ -9,13 +9,11 @@
 
 ## UF3 Accés a dades <a id="uf3"></a>
 
-* [Untitled](uf3/untitled.md)
-
 ## Seguretat
 
 * [Seguretat en PHP](seguretat/seguretat-en-php.md)
 
 ## Plantilla per aplicacions
 
-* [Untitled](plantilla-per-aplicacions/untitled.md)
+* [Esquema tipus d'aplicació](plantilla-per-aplicacions/untitled.md)
 
