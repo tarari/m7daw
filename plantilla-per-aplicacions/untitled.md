@@ -7,26 +7,28 @@ Habitualment quan es crea una aplicació, sempre s'utilitza gairebé el mateix e
 
 **Pantalles  webAPP**
 
-**&gt;Inici - Home**
+{% tabs %}
+{% tab title="Inici -Home" %}
+Presentació de dades:  Entitat que es maneja en l 'aplicació
 
- Presentació de dades: Entitat que es maneja - Posts \(per exemple
+ - **Posts** \(per exemple
+{% endtab %}
 
-**&gt;Login**
+{% tab title="Login" %}
+ Exclussivament **login** o **registre** \(recordatori de si es vol crear un compte\) o bé  si has oblidat la contrasenya
+{% endtab %}
 
- Exclussivament **login** o **registre** \(recordatori de si es vol crear un compte\)
+{% tab title="Escriptori -Dashboard" %}
 
-**&gt;Dashboard - Escriptori**
 
- Pantalla de treball de l’usuari
+Pantalla de treball de l’usuari
 
 *  **CLIENT**: Pot crear les seves pròpies entitats i administrar el seu compte. 
-*  **ADMIN**: Pot  administrar el seu compte i propietats així com de la resta d'entitats. 
+*  **ADMIN**: Pot  administrar el seu compte i propietats així com de la resta d'entitats.  
+{% endtab %}
+{% endtabs %}
 
-  
-p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'}  
-p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; min-height: 14.0px}  
-p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 17.0px 'Helvetica Neue'}  
-
+ 
 
 **Subpantalles - associades a les anteriors**
 
@@ -34,7 +36,7 @@ p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 17.0px 'Helvetica Neue'}
 * Registre de entitats \(en general\) - requereix token de formulari \(\*\)
 * Edició, modificació d'entitats \(en general\) - requereix token  de formularis
 
-_\(\*\)Per evitar atacs CSRF_
+_\(\*\)Per evitar atacs_ [_CSRF_](https://es.wikipedia.org/wiki/Cross-site_request_forgery)\_\_
 
 **Navegació per pantalles**
 
