@@ -42,9 +42,13 @@ _\(\*\)Per evitar atacs_ [_CSRF_](https://es.wikipedia.org/wiki/Cross-site_reque
 
 Home —&gt; Login
 
-Login —&gt;dashboard
+Login —&gt; Dashboard
 
-Login —&gt;registre
+Login —&gt; Registre
 
-Dashboard—&gt;Mostrar id
+Dashboard—&gt; Mostrar / Editar  Entitats
+
+
+
+
 
