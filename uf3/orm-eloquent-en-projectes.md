@@ -49,5 +49,5 @@ La configuració prèvia per poder utilitzar les característiquees del ORM, con
     define('DBPASS','*********');
 ```
 
-Les dades d'accés són, el driver mysql si fem servir mysq o mariadb, el host que conté el servei de base de dades, el nom de la base de dades, l'usuari de la base de dades amb privilegis CRUD \(crear, llegir, actualutzar i eliminar\), i el password d'aquest usuari.
+Les dades d'accés són, el driver mysql si fem servir mysq o mariadb, el host que conté el servei de base de dades, el nom de la base de dades, l'usuari de la base de dades amb privilegis CRUD \(crear, llegir, actualitzar i eliminar\), i el password d'aquest usuari.
 
