@@ -39,7 +39,12 @@ CREATE USER 'root'@'%' IDENTIFIED BY 'altrepassword';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
 ```
 
-Ara podem afegir els usuaris d'accés a la nostra base de dades, o bé fer-ho des de fora. Fem exit per sortir del contenidor.
+Ara podem afegir els usuaris d'accés a la nostra base de dades, o bé fer-ho des de fora. Fem _exit_ per sortir del contenidor. Ara podem, des de la nostra màquina accedir al contenidor \(servei\) i crear usuari i base de dades del projecte.
+
+```text
+CREATE USER 'dbase_user'@'%' IDENTIFIED BY 'passwordbase';
+GRANT ALL PRIVILEGES ON base.* TO 'base_user'@'%'
+```
 
 
 
