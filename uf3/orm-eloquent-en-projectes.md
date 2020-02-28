@@ -53,3 +53,36 @@ Les dades d'accés són, el driver mysql si fem servir mysq o mariadb, el host q
 
 [Si teniu dubtes, mireu com crear una base de dades i un usuari](../seguretat/apendix-crear-base-de-dades-i-usuari-en-docker.md)
 
+### Class DB
+
+La class DB, inicia la connexió a la base de dades i estableix els paràmetres inicials.
+
+```text
+namespace App\Models;
+
+use Illuminate\Database\Capsule\Manager as Capsule;
+
+class DB{
+    function __construct()
+    {
+        $capsule=new Capsule();
+        $capsule->addConnection(
+            [
+                'driver'=>DBDRIVER,
+                'host'=>DBHOST,
+                'database'=>DBNAME,
+                'username'=>DBUSER,
+                'password'=>DBPASS,
+                'charset'=>'utf8',
+                'collation'=>'utf8_unicode_ci',
+                'prefix'=>''
+
+            ]
+        );
+        $capsule->setAsGlobal();
+        $capsule->bootEloquent();
+    }
+}
+
+```
+
