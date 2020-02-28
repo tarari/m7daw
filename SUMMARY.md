@@ -12,6 +12,8 @@
 
 ## UF3 Accés a dades <a id="uf3"></a>
 
+* [ORM Eloquent en projectes](uf3/orm-eloquent-en-projectes.md)
+
 ## Seguretat
 
 * [Seguretat en PHP](seguretat/seguretat-en-php.md)
