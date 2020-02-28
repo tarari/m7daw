@@ -51,5 +51,5 @@ La configuració prèvia per poder utilitzar les característiquees del ORM, con
 
 Les dades d'accés són, el driver mysql si fem servir mysq o mariadb, el host que conté el servei de base de dades, el nom de la base de dades, l'usuari de la base de dades amb privilegis CRUD \(crear, llegir, actualitzar i eliminar\), i el password d'aquest usuari.
 
-Si teniu dubtes, mireu com crear una base de dades i un usuari
+[Si teniu dubtes, mireu com crear una base de dades i un usuari](../seguretat/apendix-crear-base-de-dades-i-usuari-en-docker.md)
 
