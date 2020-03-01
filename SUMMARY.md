@@ -22,4 +22,5 @@
 ## Plantilla per aplicacions
 
 * [Esquema tipus d'aplicació](plantilla-per-aplicacions/untitled.md)
+* [Sintaxi PHP](sintaxi-php.md)
 
