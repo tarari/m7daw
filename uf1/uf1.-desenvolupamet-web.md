@@ -50,7 +50,7 @@ Una de les claus per a una programació madura és considerar totes les rutes i 
 
 
 ```text
-<? php
+<?php
 
     if (isset ($_GET['persona']))
     {  
