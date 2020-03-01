@@ -63,5 +63,5 @@ Una de les claus per a una programació madura és considerar totes les rutes i 
 
 ```
 
-Us adjuntem una [sintaxi més acurada del PHP](../sintaxi-php.md).
+Us adjuntem una [sintaxi més acurada del PHP](../apendixs/sintaxi-php.md).
 

@@ -14,13 +14,15 @@
 
 * [ORM Eloquent en projectes](uf3/orm-eloquent-en-projectes.md)
 
-## Seguretat
+## Apèndixs
 
-* [Seguretat en PHP](seguretat/seguretat-en-php.md)
-* [Apèndix - Crear base de dades i usuari en docker](seguretat/apendix-crear-base-de-dades-i-usuari-en-docker.md)
+* [Apèndix - Crear base de dades i usuari en docker](apendixs/apendix-crear-base-de-dades-i-usuari-en-docker.md)
+* [Seguretat en PHP](apendixs/seguretat-en-php.md)
+* [Esquema tipus d'aplicació](apendixs/untitled-1.md)
+* [Sintaxi PHP](apendixs/sintaxi-php.md)
+* [Untitled](apendixs/untitled.md)
 
-## Plantilla per aplicacions
+## UF4 Aplicacions híbrides i serveis web
 
-* [Esquema tipus d'aplicació](plantilla-per-aplicacions/untitled.md)
-* [Sintaxi PHP](sintaxi-php.md)
+* [API RestFUL en Laravel](uf4-aplicacions-hibrides-i-serveis-web/api-restful-en-laravel.md)
 
