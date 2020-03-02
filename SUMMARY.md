@@ -14,6 +14,12 @@
 
 * [ORM Eloquent en projectes](uf3/orm-eloquent-en-projectes.md)
 
+## UF4 Aplicacions híbrides i serveis web
+
+* [Restful](uf4-aplicacions-hibrides-i-serveis-web/restful.md)
+* [API RestFUL en Laravel](uf4-aplicacions-hibrides-i-serveis-web/api-restful-en-laravel.md)
+* [Laravel](uf4-aplicacions-hibrides-i-serveis-web/laravel.md)
+
 ## Apèndixs
 
 * [Apèndix - Crear base de dades i usuari en docker](apendixs/apendix-crear-base-de-dades-i-usuari-en-docker.md)
@@ -21,9 +27,4 @@
 * [Esquema tipus d'aplicació](apendixs/untitled-1.md)
 * [Sintaxi PHP](apendixs/sintaxi-php.md)
 * [Untitled](apendixs/untitled.md)
-
-## UF4 Aplicacions híbrides i serveis web
-
-* [Restful](uf4-aplicacions-hibrides-i-serveis-web/restful.md)
-* [API RestFUL en Laravel](uf4-aplicacions-hibrides-i-serveis-web/api-restful-en-laravel.md)
 
