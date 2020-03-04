@@ -24,7 +24,7 @@ I per tant, poder crear projectes a través de comando
 laravel new projecte
 ```
 
-### Servidor local de desenvolupament
+#### Servidor local de desenvolupament
 
 Laravel disposa, a través del seu comando artisan, un servidor local per a desenvolupar.
 
@@ -38,5 +38,11 @@ Laravel development server started: http://127.0.0.1:8000
 
 ![Quan accedim des del navegador](../.gitbook/assets/captura-de-pantalla-2020-03-02-a-les-21.01.51.png)
 
+### Cicle de vida del REQUEST
 
+![Cicle de vida, des del REQUEST fins a RESPONSE](../.gitbook/assets/lifecycle.png)
+
+### Routes
+
+Totes les rutes es troben definides en un fitxer  _routes/web.php,_ totes les rutes es troben aquí definides.
 
