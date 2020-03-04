@@ -56,6 +56,17 @@ Route::get('/', function () {
 });
 ```
 
+Laravel busca en la carpeta _resources/views_ la plantilla _welcome.blade.php_
+
+```text
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+......
+```
+
 Podem veure quines altres opcions tenim com a sortida, en comptes de view...
 
 ```text
