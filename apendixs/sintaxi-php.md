@@ -40,9 +40,11 @@ Per imprimir textos llargs aquest mètode és més eficient que enviar el text a
 
 Com en C o en Perl, PHP requereix que cada instrucció s'acabi amb un punt i coma ";" a la fi de cada sentència. L'etiqueta de tancament d'un bloc de codi PHP automàticament implica el punt i coma, de manera que no cal incloure-a al final:
 
-&lt;? Php echo 'Això és una prova' ?&gt;
+```text
+<?php echo 'Això és una prova' ?>
+```
 
-A vegades és recomanable aquest mètode per evitar espais en blanc a al final, especialment quan es fan servir include, require o outputbuffering.
+A vegades és recomanable aquest mètode per evitar espais en blanc a al final, especialment quan es fan servir _include, require_ o _output buffering_.
 
 #### 4. Comentaris
 
@@ -74,25 +76,26 @@ echo 'Això és un comentari'; /* Més comentari * /
 
 La precedència dels operadors en PHP segueix gairebé les mateixes regles que en matemàtiques,per exemple: multiplicació i divisió precedeixen suma i resta, els parèntesis forcen una precedència, etc.
 
-Quan tenen la mateixa precedència,la seva associativitat decideix com ordenar els operadors. Per exemple l'operador suma + té associativitat esquerra, de manera que l'operació 1 + 2 + 3 sumarà primer 1 i 2, i després 3 =&gt; \(1 + 2\) + 3. Per contra, l'operador = té associativitat dreta, per la qual cosa $ x = $ i = $ z s'agrupa de manera $ x = \($ i = $ z\).
+Quan tenen la mateixa precedència,la seva associativitat decideix com ordenar els operadors. Per exemple l'operador suma **+** té associativitat esquerra, de manera que l'operació **1 + 2 + 3** sumarà primer 1 i 2, i després 3 =&gt; \(1 + 2\) + 3. 
 
-Els operadors de mateixa precedència que no són associatius no poden usar-se junts, això: 1 &lt;2&gt; 1 és incorrecte.
+Per contra, l'operador **=** té associativitat dreta, per la qual cosa $x =$i =$z s'agrupa de manera $x = \($ i = $z\).
+
+Els operadors de mateixa precedència que no són associatius no poden usar-se junts, això: 1 &lt; 2 &gt; 1 és incorrecte.
 
 De vegades és aconsellable fer servir parèntesi encara que no sigui necessari per millorar la lectura.
 
-La precedència d'operadors i la seva associativitat només determinen com s'agrupen lesexpressions.
+La precedència d'operadors i la seva associativitat només determinen com s'agrupen les expressions.
 
-Llista d'operadors ordenats per precedència:
+_Llista d'operadors ordenats per precedència:_
 
 | Associativitat | Operadors |
 | :--- | :--- |
-|  |  |
 | No associatiu | clone, new |
-| Esquerra |  |
-| \[Dreta | \*\* |
+| Esquerra | \[ |
+| Dreta | \*\* |
 | Dreta | ++, -, ~, \(int\), \(float\), \(string\), \(array\), \(object\), \(bool \), @ |
 | No associatiu | instanceof |
-|  | Dreta! |
+| Dreta | ! |
 | Esquerra | \*, /,% |
 | Esquerra | +, -,. |
 | Esquerra | &lt;&lt;, &gt;&gt; |
@@ -103,12 +106,12 @@ Llista d'operadors ordenats per precedència:
 | Esquerra |  |
 | Esquerra | && |
 | Esquerra |  |
-|  | Esquerra?: |
+| Esquerra | ?: |
 | Dreta | =, + =, - =, \* =, \*\* =, / =,. =,% =, & =, / =, ^ =, &lt;&lt; =, &gt;&gt; =, =&gt; |
 | Esquerra | and |
 | Esquerra | xor |
 | Esquerra | or |
-|  | Esquerra, |
+| Esquerra | , |
 
 #### 2. Operadors aritmètics
 
@@ -116,13 +119,13 @@ els operadors aritmètics en PHP són els mateixos que en les matemàtiques:
 
 | Operadors artimètics | Representació |
 | :--- | :--- |
-| Suma | $ x + $ i |
-| Resta | $ x - $ i |
-| Multiplicació | $ x \* $ i |
-| Divisió \* | $ x / $ i |
-| Mòdul \*\* | $ x% $ i |
-| Exponenciació | $ x \*\* $ i |
-| Negació | - $ x |
+| Suma | $x + $i |
+| Resta | $x - $i |
+| Multiplicació | $x \* $i |
+| Divisió \* | $x / $i |
+| Mòdul \*\* | $x% $i |
+| Exponenciació | $x \*\* $i |
+| Negació | -$x |
 
 \*Divisió retorna un \(int\) si $ xi $ i són divisibles, o \(float\) si no ho són.
 
