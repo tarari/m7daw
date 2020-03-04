@@ -44,5 +44,27 @@ Laravel development server started: http://127.0.0.1:8000
 
 ### Routes
 
+Defineixen a qui / quins serveis cridem quan se solicita una determinada URI.
+
 Totes les rutes es troben definides en un fitxer  _routes/web.php,_ totes les rutes es troben aquí definides.
+
+A través de les rutes, podem donar servei als mètodes REQUEST get, post, put i delete.​ Podem dir que respongui a un mètode determinat, un conjunt de mètode o bé a qualsevol.
+
+```text
+Route::get('/', function () {
+    return view('welcome');
+});
+```
+
+Podem veure quines altres opcions tenim com a sortida, en comptes de view...
+
+```text
+Route::get('/', function () {
+    return ['foo'=>'cosa'];
+});
+```
+
+La sortida serà en JSON.
+
+
 
