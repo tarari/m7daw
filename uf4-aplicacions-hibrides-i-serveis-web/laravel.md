@@ -83,7 +83,7 @@ La sortida serà en JSON.
 
 ### Comandos Artisan
 
-Artisan és el nom de la interfície de comandos en línia incosa en Laravel. 
+Artisan és el nom de la interfície de comandos en línia incosa en Laravel. Cobreix moltes tasques com ara; treball amb migracions de bases de dades, eliminar catxé, crear els fitxers necessaris per l'autenticació, creació de models, controladors, classes d'events i molt més...
 
 ```text
 php artisan list
