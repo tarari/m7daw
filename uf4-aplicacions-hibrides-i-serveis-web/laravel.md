@@ -160,7 +160,9 @@ Llista de comandos artisan més comuns:
 
 Per la via ràpida, instal·lem _**laravel/ui**_ aquest paquet de composer i executem `php artisan ui vue --auth` en una aplicació Laravel **nova, sense estrenar**. Després de migrar la bas de dades, comprovem al navegador _**http://app.test/register**_
 
+Laravel instal·la de forma automàtica un sistema d'autenticació, per tant trobareu creat ja el model **App\User.**
 
+\*\*\*\*
 
 
 
