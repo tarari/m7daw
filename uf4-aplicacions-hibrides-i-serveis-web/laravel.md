@@ -83,6 +83,12 @@ La sortida serà en JSON.
 
 ### Comandos Artisan
 
+Artisan és el nom de la interfície de comandos en línia incosa en Laravel. 
+
+```text
+php artisan list
+```
+
 Llista de comandos artisan més comuns:
 
 
