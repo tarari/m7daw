@@ -81,6 +81,17 @@ Route::get('/', function () {
 
 La sortida serà en JSON.
 
+### Response
+
+Retorn de resposta ben formada, amb capçaleres i codi.
+
+```text
+Route::get('home', function () {
+    return response('Hello World', 200)
+                  ->header('Content-Type', 'text/plain');
+});
+```
+
 ### Comandos Artisan
 
 Artisan és el nom de la interfície de comandos en línia incosa en Laravel. Cobreix moltes tasques com ara; treball amb migracions de bases de dades, eliminar catxé, crear els fitxers necessaris per l'autenticació, creació de models, controladors, classes d'events i molt més...
