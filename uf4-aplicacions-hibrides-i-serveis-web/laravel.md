@@ -156,3 +156,13 @@ Llista de comandos artisan més comuns:
 | vendor:publish | Publish any publishable assets from vendor packages |
 | view:clear | Clear all compiled view files |
 
+## Autenticació
+
+Per la via ràpida, instal·lem _**laravel/ui**_ aquest paquet de composer i executem `php artisan ui vue --auth` en una aplicació Laravel **nova, sense estrenar**. Després de migrar la bas de dades, comprovem al navegador _**http://app.test/register**_
+
+
+
+
+
+
+
