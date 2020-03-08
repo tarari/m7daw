@@ -171,11 +171,30 @@ Llista de comandos artisan més comuns:
 
 Per la via ràpida, instal·lem _**laravel/ui**_ aquest paquet de composer i executem `php artisan ui vue --auth` en una aplicació Laravel **nova, sense estrenar**. Després de migrar la bas de dades, comprovem al navegador _**http://app.test/register**_
 
-Laravel instal·la de forma automàtica un sistema d'autenticació, per tant trobareu creat ja el model **App\User.**
+Laravel instal·la de forma automàtica un sistema d'autenticació, per tant trobareu creat ja el model **App\User.** També trobarem  en **resources** una carpeta anomenada **auth,** amb totes les plantilles blade que s'utilitzaran en els formularis d'autenticació.
 
 \*\*\*\*
 
+## Enutament
 
+### Enrutament bàsic:
 
+Dins l'arxiu **routes/web.php.  routes/api.php,** etc..
 
+`Route::get('welcome', function () { return "Hello World!"; }); Route::post('welcome', function () { return "Hello World!"; });`
+
+Com es pot observar, la funció estàtica get, post indiquen el mètode HTTP.
+
+```text
+Route::match(['get', 'post'], 'match', function() { 
+    return "Matches GET and POST";
+}); 
+Route::any('any', function () { 
+    return "Matches any method"; 
+});
+```
+
+Una ruta es pot definir per un conjunt de mètodes, **match.** O per qualsevol mètode, **any**.
+
+Nota: En comptes de definir tota la lògica en **routes**, és possible organitzar-la en diferents controladors, els quals es poden definir en el directori  se definen en el directorio _**app/Http/Controllers**_.
 
