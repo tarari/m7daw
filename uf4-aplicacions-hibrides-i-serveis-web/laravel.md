@@ -216,3 +216,24 @@ Podem crear controladors amb artisan d'una manera molt simple:
 php artisan make:controller PostController
 ```
 
+Això cea un controlador buit, però si volem crear un controlador per a recursos, podem utilitzar -r que afegeix mètodes típics de control de recursos \(index, show, store, destroy, etc\).
+
+```text
+php artisan make:controller PostController -r
+```
+
+### Middlewares
+
+Els middleware proporcionen un mecanisme de filtrat als REQUESTs de l'aplicació
+
+Laravel inclou per defecte el middleware d'autenticació que detecta si un usuari està autenticat. Si ho està, el middleware deixarà que segueixi l'execució del programa. Si no, portarà a l'usuari a la pantalla de login.
+
+```text
+Route::post('post/store', ['middleware' => 'auth',
+    function () {
+    //
+}]);
+```
+
+
+
