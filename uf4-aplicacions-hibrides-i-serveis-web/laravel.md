@@ -210,3 +210,9 @@ Route::get('post/{id}', [
 
 ## Controladors
 
+Podem crear controladors amb artisan d'una manera molt simple:
+
+```text
+php artisan make:controller PostController
+```
+
