@@ -198,3 +198,15 @@ Una ruta es pot definir per un conjunt de mètodes, **match.** O per qualsevol m
 
 Nota: En comptes de definir tota la lògica en **routes**, és possible organitzar-la en diferents controladors, els quals es poden definir en el directori  se definen en el directorio _**app/Http/Controllers**_.
 
+### Rutes que criden a un controlador
+
+Habitualment, en comptes de definir un closure, es crida a una acció d'un controlador:
+
+```text
+Route::get('post/{id}', [
+ 'uses' => 'PostController@show'
+]);
+```
+
+## Controladors
+
