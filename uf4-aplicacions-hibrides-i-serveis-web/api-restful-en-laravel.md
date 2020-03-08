@@ -36,7 +36,7 @@ Sense entrar en molt detall, el que fa la comanda és crear una carpeta **miApiR
 
 Aquesta part és easy peasy. L'únic que hem de fer és modificar el fitxer **.env** que es troba a l'arrel del nostre projecte **miApiRest**.
 
-L'omplirm amb les dades de la  BD:
+L'omplirm amb les dades de la  BD \(que haurem creat, amb les dades definides\):
 
 ```text
 [...] DB_CONNECTION = mysql 
@@ -62,7 +62,7 @@ $ php artisan make: migració create_table_pokemons
 Revisem el que acaba de crear-se:  
 La recentment creada migració hauria d'estar en **base de dades / migrations.**
 
-Juntament amb **2020\_02\_08\_044418\_create\_table\_pokemons.php** , si estem en un projecte nou, haurien d'haver 2 migracions més. Aquestes les crea Laravel per defecte per mantenir usuaris. Les esborraré en aquest cas ja que no les faré servir, però depèn de vostès.
+Juntament amb **2020\_02\_08\_044418\_create\_table\_pokemons.php** , si estem en un projecte nou, haurien d'haver 2 migracions més. Aquestes les crea Laravel per defecte per mantenir usuaris. Les esborraré en aquest cas ja que no les farem servir, però depèn del que volguem fer.
 
 Editem la nostra recent creada migració de la següent manera:
 
@@ -80,33 +80,32 @@ $ php artisan migrate
 
 Hauria d'estar la taula ja creada en la nostra BD. A l'revisar que tot va sortir bé, podem començar a crear el nostre model, per poder modificar aquesta taula.
 
-**model:**
+**Model:**
 
 ```text
 $ php artisan make: model Pokemon
  Model creat amb èxit.
 ```
 
-El model acabat de crear hauria d'estar dins de la carpeta **App /.**
+El model acabat de crear hauria d'estar dins de la carpeta **App/.**
 
-Ja que el camp **name** és l'únic que modificarem en aquest cas, el afegim a l'atribut **$ fillable** de la classe Pokemons.
+Ja que el camp **name** és l'únic que modificarem en aquest cas, el afegim a l'atribut **$ illable** de la classe Pokemons.
 
 Nota: Per crear el model + la migració amb un sol comandament pots utilitzar:
 
-> php marca artesanal: model Pokémon -m
+> `php artisan make:model pokemon -m`
 
-A la fi, estem preparats per crear el controller que tindrà els mètodes a cridar per la nostra API. Som-hi!
+Ara, estem preparats per crear el _controller_ que tindrà els mètodes a cridar per la nostra API.
 
 **Creant el resource controller:**
 
-Un dels talents de Laravel, és que pot crear un controlador amb mètodes ja establerts per a una api, i tenir a punt tot per a l'ús dels verbs HTTP. Tot en 1 senzill pas:
+Un dels avantatges de Laravel, és que pot crear un controlador amb mètodes ja establerts per a una api, i tenir a punt tot per a l'ús dels verbs HTTP. Tot en un senzill pas:
 
 ```text
 $ php artisan make: controller PokemonController -r
- Controller creat correctament.
 ```
 
-El **-r** , vol dir que aquest controller es farà servir com a recurs, i laravel deixa els mètodes llestos per ser omplerts. Si no afegir -r, es crearà un controller totalment buit, el que ens donaria més feina, ia ningú li agrada treballar \(?\).
+El **-r** , vol dir que aquest controller es farà servir com a recurs, i laravel deixa els mètodes llestos per ser omplerts. Si no afegir -r, es crearà un controller totalment buit.
 
 Vegem com ens va quedar:
 
@@ -114,37 +113,37 @@ Ara anem a crear la ruta per accedir al nostre recentment creat controlador.
 
 En Laravel, només hem de definir el nom de l'endpoint, i el controlador.
 
-Hem obrir el fitxer **routes / api.php** , el qual potser ja tingui un middleware configurat per users per defecte, però que ignorarem.
+Hem obrir el fitxer **routes/api.php** , el qual potser ja tingui un middleware configurat per users per defecte, però que ignorarem.
 
 Afegirem la ruta de la següent manera:
 
 **¿Va quedar bé?**
 
-Fem servir la comanda **php artisan route: list** , per veure si les nostres rutes quedar bé configurades:![](https://miro.medium.com/max/60/1*2nUW15qD2V3bWfTaJEXnBQ.png?q=20)
+Fem servir la comanda **php artisan route: list** , per veure si les nostres rutes quedar bé configurades:
+
+![](https://miro.medium.com/max/60/1*2nUW15qD2V3bWfTaJEXnBQ.png?q=20)
 
 ![](https://miro.medium.com/max/819/1*2nUW15qD2V3bWfTaJEXnBQ.png)
 
-Bellesa.
+Laravel, ha configurat  r les rutes per als verbs **http** que vulguem fer servir, com [**GET, POST, PUT, PATCH i DELETE**](https://developer.mozilla.org/es/docs/Web/HTTP/Methods) . Si seguim l'estructura definida en aquesta llista, no ens podem perdre.
 
-Laravel, en la seva infinita bellesa, va configurar les rutes per als verbs http que vulguem fer servir, com [**GET, POST, PUT, PATCH i DELETE**](https://developer.mozilla.org/es/docs/Web/HTTP/Methods) . Si seguim l'estructura definida en aquesta llista, no hi ha per on perdre.
-
-**Probemium ...**
+**Proves ...**
 
 Crearem uns pokemons amb unes peticions POST, i després demanarem un pokemon en específic usant GET. Això només perquè s'entengui la idea.
 
-Primer, per guardar dades, si ens fixem en la llista de rutes, el verb **POST** està associat amb **api / pokemons** , i amb el mètode **pokemons.store.**
+Primer, per guardar dades, si ens fixem en la llista de rutes, el verb **POST** està associat amb **api/pokemons** , i amb el mètode **pokemons.store.**
 
-Segon, per mostrar les dades, el mètode **GET** està associat amb **api / pokemons / {Pokémon}** , i amb el mètode **pokemons.show.**
+Segon, per mostrar les dades, el mètode **GET** està associat amb **api/pokemons/{pokemon}** , i amb el mètode **pokemons.show.**
 
 Fem-li cas a la ruta.
 
-En PokemonController, importaré l'arxiu **App \ Pokémon** per poder canviar dades d'aquest, i omplirem els mètodes **store \(\)** i **show \(\)** .
+En PokemonController, importaré l'arxiu **App\Pokémon** per poder canviar dades d'aquest, i omplirem els mètodes **store\(\)** i **show \(\)** .
 
 Iniciem el nostre server amb la comanda **php artisan serve.**
 
-Ara podem utilitzar el nostre mètode preferit per provar APIs. En el meu cas faré servir [**Postman**](https://www.getpostman.com/) **.**
+Ara podem utilitzar el nostre mètode preferit per provar APIs. En el meu cas faré servir [**Postman**](https://www.getpostman.com/)**.,** o el comando **curl -X**
 
-Provem el mètode store \(\):![](https://miro.medium.com/max/60/1*65mRKTrKFkIYTM-ial1dSg.png?q=20)
+Provem el mètode store\(\):![](https://miro.medium.com/max/60/1*65mRKTrKFkIYTM-ial1dSg.png?q=20)
 
 ![](https://miro.medium.com/max/582/1*65mRKTrKFkIYTM-ial1dSg.png)
 
