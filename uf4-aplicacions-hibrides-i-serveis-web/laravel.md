@@ -243,5 +243,15 @@ Frontend indica sempre la part que es desenvolupa al costat client, inclou l'HTM
 
 Representa el motor de plantilles que utilitza de forma predeterminada el Laravel. Els fitxers de blade tenen l'extensió `.blade.php`, i entre d'altres característiques, permeten l'ús de php dins seu, ja que el que fa és compilar en PHP pla.
 
+## Eloquent
+
+Crear models:
+
+```text
+php artisan make:model Post -m
+```
+
+Crea el model Post amb la migració preparada.
+
 
 
