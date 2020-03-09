@@ -235,5 +235,13 @@ Route::post('post/store', ['middleware' => 'auth',
 }]);
 ```
 
+## Frontend
+
+Frontend indica sempre la part que es desenvolupa al costat client, inclou l'HTML, el CSS i JS fonamentalment.
+
+### Blade
+
+Representa el motor de plantilles que utilitza de forma predeterminada el Laravel. Els fitxers de blade tenen l'extensió `.blade.php`, i entre d'altres característiques, permeten l'ús de php dins seu, ja que el que fa és compilar en PHP pla.
+
 
 
