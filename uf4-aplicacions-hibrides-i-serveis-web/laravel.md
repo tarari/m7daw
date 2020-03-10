@@ -98,8 +98,7 @@ També podem passar la variable a una vista:
 
 ```text
 Route::get('/test',function (){
-    $name=request('name');
-    return view('test',['name'=>$name]);
+    return view('test',['name'=>request('name')]);
 });
 ```
 
