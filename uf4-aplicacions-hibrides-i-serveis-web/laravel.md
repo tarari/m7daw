@@ -81,6 +81,19 @@ Route::get('/', function () {
 
 La sortida serà en JSON.
 
+#### Rutes que miren el REQUEST
+
+A vegades és necessari passar paràmetres REQUEST, mirem la forma més simple:
+
+```text
+Route::get('/test',function (){
+    $name=request('name');
+    return $name;
+});
+```
+
+Podem fer la prova, al navegador: `http://localhost:8000/test?name=Pepe`
+
 ### Response
 
 Retorn de resposta ben formada, amb capçaleres i codi.
