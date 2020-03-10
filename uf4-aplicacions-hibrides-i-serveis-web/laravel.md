@@ -103,6 +103,13 @@ Route::get('/test',function (){
 });
 ```
 
+I al fitxer **views/test.blade.php** podem utilitzar la variable `$name` de la següent manera, format php o format blade
+
+```text
+{{ $name }}
+<?= $name; ?>
+```
+
 ### Response
 
 Retorn de resposta ben formada, amb capçaleres i codi.
