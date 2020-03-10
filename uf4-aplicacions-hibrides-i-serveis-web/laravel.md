@@ -94,6 +94,15 @@ Route::get('/test',function (){
 
 Podem fer la prova, al navegador: `http://localhost:8000/test?name=Pepe`
 
+També podem passar la variable a una vista:
+
+```text
+Route::get('/test',function (){
+    $name=request('name');
+    return view('test',['name'=>$name]);
+});
+```
+
 ### Response
 
 Retorn de resposta ben formada, amb capçaleres i codi.
