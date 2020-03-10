@@ -103,7 +103,7 @@ Route::get('/test',function (){
 });
 ```
 
-I al fitxer **views/test.blade.php** podem utilitzar la variable `$name` de la següent manera, format php o format blade
+I al fitxer **views/test.blade.php** podem utilitzar la variable `$name` de la següent manera, format php o format blade, però millor de la forma blade \(1\), ja que filtra la request i ens evitem atacs. \(Per filtrar, podem fer servir _**htmlspecialchars\(\)**_\)
 
 ```text
 {{ $name }}
