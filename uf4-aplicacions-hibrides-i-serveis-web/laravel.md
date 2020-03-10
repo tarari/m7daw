@@ -197,9 +197,9 @@ Llista de comandos artisan més comuns:
 
 ## Autenticació
 
-Per la via ràpida, instal·lem _**laravel/ui**_ aquest paquet de composer i executem `php artisan ui vue --auth` en una aplicació Laravel **nova, sense estrenar**. Després de migrar la bas de dades, comprovem al navegador _**http://app.test/register**_
+Per la via ràpida, instal·lem _**laravel/ui**_ aquest paquet de composer i executem `php artisan ui vue --auth` en una aplicació Laravel **nova, sense estrenar,** si fem servir **vue.** Però podria ser **bootstrap** o **react** Després de migrar la bas de dades, comprovem al navegador _**http://app.test/register**_
 
-Laravel instal·la de forma automàtica un sistema d'autenticació, per tant trobareu creat ja el model **App\User.** També trobarem  en **resources** una carpeta anomenada **auth,** amb totes les plantilles blade que s'utilitzaran en els formularis d'autenticació.
+Laravel instal·la de forma automàtica un sistema d'autenticació, per tant trobareu creat ja el model **App\User.** També trobarem  en **resources** una carpeta anomenada **auth,** amb totes les plantilles blade que s'utilitzaran en els formularis d'autenticació i registre.
 
 \*\*\*\*
 
