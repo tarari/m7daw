@@ -48,9 +48,9 @@ Des que el client envia un REQUEST fins que el sistema envia un RESPONSE, Larave
 
 ### Routes
 
-Defineixen a qui / quins serveis cridem quan se solicita una determinada URI.
+Defineixen a qui/quins serveis cridem quan se solicita una determinada URI.
 
-Totes les rutes es troben definides en un fitxer  _routes/web.php,_ totes les rutes es troben aquí definides.
+Totes les rutes es troben definides en un fitxer  _`routes/web.php,`_ ``totes les rutes es troben aquí definides.
 
 A través de les rutes, podem donar servei als mètodes REQUEST get, post, put i delete.​ Podem dir que respongui a un mètode determinat, un conjunt de mètode o bé a qualsevol.
 
@@ -105,8 +105,8 @@ Route::get('/test',function (){
 I al fitxer **views/test.blade.php** podem utilitzar la variable `$name` de la següent manera, format php o format blade, però millor de la forma blade \(1\), ja que filtra la request i ens evitem atacs. \(Per filtrar, podem fer servir _**htmlspecialchars\(\)**_\)
 
 ```text
-{{ $name }}
-<?= $name; ?>
+{{!! $name !!}} equival a  <?= $name; ?>
+{{ $name }} equival a <?= htmlentities($name); ?>
 ```
 
 ### Response
