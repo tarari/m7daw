@@ -201,7 +201,59 @@ Per la via ràpida, instal·lem _**laravel/ui**_ aquest paquet de composer i exe
 
 Laravel instal·la de forma automàtica un sistema d'autenticació, per tant trobareu creat ja el model **App\User.** També trobarem  en **resources** una carpeta anomenada **auth,** amb totes les plantilles blade que s'utilitzaran en els formularis d'autenticació i registre.
 
-\*\*\*\*
+### Afegir rols d'usuari estil Symfony
+
+Primer preparem la migració per afegir el camp de rol a l'usuari:
+
+```text
+php artisan make:migration add_roles_to_users_table --table=users 
+```
+
+Mirem la migration acabada de crear \(en database/migrations\) i afegim el camp:
+
+```text
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class AddRolesToUsersTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->text('roles')->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('roles');
+        });
+    }
+}
+```
+
+Afegim un casting del camp roles de User com a array:
+
+```text
+ protected $casts = [
+        ...
+        'roles'=>'array'
+    ];
+```
 
 ## Enutament
 
