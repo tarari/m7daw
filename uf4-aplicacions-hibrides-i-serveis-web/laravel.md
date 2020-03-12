@@ -255,6 +255,55 @@ Afegim un casting del camp roles de User com a array:
     ];
 ```
 
+i els mètode necessaris per tractar els rols, al model User
+
+```text
+    /**
+     * @param string $role
+     * @return $this
+     */
+    public function addRole(string $role){
+        $roles=$this->getRoles();
+        $roles[]=$role;
+        $roles=array_unique($roles);
+        $this->setRoles($roles);
+        return $this;
+    }
+    public function getRoles(){
+        $roles=$this->getAttribute('roles');
+        if(is_null($roles)){
+            $roles=[];
+        }
+        return $roles;
+    }
+
+    /**
+     * @param array $roles
+     * @return $this
+     */
+    public function setRoles(array $roles){
+        $this->setAttribute('roles',$roles);
+        return $this;
+    }
+
+    /**
+     * @param string $role
+     * @return bool
+     */
+    public function hasRole($role){
+        return in_array($role,$this->getRoles());
+    }
+    public function hasRoles($roles){
+        $currentRoles=$this->getRoles();
+        foreach ($roles as $role){
+            if(! in_array($role,$currentRoles)){
+                return false;
+            }
+        }
+        return true;
+    }
+```
+
 ## Enutament
 
 ### Enrutament bàsic:
