@@ -2,23 +2,51 @@
 
 A continuació us indiquem quins passos cal seguir per realitzar una aplicació en Laravel:
 
-## Casos d´ús
+## 1.Casos d´ús
 
 Ens permet entendre les diferents accions del nostre projecte
 
-## Crear i modificar l'entorn .env de l'app
+## 2.Crear i modificar l'entorn .env de l'app
 
 Modificar dades d'accés a la base de dades i usuari d'accés a la base de dades.
 
-## Definir models i relacions associades
+## 3. Activar l'autenticació i sistema ui
 
-## Realitzar les migracions a la base de dades 
+Si utilitzem sistema d'autenticació, caldria configurar-lo:
 
-## Crear els middlewares que en siguin necessaris
+```text
+$ composer require laravel/ui
+```
 
-## Crear els controladors i les seves accions en funció de les rutes definides
+I activat amb el frontend que desitgem:
 
-## Associar i crear les vistes a través de blade
+```text
+$ php artisan ui bootstrap --auth
+```
+
+Si volguèssim definir-lo més tard, simplement acondicionem l'autenticació, controladors, proveïdors i vistes:
+
+```text
+$ pho artisan make:auth
+```
+
+## 4. Definir models i relacions associades
+
+Podem fer servir els comandos artisan per crear els models. Un cop creats, cal acabar-los d'implementar
+
+```text
+php artisan make:model Property -m
+```
+
+## 5. Realitzar les migracions a la base de dades 
+
+## 6. Crear els "middlewares" que en siguin necessaris
+
+## 7. Crear els controladors i les seves accions en funció de les rutes definides
+
+## 8.Associar i crear les vistes a través de blade
+
+## 9. Tests
 
 ## 
 
