@@ -53,7 +53,7 @@ Si volguèssim definir-lo més tard, simplement acondicionem l'autenticació, co
 $ pho artisan make:auth
 ```
 
-## 4. Definir models i relacions associades
+## 4. Definir models i relacions associades i fer les migracions
 
 Podem fer servir els comandos artisan per crear els models. Un cop creats, cal acabar-los d'implementar.
 
@@ -71,10 +71,18 @@ php artisan make:migrations create_table_properties
 
 Si migreu \( `php artisan migrate` \), ja tindreu creades les taules a la vostra base de dades.
 
-Ara caldrà comprovar com queda l'script de migració: Modifiqueu el de l'última data: I en _**up\(\)**_ definim els camps que ens falten \(línies 12 - 15\):
+Ara caldrà comprovar com queda l'script de migració:
+
+Crearem un altre script de migració:
 
 ```text
-class CreateTableProperties extends Migration
+php artisan make:migrations change_table_properties
+```
+
+ El modifiquem afegint les funcions **up**\(\) i **down**\(\) \(crear i eliminar taula\). Aneu amb compte amb els tipus de dades relacionats **id** de _users_ i **users\_id** de _properties_
+
+```text
+class ChangeTableProperties extends Migration
 {
     /**
      * Run the migrations.
@@ -84,12 +92,12 @@ class CreateTableProperties extends Migration
     public function up()
     {
         Schema::create('table_properties', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->decimal('price',8,2);
             $table->string('description');
-            $table->integer('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
+            $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->timestamps()
         });
     }
 
@@ -106,13 +114,15 @@ class CreateTableProperties extends Migration
 
 ```
 
+Ara ja podríem executar la migració: `php artisan migrate`
 
 
-## 5. Realitzar les migracions a la base de dades 
 
-## 6. Crear els "middlewares" que en siguin necessaris
+## 5. Crear els "middlewares" que en siguin necessaris
 
-## 7. Crear els controladors i les seves accions en funció de les rutes definides
+Podem crear un middleware de control del rol d'usuari
+
+## 6. Crear els controladors i les seves accions en funció de les rutes definides
 
 ## 8.Associar i crear les vistes a través de blade
 
