@@ -6,6 +6,20 @@ A continuació us indiquem quins passos cal seguir per realitzar una aplicació 
 
 Ens permet entendre les diferents accions del nostre projecte
 
+| EXEMPLE |  |
+| :--- | :--- |
+| USUARI \(ROLE\) | Login |
+|  | Registre |
+|  | Propietat /Registrar |
+|  | Propietat /Editar |
+|  | Propietat / Eliminar |
+|  | Publicació / Crear |
+|  | Publicació / Editar |
+|  | Publicació / Eliminar |
+| ADMIN \(ROLE\) | Backend Users |
+|  | Backend Properties |
+|  | Backend Publications |
+
 ## 2.Crear i modificar l'entorn .env de l'app
 
 Modificar dades d'accés a la base de dades i usuari d'accés a la base de dades.
