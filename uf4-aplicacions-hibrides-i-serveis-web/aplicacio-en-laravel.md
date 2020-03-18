@@ -24,6 +24,15 @@ Ens permet entendre les diferents accions del nostre projecte
 
 Modificar dades d'accés a la base de dades i usuari d'accés a la base de dades.
 
+```text
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=inmo
+DB_USERNAME=inmo
+DB_PASSWORD=linuxlinux
+```
+
 ## 3. Activar l'autenticació i sistema ui
 
 Si utilitzem sistema d'autenticació, caldria configurar-lo:
@@ -46,11 +55,58 @@ $ pho artisan make:auth
 
 ## 4. Definir models i relacions associades
 
-Podem fer servir els comandos artisan per crear els models. Un cop creats, cal acabar-los d'implementar
+Podem fer servir els comandos artisan per crear els models. Un cop creats, cal acabar-los d'implementar.
+
+
 
 ```text
 php artisan make:model Property -m
 ```
+
+Després de definir els models i les seves migracions \(-m\), podem continuar modificant les migracions.
+
+```text
+php artisan make:migrations create_table_properties
+```
+
+Si migreu \( `php artisan migrate` \), ja tindreu creades les taules a la vostra base de dades.
+
+Ara caldrà comprovar com queda l'script de migració: Modifiqueu el de l'última data: I en _**up\(\)**_ definim els camps que ens falten \(línies 12 - 15\):
+
+```text
+class CreateTableProperties extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('table_properties', function (Blueprint $table) {
+            $table->id();
+            $table->decimal('price',8,2);
+            $table->string('description');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->timestamps()
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('table_properties');
+    }
+}
+
+```
+
+
 
 ## 5. Realitzar les migracions a la base de dades 
 
