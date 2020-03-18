@@ -1,3 +1,7 @@
+---
+description: Unes pautes per a la creació d'aplicacions a Laravel
+---
+
 # Aplicació en Laravel
 
 A continuació us indiquem quins passos cal seguir per realitzar una aplicació en Laravel:
