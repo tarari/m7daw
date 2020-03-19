@@ -124,13 +124,23 @@ Acabem de fer la resta de models i les relacions pertinents.
 
 ## 5. Crear els "_middlewares_" que en siguin necessaris
 
-Podem crear un middleware de control del rol d'usuari, recordem que un middleware actua com un filtre. 
+Podem crear un middleware de _control del rol_ d'usuari, recordem que un middleware actua com un filtre. 
+
+Modificarem el model User, afegirem el camp de 'roles', i l'actualitzarem, Després afegirem els mètodes per manipular els rols al mateix model.
+
+
+
+També ens crearem unes classes de suport **Role** i **RoleChecker,** ja que si volem rols amb jerarquia \(de més a menys seria ROLE\_ADMIN i ROLE\_USER a l'estil Symfony\). A continuació crearem un middleware per al xequeig del rol que podem utilitzar de forma global o en una ruta o grup de rutes.
+
+Després cal enregistrar el Middleware i ja podem utilitzar-lo.
+
+
 
 ## 6. Crear els controladors i les seves accions en funció de les rutes definides
 
-## 8.Associar i crear les vistes a través de blade
+## 7. Associar i crear les vistes a través de blade
 
-## 9. Tests
+## 8. Tests
 
 ## 
 
