@@ -27,5 +27,4 @@
 * [Seguretat en PHP](apendixs/seguretat-en-php.md)
 * [Esquema tipus d'aplicació](apendixs/untitled-1.md)
 * [Sintaxi PHP](apendixs/sintaxi-php.md)
-* [Untitled](apendixs/untitled.md)
 

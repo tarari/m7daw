@@ -122,9 +122,9 @@ Ara ja podríem executar la migració: `php artisan migrate`
 
 Acabem de fer la resta de models i les relacions pertinents.
 
-## 5. Crear els "middlewares" que en siguin necessaris
+## 5. Crear els "_middlewares_" que en siguin necessaris
 
-Podem crear un middleware de control del rol d'usuari
+Podem crear un middleware de control del rol d'usuari, recordem que un middleware actua com un filtre. 
 
 ## 6. Crear els controladors i les seves accions en funció de les rutes definides
 
