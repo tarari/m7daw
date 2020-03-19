@@ -120,7 +120,7 @@ class ChangeTableProperties extends Migration
 
 Ara ja podríem executar la migració: `php artisan migrate`
 
-
+Acabem de fer la resta de models i les relacions pertinents.
 
 ## 5. Crear els "middlewares" que en siguin necessaris
 
