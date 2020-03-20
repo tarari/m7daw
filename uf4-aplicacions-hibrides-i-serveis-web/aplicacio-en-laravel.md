@@ -85,7 +85,7 @@ php artisan make:migrations change_table_properties
 
  El modifiquem afegint les funcions **up**\(\) i **down**\(\) \(crear i eliminar taula\). Aneu amb compte amb els tipus de dades relacionats **id** de _users_ i **users\_id** de _properties_
 
-```text
+```php
 class ChangeTableProperties extends Migration
 {
     /**
@@ -95,7 +95,7 @@ class ChangeTableProperties extends Migration
      */
     public function up()
     {
-        Schema::create('table_properties', function (Blueprint $table) {
+        Schema::create('properties', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->decimal('price',8,2);
             $table->string('description');
@@ -112,7 +112,7 @@ class ChangeTableProperties extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_properties');
+        Schema::dropIfExists('properties');
     }
 }
 
@@ -132,7 +132,7 @@ Modificarem el model User, afegirem el camp de 'roles', i l'actualitzarem, Despr
 
 Pas a pas, caldrà crear una migració per afegir el camp roles al model - taula User, in cop migrat, afegim els mètodes al model:
 
-```text
+```php
 class User extends Authenticatable
 {
     use Notifiable;
@@ -234,7 +234,7 @@ class User extends Authenticatable
 
 També ens crearem unes classes de suport **UserRole** i **RoleChecker,** ja que si volem rols amb jerarquia \(de més a menys seria ROLE\_ADMIN i ROLE\_USER a l'estil Symfony\). 
 
-```text
+```php
 namespace App\Role;
 
 
@@ -283,7 +283,7 @@ class UserRole
 
 ```
 
-```text
+```php
 namespace App\Role;
 
 use App\User;
@@ -318,11 +318,11 @@ class RoleChecker
 
 A continuació crearem un middleware per al xequeig del rol que podem utilitzar de forma global o en una ruta o grup de rutes.
 
-```text
+```bash
 php artisan make:middleware CheckUserRole  
 ```
 
-```text
+```php
 namespace App\Http\Middleware;
 
 use Closure;
