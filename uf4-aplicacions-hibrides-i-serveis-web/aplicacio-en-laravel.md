@@ -383,6 +383,15 @@ protected $routeMiddleware = [
     ];
 ```
 
+Per utilitzar el middleware en ruta:
+
+```text
+Route::put('post/{id}', function ($id) {
+    //
+})->middleware('check.user.role:' 
+. \App\Role\UserRole::ROLE_ADMIN);
+```
+
 
 
 ## 6. Crear els controladors i les seves accions en funció de les rutes definides
