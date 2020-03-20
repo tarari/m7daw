@@ -126,7 +126,11 @@ Acabem de fer la resta de models i les relacions pertinents.
 
 Podem crear un middleware de _control del rol_ d'usuari, recordem que un middleware actua com un filtre. 
 
+![Els middlewares actuen com a filtres dels REQUESTs abans de processar la sol&#xB7;licitud](../.gitbook/assets/dibujo-sin-titulo.png)
+
 Modificarem el model User, afegirem el camp de 'roles', i l'actualitzarem, Després afegirem els mètodes per manipular els rols al mateix model.
+
+Pas a pas, caldrà crear una migració per afegir el camp roles al model - taula User
 
 
 
