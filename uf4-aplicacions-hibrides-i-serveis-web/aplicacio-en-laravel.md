@@ -28,7 +28,7 @@ Ens permet entendre les diferents accions del nostre projecte
 
 Modificar dades d'accés a la base de dades i usuari d'accés a la base de dades.
 
-```text
+```bash
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -41,20 +41,20 @@ DB_PASSWORD=linuxlinux
 
 Si utilitzem sistema d'autenticació, caldria configurar-lo:
 
-```text
+```bash
 $ composer require laravel/ui
 ```
 
 I activat amb el frontend que desitgem:
 
-```text
+```bash
 $ php artisan ui bootstrap --auth
 ```
 
 Si volguèssim definir-lo més tard, simplement acondicionem l'autenticació, controladors, proveïdors i vistes:
 
-```text
-$ pho artisan make:auth
+```bash
+$ php artisan make:auth
 ```
 
 ## 4. Definir models i relacions associades i fer les migracions
@@ -366,7 +366,7 @@ class CheckUserRole
 
 Després cal enregistrar el Middleware i ja podem utilitzar-lo. En la classe `App\HTTP\Kernel` : Definim una ruta \(linia 8\)
 
-```text
+```php
 .....
 protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
@@ -385,7 +385,7 @@ protected $routeMiddleware = [
 
 Per utilitzar el middleware en ruta:
 
-```text
+```php
 Route::put('post/{id}', function ($id) {
     //
 })->middleware('check.user.role:' 
