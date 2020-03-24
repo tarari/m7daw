@@ -122,7 +122,7 @@ Ara ja podríem executar la migració: `php artisan migrate`
 
 Acabem de fer la resta de models i les relacions pertinents.
 
-## 5. Crear els "_middlewares_" que en siguin necessaris
+## 5. Crear els "_middlewares_" que en siguin necessaris. Middleware de control d'accès.
 
 Podem crear un middleware de _control del rol_ d'usuari, recordem que un middleware actua com un filtre. 
 
@@ -130,266 +130,254 @@ Podem crear un middleware de _control del rol_ d'usuari, recordem que un middlew
 
 Modificarem el model User, afegirem el camp de 'roles', i l'actualitzarem, Després afegirem els mètodes per manipular els rols al mateix model.
 
-Pas a pas, caldrà crear una migració per afegir el camp roles al model - taula User, in cop migrat, afegim els mètodes al model:
+Pas a pas, caldrà crear una migració per afegir el camp roles al model - taula User, in cop migrat, afegim els mètodes al model.
 
-```php
-class User extends Authenticatable
-{
-    use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+Sino tenim instal·lat l'auntenticació:
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'roles' => 'array'
-    ];
-
-    /***
-     * @param string $role
-     * @return $this
-     */
-    public function addRole(string $role)
-    {
-        $roles = $this->getRoles();
-        $roles[] = $role;
-
-        $roles = array_unique($roles);
-        $this->setRoles($roles);
-
-        return $this;
-    }
-
-    /**
-     * @param array $roles
-     * @return $this
-     */
-    public function setRoles(array $roles)
-    {
-        $this->setAttribute('roles', $roles);
-        return $this;
-    }
-
-    /***
-     * @param $role
-     * @return mixed
-     */
-    public function hasRole($role)
-    {
-        return in_array($role, $this->getRoles());
-    }
-
-    /***
-     * @param $roles
-     * @return mixed
-     */
-    public function hasRoles($roles)
-    {
-        $currentRoles = $this->getRoles();
-        foreach($roles as $role) {
-            if ( ! in_array($role, $currentRoles )) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
-     * @return array
-     */
-    public function getRoles()
-    {
-        $roles = $this->getAttribute('roles');
-
-        if (is_null($roles)) {
-            $roles = [];
-        }
-
-        return $roles;
-    }
-    .......
+```text
+$ php artisan make:auth
 ```
 
+Crear el model **Role** amb la seva respectiva migració \(paràmetre -m\):
 
+```text
+$ php artisan make:model Role -m
+```
 
-També ens crearem unes classes de suport **UserRole** i **RoleChecker,** ja que si volem rols amb jerarquia \(de més a menys seria ROLE\_ADMIN i ROLE\_USER a l'estil Symfony\). 
+Edita la classe _**CreateRolesTable**_ a la carpeta de migrations:
 
 ```php
-namespace App\Role;
-
-
-class UserRole
+public function up()
 {
-    const ROLE_ADMIN = 'ROLE_ADMIN';
-    const ROLE_ACCOUNT_MANAGER = 'ROLE_ACCOUNT_MANAGER';
-    const ROLE_USER = 'ROLE_USER';
-
-    /**
-     * @var array
-     */
-    protected static $roleHierarchy = [
-        self::ROLE_ADMIN => ['*'],
-        self::ROLE_ACCOUNT_MANAGER => [
-            self::ROLE_USER
-        ],
-        self::ROLE_USER => []
-    ];
-
-    /**
-     * @param string $role
-     * @return array
-     */
-    public static function getAllowedRoles(string $role)
-    {
-        if (isset(self::$roleHierarchy[$role])) {
-            return self::$roleHierarchy[$role];
-        }
-
-        return [];
-    }
-
-    /***
-     * @return array
-     */
-    public static function getRoleList()
-    {
-        return [
-            static::ROLE_ADMIN =>'Admin',
-            static::ROLE_ACCOUNT_MANAGER => 'Account Manager',
-            static::ROLE_USER => 'User',
-        ];
-    }
+    Schema::create('roles', function (Blueprint $table) {
+        $table->increments('id');
+        $table->string('name');
+        $table->string('description');
+        $table->timestamps();
+    });
 }
 
+public function down()
+{
+    Schema::dropIfExists('roles');
+}
 ```
 
+Crear una nova migració per a la taula dinàmica _**role\_user**_ :
+
+```text
+$ php artisan make:migration create_role_user_table
+```
+
+Edita la classe _**CreateRoleUserTable**_ a la carpeta database / migrations:
+
 ```php
-namespace App\Role;
-
-use App\User;
-
-class RoleChecker
+public function up()
 {
+    Schema::create('role_user', function (Blueprint $table) {
+        $table->increments('id');
+        $table->integer('role_id')->unsigned();
+        $table->integer('user_id')->unsigned();
+        $table->timestamps();  
+    });
+}
+public function down()
+{
+    Schema::dropIfExists('role_user');
+}
+```
 
-    /**
-     * @param User $user
-     * @param string $role
-     * @return bool
-     */
-    public function check(User $user, string $role)
+Ara cal generar una relació _**many-to-many**_ entre entitats _**User**_ i _**Role.**_
+
+Obrim el model _**User.php**_ i afegim el següent mètode:
+
+```php
+public function roles()
+{
+    return $this
+        ->belongsToMany('App\Role')
+        ->withTimestamps();
+}
+```
+
+Fem el mateix amb el model _**Role.php**_ :
+
+```php
+public function users()
+{
+    return $this
+        ->belongsToMany('App\User')
+        ->withTimestamps();
+}
+```
+
+És moment de crear alguns _seeders_ i afegir rols i usuaris a la base de dades:
+
+```text
+$ php artisan make:seeder RoleTableSeeder
+$ php artisan make:seeder UserTableSeeder
+```
+
+Editem la classe _**RoleTableSeeder**_ \(es troba dins de la carpeta: _database/seeds/_\) afegint el següent codi a mètode _**run**_ :
+
+```php
+use Illuminate\Database\Seeder;
+use App\Role;
+class RoleTableSeeder extends Seeder
+{
+    public function run()
     {
-        // Admin has everything roles
-        if ($user->hasRole(UserRole::ROLE_ADMIN)) {
-            return true;
-        }
-        else if($user->hasRole(UserRole::ROLE_ACCOUNT_MANAGER)) {
-            $managementUserRoles = UserRole::getAllowedRoles(UserRole::ROLE_ACCONUNT_MANAGER);
+        $role = new Role();
+        $role->name = 'admin';
+        $role->description = 'Administrator';
+        $role->save();
+        $role = new Role();
+        $role->name = 'user';
+        $role->description = 'User';
+        $role->save();
+    }
+}
+```
 
-            if (in_array($role, $managementUserRoles)) {
+Fem el mateix amb la classe _**UserTableSeeder**_ :
+
+```php
+use Illuminate\Database\Seeder;
+use App\User;
+use App\Role;
+class UserTableSeeder extends Seeder
+{
+    public function run()
+    {
+        $role_user = Role::where('name', 'user')->first();
+        $role_admin = Role::where('name', 'admin')->first();
+        $user = new User();
+        $user->name = 'User';
+        $user->email = 'user@example.com';
+        $user->password = bcrypt('secret');
+        $user->save();
+        $user->roles()->attach($role_user);
+        $user = new User();
+        $user->name = 'Admin';
+        $user->email = 'admin@example.com';
+        $user->password = bcrypt('secret');
+        $user->save();
+        $user->roles()->attach($role_admin);
+     }
+}
+```
+
+Editem la classe _**DatabaseSeeder**_ \(situada a la carpeta: database/seeds/\) afegint el següent codi a mètode _**run**_ :
+
+```php
+public function run()
+{
+    // La creación de datos de roles debe ejecutarse primero
+    $this->call(RoleTableSeeder::class);
+    // Los usuarios necesitarán los roles previamente generados
+    $this->call(UserTableSeeder::class);
+}
+```
+
+Ja queda poc ... està gairebé tot a punt. Ara és temps d'executar les migracions i generar el contingut:
+
+> Cal assegurar-se tenir definides les variables d'entorn al nostre arxiu **.env** relatives a la base de dades que utilitzarem
+
+```text
+php artisan migrate:refresh --seed
+```
+
+Obrim el model **User.php** i afegim aquests tres  mètodes \(mireu a veure si interpreteu per a què serveixen \):
+
+```php
+public function authorizeRoles($roles)
+{
+    if ($this->hasAnyRole($roles)) {
+        return true;
+    }
+    abort(401, 'Non authorized action.');
+}
+public function hasAnyRole($roles)
+{
+    if (is_array($roles)) {
+        foreach ($roles as $role) {
+            if ($this->hasRole($role)) {
                 return true;
             }
         }
-
-        return $user->hasRole($role);
-    }
-}
-
-```
-
-A continuació crearem un middleware per al xequeig del rol que podem utilitzar de forma global o en una ruta o grup de rutes.
-
-```bash
-php artisan make:middleware CheckUserRole  
-```
-
-```php
-namespace App\Http\Middleware;
-
-use Closure;
-
-class CheckUserRole
-{
-    /**
-     * @var RoleChecker
-     */
-    protected $roleChecker;
-
-    public function __construct(RoleChecker $roleChecker)
-    {
-        $this->roleChecker = $roleChecker;
-    }
-
-    /**
-     * Handle an incoming request.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure $next
-     * @param string $role
-     * @return mixed
-     * @throws AuthorizationException
-     */
-    public function handle($request, Closure $next,$role)
-    {
-        /** @var User $user */
-        $user = Auth::guard()->user();
-
-        if ( ! $this->roleChecker->check($user, $role)) {
-            throw new AuthorizationException('You do not have permission to view this page');
+    } else {
+        if ($this->hasRole($roles)) {
+            return true;
         }
-
-        return $next($request);
-
     }
+    return false;
+}
+public function hasRole($role)
+{
+    if ($this->roles()->where('name', $role)->first()) {
+        return true;
+    }
+    return false;
+}
+```
+
+Obrim l'arxiu app/Http/Controllers/Auth/_**RegisterController.php**_i canviem  el mètode _**create\(\)**_ per definir per defecte el Role per als nous usuaris:
+
+```php
+use App\Role;
+class RegisterController ...
+protected function create(array $data)
+{
+    $user = User::create([
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'password' => Hash::make($data['password'])
+    ]);
+    $user
+        ->roles()
+        ->attach(Role::where('name', 'user')->first());
+    return $user;
+}
+```
+
+Finalment el pas final. Ara, tot el que es necessita és cridar al mètode _authorizeRoles_\(\) dins de les accions del controlador i passar l'array amb els rols d'usuari i el nivell d'accés que es desitgi.
+
+```php
+class HomeController extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    public function index(Request $request)
+    {
+        $request->user()->authorizeRoles(['user', 'admin']);
+        return view('home');
+    }
+/*
+    public function someAdminStuff(Request $request)
+    {
+        $request->user()->authorizeRoles(‘admin’);
+        return view(‘some.view’);
+    }
+    */
 }
 
 ```
 
-Després cal enregistrar el Middleware i ja podem utilitzar-lo. En la classe `App\HTTP\Kernel` : Definim una ruta \(linia 8\)
+Opcional:
+
+Definir paràmetres de selecció per a la vista Home \(_resources/views/_\):
 
 ```php
-.....
-protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
-        'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'check.user.role' => \App\Http\Middleware\CheckUserRole::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
-        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-    ];
-```
-
-Per utilitzar el middleware en ruta:
-
-```php
-Route::put('post/{id}', function ($id) {
-    //
-})->middleware('check.user.role:' 
-. \App\Role\UserRole::ROLE_ADMIN);
+@if(Auth::user()->hasRole('admin'))
+    <div>Acceso como administrador</div>
+@else
+    <div>Acceso usuario</div>
+@endif
+You are logged in!
 ```
 
 
