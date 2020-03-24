@@ -137,7 +137,7 @@ Pas a pas, caldrà crear una migració per afegir el camp roles al model - taula
 Sino tenim instal·lat l'auntenticació:
 
 ```text
-$ php artisan make:auth
+$ php artisan ui bootstrap --auth
 ```
 
 Crear el model **Role** amb la seva respectiva migració \(paràmetre -m\):
@@ -380,7 +380,83 @@ Definir paràmetres de selecció per a la vista Home \(_resources/views/_\):
 You are logged in!
 ```
 
+### Creació del Middleware
 
+Laravel inclou un middleware que permet verificar si un usuari està autenticat quan accedeix a l'aplicació. Si l'usuari no ho estigués, el middleware ho redireccionaria a la pantalla de **login**. I per contra, si ho estigués, el middleware permetria l'accés a l'aplicació \(dashboard\).
+
+```php
+php artisan make:middleware CheckRole
+```
+
+Ara editem el middleware que hem acabat de crear
+
+```php
+namespace App\Http\Middleware;
+
+use Closure;
+
+class CheckRole
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
+     * @param $role
+     * @return mixed
+     */
+    public function handle($request, Closure $next,$role)
+    {
+        if (! $request->user()->hasRole($role)) {
+            return redirect('home');
+        }
+        return $next($request);
+    }
+}
+
+```
+
+Hem agregat una redirección estàndar cap a 'home' però igualment es podria fer:
+
+```php
+// opció 1
+abort(403, “Non authorized”);
+// Opció 2
+return redirect(‘home’);
+```
+
+Enregistrem el middleware al kernel \(línia 17 de App\HTTP\Kernel\) :
+
+```php
+/**
+     * The application's route middleware.
+     *
+     * These middleware may be assigned to groups or used individually.
+     *
+     * @var array
+     */
+    protected $routeMiddleware = [
+        'auth' => \App\Http\Middleware\Authenticate::class,
+        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
+        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
+        'role' => \App\Http\Middleware\CheckRole::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+    ];
+```
+
+Per últim, podem fer servir el middleware ja directament a les rutes:
+
+```php
+Route::put('post/{id}', function ($id) {
+    //
+})->middleware('auth', 'role:admin');
+```
 
 ## 6. Crear els controladors i les seves accions en funció de les rutes definides
 
