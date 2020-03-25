@@ -122,6 +122,10 @@ Ara ja podríem executar la migració: `php artisan migrate`
 
 Acabem de fer la resta de models i les relacions pertinents.
 
+![Possible esquema a implementar](../.gitbook/assets/inmo.png)
+
+
+
 ## 5. Crear els "_middlewares_" que en siguin necessaris. Middleware de control d'accès.
 
 Podem crear un middleware de _control del rol_ d'usuari, recordem que un middleware actua com un filtre. 
