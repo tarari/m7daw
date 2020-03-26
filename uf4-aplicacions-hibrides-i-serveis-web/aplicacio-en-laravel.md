@@ -530,6 +530,8 @@ Route::put('post/{id}', function ($id) {
 
 ## 6. Crear els controladors i les seves accions en funció de les rutes definides
 
+Si ja tenim clar quina és l'estructura de l'aplicació i per tant les rutes associades, podem passar a aquest punt.
+
 ## 7. Associar i crear les vistes a través de blade
 
 ## 8. Tests
