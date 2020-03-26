@@ -122,9 +122,75 @@ Ara ja podríem executar la migració: `php artisan migrate`
 
 Acabem de fer la resta de models i les relacions pertinents.
 
-![Possible esquema a implementar](../.gitbook/assets/inmo.png)
+![](../.gitbook/assets/inmo%20%281%29.png)
 
 
+
+Segons l'esquema ER hem de poder crear els models necessaris amb les seves corresponents migracions:
+
+```php
+php artisan make:model Property -m
+```
+
+Aquesta línia crearà el model App\Property i també la seva migració: `create_property_table`
+
+El mateix farem amb la resta de models, acabarem de crear les migracions, tenint molt en compte les relacions entre taules. Per exemple a la migració de contacts `create_table_contacts` :
+
+```php
+class CreateContactsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('contacts', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('interested_id')->unsigned();
+            $table->bigInteger('publication_id')->unsigned();
+            $table->foreign('interested_id')->references('id')->on('users');
+            $table->foreign('publication_id')->references('id')->on('publications');
+            $table->timestamps();
+        });
+
+```
+
+Un cop fets els fitxers de migració completarem la migració:
+
+```php
+php artisan migrate
+```
+
+#### Completar mètodes en models
+
+Ara queda acabar de copiar les relacions  i característiques $fillable, etc. en Eloquent, sempre fixant-nos en l'esquema ER anterior, per exemple, entre User i Property \(1:M\):
+
+```php
+class Property extends Model
+{
+    protected $fillable=['description','price','type','owner_id'];
+    
+    public function user(){
+        return $this->belongsTo('App\User','owner_id');
+    }
+}
+
+```
+
+i User :
+
+```php
+  ........
+    public function properties(){
+        return $this->hasMany('App\Property');
+    }
+    public function publications(){
+        return $this->hasMany('App\Publication');
+    }
+
+```
 
 ## 5. Crear els "_middlewares_" que en siguin necessaris. Middleware de control d'accès.
 
