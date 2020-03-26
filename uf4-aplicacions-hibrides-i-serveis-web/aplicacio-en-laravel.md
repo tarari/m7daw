@@ -532,6 +532,37 @@ Route::put('post/{id}', function ($id) {
 
 Si ja tenim clar quina és l'estructura de l'aplicació i per tant les rutes associades, podem passar a aquest punt.
 
+En principi, començarem per tots els controladors associats a les entitats \(_resource controllers_\), amb artisan podem començar a crear:
+
+```php
+php artisan make:controller PropertyController -r
+```
+
+Es genera d'aquesta manera un controlador i els mètodes CRUD corresponents.
+
+Al mateix temps, podem associar les rutes del recurs amb `Route::resource` :
+
+```php
+Route::resource([
+    'properties'=>'PropertyController',
+    'publications'=>'PublicationController'
+        ]);
+```
+
+Això genera una llista de rutes i noms de ruta associades:
+
+
+
+| Verb | URI | Action | Route Name |
+| :--- | :--- | :--- | :--- |
+| GET | `/propeties` | index | properties.index |
+| GET | `/properties/create` | create | properties.create |
+| POST | `/properties` | store | properties.store |
+| GET | `/properties/{property}` | show | properties.show |
+| GET | `/properties/{property}/edit` | edit | properties.edit |
+| PUT/PATCH | `/properties/{property}` | update | properties.update |
+| DELETE | `/properties/{property}` | destroy | properties.destroy |
+
 ## 7. Associar i crear les vistes a través de blade
 
 ## 8. Tests
