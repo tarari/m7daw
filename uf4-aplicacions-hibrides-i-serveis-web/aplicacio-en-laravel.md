@@ -192,6 +192,52 @@ i User :
 
 ```
 
+#### Afegir un camp a una taula
+
+Per afegir un camp a una taula hem de crear una migració, per exemple, volem afegir _photo_ a **properties**
+
+```php
+php artisam make:migratrion add_photo_to_properties
+```
+
+Es crea la següent migració:
+
+```php
+class AddPhotoToProperties extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('properties', function (Blueprint $table) {
+            $table->string('photo')->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('properties', function (Blueprint $table) {
+            $table->dropColumn(['photo']);
+        });
+    }
+}
+
+```
+
+Fixem-nos en el mètode down\(\), efectivament, elimina el camp _photo_. Per últim, només queda que migrar : `php artisan migrate`
+
+
+
+
+
 ## 5. Crear els "_middlewares_" que en siguin necessaris. Middleware de control d'accès.
 
 Podem crear un middleware de _control del rol_ d'usuari, recordem que un middleware actua com un filtre. 
