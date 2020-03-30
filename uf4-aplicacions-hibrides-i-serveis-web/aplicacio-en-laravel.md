@@ -232,7 +232,7 @@ class AddPhotoToProperties extends Migration
 
 ```
 
-Fixem-nos en el mètode down\(\), efectivament, elimina el camp _photo_. Per últim, només queda que migrar : `php artisan migrate`
+Fixem-nos en el mètode **down\(\)**, efectivament, elimina el camp _photo_. Per últim, només queda que migrar : `php artisan migrate`
 
 
 
@@ -578,6 +578,8 @@ Route::put('post/{id}', function ($id) {
 
 Si ja tenim clar quina és l'estructura de l'aplicació i per tant les rutes associades, podem passar a aquest punt.
 
+#### Controladors de recursos
+
 En principi, començarem per tots els controladors associats a les entitats \(_resource controllers_\), amb artisan podem començar a crear:
 
 ```php
@@ -595,7 +597,7 @@ Route::resource([
         ]);
 ```
 
-Això genera una llista de rutes i noms de ruta associades:
+Això genera una llista de rutes i noms de ruta associade
 
 
 
@@ -608,6 +610,12 @@ Això genera una llista de rutes i noms de ruta associades:
 | GET | `/properties/{property}/edit` | edit | properties.edit |
 | PUT/PATCH | `/properties/{property}` | update | properties.update |
 | DELETE | `/properties/{property}` | destroy | properties.destroy |
+
+
+
+### Tractament dels controladors de recursos
+
+
 
 ## 7. Associar i crear les vistes a través de blade
 
