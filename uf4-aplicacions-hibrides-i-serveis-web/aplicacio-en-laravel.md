@@ -670,6 +670,60 @@ Observem que en la ruta properties.index, volem mostrar totes les propietats, le
     @endsection
 ```
 
+Quan editem un determinat item \($property\), es crida a la ruta _property.edit,_ que al mateix temps s'encarrega de portar a la vista d'edició l'item seleccionat:
+
+```php
+public function edit($id)
+    {
+        $property=Property::find($id);
+        return view('properties.edit',compact('property'));
+    }
+```
+
+Veiem ara la vista _properties.edit_. Aquesta té com a característica un formulari que incorpora una **action** que accedeix al mètode _update_ del controlador, passant l'element que volem editar, amb els canvis  realitzats es torna al servidor a través del mètode PUT, tot tenit¡nt la protecció CSRF \(recordeu! forms segurs \)
+
+```php
+@extends('app')
+
+@section('content')
+    <div class="col-lg-12">
+
+        <h1 class="my-4">Property edit</h1>
+        <form action="{{route('properties.update',$property->id)}}" method="POST">
+            @csrf
+            @method('PUT')
+            Descripcion
+        </br>
+            <input type="text" name="description" value="{{$property->description}}" class="form form-control"
+
+            </br>
+
+            <input type="submit" class="btn btn-primary" value="Update">
+            </br>
+            </br>
+        </form>
+    </br>
+    </div>
+
+    @endsection
+```
+
+Ara caldria observar com actua el mètode _update_ de Properties:
+
+```php
+ public function update(Request $request, $id)
+    {
+        $property=Property::find($id);
+        $property->update(['description'=>$request->description]);
+
+        return redirect()->route('properties.index');
+    }
+```
+
+Pràcticament el que fa és modificar a través d'Eloquent update utilitzant el Request i tornar a la ruta anterior \(_properties.index_\).
+
+
+
 ## 7. Associar i crear les vistes a través de blade
 
 ## 8. Tests
