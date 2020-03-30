@@ -615,7 +615,60 @@ Això genera una llista de rutes i noms de ruta associade
 
 ### Tractament dels controladors de recursos
 
+Recordem que aquesta és tasca dels administradors de backend per tant, podem establir un middleware en el controlador \(línia 5\):
 
+```php
+class PropertyController extends Controller
+{
+    function __construct()
+    {
+        $this->middleware(['auth','role:admin']);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $properties= Property::all();
+       return view('properties.index',compact('properties'));
+    }
+```
+
+Observem que en la ruta properties.index, volem mostrar totes les propietats, les quals passem a la vista. En **views** crearem la carpeta **properties** i allà dins crearem el fitxer _index.blade.php_
+
+```php
+@extends('app')
+
+@section('content')
+    <div class="col-lg-12">
+
+        <h1 class="my-4">Properties</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Type</th>
+                    <th></th>
+                </tr>
+            @foreach($properties as $property)
+                <tr>
+                    <td>{{$property->description}}</td>
+                    <td>{{$property->price}} €</td>
+                    <td>{{$property->type}}</td>
+                    <td><a class="btn btn-primary" href="{{route('properties.edit',$property->id)}}">Edit</a></td>
+                </tr>
+            @endforeach
+
+            </thead>
+        </table>
+    </div>
+
+    @endsection
+```
 
 ## 7. Associar i crear les vistes a través de blade
 
