@@ -676,7 +676,8 @@ Quan editem un determinat item \($property\), es crida a la ruta _property.edit,
 public function edit($id)
     {
         $property=Property::find($id);
-        return view('properties.edit',compact('property'));
+        $users=User::all();
+        return view('properties.edit',compact('property','users'));
     }
 ```
 
@@ -692,35 +693,49 @@ Veiem ara la vista _properties.edit_. Aquesta té com a característica un formu
         <form action="{{route('properties.update',$property->id)}}" method="POST">
             @csrf
             @method('PUT')
-            Descripcion
-        </br>
-            <input type="text" name="description" value="{{$property->description}}" class="form form-control"
+            Description
+            <br/>
+            <input type="text" name="description" value="{{$property->description}}" class="form form-control">
 
-            </br>
-
-            <input type="submit" class="btn btn-primary" value="Update">
-            </br>
-            </br>
+            Price
+            <br/>
+            <input type="text" name="price" value="{{$property->price}}" class="form form-control">
+            Owner
+            <br/>
+            <input class="list-group " list="owner_id" name="owner_id" value="{{$property->owner_id}}">
+            @foreach($users as $user)
+                <datalist id="owner_id">
+                    <option value="{{$user->id}}">{{$user->email}}</option>
+                </datalist>
+            @endforeach
+            <br/>
+            <input type="submit" class="btn btn-primary" value="Save">
+            <br/>
+            <br/>
         </form>
-    </br>
+    <br/>
     </div>
 
     @endsection
+
 ```
 
 Ara caldria observar com actua el mètode _update_ de Properties:
 
 ```php
- public function update(Request $request, $id)
+  public function update(Request $request, $id)
     {
         $property=Property::find($id);
-        $property->update(['description'=>$request->description]);
+        $property->update(['description'=>$request->description,
+        'price'=>$request->price,
+        'owner_id'=>$request->owner_id
+        ]);
 
         return redirect()->route('properties.index');
     }
 ```
 
-Pràcticament el que fa és modificar a través d'Eloquent update utilitzant el Request i tornar a la ruta anterior \(_properties.index_\).
+Pràcticament el que fa és modificar a través d'Eloquent **update** utilitzant el Request i tornar a la ruta anterior \(_properties.index_\).
 
 
 
