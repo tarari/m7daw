@@ -741,6 +741,8 @@ Pràcticament el que fa és modificar a través d'Eloquent **update** utilitzant
 
 ## 7. Associar i crear les vistes a través de blade
 
+En el punt anterior ja s'intueix com funciona tot, seguim el paradigma MVC
+
 ## 8. Tests
 
 ## 
