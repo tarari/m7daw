@@ -741,7 +741,25 @@ Pràcticament el que fa és modificar a través d'Eloquent **update** utilitzant
 
 ## 7. Associar i crear les vistes a través de blade
 
-En el punt anterior ja s'intueix com funciona tot, seguim el paradigma MVC
+En el punt anterior ja s'intueix com funciona tot, seguim el paradigma MVC.
+
+Suposem l'accés **backend** al nostre exemple de properties, hem vist les accions generades al recurs:
+
+| Acció | Efecte |
+| :--- | :--- |
+| index | Llistat de tots els recursos |
+| create | Renderitza formulari de creació del recurs |
+| store | Acció d'emmagatzemar en la base de dades, cridada des del formulari **create** |
+| show | Mostrar el recurs seleccionat |
+| edit | Renderitza formulari per modificar recurs |
+| update | Acció d'actualitzar dades del recurs, cridada des del formulari **edit** |
+| destroy | Acció d'eliminar el recurs seleccionat |
+
+Totes les accions finals \(store, update, destroy\) han de retornar al catàleg del recurs:
+
+```php
+ return redirect()->route('properties.index');
+```
 
 ## 8. Tests
 
