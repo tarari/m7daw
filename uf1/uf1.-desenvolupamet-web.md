@@ -39,48 +39,45 @@ Per al desenvolupament de la web es necessiten les següents eines:
 * Un editor de text com Microsoft Visual Studio Code o un **entorn integrat de desenvolupament** \( **IDE** \), com ara PHPStorm.
 * Es pot utilitzar un servidor per executar PHP Apache o NGINX, així com el servidor integrat de PHP.
 
-Suposant que s'ha instal·lat correctament PHP, 
+### Motor de plantilles integrat
 
-```text
-Toni@Toni-mac ~ % php -v
-PHP 7.3.9 (cli) (built: Sep 14 2019 18:07:55) ( NTS )
-Copyright (c) 1997-2018 The PHP Group
-Zend Engine v3.3.9, Copyright (c) 1998-2018 Zend Technologies
-    with Zend OPcache v7.3.9, Copyright (c) 1999-2018, by Zend Technologies
-```
+PHP es va crear exclussivament per escriure aplicacions web. Es pot escriure juntament amb HTML per crear pàgines **dinàmiques**. Veurem exemples d’això en un moment.
 
-Creeu un fitxer i_ndex.php_ dins d'un nou  directori  i afegir:  
+Un motor de plantilla de PHP és: una manera de permetre que el codi PHP pugui notrir  de contingut **HTML**. Això dóna flexibilitat a les pàgines. Qualsevol pàgina destinada a utilitzar el codi PHP té una extensió .**php** en lloc d’una extensió .**html**. Això informa al servidor web que espera el contingut de PHP.
 
+#### **Important**:: 
 
-```text
-   <?php
-      echo "Hello world";
-```
+Un fitxer PHP té una extensió .php i pot contenir HTML, JavaScript i CSS, juntament amb PHP. Com que l'intèrpret de PHP necessita saber on es col·loca el codi en un fitxer PHP, el codi PHP s'escriu entre dues etiquetes especials \( `<?php... ?>`\). Aquestes etiquetes s'anomenen etiquetes d'obertura i tancament. Un fitxer PHP típic s’assembla a aquest:
 
-Per executar aquest codi, utilitzeu el servidor incorporat de PHP \(Built-in web server\). Canvieu a l'eina de línia d'ordres preferida \(Terminal, per als usuaris de Mac\), _cd_ a la carpeta d'el projecte i reinicia el servidor amb 
-
-```text
-php -S localhost:8888 .
-```
-
-Aquest ordre es tradueix en "**Executar un servidor i fer-lo accessible des del meu navegador a localhost, port 8888**".  
-
-
-Una de les claus per a una programació madura és considerar totes les rutes i opcions  possibles a través del  codi. Per exemple, què passa si no hi ha una clau _persona_  disponible? Potser la cadena de consulta \(_QUERY_ \) s'hagi omès per complet. En aquest cas, es generarà un error, ja que la clau persona no existirà. ¿Quina és la solució? Si bé és cert que això no és més que un simple exemple, és important considerar tots els possibles resultats. Anem a proporcionar un valor per omissió.  
-
-
-```text
-<?php
-
-    if (isset ($_GET['persona']))
-    {  
-        $persona = $_GET['persona'];
-    } else
-    {
-        $persona = 'Joe';
-    }
-     echo 'Hola, {$persona}';
-
+```php
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PHP Page</title>
+		
+</head>
+<body>
+    <div>
+        <h1>Titol</h1>
+        <p>
+	   <?php
+		
+          // codi php 
+		
+           ?>
+	</p>        
+    </div>
+</body>
+		
+<script>
+		
+// codi JS
+		
+</script>
+</html>
 ```
 
 Us adjuntem una [sintaxi més acurada del PHP](../apendixs/sintaxi-php.md).
