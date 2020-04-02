@@ -781,6 +781,79 @@ class PropertyController extends Controller
 
 ```
 
+Comprovem el controlador, i agafem l'acció de modificar una propietat, des de la pantalla de catàleg de propietats:
+
+![Cat&#xE0;leg de propietats](../.gitbook/assets/captura-de-pantalla-2020-04-02-a-les-21.10.52.png)
+
+Fixem-nos, que, si premem **edit** provoquem la visualització d'un formulari amb valors precarregats del registre en qüestió. Primer, la crida al controlador@edit:
+
+```php
+ public function edit($id)
+    {
+        $property=Property::find($id);
+        $users=User::all();
+        return view('properties.edit',compact('property','users'));
+    }
+```
+
+Se selecciona la propietat \(línia 3\), agafem la llista de possibles usuaris propietaris \(línia 4 \) i retornem la vista de formulari 'properties.edit' \(carpeta _resources/views/properties_ i fitxer _edit.blade.php\)_
+
+```php
+@extends('app')
+
+@section('content')
+    <div class="col-lg-12">
+
+        <h1 class="my-4">Property edit</h1>
+        <form action="{{route('properties.update',$property->id)}}" method="POST">
+            @csrf
+            @method('PUT')
+            Description
+            <br/>
+            <input type="text" name="description" value="{{$property->description}}" class="form form-control">
+
+            Price
+            <br/>
+            <input type="text" name="price" value="{{$property->price}}" class="form form-control">
+            Owner
+            <br/>
+            <input class="list-group " list="owner_id" name="owner_id" value="{{$property->owner_id}}">
+            @foreach($users as $user)
+                <datalist id="owner_id">
+                    <option value="{{$user->id}}">{{$user->email}}</option>
+                </datalist>
+            @endforeach
+            <br/>
+            <input type="submit" class="btn btn-primary" value="Save">
+            <br/>
+            <br/>
+        </form>
+    <br/>
+    </div>
+
+```
+
+Aquest formulari envia a través de mètode post però emmascara el mètode PUT, típic  mètode HTTP d'actualització de recursos.
+
+Com a anècdota, utilitzem un &lt;datalist&gt;  per visualitzar el llistat de propietaris disponibles \(línies 20 a 24\).
+
+L'acció del formulari és el mètode **PropertyController@update**, :
+
+```php
+public function update(Request $request, $id)
+    {
+        $property=Property::find($id);
+        $property->update(['description'=>$request->description,
+        'price'=>$request->price,
+        'owner_id'=>$request->owner_id
+        ]);
+
+        return redirect()->route('properties.index');
+    }
+```
+
+Aquest sistema d'implementació seria similar en la resta d'accions.
+
 ## 8. Tests
 
 ## 
