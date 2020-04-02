@@ -761,6 +761,26 @@ Totes les accions finals \(store, update, destroy\) han de retornar al catàleg 
  return redirect()->route('properties.index');
 ```
 
+### Exemple acció edició/update
+
+Sent una acció definida per al rol d'administrador, fixem en el controlador que només si estàs autenticat i tens el rol admin podràs accedir-hi:
+
+```php
+namespace App\Http\Controllers;
+use App\Property;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
+class PropertyController extends Controller
+{
+    function __construct()
+    {
+        $this->middleware(['auth','role:admin']);
+    }
+
+```
+
 ## 8. Tests
 
 ## 
