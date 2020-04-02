@@ -17,7 +17,27 @@ Un cop tenim l'arquitectura html, anem a deixar-lo bonic, per això tenim el CSS
 ### **PHP?**
 
 PHP és l'acrònim de Hypertext Preprocessor. PHP és un llenguatge de script, es va construir específicament per a la web, les seves possibilitats són molt elevades.  
+PHP es va crear com a llenguatge de script per permetre un contingut dinàmic ric \(el contingut pot provenir d'altres pàgines PHP o pot ser de naturalesa dinàmica i provenir de fonts externes com una base de dades\). PHP és un **llenguatge interpretat**, el que significa que no cal compilar-lo i crear un fitxer executable. En lloc d'això, els fitxers PHP són interpretats línia per línia pel servidor web que utilitza PHP.
 
+PHP s'utilitza juntament amb **HTML**, **JavaScript** i **CSS** per crear aplicacions web dinàmiques. Com que PHP és fàcil d’aprendre, té una gran comunitat de desenvolupadors a tot el món. Això ha fet que cada vegada més desenvolupadors puguin publicar projectes, frameworks i recursos de codi obert. Per exemple, PHP Framework Interop Group, conegut també com [PHP-FIG](https://www.php-fig.org/) , ha creat una sèrie de recomanacions que la majoria dels desenvolupadors utilitzen per escriure el seu codi. GitHub acull molts projectes de codi obert per als altres, i llocs com [Youtube](http://youtube.com/) tenen molts vídeos sobre desenvolupament web.
+
+### Com funciona?
+
+
+
+PHP és un llenguatge script  de servidor. El script de costat del servidor és una manera de com els servidors web poden respondre a les sol·licituds del client mitjançant **HTTP**. 
+
+El seu **funcionament** és que un client \(un navegador\) sol·licita una URL **REQUEST**. Una sol·licitud és enviada per un servidor web a un script. A continuació, l'script llegeix aquesta sol·licitud i, depenent del codi de l'script, retorna el contingut d'una pàgina **RESPONSE**.
+
+Aquest procés es produeix cada vegada que es visita una pàgina web. Quan es treballa amb formularis, les dades s’envien des del client al servidor. Les dades es processen i es retorna una resposta. 
+
+Un exemple habitual és que a Facebook, introduïu una actualització d'estat i premeu _Enter_ . El text s’envia a través d’una `POST`sol·licitud al servidor, comprovat per les seqüències del servidor i després es desa a una base de dades. La pàgina web s'actualitza amb la nova publicació. Els llocs PHP també poden ser serveis d’API, que es poden cridar des de scripts JavaScript \(com  AJAX, per exemple\) o des d’altres serveis. En aquests casos i similars, no hi ha cap sol·licitud de navegador implicada.
+
+Per al desenvolupament de la web es necessiten les següents eines:
+
+* Un navegador com Google Chrome, Firefox o Microsoft Edge.
+* Un editor de text com Microsoft Visual Studio Code o un **entorn integrat de desenvolupament** \( **IDE** \), com ara PHPStorm.
+* Es pot utilitzar un servidor per executar PHP Apache o NGINX, així com el servidor integrat de PHP.
 
 Suposant que s'ha instal·lat correctament PHP, 
 
