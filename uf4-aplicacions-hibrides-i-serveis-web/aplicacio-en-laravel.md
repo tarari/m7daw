@@ -854,6 +854,94 @@ public function update(Request $request, $id)
 
 Aquest sistema d'implementació seria similar en la resta d'accions.
 
+### Formularis i validacions
+
+Des de HTML és possible indicar al sistema si un determinat camp és requerit o no, a l'estil de si a la base de dades no permet una dada nul·la. Estem parlant de l'atribut `required`.
+
+Des de la classe Request també podem aplicar els validadors des dels controladors. Fixem-nos en les línies 3 a 6, es tracta d'una validació prèvia a la creació d'un usuari predeterminat en el backend d'administració.
+
+```php
+ public function store(Request $request)
+    {
+       $request->validate([
+           'name'=>'required|unique:users',
+           'email'=>'required|unique:users',
+       ]);
+        $role_user = Role::where('name', 'user')->first();
+        $user=User::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>Hash::make('secret'),
+        ]);
+        //by default role_user
+        $user->roles()->attach($role_user);
+        return redirect()->route('users.index');
+    }
+```
+
+Una altra manera de fer-ho \(i recomanable \) és  crear una classe específica per poder validar requests als formularis específics:
+
+```php
+php artisan make:request StoreUserRequest
+```
+
+I reescrivim les regles aquí en App\HTTP\Requests, posant **authorize\(\)** a true i posant a **rules\(\)** les regles validator
+
+```php
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class StoreUserRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'name'=>'required|unique:users',
+            'email'=>'required|unique:users',
+        ];
+    }
+}
+
+```
+
+Modifiquem ara el mètode **store\(\)** canviant el paràmetre Request  per la nova classe.
+
+```php
+ public function store(StoreUserRequest $request)
+    {
+
+        $role_user = Role::where('name', 'user')->first();
+        $user=User::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>Hash::make('secret'),
+        ]);
+        //by default role_user
+        $user->roles()->attach($role_user);
+        return redirect()->route('users.index');
+    }
+```
+
+Bé, espero que us funcioni!
+
+
+
 ## 8. Tests
 
 ## 
