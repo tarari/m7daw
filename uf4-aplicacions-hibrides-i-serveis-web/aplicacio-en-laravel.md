@@ -946,6 +946,12 @@ Suposem que volem afegir una foto a cadascuna de les nostres entitats \(properti
 
 Des del fitxer _config/filesystems.php_, es determinen tres tipus d'emmagatzematge disk, que són **local, public i s3,** nosaltre utilitzarem a la pràctica el 'public', això permet accessos des de `http://app/arxiu`
 
+Per poder-lo utilitzar és necessari establir un link o accés directe, d'aquesta manera:
+
+```php
+php artisan storage:link
+```
+
 #### PropertyController@store
 
 ```php
@@ -961,7 +967,7 @@ public function store(Request $request)
     }
 ```
 
-Extreiem el PATH del fitxer per poder desar a la base de dades \(línia 7\). Òbviament això està relacionat amb el formulari de creació de l'entitat:
+Extreiem el PATH del fitxer \(en **public** \) per poder desar a la base de dades \(línia 7\). Òbviament això està relacionat amb el formulari de creació de l'entitat:
 
 ```php
 @extends('app')
@@ -1007,6 +1013,36 @@ Observem:
 
 * el formulari té una encriptació per suportar multipart/form-data
 * afegim control  tipus **file** amb name="photo"
+
+Quedaran els fitxers emmagatzemats a **storage/app/public**
+
+Veiem com queda per exemple, la vista del mètode show d'aquesta entitat:
+
+```php
+@extends('app')
+
+@section('content')
+    <div class="col-lg-12">
+
+        <h1 class="my-4"> Property: {{$property->id}}</h1>
+        <h2 class="my-5">{{$property->description}}</h2>
+        <p><strong>Price: </strong>{{$property->price}} €</p>
+        <p><strong>Owner email: </strong>{{$email}}</p>
+        <br/>
+        <br/>
+        @if($property->photo!=null)<img src="{{asset('storage/'.$property->photo)}}" width="150px">@endif
+        <br/>
+        <br/>
+    </br>
+        <a class="btn btn-info" href="{{route('properties.index')}}">Continue</a>
+        <br/>
+        <br/>
+    </div>
+
+    @endsection
+```
+
+Accedim a ella a través d'un asset prefixant el directori storage: `{{asset('storage/'.$property->photo)}}`
 
 ## 8. Tests
 
