@@ -82,3 +82,43 @@ Un fitxer PHP té una extensió .php i pot contenir HTML, JavaScript i CSS, junt
 
 Us adjuntem una [sintaxi més acurada del PHP](../apendixs/sintaxi-php.md).
 
+## Introducció al PHP
+
+
+
+### Sortida  amb un script PHP
+
+En aquest moment, hem après com utilitzar la `echo`instrucció. Continuem i creem el vostre primer script PHP. Imprimirem la mateixa declaració que abans, però utilitzarem un fitxer PHP aquesta vegada. Seguim aquests passos:
+
+1. En una carpeta crearem un fitxer o script php.
+2. Creeum un fitxer anomenat `hello.php`dins de la carpeta.
+3. Obrim el `hello.php`fitxer mitjançant un editor de codi com VSCode o Sublime Text.
+4. Escrivim el codi següent `hello.php`i guardem-lo:
+
+   ```text
+   <? php 
+   eco "Hello World!"; 
+   ?>
+   ```
+
+5. Ara, obrim el Terminal i anem a la carpeta. Feu servir `cd`el nom de la carpeta per anar a la carpeta. Per pujar una carpeta, utilitzeu `../`.
+6. Executem l'ordre següent a l'indicador d'ordres:
+
+   ```text
+   php hola.php
+   ```
+
+   Veurem `Hello World!`imprès a la pantalla
+
+## Tipus i operadors
+
+
+
+## Sentències de control
+
+
+
+## Funcions
+
+
+
