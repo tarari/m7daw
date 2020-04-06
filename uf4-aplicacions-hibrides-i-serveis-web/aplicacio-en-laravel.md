@@ -940,7 +940,73 @@ Modifiquem ara el mètode **store\(\)** canviant el paràmetre Request  per la n
 
 Bé, espero que us funcioni!
 
+### Emmgatzematge \(storage\)
 
+Suposem que volem afegir una foto a cadascuna de les nostres entitats \(properties\). Laravel ens ofereix la possibilitat d'afegir un espai públic a través del seu _filesystem_.
+
+Des del fitxer _config/filesystems.php_, es determinen tres tipus d'emmagatzematge disk, que són **local, public i s3,** nosaltre utilitzarem a la pràctica el 'public', això permet accessos des de `http://app/arxiu`
+
+#### PropertyController@store
+
+```php
+public function store(Request $request)
+    {
+        $path=$request->file('photo')->store('photos','public');
+        Property::create(['description'=>$request->description,
+                        'price'=>$request->price,
+                        'owner_id'=>$request->owner_id,
+                        'photo'=>$path
+            ]);
+        return redirect()->route('properties.index');
+    }
+```
+
+Extreiem el PATH del fitxer per poder desar a la base de dades \(línia 7\). Òbviament això està relacionat amb el formulari de creació de l'entitat:
+
+```php
+@extends('app')
+
+@section('content')
+    <div class="col-lg-12">
+
+        <h1 class="my-4">New Property</h1>
+        <form action="{{route('properties.store')}}" method="POST" enctype="multipart/form-data">
+            @csrf
+            Description
+        <br/>
+            <input type="text" name="description" value="" class="form form-control" required>
+            Price
+            <br/>
+            <input type="text" name="price" value="" class="form form-control" required>
+            Owner
+            <br/>
+            <input class="list-group " list="owner_id" name="owner_id">
+            <datalist id="owner_id">
+            @foreach($users as $user)
+
+                    <option value="{{$user->id}}">{{$user->email}}</option>
+            @endforeach
+            </datalist>
+            <br/>
+            <input type="file" name="photo">
+
+            <br/>
+            <br/>
+            <input type="submit" class="btn btn-primary" value="Save">
+            <br/>
+            <br/>
+        </form>
+    </br>
+    </div>
+
+    @endsection
+
+```
+
+Observem:
+
+* el formulari té una encriptació per suportar multipart/form-data
+* afegim control  tipus **file** amb name="photo"
 
 ## 8. Tests
 
