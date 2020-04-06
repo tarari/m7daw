@@ -12,3 +12,19 @@ description: Trucs per sobreviure en Laravel
 {{Auth::user()->name}}
 ```
 
+### Definir una secció autenticat en menú
+
+```php
+@auth
+     <li class="nav-item">
+        <a class="nav-link" href="{{route('users.index')}}">Users</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('properties.index')}}">Properties</a>
+    </li>
+@endauth
+                    
+```
+
+
+
