@@ -110,7 +110,98 @@ En aquest moment, hem après com utilitzar la `echo`instrucció. Continuem i cre
 
    Veurem `Hello World!`imprès a la pantalla
 
+### Assignació de variables
+
+Igual que amb qualsevol altre llenguatge de programació, s’utilitzen variables a PHP per emmagatzemar dades. Tots els noms de variables en PHP han de començar amb el signe de dòlar, `$`.
+
+Les variables han de començar per una lletra. No poden començar amb un número ni un símbol, però poden contenir números i símbols.
+
+Les dades emmagatzemades en variables poden ser dels següents tipus:
+
+* Nombres sencers 
+* Booleà: cert o fals 
+* Float: número de coma flotant
+* Cadena: lletres i números
+
+Aquí tenim un exemple:
+
+```php
+<?php
+    $name = $argv[1];
+    echo "Hello ". $name;
+?>
+```
+
+I per executar-lo, argv\[1\] representa primer argument que es passa després del nom de l'script.
+
+```php
+$ php script.php Toni
+Hello Toni
+```
+
+### Exercici : utilitzar el servidor integrat per imprimir una cadena
+
+En aquest exercici, utilitzarem el servidor integrat per imprimir `Hello FruitCP`mitjançant la cadena de consulta`companyName=FruitCP`. Això  permetrà començar a utilitzar el navegador per visualitzar la sortida del codi, en comptes de fer servir el shell interactiu. Seguim aquests passos:
+
+1. Torneu a obrir el `script.php`fitxer amb l’editor de codi preferit.
+2. Substituim el codi pel següent codi i desem el fitxer:
+
+
+
+```php
+<?php
+    $name = $_GET['companyName'];
+    echo "Hello". $name;
+?>
+```
+
+1. Al Terminal, entre, **dins** la carpeta
+2. Executem la següent comanda per executar el servidor web integrat de PHP:
+
+   ```text
+   php -S localhost: 8085 
+   ```
+
+3. Ara, obrim el navegador i introduim el següent a la barra d’adreces i fem clic a _Enter_ :
+
+   ```text
+   http://localhost:8085/script.php?companyName=FruitCP
+   ```
+
+Observem l’URL al navegador. Després del nom del fitxer, hem afegit `?companyName=FruitCP`. `?`designa que el que segueix és una cadena de consulta o **Query**. Al nostre codi, s'està passant al fitxer PHP una variable anomenada `companyName`amb un valor de `FruitCP`.
+
+A la primera línia del codi, tenim `$_GET['companyName']`. `$_GET`és també una variable predefinida que actúa quan s'executa qualsevol cadena PHP amb una cadena de consulta. Així doncs, amb l’ús `$_GET['companyName']`, obtindrem el valor `FruitCP`, que s’emmagatzemarà a la  variable`$name`. Recordem que podem extreure qualsevol valor de la cadena de consulta mitjançant la clau respectiva.
+
+### Mostrar informació del servidor
+
+Preparem el següent script:
+
+```php
+<?php
+    echo '<pre>';
+    print_r($_SERVER);
+    echo '</pre>';
+?>
+```
+
+Executem servidor integrar des de la carpeta de l'script, doneu el nom **index.php** a l'script, de forma automàtica els servidors busquen aquest nom per executar-lo.
+
+**RECOMANACIÓ. UNA APLICACIÓ  EN UNA CARPETA**
+
+```php
+$ php -S localhost:8085
+PHP 7.4.3 Development Server (http://localhost:8085) started
+```
+
+Comproveu la sortida:
+
+![Sortida amb variables globals](../.gitbook/assets/captura-de-pantalla-2020-04-07-a-les-13.32.34.png)
+
+
+
 ## Tipus i operadors
+
+
 
 
 
