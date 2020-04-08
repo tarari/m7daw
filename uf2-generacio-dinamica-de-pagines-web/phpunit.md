@@ -28,3 +28,58 @@ public function arrayHasKeyName()
 
 Si `name`es troba, com a índex a l'array, la prova passarà i mostrarà llum verda `OK`, si no donarà missatge  vermell `FAILURE` 
 
+## Què és PHPUnit?
+
+PHPUnit és un marc de proves de diagnòstic; això vol dir que no depèn de cap marc de tercers. De fet, no es requereix un framework tret de PHPUnit. PHPUnit es pot utilitzar amb un grup de classes i amb un framework ja existent.
+
+PHPUnit és una eina per executar proves. La prova d’unitat és on es divideix el codi en unitats \(petits trossos del codi mínim necessaris per exercir una funció\) i es proven després dels resultats esperats.
+
+## Instal·lació de PHPUnit
+
+Hi ha dues maneres d’instal·lar PHPUnit: utilitzant un **fitxer PHP Archive** \( **PHAR** \) i amb Composer.
+
+### Instal·lació de PHPUnit amb Composer
+
+Donaa que el composer es va cobrir en una lliçó anterior, aquest procés serà familiar. En aquest exercici, instal·lem PHPUnit amb Composer:
+
+1. Per instal·lar PHPUnit mitjançant Composer, afegiu `phpunit/phpunit` al `composer.json` \(situat al directori arrel del projecte\). Afegeix `phpunit/phpunit`a la  secció`require-dev`. Això indica que Composer només ho requereix  en mode desenvolupador:
+
+   ```text
+   {     
+       "require-dev": 
+       {         
+           "phpunit/phpunit": "^8"     
+       } 
+   }
+   ```
+
+2. A continuació, a Terminal, executa la següent comanda per instal·lar Composer:
+
+   ```text
+   composer install
+   ```
+
+3. Si es tracta d'una actualització del projecte:
+
+   ```text
+   composer update 
+   ```
+
+4. Una altra manera és dir-li al **Composer** que afegeixi PHPUnit com a dependència. A Terminal, escrivim el següent:
+
+   ```text
+   composer require --dev phpunit/phpunit ^8
+   ```
+
+   Això actualitzarà el fitxer `composer.json` a la versió especificada.
+
+5. A partir d’aquest moment, PHPUnit es podrà executar cridant al seu executable al Terminal:
+
+   ```text
+   vendor/bin/phpunit
+   ```
+
+> **Nota** : és possible que tinguem la temptació d’instal·lar PHPUnit de forma global; això no es recomana ja que cada projecte ha de gestionar PHPUnit com a dependència específica del projecte.
+
+
+
