@@ -26,3 +26,5 @@ public function arrayHasKeyName()
 }
 ```
 
+Si `name`es troba, com a índex a l'array, la prova passarà i mostrarà llum verda `OK`, si no donarà missatge  vermell `FAILURE` 
+
