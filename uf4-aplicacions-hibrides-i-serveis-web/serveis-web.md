@@ -6,7 +6,15 @@ Els serveis web són una tecnologia que permet innovar a la  indústria de la in
 
 ### Definició
 
+{% hint style="success" %}
 Un servei web és un servidor o un clúster de servidors que és accessible a través d'una xarxa i que processa les sol·licituds generades per processos informàtics en contraposició a un usuari que introdueix una URL en un navegador.
+{% endhint %}
+
+Alguns dels serveis web més coneguts són les API públiques exposades per les xarxes socials, com Facebook o Twitter, que permeten a les aplicacions autoritzades accedir a les dades dels seus usuaris. Una aplicació de comerç electrònic pot utilitzar un servei web  per verificar l’adreça d’enviament d’una comanda abans d’acceptar-la. Un altre exemple bàsic és una gran base de dades de dades de pel·lícules que permet als clients buscar dades relacionades amb un títol, un actor o un director específic.
+
+**HTTP** és el protocol utilitzat per aquests serveis per comunicar-se. És el mateix protocol que utilitza un navegador web per sol·licitar una pàgina web a un servidor. Realitzar una sol·licitud a un servei web, utilitza el mateix cicle de Request/ Response que ja coneixem.
+
+
 
 
 
