@@ -17,6 +17,7 @@
 
 ## UF4 Aplicacions híbrides i serveis web
 
+* [Serveis web](uf4-aplicacions-hibrides-i-serveis-web/serveis-web.md)
 * [Restful](uf4-aplicacions-hibrides-i-serveis-web/restful.md)
 * [API RestFUL en Laravel](uf4-aplicacions-hibrides-i-serveis-web/api-restful-en-laravel.md)
 * [Laravel](uf4-aplicacions-hibrides-i-serveis-web/laravel.md)
