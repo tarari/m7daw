@@ -89,7 +89,7 @@ $ php artisan make: model Pokemon
 
 El model acabat de crear hauria d'estar dins de la carpeta **App/.**
 
-Ja que el camp **name** és l'únic que modificarem en aquest cas, el afegim a l'atribut **$ illable** de la classe Pokemons.
+Ja que el camp **name** és l'únic que modificarem en aquest cas, el afegim a l'atribut **$fillable** de la classe Pokemons.
 
 Nota: Per crear el model + la migració amb un sol comandament pots utilitzar:
 
@@ -97,7 +97,7 @@ Nota: Per crear el model + la migració amb un sol comandament pots utilitzar:
 
 Ara, estem preparats per crear el _controller_ que tindrà els mètodes a cridar per la nostra API.
 
-**Creant el resource controller:**
+**Creant el Resource controller:**
 
 Un dels avantatges de Laravel, és que pot crear un controlador amb mètodes ja establerts per a una api, i tenir a punt tot per a l'ús dels verbs HTTP. Tot en un senzill pas:
 
@@ -113,19 +113,40 @@ Ara anem a crear la ruta per accedir al nostre recentment creat controlador.
 
 En Laravel, només hem de definir el nom de l'endpoint, i el controlador.
 
-Hem obrir el fitxer **routes/api.php** , el qual potser ja tingui un middleware configurat per users per defecte, però que ignorarem.
+Hem obrir el fitxer **routes/api.php** , el qual potser ja tingui un middleware configurat \(auth\) per users per defecte, però que ignorarem.
 
-Afegirem la ruta de la següent manera:
+```php
+<?php
 
-**¿Va quedar bé?**
+use Illuminate\Http\Request;
 
-Fem servir la comanda **php artisan route: list** , per veure si les nostres rutes quedar bé configurades:
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
 
-![](https://miro.medium.com/max/60/1*2nUW15qD2V3bWfTaJEXnBQ.png?q=20)
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+
+//Agreguem ruta al controlador de pokemons
+Route::resource('pokemons', 'PokemonController');
+```
+
+
+
+Fem servir la comanda **`php artisan route:list`** , per veure si les nostres rutes quedar bé configurades:
 
 ![](https://miro.medium.com/max/819/1*2nUW15qD2V3bWfTaJEXnBQ.png)
 
-Laravel, ha configurat  r les rutes per als verbs **http** que vulguem fer servir, com [**GET, POST, PUT, PATCH i DELETE**](https://developer.mozilla.org/es/docs/Web/HTTP/Methods) . Si seguim l'estructura definida en aquesta llista, no ens podem perdre.
+Laravel, ha configurat   les rutes per als verbs **http** que vulguem fer servir, com [**GET, POST, PUT, PATCH i DELETE**](https://developer.mozilla.org/es/docs/Web/HTTP/Methods) . Si seguim l'estructura definida en aquesta llista, no ens podem perdre.
 
 **Proves ...**
 
@@ -139,24 +160,130 @@ Fem-li cas a la ruta.
 
 En PokemonController, importaré l'arxiu **App\Pokémon** per poder canviar dades d'aquest, i omplirem els mètodes **store\(\)** i **show \(\)** .
 
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Pokemon;
+
+class PokemonController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //Instanciem la classe Pokemon
+        $pokemon = new Pokemon;
+        //Declarem el nom amb el request
+        $pokemon->name = $request->name;
+        //Desem els canvis
+        $pokemon->save();
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //Demanem al model el Pokemon amb  id requerit pele mètode HTTP  GET.
+        return Pokemon::where('id', $id)->get();
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}
+```
+
 Iniciem el nostre server amb la comanda **php artisan serve.**
 
-Ara podem utilitzar el nostre mètode preferit per provar APIs. En el meu cas faré servir [**Postman**](https://www.getpostman.com/)**.,** o el comando **curl -X**
+Ara podem utilitzar el nostre mètode preferit per provar APIs. En el meu cas faré servir [**Postman**](https://www.getpostman.com/)**.,** o el comando **curl -X:**
 
-Provem el mètode store\(\):![](https://miro.medium.com/max/60/1*65mRKTrKFkIYTM-ial1dSg.png?q=20)
+```php
+curl -d "name=Lugia" -X POST http://localhost:8000/api/pokemons
+```
+
+o en format application/json
+
+```php
+curl  -d '{"name":"Lugia"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/pokemons
+
+```
+
+Provem el mètode **store**\(\) a POSTMAN
 
 ![](https://miro.medium.com/max/582/1*65mRKTrKFkIYTM-ial1dSg.png)
 
 Sent una petició POST, vam enviar un JSON amb la informació que volem inserir en la nostra BD.
 
 Vam provar enviant el meu primer Pokémon **Lugia.**  
-La nostra API ens respon amb un **estatus: 200 OK** .
+La nostra API ens respon amb un **status: 200 OK** .
 
-Revisem la nostra BD:![](https://miro.medium.com/max/60/1*UkKu5b1-7ZLkJXruYqsk1g.png?q=20)![](https://miro.medium.com/max/388/1*UkKu5b1-7ZLkJXruYqsk1g.png)Bé!
+Revisem la nostra BD:![](https://miro.medium.com/max/388/1*UkKu5b1-7ZLkJXruYqsk1g.png)Bé!
 
-Ara provem el mètode show \(\):![](https://miro.medium.com/max/60/1*EUxIy1OFctUSExkxHERKug.png?q=20)
+Ara provem el mètode **show** \(\):
 
 ![](https://miro.medium.com/max/1047/1*EUxIy1OFctUSExkxHERKug.png)
 
-Postman va sol·licitar amb un mètode GET l'Pokémon amb l'id = 1 a la nostra BD, en aquest cas sent Lugia.
+Postman va sol·licitar amb un mètode GET  el Pokémon amb l'id = 1 a la nostra BD, en aquest cas sent Lugia.
 
