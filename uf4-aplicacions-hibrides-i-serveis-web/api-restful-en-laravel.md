@@ -287,3 +287,11 @@ Ara provem el mètode **show** \(\):
 
 Postman va sol·licitar amb un mètode GET  el Pokémon amb l'id = 1 a la nostra BD, en aquest cas sent Lugia.
 
+## I l'autenticació
+
+El propi Laravel recomana l'ús de Laravel/passport que permet gestionamr l'autenticació en accessos via API. 
+
+[Laravel Passport](https://laravel.com/docs/7.x/passport)
+
+
+
