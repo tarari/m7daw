@@ -4,7 +4,7 @@
 
 #### **1. Etiquetes PHP**
 
-Quan PHP analitza un arxiu, cerca etiquetes d'obertura i tancament, que normalment són **&lt;? php \*\*i?&gt;**,i indiquen a PHP quan començar i acabar d'interpretar codi . PHP també permet l'etiqueta d'obertura \`&lt;?, però es desaconsella.
+Quan PHP analitza un arxiu, cerca etiquetes d'obertura i tancament, que normalment són **`<? php **i?>`**,i indiquen a PHP quan començar i acabar d'interpretar codi . PHP també permet l'etiqueta d'obertura \`&lt;?, però es desaconsella.
 
 Una altra forma d'incloure codi és amb l'element script:.
 
