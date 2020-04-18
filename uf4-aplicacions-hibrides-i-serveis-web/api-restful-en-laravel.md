@@ -295,6 +295,22 @@ El propi Laravel recomana l'ús de Laravel/passport que permet gestionar l'auten
 
 A mode de resum:
 
+Instal·lació de passport
+
+Afegint laravel/passport
+
+Service provider i configuració de Passport
+
+Crear rutes
+
+Crear CRUD
+
+Testejar
+
+
+
+
+
 
 
 
