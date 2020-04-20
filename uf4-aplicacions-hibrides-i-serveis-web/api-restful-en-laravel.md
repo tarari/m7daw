@@ -326,11 +326,140 @@ php artisan passport:install
 
 ### Service provider i configuració de Passport
 
-Crear rutes
+En aquest punt, es tracta d'aplicar configuracions sonbre l'apliació, cal afegir en primer lloc el trait **Laravel\Passport\HasApiTokens** al model User.
 
-Crear CRUD
+```php
+.....
+use Laravel\Passport\HasApiTokens;
 
-Testejar
+class User extends Authenticatable
+{
+    use Notifiable,HasApiTokens;
+....
+```
+
+I en el proveïdor de serveis d'autenticació, **app/Providers/AuthServiceProvider.php**  on afegirem `Passport::routes` en el mètode boot\(\)
+
+```php
+public function boot()
+    {
+        $this->registerPolicies();
+        Passport::routes();
+
+        //
+    }
+```
+
+En la configuració de mètodes d'autenticació en **config/auth.php** afegim**:**
+
+```php
+return [
+    ....
+ 
+    'guards' => [
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+ 
+        'api' => [
+            'driver' => 'passport',
+            'provider' => 'users',
+        ],
+    ],
+ 
+    ....
+]
+```
+
+**driver de api ha de ser 'passport'**
+
+\*\*\*\*
+
+### Crear rutes
+
+Les rutes cal definir-les en les rutes per a API: **`routes/api.php`**:
+
+```php
+Route::middleware('auth:api')->group(function () {
+    Route::get('user', 'API\UserController@details');
+    Route::resource('properties', 'API\PropertyController');
+});
+
+Route::post('register', 'API\UserController@register');
+Route::post('login', 'API\UserController@login');
+
+```
+
+### Crear CRUD
+
+Primer crearem un controlador per l'autenticació via Passport en API:
+
+```php
+ namespace App\Http\Controllers\API;
+
+    use Illuminate\Http\Request;
+    use App\User;
+    use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Facades\Hash;
+    use Illuminate\Contracts\Validation\{Validator};
+
+    class UserController
+    {
+    /**
+    * User Register
+    */
+    public function register(Request $request)
+    {
+        $dataValidated=$request->validate([
+            'name' => 'required|min:3',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
+        ]);
+        $dataValidated['password']=Hash::make($request->password);
+
+        $user = User::create($dataValidated);
+
+        $token = $user->createToken('AppNAME')->accessToken;
+
+        return response()->json(['token' => $token], 200);
+    }
+    /**
+         * User Login
+         */
+        public function login(Request $request)
+        {
+            $credentials = [
+                'email' => $request->email,
+                'password' => $request->password
+            ];
+
+            if (auth()->attempt($credentials)) {
+                $token = auth()->user()->createToken('AppNAME')->accessToken;
+                return response()->json(['token' => $token], 200);
+            } else
+                return response()->json(['error' => 'UnAuthorised'], 401);
+        }
+        /**
+         * Returns Authenticated User Details
+         *
+         * @return \Illuminate\Http\JsonResponse
+         */
+        public function details()
+        {
+            return response()->json(['user' => auth()->user()], 200);
+        }
+    }
+
+```
+
+La idea és que si tot va bé ens genera un token  `->createToken('AppNAME'`que actua com a testimoni de seguretat i que cal incorporar.lo en qualsevol petició.
+
+Per tant si volguèssim , per exemple, veure els detalls de l'usuari, necessitem el token. En cas d'utilitzar l'eina Postman, seleccionarem **Authorization: Bearer Token**
+
+![Exemple de visualitzaci&#xF3; de sol&#xB7;licitud de detall de l&apos;usuari loguejat](../.gitbook/assets/captura-de-pantalla-2020-04-20-a-les-16.36.11.png)
+
+### Testejar
 
 
 
