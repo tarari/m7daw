@@ -32,7 +32,7 @@ laravel new miApiRest
 
 Sense entrar en molt detall, el que fa la comanda és crear una carpeta **miApiRest** , instal·lar les dependències de Laravel dins d'aquesta carpeta, preparar l'arxiu **.env** \(que farem servir per connectar-nos a la nostra BD\), i generar la _**application key**_ per desenvolupar en la nostra màquina **.**
 
-**Connectant a la base de dades:**
+## **Connectant a la base de dades:**
 
 Aquesta part és easy peasy. L'únic que hem de fer és modificar el fitxer **.env** que es troba a l'arrel del nostre projecte **miApiRest**.
 
@@ -148,7 +148,7 @@ Fem servir la comanda **`php artisan route:list`** , per veure si les nostres ru
 
 Laravel, ha configurat   les rutes per als verbs **http** que vulguem fer servir, com [**GET, POST, PUT, PATCH i DELETE**](https://developer.mozilla.org/es/docs/Web/HTTP/Methods) . Si seguim l'estructura definida en aquesta llista, no ens podem perdre.
 
-**Proves ...**
+## **Proves ...**
 
 Crearem uns pokemons amb unes peticions POST, i després demanarem un pokemon en específic usant GET. Això només perquè s'entengui la idea.
 
@@ -293,13 +293,38 @@ El propi Laravel recomana l'ús de Laravel/passport que permet gestionar l'auten
 
 [Laravel Passport](https://laravel.com/docs/7.x/passport)
 
-A mode de resum:
+**A mode de resum:**
 
-Instal·lació de passport
+### Instal·lació de passport
 
-Afegint laravel/passport
+```php
+composer require laravel/passport
+```
 
-Service provider i configuració de Passport
+### Afegint laravel/passport
+
+Afegir nou servei al proveïdor de serveis, en **`config/app.php`**
+
+```php
+'providers' => [
+    ....
+    Laravel\Passport\PassportServiceProvider::class,
+]
+```
+
+Ara cal afegir les taules per donar suport al sistema d'autenticació per passport:
+
+```php
+php artisan migrate
+```
+
+I instal·lació de passport:
+
+```php
+php artisan passport:install
+```
+
+### Service provider i configuració de Passport
 
 Crear rutes
 
