@@ -5,9 +5,11 @@
 ## UF1 Desenvolupament web <a id="uf1"></a>
 
 * [UF1. Desenvolupamet web](uf1/uf1.-desenvolupamet-web.md)
+* [Exercicis](uf1/exercicis.md)
 
 ## UF2 Generació dinàmica de pàgines web
 
+* [Programació orientada a objecte](uf2-generacio-dinamica-de-pagines-web/programacio-orientada-a-objecte.md)
 * [UF2. Generació dinàmica de pàgines web](uf2-generacio-dinamica-de-pagines-web/uf2.-generacio-dinamica-de-pagines-web.md)
 * [PHPUnit](uf2-generacio-dinamica-de-pagines-web/phpunit.md)
 
