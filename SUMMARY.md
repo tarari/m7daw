@@ -10,6 +10,7 @@
 ## UF2 Generació dinàmica de pàgines web
 
 * [Programació orientada a objecte](uf2-generacio-dinamica-de-pagines-web/programacio-orientada-a-objecte.md)
+* [Exercicis](uf2-generacio-dinamica-de-pagines-web/exercicis.md)
 * [UF2. Generació dinàmica de pàgines web](uf2-generacio-dinamica-de-pagines-web/uf2.-generacio-dinamica-de-pagines-web.md)
 * [PHPUnit](uf2-generacio-dinamica-de-pagines-web/phpunit.md)
 
