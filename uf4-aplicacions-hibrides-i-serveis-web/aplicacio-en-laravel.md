@@ -1075,7 +1075,15 @@ Accedim a contrasenyes d'aplicació i en generem una de nova
 
 ![Contrasenyes d&apos;aplicaci&#xF3;](../.gitbook/assets/captura-de-pantalla-2020-05-08-a-les-19.26.09.png)
 
+![Indiquem l&apos;aplicaci&#xF3; i dispositu i generem](../.gitbook/assets/captura-de-pantalla-2020-05-08-a-les-19.29.57.png)
 
+Un cop generada la clau, la traslladarem a la nostra aplicació:
+
+![Contrasenya generada](../.gitbook/assets/captura-de-pantalla-2020-05-08-a-les-19.32.41.png)
+
+```php
+MAIL_PASSWORD=tszabtgduevapwzg
+```
 
 
 
