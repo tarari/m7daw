@@ -122,7 +122,7 @@ Ara ja podríem executar la migració: `php artisan migrate`
 
 Acabem de fer la resta de models i les relacions pertinents.
 
-![](../.gitbook/assets/inmo%20%281%29.png)
+![](../.gitbook/assets/inmo.png)
 
 
 
@@ -1046,5 +1046,38 @@ Accedim a ella a través d'un asset prefixant el directori storage: `{{asset('st
 
 ## 8. Tests
 
-## 
+## Apèndix - Mail: configuració i ús amb Gmail
+
+Podem associar un compte de correu electrònic tipus gmail a la nostra aplicació. Per començar hem de treballar al fitxer **.env.**
+
+Aquestes serien les línies que ens interessen:
+
+```php
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=465
+MAIL_USERNAME=zzzzzz@gmail.com
+MAIL_PASSWORD=lsnfvzbhwglldfefdfpouxffx
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS=zzzzzzz@gmail.com
+MAIL_FROM_NAME="${APP_NAME}"
+```
+
+Com es pot observar el recipient mail\_host es defineix com smtp.gmail.com amb una encriptació **SSL** cal habilitar el port 465.
+
+### Configuració del compte de correu
+
+Cada vegada que fem servir el nostre email a través d'una aplicació diferent al propi gmail, és necessària una autorització. Aquesta s'aconsegueix seguint els passos següents:
+
+Habilitar accés a aplicacions no segures: [https://myaccount.google.com/security](https://myaccount.google.com/security).
+
+Accedim a contrasenyes d'aplicació i en generem una de nova
+
+![Contrasenyes d&apos;aplicaci&#xF3;](../.gitbook/assets/captura-de-pantalla-2020-05-08-a-les-19.26.09.png)
+
+
+
+
+
+
 
