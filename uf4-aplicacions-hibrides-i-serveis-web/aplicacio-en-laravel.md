@@ -1046,6 +1046,10 @@ Accedim a ella a través d'un asset prefixant el directori storage: `{{asset('st
 
 ## 8. Tests
 
+Laravel està orientat al testing, per tant ja trobem instal·lat **`phpunit`**. 
+
+Un cop generada la prova podem utilitzar phpunit o bé el comando **`artisan test`**
+
 ## Apèndix - Mail: configuració i ús amb Gmail
 
 Podem associar un compte de correu electrònic tipus gmail a la nostra aplicació. Per començar hem de treballar al fitxer **.env.**
