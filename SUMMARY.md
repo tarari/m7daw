@@ -24,7 +24,7 @@
 * [Restful](uf4-aplicacions-hibrides-i-serveis-web/restful.md)
 * [API RestFUL en Laravel](uf4-aplicacions-hibrides-i-serveis-web/api-restful-en-laravel.md)
 * [Laravel](uf4-aplicacions-hibrides-i-serveis-web/laravel.md)
-* [Aplicació en Laravel](uf4-aplicacions-hibrides-i-serveis-web/aplicacio-en-laravel.md)
+* [Crear una aplicació en Laravel](uf4-aplicacions-hibrides-i-serveis-web/aplicacio-en-laravel.md)
 
 ## Apèndixs
 

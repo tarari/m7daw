@@ -2,7 +2,7 @@
 description: Unes pautes per a la creació d'aplicacions a Laravel
 ---
 
-# Aplicació en Laravel
+# Crear una aplicació en Laravel
 
 A continuació us indiquem quins passos cal seguir per realitzar una aplicació en Laravel:
 
@@ -10,7 +10,7 @@ A continuació us indiquem quins passos cal seguir per realitzar una aplicació 
 
 Ens permet entendre les diferents accions del nostre projecte
 
-| EXEMPLE |  |
+| EXEMPLE | Tasca |
 | :--- | :--- |
 | USUARI \(ROLE\) | Login |
 |  | Registre |
@@ -34,18 +34,18 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=inmo
 DB_USERNAME=inmo
-DB_PASSWORD=linuxlinux
+DB_PASSWORD=xxxxxxxx
 ```
 
 ## 3. Activar l'autenticació i sistema ui
 
-Si utilitzem sistema d'autenticació, caldria configurar-lo:
+Si utilitzem sistema d'autenticació d'usuaris, caldria configurar-lo:
 
 ```bash
 $ composer require laravel/ui
 ```
 
-I activat amb el frontend que desitgem:
+I activat amb el frontend que desitgem \(bootstrap, vue, react...\)
 
 ```bash
 $ php artisan ui bootstrap --auth
@@ -483,7 +483,7 @@ class HomeController extends Controller
 
 ```
 
-Opcional:
+**Opcional**:
 
 Definir paràmetres de selecció per a la vista Home \(_resources/views/_\):
 
@@ -1119,6 +1119,77 @@ Ara modifiquem el fitxer **`config/mail.php`**
 ```
 
 ### Mail
+
+Les API mail de Laravel es basen en les llibreries Guzzle HTTP. Per tant instal·larem la llibreria:
+
+```php
+composer require guzzlehttp/guzzle
+```
+
+En Laravel cada tipus de mail es representa amb la classe _Mailable_. Aquestes classes s'emmagatzemen a **`app/mail`**. Podem generar el nostre model amb **artisan**.
+
+```php
+php artisan make:mail ContactRequired
+```
+
+En la classe generada farem una sèrie de canvis. En el **construct** li passem dades de les quals omplir dades al nostre mail. I en el mètode **build\(\)**, construim els elements de nostre mail, que es basarà en una plantilla _blade_
+
+```php
+class ContactRequired extends Mailable
+{
+    use Queueable, SerializesModels;
+    public $publication;
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+    public function __construct(Publication $publication)
+    {
+        $this->publication=$publication;
+    }
+
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+
+        return $this->from('zzzzzz@gmail.com')->view('mailcontact');
+    }
+}
+
+```
+
+La vista la generem  a **resources/views** :
+
+```php
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contact Request</title>
+</head>
+<body>
+
+    <p>Hello!</p>
+    <p>This is your contact required!:</p>
+    <p><strog>{{$publication->publisher->email}}</strog></p>
+    <br/>
+    <p>See you soon!!</p>
+
+<h3>RentaHouse: Sales & Rents</h3>
+<h5>Castelldefels</h5>
+
+</body>
+</html>
+
+```
 
 
 
