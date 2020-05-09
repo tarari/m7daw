@@ -1046,9 +1046,33 @@ Accedim a ella a través d'un asset prefixant el directori storage: `{{asset('st
 
 ## 8. Tests
 
-Laravel està orientat al testing, per tant ja trobem instal·lat **`phpunit`**. 
+Laravel està orientat al testing, per tant ja trobem instal·lat **`phpunit`**. A més tota la configuració de l'entorn de proves es troba **phpunit.xm**l. Si bé podem crear un fitxer `.env.testing` amb els paràmetres de prova, per exemple, la base de dades ha de ser diferent, podem treballar pot ser amb **`sqlite`**.
+
+```php
+    APP_NAME=Laravel
+    APP_ENV=testing
+    APP_KEY=base64:5CpEFQ9USR543dbJUsT3araoSSyxuN8NF92gCJJXpk8=
+    APP_DEBUG=true
+    APP_URL=http://localhost
+
+    LOG_CHANNEL=stack
+
+    DB_CONNECTION=sqlite
+    DB_DATABASE=/absolute/path/to/test.sqlite
+
+```
+
+Per crear una prova podem fer servir el comando artisan  
 
 Un cop generada la prova podem utilitzar phpunit o bé el comando **`artisan test`**
+
+### Redacció dels casos de prova
+
+Què és el que volem provar?
+
+### Casos de prova finals o endpoints
+
+Es crea la unitat, per exemple provar propietats i es codifiquen tots els casos de prova anteriors p.e. testCreateProperty\(\)\) 
 
 ## Apèndix - Mail: configuració i ús amb Gmail
 
