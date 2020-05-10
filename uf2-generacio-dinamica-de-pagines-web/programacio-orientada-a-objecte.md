@@ -37,11 +37,11 @@ Hi ha molts tipus diferents de vehicles, com ara cotxes, autobusos, motocicletes
 
 ### Classes
 
-Una classe és un model d'un objecte. Quines dades ha de contenir un objecte i quins mètodes es necessiten per accedir a aquestes dades es poden descriure mitjançant una classe. Una classe actua com una plantilla per a la creació d'objectes. Penseu com a guia un cotxe dissenyat amb un model. El tipus de vehicle, la marca, el model, la mida del motor, el color, etc. es defineixen a la `Car`classe juntament amb els mètodes per recuperar aquesta informació, com ara obtenir el nom del model, engegar el motor, etc.
+Una classe és un model d'un objecte. Quines dades ha de contenir un objecte i quins mètodes es necessiten per accedir a aquestes dades es poden descriure mitjançant una classe. Una classe actua com una plantilla per a la creació d'objectes. Penseu com a guia,  un cotxe dissenyat amb un model. El tipus de vehicle, la marca, el model, la mida del motor, el color, etc. es defineixen a la classe `Car` juntament amb els mètodes per recuperar aquesta informació, com ara obtenir el nom del model, engegar el motor, etc.
 
-Una classe comença amb la `class`paraula clau seguida del nom indicat i el cos inclòs en un parell de claus. El cos de la classe allotja els membres de la classe i són variables, constants, funcions, variables de classe \(també conegudes com a propietats de classe o atributs de classe\) i les funcions que pertanyen a la classe, conegudes com a mètodes de classe.
+Una classe comença amb la paraula clau**`class`**seguida del nom indicat i el cos inclòs en un parell de claus. El **cos** de la classe allotja els membres de la classe i són variables, constants, funcions, variables de classe \(també conegudes com a propietats de classe o atributs de classe\) i les funcions que pertanyen a la classe, conegudes com a mètodes de classe.
 
-Consulteu la següent declaració de classe:
+Mireu l'exemple de la següent declaració de classe:
 
 ```php
 class ClassName
