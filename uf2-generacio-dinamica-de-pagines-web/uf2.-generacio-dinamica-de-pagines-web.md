@@ -267,26 +267,67 @@ class Developer implements Worker {
 }
 ```
 
-Com es pot observar, la interface  obliga a ambdues classes a implementar mètodes que no necessita, per exemple un Manager no té perquè implementar el mètode « **code \(..\)»** però si « **attendMeeting \(...\)** » i un Developer no té perquè implementar el mètode « **attendMeeting \(...\)** » però si « **code \(...\)** «. La solució és aplicar SRP i separar responsabilitats \(més interfaces\)
+Com es pot observar, la interface  obliga a ambdues classes a implementar mètodes que no necessita, per exemple un Manager no té perquè implementar el mètode « **code \(..\)»** però si « **attendMeeting \(...\)** » i un Developer no té perquè implementar el mètode « **attendMeeting \(...\)** » però si « **code \(...\)** «. La solució és aplicar SRP i separar responsabilitats \(més interfaces\).
+
+
 
 ### “D”: Dependency Inversion principle
 
-> A. Las clases de alto nivel no deberían depender de las clases de bajo nivel. Ambas deberían depender de las abstracciones.
->
-> B. Las abstracciones no deberían depender de los detalles. Los detalles deberían depender de las abstracciones.
+Aquest és potser el més simple dels principis i estableix que l_es classes han de dependre d'abstraccions, no de concrecions_. Essencialment, no dependre de classes concretes, i si dependre d'interfaces, de manera que s'afavoreix la reusabilitat davant de l'acoblament.
 
-Es decir, una clase particular no debería depender directamente de una clase sino de la abstracción de la misma de modo que se favorezca la reusabilidad frente al acoplamiento.
+Prenguem el següent exemple:
 
-Por ejemplo, una clase que requiera una conexión a una base de datos no seguiría este principio si es declarada así:![](https://miro.medium.com/max/60/1*8SnYziO2-ffbrTC9wM9tfA.png?q=20)![](https://miro.medium.com/max/2768/1*8SnYziO2-ffbrTC9wM9tfA.png)
+```php
+class MySqlConnection {
+    public function connect() {}
+}
+ 
+class PageLoader {
+    private $connection;
+    public function __construct(MySqlConnection $connection) {
+        $this->connection = $connection;
+    }
+}
+```
 
-Pues estaría acoplada al tipo de base de datos que emplee la aplicación por lo que si cambiáramos de sistema nos veríamos obligados a modificarla \(esta implementación también rompe con el principio “Open-Closed”\).
+Aquesta estructura significa que essencialment estem estancats amb l'ús de **MySQL** per a la nostra capa de base de dades.
 
-La solución correcta sería declarar una interfaz `DBConnectionInterface` sobre la que trabajaría `UserDB` :![](https://miro.medium.com/max/60/1*7jzXwDYGA29k6g6043e9Mw.png?q=20)![](https://miro.medium.com/max/2836/1*7jzXwDYGA29k6g6043e9Mw.png)
+Què passa si volem canviar això per un adaptador de base de dades diferent? Podríem estendre la classe **MySqlConnection** per crear una connexió amb **la Memòria Cau** o [**Redis**](https://redis.io/) per exemple, però això violaria el principi de la substitució de **Liskov** .
 
-De este modo, si cambiamos de tipo de base de datos `SomeClass` seguirá funcionando pues depende de la abstracción proporcionada por `DatabaseConnectionInterface` .  
+El més probable és que els administradors de bases de dades alternatius puguin usar-se per carregar les pàgines, de manera que necessitem trobar una manera de fer-ho.
 
+La solució aquí és crear una interfície anomenada **ConnectionInterface** i després implementar aquesta interfície en la classe **MySqlConnection** i en la classe **RedisConnection** per exemple.
 
+Després, en lloc de confiar en un objecte **MySqlConnection** que es passa a la classe **PageLoader** , confiem en qualsevol classe que implementi la interfície **ConnectionInterface** .
 
+Vegem com quedaria:
+
+```php
+interface ConnectionInterface {
+    public function connect();
+} 
+ 
+class MySqlConnection implements ConnectionInterface {
+    public function connect() {}
+}
+
+class RedisConnection implements ConnectionInterface {
+    public function connect() {}
+}
+ 
+class PageLoader {
+    private $connection;
+    public function __construct(ConnectionInterface $connection) {
+        $this->connection = $connection;
+    }
+}
+```
+
+Amb aquesta implementació, va ser possible crear una classe **RedisConnection** i sempre que implementi la interface **ConnectionInterface** , podem usar-lo en la classe **PageLoader** per carregar pàgines.
+
+Aquest enfocament també ens obliga a escriure codi de tal manera que **eviti detalls** **d'implementació** específics en classes que no es preocupen per això. A causa de que hem passat una classe **MySqlConnection** a la nostra classe **PageLoader** , ja no tindríem perquè escriure consultes natives **SQL** a la classe **PageLoader** , o fer sentències IF per determinar quin tipus de connexió és i implementar per exemple una connexió a **Redis** .
+
+Això vol dir que quan passem  un objecte **RedisConnection** es comportarà de la mateixa manera que qualsevol altre tipus de classe de connexió.
 
 ## Projecte de creació i adaptació d’un marc de treball propi adaptant app
 
