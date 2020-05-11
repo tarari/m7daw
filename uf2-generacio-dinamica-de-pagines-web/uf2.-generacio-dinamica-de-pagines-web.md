@@ -155,11 +155,78 @@ Para resolver este problema una solución sería crear la interfaz `Shape` que d
 
 El principi de substitució de Liskov \(conegut com LSP\) és un concepte important quan es tracta de programació orientada a objectes.
 
-Matemàticament
+**Matemàticament**
 
 > Sigui ϕ**\(x\)** una propiedad comprovable sobre els objectes **x** de tipus T. Llavors ϕ**\(y\)** ha de ser cert per a tots els objectes y  del tipus **S** on **S**, és un subtipus de **T**.
 
+El que vol dir és que qualsevol classe filla hauria de poder ser substituïble per la classe pare sense necessitat de conèixer les diferències entre elles.
 
+Una altra manera de pensar en això és: si tens una classe \(base\), i després tens cinc classes que estenen aquesta classe **base**, qualsevol codi que usi la classe base també hauria de funcionar si reemplaça aquesta classe base amb alguna de les seves classes filles i viceversa.
+
+Vegem un exemple on es requereix calcular el preu total amb impost inclòs segons país de l'usuari.
+
+```php
+<?php
+
+interface PriceCalculatorInterface
+{
+    public static function getTotal(float $price): string;
+}
+
+class PriceCalculator implements PriceCalculatorInterface
+{
+    const DEFAULT_VAT = 7;
+
+    public static function getTotal(float $price): string
+    {
+        $vat = (($price * self::DEFAULT_VAT) / 100);
+
+        return number_format(round($price + $vat, 2), 1, ',', '.');
+    }
+}
+
+class SpainPriceCalculator extends PriceCalculator
+{
+    const DEFAULT_VAT = 21;
+
+    public static function getTotal(float $price): string
+    {
+        $vat = (($price * self::DEFAULT_VAT) / 100);
+
+        return number_format(round($price + $vat, 2), 2, ',', '.');
+    }
+}
+
+class ItalyPriceCalculator extends PriceCalculator
+{
+    const DEFAULT_VAT = 22;
+
+    public static function getTotal(float $price): string
+    {
+        $vat = (($price * self::DEFAULT_VAT) / 100);
+
+        return number_format(round($price + $vat, 3), 3, '.', ',');
+    }
+}
+
+class PriceService
+{
+    public function getTotalPrice(PriceCalculator $priceCalculator): string
+    {
+        return $priceCalculator::getTotal(1197.45);
+    }
+}
+
+$priceService = new PriceService();
+
+$defaultTotal = $priceService->getTotalPrice(new PriceCalculator());
+$spainTotal   = $priceService->getTotalPrice(new SpainPriceCalculator());
+$italyTotal   = $priceService->getTotalPrice(new ItalyPriceCalculator());
+
+echo "Default Total: " . $defaultTotal . PHP_EOL . PHP_EOL;
+echo "Spain Total: " . $spainTotal . PHP_EOL . PHP_EOL;
+echo "Italy Total: " . $italyTotal;
+```
 
 Por ejemplo, un código que no cumpliría este principio sería el siguiente:![](https://miro.medium.com/max/60/1*kuGstrch8L3MbG3xGTVPEg.png?q=20)![](https://miro.medium.com/max/2768/1*kuGstrch8L3MbG3xGTVPEg.png)
 
