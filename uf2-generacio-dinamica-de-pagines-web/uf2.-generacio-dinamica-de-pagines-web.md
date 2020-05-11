@@ -228,25 +228,46 @@ echo "Spain Total: " . $spainTotal . PHP_EOL . PHP_EOL;
 echo "Italy Total: " . $italyTotal;
 ```
 
-Por ejemplo, un código que no cumpliría este principio sería el siguiente:![](https://miro.medium.com/max/60/1*kuGstrch8L3MbG3xGTVPEg.png?q=20)![](https://miro.medium.com/max/2768/1*kuGstrch8L3MbG3xGTVPEg.png)
 
-Ya que en la línea 19 estamos comprobando el tipo de vehículo y nuestra aplicación debería ser capaz de funcionar sin esa comprobación.
-
-Un ejemplo de código que cumple este principio podría ser:![](https://miro.medium.com/max/36/1*SUeCAOjMpWwvKtjc0nmnVQ.png?q=20)![](https://miro.medium.com/max/2768/1*SUeCAOjMpWwvKtjc0nmnVQ.png)
 
 ### “I”: Interface Segregation principle
 
-> Un cliente nunca debería verse obligado a implementar una interfaz que no utiliza y debería verse obligado a depender de métodos que no utiliza.
+> Un client \(entenen una classe\) mai ha de ser obligat a implementar una interface que no utilitzem o els clients no han de ser forçats a dependre de mètodes que no facin servir.
 
-Es decir, una clase no debería implementar una interfaz que no vaya a usar ni las interfaces deberían estar sobrecargadas de métodos que no todas las clases que las implementen los necesitarán.
+En aquest punt, estaria bé  esmentar un argot més, els _Fat Interface_. Això és que hem d'evitar fer que les nostres interfaces es tornin grosses quan es manegen gran quantitat de contractes. Una interface grossa viola també el principi de Responsabilitat Única \(_Single Responsability Principle_\) ja que segurament aquesta interface estaria manejant més d'una responsabilitat alhora.
 
-Por tanto, la solución es plantear interfaces específicas en vez de interfaces generales que cubran excesivos casos de uso.
+En resum, hem de garantir separar funcionalitats i definir els contractes mitjançant interfícies la responsabilitat sigui única.
 
-Por ejemplo, si tenemos máquinas capaces de hacer café y té, una posible implementación que no respetase este principio sería:![](https://miro.medium.com/max/50/1*TMkB63h-Lu_KCzAEZZqbKw.png?q=20)![](https://miro.medium.com/max/2768/1*TMkB63h-Lu_KCzAEZZqbKw.png)
+Vegem un exemple on es trenca aquest principi:
 
-Esto se debe a que la interfaz `BeverageMachine` es demasiado general de modo que las clases que la implementan se ven obligadas a lanzar excepciones en los métodos que no necesitan.
+```php
+interface Worker {
+ 
+  public function takeBreak()
+ 
+  public function code()
+ 
+  public function callToClient()
+ 
+  public function attendMeetings()
+ 
+  public function getPaid()
+}
 
-Una implementación correcta de acuerdo a este principio sería:![](https://miro.medium.com/max/60/1*dAU3HGTvkwjLrsdG8uf6gA.png?q=20)![](https://miro.medium.com/max/2768/1*dAU3HGTvkwjLrsdG8uf6gA.png)
+class Manager implements Worker {
+  public function code() {
+    return false;
+  }
+}
+
+class Developer implements Worker {
+  public function callToClient() {
+    echo "I'll ask my manager.";
+  }
+}
+```
+
+Com es pot observar, la interface  obliga a ambdues classes a implementar mètodes que no necessita, per exemple un Manager no té perquè implementar el mètode « **code \(..\)»** però si « **attendMeeting \(...\)** » i un Developer no té perquè implementar el mètode « **attendMeeting \(...\)** » però si « **code \(...\)** «. La solució és aplicar SRP i separar responsabilitats \(més interfaces\)
 
 ### “D”: Dependency Inversion principle
 
