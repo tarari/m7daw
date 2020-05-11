@@ -42,31 +42,124 @@ class Document
 }
 ```
 
-ya que el método `insertInDB` está fuera del alcance de la misma. Por tanto, la solución correcta sería tener dos clases para evitar ese tipo de acoplamiento:![](https://miro.medium.com/max/60/1*EhfQUavTj36hCOVL06CJVQ.png?q=20)![](https://miro.medium.com/max/2768/1*EhfQUavTj36hCOVL06CJVQ.png)![](https://miro.medium.com/max/60/1*mQn-7um_poL3Jf7wVf6YsA.png?q=20)![](https://miro.medium.com/max/2768/1*mQn-7um_poL3Jf7wVf6YsA.png)
+Ara la interface:
+
+```php
+interface ExportableDocumentInterface
+{
+    public function export(Document $document);
+}
+```
+
+I la resta de classes, cadascuna amb la seva responsabilitat:
+
+```php
+namespace Solid\S;
+
+use Solid\S\ExportableDocumentInterface;
+
+class HtmlExportableDocument implements ExportableDocumentInterface
+{
+    public function export(Document $document)
+    {
+        echo "DOCUMENT EXPORTED TO HTML".PHP_EOL;
+        echo "Title: ".$document->getTitle().PHP_EOL;
+        echo "Content: ".$document->getContent().PHP_EOL.PHP_EOL;
+    }
+}
+```
+
+```php
+namespace Solid\s;
+
+
+class PdfExportableDocument
+{
+    public function export(Document $document)
+    {
+        echo "DOCUMENT EXPORTED TO PDF".PHP_EOL;
+        echo "Title: ".$document->getTitle().PHP_EOL;
+        echo "Content: ".$document->getContent().PHP_EOL.PHP_EOL;
+    }
+}
+```
 
 ### “O”: Open-Closed principle
 
-> Los objetos deberían estar abiertos para su extensión y cerrados para su modificación
+> Els objectes haurien d'estart oberts per a la seva extensió i tancats per la seva modificació.
 
-De acuerdo a este principio, una entidad debería ser posible extenderla con nuevas funcionalidades sin necesidad de modificar su código.
+Imaginem que necessitem implementar un sistema de **login**. Inicialment per autenticar al nostre usuari necessitem d'un usuari i una contrasenya, fins aquí tot bé, però què passa si requerim que l'usuari s'autentiqui mitjançant twiter, gmail o facebook ?
 
-Supongamos por ejemplo que tenemos que calcular la suma total de las áreas de una serie de figuras geométricas. Una posible implementación que no repetiría este principio sería la siguiente:![](https://miro.medium.com/max/38/1*jOa-IUsjSoONO9ISF-GyNQ.png?q=20)![](https://miro.medium.com/max/2768/1*jOa-IUsjSoONO9ISF-GyNQ.png)
+Una implementació que trenca amb aquest principi seria:
+
+```php
+class LoginService
+{
+    public function login($user)
+    {
+        if ($user instanceof User) {
+            $this->authenticateUser($user);
+        } else if ($user instanceOf ThirdPartyUser) {
+            $this->authenticateThirdPartyUser($user);
+        }
+    }
+}
+```
+
+Fent un seguiment a aquest principi, ens trobem:
+
+```php
+interface LoginInterface
+{
+    public function authenticateUser($user);
+}
+
+class UserAuthentication implements LoginInterface
+{
+    public function authenticateUser($user)
+    {
+        // TODO: Implement authenticateUser() method.
+    }
+}
+
+Class ThirdPartyUserAuthentication implements LoginInterface
+{
+    public function authenticateUser($user)
+    {
+        // TODO: Implement authenticateUser() method.
+    }
+}
+
+class LoginService
+{
+    public function login(LoginInterface $user)
+    {
+        $user->authenticateUser($user);
+    }
+}
+```
+
+Com podem  observar, la classe **`LoginService`** és indiferent al  mètode d'autenticació \(per base de dades, via google o twitter, etc.\) que es vagi a utilitzar, tota la lògica aquesta dins de cada Classe dels diferents tipus d'autenticació que puguem tenir.
+
+
 
 ¿Por qué? Porque cada vez que añadamos un nuevo tipo de figura nos veremos obligados a modificar el método `sum` de la clase `AreaCalculator` de cara a añadir el nuevo tipo de figura.
 
 Para resolver este problema una solución sería crear la interfaz `Shape` que declararía el método `area` que todas las figuras deberían implementar para devolver su área.
 
-De este modo, el método `sum` de `AreaCalculator` tan sólo tendría que llamar al método `area` de cada objeto \(pues todos implementan la interfaz `Shape` \) sin preocuparse del tipo de objeto que sea.![](https://miro.medium.com/max/36/1*wwvQkpwkFA8uc12qwd8TPQ.png?q=20)![](https://miro.medium.com/max/2768/1*wwvQkpwkFA8uc12qwd8TPQ.png)
+
 
 ### “L”: Liskov Substitution principle
 
-> Cada clase que hereda de otra puede usarse como su padre sin necesidad de conocer las diferencias entre ellas.
+> Si F és una classe filla de P, llavors els objectes de P podrien ser substituïts per objectes de tipus F sense alterar les propietats del problema.
 
-Aunque formalmente se define como:
+El principi de substitució de Liskov \(conegut com LSP\) és un concepte important quan es tracta de programació orientada a objectes.
 
-> Sea ϕ**\(x\)** una propiedad comprobable acerca de los objetos **x** de tipo T. Entonces ϕ**\(y\)** debe ser verdad para los objetos **y** del tipo **S** donde **S**, es un subtipo de **T**.
+Matemàticament
 
-Imaginad por ejemplo que tenemos dos tipos de vehículos: `Car` y `Bike.` Según las circunstancias podríamos emplear cualquiera de ellos siendo la única diferencia la velocidad a la que se mueven. El principio de Liskov nos obliga a que nuestra aplicación funcione sin necesidad de comprobar la clase a la que pertenecen los objetos.
+> Sigui ϕ**\(x\)** una propiedad comprovable sobre els objectes **x** de tipus T. Llavors ϕ**\(y\)** ha de ser cert per a tots els objectes y  del tipus **S** on **S**, és un subtipus de **T**.
+
+
 
 Por ejemplo, un código que no cumpliría este principio sería el siguiente:![](https://miro.medium.com/max/60/1*kuGstrch8L3MbG3xGTVPEg.png?q=20)![](https://miro.medium.com/max/2768/1*kuGstrch8L3MbG3xGTVPEg.png)
 
