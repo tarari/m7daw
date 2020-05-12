@@ -35,3 +35,47 @@ La sortida hauria de ser similar a la següent. Els valors de sortida depenen de
 
 ![Simulaci&#xF3;](https://s3.amazonaws.com/thinkific/file_uploads/59347/images/a98/c42/ac8/C14196_04_17.png)
 
+## Exercicis amb funcions
+
+En aquest exercici, utilitzarem un parell de funcions més predefinides per conèixer el processament de dades i escriure els nostres propis  processadors perquè siguin **reutilitzables**. L’objectiu d’aquest exercici és agafar una sèrie de directors i pel·lícules i ordenar-los pel nom del director. A continuació, volem processar aquesta matriu i imprimir el nom del director on la primera lletra del nom  estigui en majúscules i el cognom sigui tot en majúscules. A més, per a les pel·lícules, volem posar en majúscules cada títol, posar-les entre cometes dobles i separar-les mitjançant comes. 
+
+Construirem dues funcions que gestionaran el processament del nom del director i una altra de les pel·lícules. Anem a fer ús de tres noves funcions incorporades en què encara hem de discutir: **`ksort`**, **`explode`i`implode`**. Per obtenir més informació sobre aquestes funcions, reviseu la documentació de [php.net](http://php.net/) :
+
+```php
+$directors = [    
+    'steven-spielberg' => [
+         'ET',
+         'Raiders of the lost ark',
+         'Saving Private Ryan'
+  ],
+   'martin-scorsese' => [
+        'Ashes and Diamonds',
+        'The Leopard',
+        'The River'
+  ],
+   'kathryn-bigelow' => [
+        'Detroit',
+        'Last Days',
+        'The Hurt Locker'
+  ],
+    'felix-gary-gray' => [
+        'Men in Black: International',
+        'The Fate of the Furious',
+        'Law Abiding Citizen'
+  ]
+];
+```
+
+Després de processar l'array, la sortida de l'execució en línia el resultat de : **`php exercici-funcio.php`** seria:
+
+```php
+Felix GARY: "MEN IN BLACK: INTERNATIONAL","THE FATE OF THE FURIOUS","LAW ABIDING CITIZEN"
+Kathryn BIGELOW: "DETROIT","LAST DAYS","THE HURT LOCKER"
+Martin SCORSESE: "ASHES AND DIAMONDS","THE LEOPARD","THE RIVER"
+Steven SPIELBERG: "ET","RAIDERS OF THE LOST ARK","SAVING PRIVATE RYAN"
+```
+
+Podem com a suplement, crear un layout en html i mostrar el resultat en una plantilla, fes-ho.
+
+
+
