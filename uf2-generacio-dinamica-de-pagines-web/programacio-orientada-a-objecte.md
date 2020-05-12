@@ -133,5 +133,32 @@ Una propietat sempre s'ha de definir amb una d'aquestes pararules clau.
 Un mètode sense cap definició d'accesibilitat és per defecte public.
 {% endhint %}
 
+Vegem un exemple:
+
+```php
+<?php
+class MyClass {
+  public $var1 = 'public var';
+  protected $var2 = 'protected var';
+  private $var3 = 'private var';
+
+  function printHello() {
+    echo $this->var1 . '<br>';
+    echo $this->var2 . '<br>';
+    echo $this->var3 . '<br>';
+  }
+}
+
+$obj = new MyClass();
+echo $obj->var1 . '<br>'; // var1 es public
+$obj->printHello(); // ho mostra tot, accés public a través de funció
+
+// aixó produiria errors, per què?
+/*
+* echo $obj->var2; // Fatal Error
+* echo $obj->var3; // Fatal Error
+*/
+```
+
 
 
