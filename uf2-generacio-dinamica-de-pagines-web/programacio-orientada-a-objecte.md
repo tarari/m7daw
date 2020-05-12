@@ -119,5 +119,19 @@ public $str = 'I am a Fruit';
 public $arr = array('Apple', 'Mango', 'Banana');
 ```
 
+{% hint style="info" %}
+**Visibilitat**
+
+Les paraules clau  \(public, protected, private\) determinen com és l'accesibilitat a aquestes propietats/mètodes :
+
+* **public**: accesible des de qualsevol lloc.
+* **protected**: accessible per la classe i subclasses.
+* **private**: només accesible per la classe.
+
+Una propietat sempre s'ha de definir amb una d'aquestes pararules clau. 
+
+Un mètode sense cap definició d'accesibilitat és per defecte public.
+{% endhint %}
+
 
 
