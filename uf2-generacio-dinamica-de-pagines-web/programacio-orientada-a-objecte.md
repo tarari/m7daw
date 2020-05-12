@@ -89,5 +89,35 @@ $object = new MySimpleClass();
 
 Amb la instanciació, un objecte es crea a la memòria amb còpies dels seus propis atributs. Aquí, la variable `$object` no conté l'objecte real; més aviat, assenyala l'objecte. Només per quedar clar, la variable`$object` és un punter a l'objecte i no té una referència a l'objecte.
 
+El mètode del **constructor** es crida automàticament si es declara. Un constructor de classe i un destructor són dos tipus especials de mètodes; per exemple, **`__construct()`**i **`__destruct()`**, que es criden  automàticament en la  creació i supressió d’objectes, respectivament.
+
+Per accedir a les propietats i mètodes d'un objecte, podem utilitzar l'operador d'objectes **`->`**, com en els següents casos:
+
+```php
+$object->propertyName;
+$object->methodName();
+```
+
+### Atributs de classe
+
+Com ja hem vist, els atributs i variables de classe contenen dades. Per escriure un atribut de classe en PHP, cal començar amb les paraules clau `public`, `private`o `protected`, i a continuació, la resta, és la instrucció d'assignació de variable de PHP. A l'exemple anterior, a la classe `Person`,  **`public $name = 'Pep Guardia'`**`;`s'utilitzava per assignar el nom d'una persona; aquí, `public` és un modificador **d’accés** o paraula clau de **visibilitat** del membre de classe i s’ha utilitzat de manera que es pot accedir a l’atribut **fora de la classe**. Discutirem detalladament els modificadors d’accés en punts posteriors.
+
+Tingueu en compte que l'estructura de la classe es compila abans de l'execució del fitxer PHP. Quant a l'assignació de valors en atributs de classe, el valor ha de ser **estàtic**, és a dir, **el valor no ha de dependre del temps d'execució.** Per exemple, els atributs de classe següents no funcionaran:
+
+```php
+public $date = getdate();
+public $sum = $a + $b;
+```
+
+Aquí, els atributs depenen del retorn de la funció `getdate()` i d'una avaluació de l'expressió aritmètica, respectivament, ja que la crida a la funció i l'avaluació de l'expressió aritmètica no es realitzaran durant el temps de compilació i  no es poden avaluar en temps d'execució, per la qual cosa  no funciona  en el cas dels atributs de classe.
+
+Per tant, els atributs de classe que no impliquen informació en temps d'execució haurien de ser considerats un bon atribut, com ara el següent:
+
+```php
+public $num = 10
+public $str = 'I am a Fruit';
+public $arr = array('Apple', 'Mango', 'Banana');
+```
+
 
 
