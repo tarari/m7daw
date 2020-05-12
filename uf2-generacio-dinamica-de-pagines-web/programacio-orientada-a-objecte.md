@@ -60,9 +60,9 @@ El nom de la classe comença amb lletres o guions baixos seguits de qualsevol no
 
 Aquesta és la llista de [paraules reservades](https://www.php.net/manual/en/reserved.php) a PHP.
 
-A les recomanacions dels estàndards de PHP, **PSR-1** recomana que es declare un nom de classe a `CamelizedClassName`i es decretin mètodes de classe `camelizedMethodName`. Tinguem en compte el CamelCase del _nom_ de la _classe_ i l'ús de minúscules al començament dels noms del mètode. Feu clic a [PSR-1: Standard Coding Standard](https://www.php-fig.org/psr/psr-1/) per obtenir més informació.
+A les recomanacions dels estàndards de PHP, **PSR-1** recomana que es declari un nom de classe  `CamelizedClassName`i es decretin mètodes de classe `camelizedMethodName`. Tinguem en compte el CamelCase del _nom_ de la _classe_ i l'ús de minúscules al començament dels noms del mètode. Feu clic a [PSR-1: Standard Coding Standard](https://www.php-fig.org/psr/psr-1/) per obtenir més informació.
 
-Vegem la següent `Person`classe senzilla :
+Vegem la següent classe `Person` :
 
 ```php
 class Person
@@ -78,4 +78,16 @@ class Person
 Aquí hi la classe `class Person {…}`. S'ha afegit un atribut únic amb la línia `public $nom= 'Pep Guardia';`i el cos també conté el mètode `sayHello()`, que imprimeix una cadena senzilla.
 
 A la següent secció, discutirem com hem **d’instanciar** una classe i què passa a la memòria quan realitzem aquesta instància.
+
+### Instanciar una classe
+
+Un objecte és una **instància d’una classe**, per tant, iniciar una classe significa crear un objecte nou mitjançant la classe. Podem iniciar una classe mitjançant la paraula `new`de la següent manera:
+
+```php
+$object = new MySimpleClass();
+```
+
+Amb la instanciació, un objecte es crea a la memòria amb còpies dels seus propis atributs. Aquí, la variable `$object` no conté l'objecte real; més aviat, assenyala l'objecte. Només per quedar clar, la variable`$object` és un punter a l'objecte i no té una referència a l'objecte.
+
+
 

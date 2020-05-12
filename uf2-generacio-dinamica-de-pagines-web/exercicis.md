@@ -1,18 +1,22 @@
 # Exercicis
 
-
-
 ## 1. Construir una relació d'objectes per a estudiants i professors
 
-En aquesta activitat, implementarem conceptes OOP per crear `Student`i `Professor`classes amb constructors, atributs i mètodes de paràmetres. Instantarem les dues classes i establirem una relació entre els objectes. Un professor pot tenir un nombre determinat d’estudiants matriculats a la seva classe. La llista d’estudiants s’ha d’imprimir mitjançant un mètode membre de l’ `Professor`objecte.
+En aquesta activitat, implementarem conceptes OOP per crear `Student`i `Professor`classes amb constructors, atributs i mètodes de paràmetres. 
+
+Es recomana, prèviament realitzar un diagrama UML d'entitats per conèixier els tipus de relació existents. Per conèixer més: [https://diagramasuml.com](https://diagramasuml.com/)
+
+
+
+Instanciarem  les dues classes i establirem una relació entre els objectes. Un professor pot tenir un nombre determinat d’estudiants matriculats a la seva classe. La llista d’estudiants s’ha d’imprimir mitjançant un mètode membre de l’objecte `Professor`.
 
 Els passos a realitzar són els següents:
 
-1. Creeu un directori anomenat `activity1`per incloure-hi tot el contingut de l’activitat. Aquest ha de ser el nostre directori de treball \(pot ser `cd`al directori\).
+1. Creeu un directori anomenat **`activity1`**per incloure-hi tot el contingut de l’activitat. Aquest ha de ser el nostre directori de treball \(feu `cd`al directori\).
 2. Creeu un fitxer de script anomenat `activity-classes.php`.
 3. Crear `Professor`i `Student`classificar en directoris separats amb les funcions següents.
 
-   Ambdues utilitzen el seu propi espai de nom per carregar les classes automàticament.
+   Ambdues utilitzen el seu propi **espai de nom** per carregar les classes automàticament.
 
    Tots dos prenen el nom com a primer argument del constructor; la `Professor`classe accepta el segon argument com a llista d’estudiants: la llista es filtrarà `Student`només per a instàncies .
 
