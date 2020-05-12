@@ -66,6 +66,13 @@ $directors = [
 ];
 ```
 
+Feu servir noms de funció indicatius:
+
+```php
+function processDirectorName($name){}
+function processMovies($movies){}
+```
+
 Després de processar l'array, la sortida de l'execució en línia el resultat de : **`php exercici-funcio.php`** seria:
 
 ```php
