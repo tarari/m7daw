@@ -160,5 +160,17 @@ $obj->printHello(); // ho mostra tot, accés public a través de funció
 */
 ```
 
+### Class constants
 
+Just like defining other constants \(outside of a class\) [using 'const'](https://www.logicbig.com/tutorials/misc/php/php-cheat-sheet.html#constants) keyword, we can also define them inside a class. The default visibility of class constants is public.
+
+Constants are allocated once per class, and not for each class instance.
+
+**Scope Resolution Operator \(::\)**
+
+Instead of using **-&gt;**, double colon allows access to static and constant. This operator is also used to access super class features.
+
+**Using 'self'**
+
+Instead of using **$this**, the **self** keyword is used to access constants within the class. Generally, for all class level access **self** should be used and for all current object instance access **$this** should be used within the class.
 
