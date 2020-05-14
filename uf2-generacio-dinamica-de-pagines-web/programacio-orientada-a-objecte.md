@@ -160,17 +160,104 @@ $obj->printHello(); // ho mostra tot, accés public a través de funció
 */
 ```
 
-### Class constants
+### constants de classe
 
-Just like defining other constants \(outside of a class\) [using 'const'](https://www.logicbig.com/tutorials/misc/php/php-cheat-sheet.html#constants) keyword, we can also define them inside a class. The default visibility of class constants is public.
+Les constants es poden definir usant [  'const'](https://www.logicbig.com/tutorials/misc/php/php-cheat-sheet.html#constants) , es poden definir dins una classe. La visibilitat de les constants de classe és pública.
 
-Constants are allocated once per class, and not for each class instance.
+Les constants s’assignen una vegada per classe i no per a cada instància de classe.
 
-**Scope Resolution Operator \(::\)**
+```php
+class SampleClass
+{
+     const ONE = 1;
+     const NAME = 'Joan Dani';
+}
+echo SampleClass::ONE; //1
+echo SampleClass::NAME; //John Dani
+```
 
-Instead of using **-&gt;**, double colon allows access to static and constant. This operator is also used to access super class features.
+**Operador d'abast \(::\)**
 
-**Using 'self'**
+En comptes  d'utilitzar **-&gt;** , el doble punt permet accedir a la part estàtica i constant. Aquest operador també s'utilitza per accedir a les funcions de super classe **`parent::.`**
 
-Instead of using **$this**, the **self** keyword is used to access constants within the class. Generally, for all class level access **self** should be used and for all current object instance access **$this** should be used within the class.
+###  **'self' i this**
+
+En comptes d'utilitzar **$this** , s'utilitza la paraula clau **self** per accedir a constants de la classe. En general, per a tots els accessos nivell de classe  utilitzem **self,**  per les instàncies de classe utilitzem **$this**.
+
+```php
+class SampleClass
+{
+    const ONE = 1;
+    const NAME = 'Joana C';
+    function printName()
+    {
+        echo self::NAME;
+    }
+}
+echo SampleClass::NAME; //Joana C
+
+```
+
+```php
+class Person
+{
+     public $name;
+     function getName()
+     {
+        return $this->name;
+     }
+     function setName()
+     {
+        $this->name = 'Joana C';
+     }
+}
+```
+
+Els atributs també són accessibles des de dins dels mètodes amb **`$this`**.
+
+```php
+.....
+function sayGreetings()
+     {
+          if (date('G') < 12)
+          {
+              $greetings = 'Good Morning';
+          }
+          elseif (date('G') < 17)
+          {
+              $greetings = 'Good Afternoon';
+          }
+          else
+          {
+              $greetings = 'Good Evening';
+          }
+          echo "$greetings $this->name! ";
+      }
+```
+
+### Setters i getters
+
+### Constructors i destructors
+
+### Herència
+
+### Modificadors d'accés
+
+### Mètodes i atributs estàtics
+
+Abstracció de classe
+
+Interfaces
+
+Classes Abstractes i interfaces
+
+Sobrecàrrega de mètodes.!!
+
+Traits
+
+Namespace
+
+Autoloading
+
+
 
