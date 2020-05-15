@@ -237,7 +237,17 @@ function sayGreetings()
 
 ### Setters i getters
 
+Quan parlem de setters i getters estem parlant d'encapsulament, el detalls dels objectes estan encapsulats \(**private** o **proctected**\) i és necessari accedir-hi a través de mètode públic.
+
+
+
 ### Constructors i destructors
+
+En el procés de creació o instanciació de classe, podem utilitzar el mètode màgic **`__construct()`**.
+
+
+
+
 
 ### Herència
 
