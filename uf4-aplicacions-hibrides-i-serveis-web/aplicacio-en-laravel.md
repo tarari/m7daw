@@ -1219,6 +1219,8 @@ La vista la generem  a **resources/views** :
 
 ```
 
+Un cop creada la plantilla, podem usar la classe Mail des del controlador. Fixem-nos en els mètodes **`::to()`** i **`->send()`**
+
 ```php
 public function reqContact(Publication $publication){
 
