@@ -1207,7 +1207,7 @@ La vista la generem  a **resources/views** :
 
     <p>Hello!</p>
     <p>This is your contact required!:</p>
-    <p><strog>{{$publication->publisher->email}}</strog></p>
+    <p><strong>{{$publication->publisher->email}}</strong></p>
     <br/>
     <p>See you soon!!</p>
 
@@ -1219,5 +1219,17 @@ La vista la generem  a **resources/views** :
 
 ```
 
+```php
+public function reqContact(Publication $publication){
 
+        $contact=Contact::create([
+            'interested_id'=>Auth::user()->id,
+            'publication_id'=>$publication->id,
+        ]);
+        Mail::to(Auth::user()->email)
+            ->send(new ContactRequired($publication));
+
+        return view('contactRequest',compact('publication'))->with('success','We have sent you a message!');
+    }
+```
 
