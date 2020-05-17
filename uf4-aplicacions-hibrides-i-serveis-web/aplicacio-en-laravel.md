@@ -6,9 +6,13 @@ description: Unes pautes per a la creació d'aplicacions a Laravel
 
 A continuació us indiquem quins passos cal seguir per realitzar una aplicació en Laravel:
 
-## 1.Casos d´ús
+El diagrama d'entitats seria el següent:
 
-Ens permet entendre les diferents accions del nostre projecte
+![](../.gitbook/assets/rentit.png)
+
+## 1.Accions de navegació
+
+Ens permet entendre les diferents accions  de navegació del nostre projecte, seguim esquema tradicional d'aplicació web en escriptori.
 
 | EXEMPLE | Tasca |
 | :--- | :--- |
@@ -37,7 +41,7 @@ DB_USERNAME=inmo
 DB_PASSWORD=xxxxxxxx
 ```
 
-## 3. Activar l'autenticació i sistema ui
+## 3. Activar l'autenticació i sistema _ui_
 
 Si utilitzem sistema d'autenticació d'usuaris, caldria configurar-lo:
 

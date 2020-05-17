@@ -329,20 +329,21 @@ Aquest enfocament també ens obliga a escriure codi de tal manera que **eviti de
 
 Això vol dir que quan passem  un objecte **RedisConnection** es comportarà de la mateixa manera que qualsevol altre tipus de classe de connexió.
 
-## Projecte de creació i adaptació d’un marc de treball propi adaptant app
+## Projecte de creació i adaptació d’un marc de treball propi adaptant app simple
 
 Aprofundim el coneixement de la programació orientada a objecte a través de la creació d'un marc de treball propi adaptant una aplicació.
 
 En les aplicacions web és important resoldre els següents problemes :
 
-* Captura del REQUEST del client
-* Adaptar resposta al tipus de client \(HTML, JSON...\)
+* Captura del **REQUEST** del client
+* Adaptar **resposta** al tipus de client \(HTML, JSON...\)
 
 En el cas de seguir un paradigma MVC \(Model View Controller\), es poden adoptar els següents elements:
 
-* Reescriptura del REQUEST per fer-lo més amigable \(.htaccess\)
+* Reescriptura del REQUEST per fer-lo més amigable \(**`.htaccess`**\)
 * Captura a través del Request del controlador \(objecte\) i l'acció \(mètode\)
-* Llençament de la instància de l'objecte controlador i posteriorment cridar l'acció corresponent
+* Llençament de la instància de l'objecte controlador i posteriorment cridar l'acció corresponent com a mètode del controlador
+* Representació de dades a través la interfície d'usuari
 
 **Funcionament bàsic de l'app \( paradigma MVC a nivell web\)**
 
@@ -350,7 +351,7 @@ En el cas de seguir un paradigma MVC \(Model View Controller\), es poden adoptar
 
 Si seguim el cicle entre client i servidor, podem analitzar com es desenvolupa la resposta, aquesta es dona sempre a nivell de Controlador, ja que estem fent servir paradigmes MVC.
 
-![](https://agora.xtec.cat/escolesnuria/moodle/pluginfile.php/4412/mod_assign/intro/Cicle%20request.png)
+![Cicle Request abans d&apos;arribar al controlador](../.gitbook/assets/cicle-request.png)
 
 ### Reescriptura de la URI
 
@@ -369,9 +370,9 @@ RewriteRule ^.*$ index.php [NC,L]
 
 Com s'observa, es tracta de redirigir tota consulta \(_query_ \) cap al controlador frontal de l'aplicació \(**index.php**\).
 
-Per una bona càrrega de classes fem servir l'estandar PSR- 4 \(autocàrrega de classes\)
+Per una bona càrrega de classes fem servir l'estandar **PSR- 4** \(autocàrrega de classes\)
 
-**Adaptació a estàndat PSR-4 \(autoload\) Composer.json**
+**Adaptació a estàndat PSR-4 \(autoload\) Composer.json segons el namespace utlitzat**
 
 ```text
 {
@@ -381,6 +382,26 @@ Per una bona càrrega de classes fem servir l'estandar PSR- 4 \(autocàrrega de 
         }
     }
 ```
+
+### Frontend controller  - index.php
+
+El fitxer index.php del nostre projecte actua com a un frontend controller és a dir, totes les Requests, són dirigides a aquest script.
+
+```php
+//development mode
+    ini_set('display_errors','On');
+    //autoload
+    require __DIR__.'/vendor/autoload.php';
+
+    use Rentit\App;
+    use Rentit\Session;
+
+    Session::init();
+
+    App::run(); 
+```
+
+Un cop inicialitzada la sessió, comencem el tractament del request a través de la funció estàtica de **`App::run()`**.
 
 
 
