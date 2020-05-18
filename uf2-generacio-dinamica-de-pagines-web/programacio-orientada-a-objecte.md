@@ -251,7 +251,21 @@ En el procés de creació o instanciació de classe, podem utilitzar el mètode 
 
 ### Herència
 
+El fet de poder fer que una classe  filla heredi atributs i mètodes d'una altra classe que en direm pare, d'això se'n diu herència.
+
+L'herència es pot considerar un tipus de relació entre classes. Aquestes classes filles heredaran tots els atributs i mètodes no privats de la classe pare.
+
+
+
+
+
 ### Modificadors d'accés
+
+Els dos conceptes bàsics que es troben al centre de l’OOP són la **modularitat** \(que permet la reutilització\) i l’ **encapsulació** \(que agrupa dades i mètodes per ocultar informació\). 
+
+ Els modificadors d’accés proporcionen **protecció d’accés** per a constants d’objecte, atributs i mètodes. 
+
+![Modificadors d&apos;acc&#xE9;s segon nivells](../.gitbook/assets/acces_mod.png)
 
 ### Mètodes i atributs estàtics
 
