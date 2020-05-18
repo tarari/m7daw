@@ -269,6 +269,8 @@ Els dos conceptes bàsics que es troben al centre de l’OOP són la **modularit
 
 ### Mètodes i atributs estàtics
 
+
+
 Abstracció de classe
 
 Interfaces
