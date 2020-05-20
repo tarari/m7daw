@@ -6,6 +6,8 @@ description: Aprofundim i comencem a explicar Programació orientada a l'objecte
 
 ## Principis SOLID
 
+En el procés de creació de software de qualitat és molt importat millorar el disseny de les aplicacions, la manera OOP ens indica com fer-ho, però SOLID aporta organització de les classes i de la seva interacció.
+
 Aquest patró va ser promogut per Robert C. Martin, conegut com Uncle Bob \(Oncle Bob\) el qual és considerat el pare de l'arquitectura de programari ja que gràcies al seu enginy, ens ha posat a disposició tota la seva experiència i bones pràctiques a seguir en pro de desenvolupar sistemes amb arquitectura neta, llegibles, robustos i sobretot, escalables.
 
 **SOLID** es un acrònim per a simbolitzar els 5 principis bàsics de disseny a l'hora de treballar amb el  paradigma de la programació orientada a objectes. Ajustar-nos a aquests principis ens permetrà desenvolupar arquitectures molt més fàcils de mantindre i esacalables , per tant convé familiaritzar-se amb elles de cara a entendre les seves implicacions i saber com aplicar-les. Recordem, tot és **PRÀCTICA**.
@@ -13,6 +15,8 @@ Aquest patró va ser promogut per Robert C. Martin, conegut com Uncle Bob \(Oncl
 ###  **S:** Single-responsibility principle
 
 > Una classe només hauria de tenir una única raó per canviar
+>
+> Una classe &lt;==&gt; una responsabilitat
 
 Principi de responsabilitat única: Una classe ha de tenir una i només una raó per canviar o el que és el mateix: **Una classe** ha de tenir **una única responsabilitat**.
 
