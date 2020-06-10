@@ -382,5 +382,9 @@ php artisan make:model Post -m
 
 Crea el model Post amb la migració preparada.
 
+### Migracions
+
+Consisteix en passar dades de model cap al sistema gestor de base de dades que s'hagi implementat en  en fitxer de variables d'entorn **`.env`**
+
 
 
