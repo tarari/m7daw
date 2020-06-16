@@ -197,13 +197,87 @@ Comproveu la sortida:
 
 ![Sortida amb variables globals](../.gitbook/assets/captura-de-pantalla-2020-04-07-a-les-13.32.34.png)
 
+### Isset per veure si una variable té valor
 
+**`isset`** és una funció de PHP que retorna `true` per a variables declarades amb valor, si no, retorna `false`
+
+```php
+<?php
+
+    $name1 = '';
+    
+    $name2 = null;
+    
+    echo 'checking $name1 : ';
+    var_dump(isset($name1));
+    
+    echo '<br>';
+    
+    echo 'checking $name2: ';
+    var_dump(isset($name2));
+    
+    echo '<br>';
+    
+    echo 'checking undeclared variable $name3: ';
+    var_dump(isset($name3));
+    
+?>
+```
+
+Que retornaria com a resultat:
+
+```php
+checking $name1 : bool(true)
+checking $name2: bool(false)
+checking undeclared variable $name3: bool(false)
+```
+
+{% hint style="warning" %}
+Analitza el resultat
+{% endhint %}
+
+Una funció relacionada amb aquesta és **`unset`**
 
 ## Tipus i operadors
 
 
 
+A continuació es mostren els vuit tipus de dades primitives:
 
+* **Strings**: un valor basat en text senzill
+* **Integers**: manté un valor numèric que és un nombre enter
+* **Float**: manté un valor numèric; pot ser un nombre enter o nombres decimals
+* **Booleans**: mantenen un valor únic que equival a **true** o **false** \( **1** o **0** és el valor numèric de **true** i **false** \)
+* **Arrays**: mantenen diversos valors o altres _arrays_ dins d'ell
+* **Objects**: mantenen una estructura de dades més complexa
+* **Resource**: manté una referència de recurs; per exemple, la referència d’una funció
+* **NULL**: aquest valor significa que realment no hi ha cap valor
+
+Aquí un exemple de **integer** i **string**:
+
+```php
+$number = 100;
+$longString = <<<STRING
+Cadena que ocupa.
+multiples línies.
+STRING;
+```
+
+Floats \(e vol dir elevat a \)
+
+```php
+$w = 13.3333;
+$x = -0.888;
+$y = 17e+2;
+$z = 8e-2;
+```
+
+i booleans:
+
+```php
+$isAdmin = true;
+$isAdmin = false;
+```
 
 ## Sentències de control
 
