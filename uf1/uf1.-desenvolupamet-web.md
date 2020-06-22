@@ -316,7 +316,38 @@ Array
 
 Realment aquesta notació indexada permet definir un altre tipus d'array, l'associatiu, en aquest cas l'index l'anomenem clau i la columna de valors, valor: **`key => value`**
 
+```php
+<?php  
+    $heroInfo = array(
+      'name' => 'Peter Parker',
+      'superHeroName' => 'Spiderman',
+      'city' => 'New York',
+      'creator' => 'Stan Lee'
+   );
+   echo $heroInfo['name'];
+   echo '<br>';
+   echo $heroInfo['superHeroName'];
+?>
+```
 
+Si fessim `print_r($heroInfo)`;
+
+```php
+Array
+(
+    [name] => Peter Parker
+    [superHeroName] => Spiderman
+    [city] => New York
+    [creator] => Stan Lee
+)
+```
+
+Podem accedir al valor de cada clau, mireu la sortida de l'script:
+
+```php
+Peter Parker
+Spiderman
+```
 
 ## Sentències de control
 
