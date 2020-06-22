@@ -10,9 +10,9 @@ description: >-
 
 La clau per **aprendre** és sempre anar pas a pas, entendre quines tecnologies impliquen el desenvolupament web.
 
-El primer pas és precisament estudiar el llenguatge **html,** comprendre per exemple, Quina finalitat té el bloc etiqueta _&lt;div&gt;_. Aprendre a estructurar un document que servirà de base a la nostra aplicació. 
+El primer pas és precisament estudiar el llenguatge **html,** comprendre per exemple, Quina finalitat té el bloc etiqueta _**`<div>`**_**`.`** Aprendre a estructurar un document que servirà de base a la nostra aplicació. 
 
-Un cop tenim l'arquitectura html, anem a deixar-lo bonic, per això tenim el CSS, i si volem que pugui interactuar am l'usuari, tenim el javascript , per tant HTML + CSS +JS, el que diem _frontend_ de l'aplicació. Més enllà d'això trobem el que hi ha al darrera, el _backend_, que proporciona lògica, funcionament i accés a dades.
+Un cop tenim l'**arquitectura html**, anem a deixar-lo bonic, per això tenim el CSS, i si volem que pugui interactuar am l'usuari, tenim el javascript , per tant HTML + CSS +JS, el que diem _**frontend**_ ****de l'aplicació. Més enllà d'això trobem el que hi ha al darrera, el _backend_, que proporciona lògica, funcionament i accés a dades.
 
 ### **PHP?**
 
@@ -143,7 +143,7 @@ Hello Toni
 
 En aquest exercici, utilitzarem el servidor integrat per imprimir `Hello FruitCP`mitjançant la cadena de consulta`companyName=FruitCP`. Això  permetrà començar a utilitzar el navegador per visualitzar la sortida del codi, en comptes de fer servir el shell interactiu. Seguim aquests passos:
 
-1. Torneu a obrir el `script.php`fitxer amb l’editor de codi preferit.
+1. Torneu a obrir el `script.php`fitxer amb l’editor de codi IDE.
 2. Substituim el codi pel següent codi i desem el fitxer:
 
 
@@ -278,6 +278,45 @@ i booleans:
 $isAdmin = true;
 $isAdmin = false;
 ```
+
+### Arrays
+
+Els arrays representen un tipus de dada molt utilitzat, perquè estructura la informació de manera molt semblant a la realitat. Podem imaginar un armari per desar coses, dades. I si parlem d'objectes i de les seves característiques, també podem associar un array per emmagatzemar aquest tipus de dada.
+
+Imaginem una variable $noms, que emmagatzema els noms de tots els companys
+
+```php
+<?php
+   $noms = ['Dave','Kerry','Dan','Jack','John','Ruby','Sam','Teresa','Toni'];
+   print_r($noms);
+?>
+```
+
+La sortida resultant, veiem com s'indexa cada entrada, des de 0 fins a 8. Són 9 entrades.
+
+```php
+Array
+(
+    [0] => Dave
+    [1] => Kerry
+    [2] => Dan
+    [3] => Jack
+    [4] => John
+    [5] => Ruby
+    [6] => Sam
+    [7] => Teresa
+    [8] => Toni
+)
+
+```
+
+{% hint style="info" %}
+**`print_r()`**, el fem servir mirar el contingut d'una variable, sigui enter, array o objecte.
+{% endhint %}
+
+Realment aquesta notació indexada permet definir un altre tipus d'array, l'associatiu, en aquest cas l'index l'anomenem clau i la columna de valors, valor: **`key => value`**
+
+
 
 ## Sentències de control
 
