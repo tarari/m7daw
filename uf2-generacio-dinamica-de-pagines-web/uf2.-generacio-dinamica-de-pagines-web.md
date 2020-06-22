@@ -74,7 +74,7 @@ class HtmlExportableDocument implements ExportableDocumentInterface
 ```
 
 ```php
-namespace Solid\s;
+namespace Solid\S;
 
 
 class PdfExportableDocument
