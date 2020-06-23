@@ -397,7 +397,7 @@ PHP també proporciona  una sèrie de funcions**`is_datatype()`**
 
 ### Operadors i expressions
 
-Un operador de PHP és quelcom que pren un o més valors o expressions i aplica una operació per donar un resultat que sigui un valor o una altra expressió.
+Un operador de PHP és quelcom que pren un o més valors o expressions i aplica una **operació** per donar un resultat que sigui un valor o una altra expressió.
 
 PHP divideix els operadors en els grups següents:
 
@@ -415,77 +415,75 @@ PHP divideix els operadors en els grups següents:
 
 Els operadors aritmètics s'utilitzen per realitzar operacions matemàtiques, per exemple, suma, resta, divisió i multiplicació.
 
-Hi ha l’ `+`operador. Es tracta de diferents números separats per un `+`operador i afegirà els valors junts:
+Operador +: Es tracta de diferents números separats per un `+`operador i afegirà els valors junts:
 
 ```text
-<? php eco 24 + 2; ?>
+<? php echo 24 + 2; ?>
 ```
 
 Això ens donarà `26`com a sortida.
 
-Hi ha l’ `-`operador. Es tracta de diferents números separats per un `–`operador i restaràs els valors:
+Operador -. Es tracta de diferents números separats per un `–` i restarà els valors:
 
 ```text
-<? php eco 24 - 2; ?>
+<? php echo 24 - 2; ?>
 ```
 
 Això ens donarà `22`com a sortida.
 
-Hi ha l’ `*`operador. Aquest número té diferents números separats per un `*`operador i mostrarà el producte:
+Operador \*.  Aquest número té diferents números separats per un `*` i mostrarà el producte:
 
 ```text
-<? php eco 24 * 2; ?>
+<? php echo 24 * 2; ?>
 ```
 
 Això ens donarà `48`com a sortida.
 
-Hi ha l’ `/`operador. Aquest número té diferents números separats per un `/`operador i imprimirà el resultat:
+Operador /. Aquest número té diferents números separats per un `/`operador i imprimirà el resultat:
 
 ```text
-<? php eco 24/2; ?>
+<? php echo 24/2; ?>
 ```
 
 Això ens donarà `12`com a sortida.
 
-L' `%`operador \(modulo\) s'utilitza per calcular la resta de la divisió de dos nombres donats:
+Operador % \(modul\) s'utilitza per calcular la resta de la divisió de dos nombres donats:
 
 ```text
-<? php eco 24% 5; ?>
+<? php echo 24 % 5 ; ?>
 ```
 
 Això ens donarà `4`com a sortida.
 
-#### Operadors de cordes
+#### Operadors de cadenes o strings
 
 Els operadors de cadena tenen operadors de concatenació i operadors d'assignació de concatenació. Concatenació significa afegir una o més variables a una variable existent. Per exemple, diguem que tenim el següent:
 
 ```text
-<? php
-$ primer = "Hola";
-$ segon = "Món!";
+<?php
+  $primer = "Hola";
+  $segon = "Món!";
 ```
 
 Ara, volem mostrar aquests elements junts mitjançant la concatenació:
 
 ```text
-<? php eco $ primer. ''. segon $; ?>
+<?php echo $primer.' '.$segon; ?>
 ```
 
-La concatenació utilitza la `.`notació: d'aquesta manera, podem unir diverses variables. En aquest exemple, separem les dues variables amb un espai. Fixeu-vos en la notació: `.'`seguida d’un espai i una `'.`per afegir l’espai requerit entre les paraules.
+La concatenació utilitza la notació **`.`**: d'aquesta manera, podem unir diverses variables. En aquest exemple, separem les dues variables amb un espai. Fixeu-vos en la notació: `.'`seguida d’un espai i una `'.`per afegir l’espai requerit entre les paraules.
 
 Assignació de concatenació significa afegir una variable a una que existeix:
 
-```text
-<? php
-$ str = 'segona part';
-$ resultat = 'primera part';
-$ resultat. = $ str;
-eco $ resultat;
+```php
+<?php
+  $str = 'segona part';
+  $resultat = 'primera part';
+  $resultat .= $str;
+  echo $resultat;
 ```
 
-La sortida és la següent:
 
-![](https://s3.amazonaws.com/thinkific/file_uploads/59347/images/5b0/af6/de9/C14196_02_08.png)Figura 2.8: Demostració de concatenació per cordes Com podeu veure, mitjançant la `.=`notació, la `$str`variable s’afegeix a la `$result`variable.
 
 #### Operadors de bits
 
@@ -493,18 +491,18 @@ Els operadors de bits permeten l'avaluació i la manipulació de bits específic
 
 Agafeu dues variables `$a`i `$b`. Es poden avaluar amb aquestes condicions:
 
-```text
-<? php
-$ a = 1; // 0001 en binari
-$ b = 3; // 0011 en binari
-// S’estableixen les bits que s’estableixen tant en $ a com en $ b.
-eco $ a && $ b;
-eco '<br>';
-// S’estableixen les bits que s’estableixen en $ a o $ b.
-echo $ a || $ B;
-eco '<br>';
-// Els bit que s’estableixen en $ a o $ b però no s’estableixen tots dos.
-echo $ a ^ $ b;
+```php
+<?php
+  $a = 1;//0001 en binari
+  $b = 3;//0011 en binari
+  
+  echo $a && $b;
+  echo '<br>';
+  //Bits que estan en $a i en $b
+  echo $a || $b;
+  echo '<br>';
+  //Bits que estan en $a o en $b
+  echo $a ^ $b;
 ```
 
 La sortida és la següent:
@@ -515,7 +513,7 @@ La sortida és la següent:
 2
 ```
 
-L' `$a && $b`expressió tornarà `1`a calcular el resultat de AND dels darrers bits d'ambdós operands. L’ `$a || $b`expressió realitzarà OR dels darrers bits d’ambdós operands i tornarà `1`.
+L'expressió `$a && $` tornarà `1`al calcular el resultat de AND dels darrers bits d'ambdós operands. L’expressió `$a || $b` realitzarà OR dels darrers bits d’ambdós operands i tornarà `1`.
 
 El resultat de `2`és el nombre total de bits binaris que es troben en un `$a`o en un `$b`, però excloent els bits que hi ha en tots dos `$a`i en `$b`.
 
@@ -526,8 +524,8 @@ El resultat de `2`és el nombre total de bits binaris que es troben en un `$a`o 
 Quan s'assigna un valor a una variable utilitzant `=`, això constitueix un operador d'assignació:
 
 ```text
-<? php
-$ any = 2019;
+<?php
+ $any = 2020;
 ```
 
 #### Operadors de comparació
@@ -539,40 +537,35 @@ Per comparar dos valors, s’utilitza l’operador de comparació. Hi ha dos ope
 Aquí teniu un exemple:
 
 ```text
-<? php
-cost de $ = 200;
-$ diners = 150;
-if ($ cost == $ diners) {
-      eco "cost coincideix amb els diners";
-     }
-if ($ cost! = $ diners) {
-      eco "el cost no coincideix amb els diners";
-     }
+<?php
+  $cost = 200;
+  $money = 150;
+  if ($cost == $money) {
+        echo 'cost coincideix amb el money';
+       }
+  if ($cost != $money) {
+        echo 'cost no coincideix amb el money';
+       }
 ```
-
-La sortida és la següent:
-
-![](https://s3.amazonaws.com/thinkific/file_uploads/59347/images/471/70c/a5e/C14196_02_09.png)Figura 2.9: Demostració de l’ús d’operadors de comparació   
-
 
 #### Operadors d’increment / decreixement
 
-Per incrementar un valor, utilitzeu l' `++`operador. Això augmentarà el valor per un. Alternativament, s'utilitzarà `+`i un número augmentarà un valor per aquest número. Per exemple, `+3`augmentarà per `3`:
+Per incrementar un valor, utilitzeu l'operador `++`. Això augmentarà el valor per un. Alternativament, s'utilitzarà `+`i un número augmentarà un valor per aquest número. Per exemple, `+3`augmentarà per `3`:
 
 ```text
-<? php
-cost de $ = 200;
-cost de $ ++;
-eco $ cost; // això donarà 201
+<?php
+ $cost = 200;
+ $cost++;
+ echo $cost; //dona 201
 ```
 
 Per decrementar un valor, el procés és el mateix, però amb `–`:
 
 ```text
-<? php
-cost de $ = 200;
-cost de $ -;
-eco $ cost; // això donarà 199
+<?php
+  $cost = 200;
+  $cost--;
+  echo $cost; //dona 199
 ```
 
 #### Operadors lògics
