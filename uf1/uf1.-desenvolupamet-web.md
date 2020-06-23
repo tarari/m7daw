@@ -12,7 +12,7 @@ La clau per **aprendre** és sempre anar pas a pas, entendre quines tecnologies 
 
 El primer pas és precisament estudiar el llenguatge **html,** comprendre per exemple, Quina finalitat té el bloc etiqueta _**`<div>`**_**`.`** Aprendre a estructurar un document que servirà de base a la nostra aplicació. 
 
-Un cop tenim l'**arquitectura html**, anem a deixar-lo bonic, per això tenim el CSS, i si volem que pugui interactuar am l'usuari, tenim el javascript , per tant HTML + CSS +JS, el que diem _**frontend**_ ****de l'aplicació. Més enllà d'això trobem el que hi ha al darrera, el _backend_, que proporciona lògica, funcionament i accés a dades.
+Un cop tenim l'**arquitectura html**, anem a deixar-lo bonic, per això tenim el CSS, i si volem que pugui interactuar am l'usuari, tenim el javascript , per tant **HTML + CSS +JS**, el que diem _**frontend**_ ****de l'aplicació. Més enllà d'això trobem el que hi ha al darrera, el _backend_, que proporciona lògica, funcionament i accés a dades.
 
 ### **PHP?**
 
