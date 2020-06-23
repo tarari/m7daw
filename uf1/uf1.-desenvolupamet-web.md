@@ -349,6 +349,283 @@ Peter Parker
 Spiderman
 ```
 
+{% hint style="info" %}
+**Investiga** les operacions bàsiques d'un array, com ara afegir, insertar, eliminar. Hi ha moltes funcions PHP per a [arrays](https://www.php.net/manual/es/ref.array.php)
+{% endhint %}
+
+### Conversions de tipus de dades \(cast\):
+
+
+
+A continuació, es mostra una llista de tots els _casts_ disponibles en PHP:
+
+* \(`int`\) – integer
+* \(`bool`\) – Boolean
+* \(`float`\) – float \(també coneguts com a floats, doubles o nombres reals\)
+* \(`string`\) – string
+* \(`array`\) – array
+* \(`object`\) – object
+* \(`unset`\) – NULL \(NULL vol dir que no té valor\)
+
+{% hint style="info" %}
+Podem utilitzar var\_dump\(\) per veure el tipus de dada d'una variable
+{% endhint %}
+
+
+
+PHP també proporciona  una sèrie de funcions**`is_datatype()`** 
+
+* `is_array`
+* `is_bool`
+* `is_callable`
+* `is_countable`
+* `is_double`
+* `is_float`
+* `is_int`
+* `is_integer`
+* `is_iterable`
+* `is_long`
+* `is_null`
+* `is_numeric`
+* `is_object`
+* `is_real`
+* `is_resource`
+* `is_scalar`
+* `is_string`
+
+### 
+
+### Operadors i expressions
+
+Un operador de PHP és quelcom que pren un o més valors o expressions i aplica una operació per donar un resultat que sigui un valor o una altra expressió.
+
+PHP divideix els operadors en els grups següents:
+
+* Operadors d’aritmètica
+* Operadors de cadena
+* Operadors de bits
+* Operadors d'assignació
+* Comparació d’operadors
+* Operadors d’increment / decrement
+* Operadors lògics
+* Matriu als operadors
+* Operadors d'assignació condicional
+
+#### Operadors d’aritmètica
+
+Els operadors aritmètics s'utilitzen per realitzar operacions matemàtiques, per exemple, suma, resta, divisió i multiplicació.
+
+Hi ha l’ `+`operador. Es tracta de diferents números separats per un `+`operador i afegirà els valors junts:
+
+```text
+<? php eco 24 + 2; ?>
+```
+
+Això ens donarà `26`com a sortida.
+
+Hi ha l’ `-`operador. Es tracta de diferents números separats per un `–`operador i restaràs els valors:
+
+```text
+<? php eco 24 - 2; ?>
+```
+
+Això ens donarà `22`com a sortida.
+
+Hi ha l’ `*`operador. Aquest número té diferents números separats per un `*`operador i mostrarà el producte:
+
+```text
+<? php eco 24 * 2; ?>
+```
+
+Això ens donarà `48`com a sortida.
+
+Hi ha l’ `/`operador. Aquest número té diferents números separats per un `/`operador i imprimirà el resultat:
+
+```text
+<? php eco 24/2; ?>
+```
+
+Això ens donarà `12`com a sortida.
+
+L' `%`operador \(modulo\) s'utilitza per calcular la resta de la divisió de dos nombres donats:
+
+```text
+<? php eco 24% 5; ?>
+```
+
+Això ens donarà `4`com a sortida.
+
+#### Operadors de cordes
+
+Els operadors de cadena tenen operadors de concatenació i operadors d'assignació de concatenació. Concatenació significa afegir una o més variables a una variable existent. Per exemple, diguem que tenim el següent:
+
+```text
+<? php
+$ primer = "Hola";
+$ segon = "Món!";
+```
+
+Ara, volem mostrar aquests elements junts mitjançant la concatenació:
+
+```text
+<? php eco $ primer. ''. segon $; ?>
+```
+
+La concatenació utilitza la `.`notació: d'aquesta manera, podem unir diverses variables. En aquest exemple, separem les dues variables amb un espai. Fixeu-vos en la notació: `.'`seguida d’un espai i una `'.`per afegir l’espai requerit entre les paraules.
+
+Assignació de concatenació significa afegir una variable a una que existeix:
+
+```text
+<? php
+$ str = 'segona part';
+$ resultat = 'primera part';
+$ resultat. = $ str;
+eco $ resultat;
+```
+
+La sortida és la següent:
+
+![](https://s3.amazonaws.com/thinkific/file_uploads/59347/images/5b0/af6/de9/C14196_02_08.png)Figura 2.8: Demostració de concatenació per cordes Com podeu veure, mitjançant la `.=`notació, la `$str`variable s’afegeix a la `$result`variable.
+
+#### Operadors de bits
+
+Els operadors de bits permeten l'avaluació i la manipulació de bits específics en un nombre enter. En aquest cas, el nombre enter es converteix en bits \(binaris\) per a càlculs més ràpids.
+
+Agafeu dues variables `$a`i `$b`. Es poden avaluar amb aquestes condicions:
+
+```text
+<? php
+$ a = 1; // 0001 en binari
+$ b = 3; // 0011 en binari
+// S’estableixen les bits que s’estableixen tant en $ a com en $ b.
+eco $ a && $ b;
+eco '<br>';
+// S’estableixen les bits que s’estableixen en $ a o $ b.
+echo $ a || $ B;
+eco '<br>';
+// Els bit que s’estableixen en $ a o $ b però no s’estableixen tots dos.
+echo $ a ^ $ b;
+```
+
+La sortida és la següent:
+
+```text
+1
+1
+2
+```
+
+L' `$a && $b`expressió tornarà `1`a calcular el resultat de AND dels darrers bits d'ambdós operands. L’ `$a || $b`expressió realitzarà OR dels darrers bits d’ambdós operands i tornarà `1`.
+
+El resultat de `2`és el nombre total de bits binaris que es troben en un `$a`o en un `$b`, però excloent els bits que hi ha en tots dos `$a`i en `$b`.
+
+> **Nota:** Per obtenir més informació sobre la conversió decimal a binària, podeu fer una ullada a [PHP: operador de bits](https://www.w3resource.com/php/operators/bitwise-operators.php) .
+
+#### Operadors d'assignació
+
+Quan s'assigna un valor a una variable utilitzant `=`, això constitueix un operador d'assignació:
+
+```text
+<? php
+$ any = 2019;
+```
+
+#### Operadors de comparació
+
+Per comparar dos valors, s’utilitza l’operador de comparació. Hi ha dos operadors de comparació comuns: `==`és a dir, que és igual a, i `!=`que no és igual a.
+
+> **Nota: l'** operador d'assignació \( `=`\) s'utilitza per assignar un valor. No es pot utilitzar per realitzar operacions de comparació, ja que comparar si un valor és el mateix que un altre requereix l'ús de l' `==`operador. Per determinar si dues variables són idèntiques, és a dir, del mateix tipus, utilitzeu l' `===`operador idèntic .
+
+Aquí teniu un exemple:
+
+```text
+<? php
+cost de $ = 200;
+$ diners = 150;
+if ($ cost == $ diners) {
+      eco "cost coincideix amb els diners";
+     }
+if ($ cost! = $ diners) {
+      eco "el cost no coincideix amb els diners";
+     }
+```
+
+La sortida és la següent:
+
+![](https://s3.amazonaws.com/thinkific/file_uploads/59347/images/471/70c/a5e/C14196_02_09.png)Figura 2.9: Demostració de l’ús d’operadors de comparació   
+
+
+#### Operadors d’increment / decreixement
+
+Per incrementar un valor, utilitzeu l' `++`operador. Això augmentarà el valor per un. Alternativament, s'utilitzarà `+`i un número augmentarà un valor per aquest número. Per exemple, `+3`augmentarà per `3`:
+
+```text
+<? php
+cost de $ = 200;
+cost de $ ++;
+eco $ cost; // això donarà 201
+```
+
+Per decrementar un valor, el procés és el mateix, però amb `–`:
+
+```text
+<? php
+cost de $ = 200;
+cost de $ -;
+eco $ cost; // això donarà 199
+```
+
+#### Operadors lògics
+
+Aquí, analitzarem els operadors lògics.
+
+L’ `and`operador realitza la conjunció lògica de dues expressions. Retorna el valor booleà `true`si ambdues expressions ho avaluen `true`. L’ `&&`operador és una altra manera de dir `and`. L' `OR`operador retorna el valor boolean `true`si qualsevol dels dos operandos n'avalua `true`, en cas contrari el retorna `false`. L’ `||`operador és una altra manera de dir `or`.
+
+L’ `!`operador significa NO. Es pot utilitzar per comprovar si una expressió no coincideix. Per exemple, considereu el següent:
+
+```text
+<? php
+$ isAdmin = true;
+If (! $ IsAdmin) {
+// només funcionarà si $ isAdmin == false
+}
+```
+
+#### Operadors de matriu
+
+Els operadors de matriu PHP s’utilitzen per comparar matrius:
+
+* `==`significa igual a \(els valors de dues variables coincideixen\). Considereu l'exemple següent:
+
+  ```text
+  $ num1 == $ num2
+  ```
+
+  Es retorna `true`si el valor de `$num1`és igual al valor de `$num2`.
+
+* `===` significa idèntic a \(les dues variables són el mateix tipus i valor\):
+
+  ```text
+  ($ num1 === $ num2);
+  ```
+
+  Es retorna `true`si el valor i el tipus de dades de `$num1`són iguals al valor i al tipus de dades `$num2`.
+
+* `!==` significa no igual a \(els valors de les dues variables són diferents\):
+
+  ```text
+  ($ num1! == $ num2);
+  ```
+
+  Això retorna `true`si `$num1`no és igual `$num2`o no són del mateix tipus.
+
+#### Operadors d'assignació condicional
+
+Els operadors d'assignació condicional de PHP s'utilitzen per establir un valor en funció de les condicions:
+
+* `?`: S'utilitza en comparacions ternàries com ara `$x = expr1 ? expr2 : expr3`
+* `??`: Aquest és un operador **null-coalescing** que significa que si la primera expressió és `true`, utilitzeu-la, o bé, utilitzeu la segona condició, com ara   `$x = expr1 ?? expr2`.
+
 ## Sentències de control
 
 
