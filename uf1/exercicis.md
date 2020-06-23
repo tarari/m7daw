@@ -10,7 +10,7 @@ Creareu una aplicació senzilla que permeti als usuaris veure la informació de 
 
 Aquests passos us ajudaran a completar l’activitat:
 
-1. Creeu un fitxer anomenat `movies.php`.
+1. Creeu un fitxer anomenat **`movies.php`**.
 2. Captura dades de cadena de consulta al fitxer per emmagatzemar els detalls de les pel·lícules, com ara noms de pel·lícules, noms d’actor/actriu i any de llançament.
 3. Creeu una estructura HTML bàsica i, a continuació, visualitzeu les cadenes de consulta capturades.
 4. Vés al Terminal i executa la comanda per iniciar el servidor web integrat.
