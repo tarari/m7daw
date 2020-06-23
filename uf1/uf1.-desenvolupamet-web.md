@@ -401,14 +401,14 @@ Un operador de PHP és quelcom que pren un o més valors o expressions i aplica 
 
 PHP divideix els operadors en els grups següents:
 
-* Operadors d’aritmètica
-* Operadors de cadena
+* Operadors aritmètics
+* Operadors de cadenes
 * Operadors de bits
 * Operadors d'assignació
 * Comparació d’operadors
 * Operadors d’increment / decrement
 * Operadors lògics
-* Matriu als operadors
+* Operadors d'arrays
 * Operadors d'assignació condicional
 
 #### Operadors d’aritmètica
@@ -523,9 +523,9 @@ El resultat de `2`és el nombre total de bits binaris que es troben en un `$a`o 
 
 Quan s'assigna un valor a una variable utilitzant `=`, això constitueix un operador d'assignació:
 
-```text
+```php
 <?php
- $any = 2020;
+  $any = 2020;
 ```
 
 #### Operadors de comparació
@@ -536,7 +536,7 @@ Per comparar dos valors, s’utilitza l’operador de comparació. Hi ha dos ope
 
 Aquí teniu un exemple:
 
-```text
+```php
 <?php
   $cost = 200;
   $money = 150;
@@ -584,14 +584,14 @@ If (! $ IsAdmin) {
 }
 ```
 
-#### Operadors de matriu
+#### Operadors de matrius o arrays
 
-Els operadors de matriu PHP s’utilitzen per comparar matrius:
+Els operadors d'arrays PHP s’utilitzen per comparar matrius:
 
 * `==`significa igual a \(els valors de dues variables coincideixen\). Considereu l'exemple següent:
 
   ```text
-  $ num1 == $ num2
+  $num1 == $num2
   ```
 
   Es retorna `true`si el valor de `$num1`és igual al valor de `$num2`.
@@ -599,7 +599,7 @@ Els operadors de matriu PHP s’utilitzen per comparar matrius:
 * `===` significa idèntic a \(les dues variables són el mateix tipus i valor\):
 
   ```text
-  ($ num1 === $ num2);
+  ($num1 === $num2);
   ```
 
   Es retorna `true`si el valor i el tipus de dades de `$num1`són iguals al valor i al tipus de dades `$num2`.
@@ -607,7 +607,7 @@ Els operadors de matriu PHP s’utilitzen per comparar matrius:
 * `!==` significa no igual a \(els valors de les dues variables són diferents\):
 
   ```text
-  ($ num1! == $ num2);
+  ($num1! == $num2);
   ```
 
   Això retorna `true`si `$num1`no és igual `$num2`o no són del mateix tipus.
