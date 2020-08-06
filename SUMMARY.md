@@ -4,7 +4,7 @@
 
 ## UF1 Desenvolupament web <a id="uf1"></a>
 
-* [UF1. Desenvolupamet web](uf1/uf1.-desenvolupamet-web.md)
+* [UF1. Desenvolupament web](uf1/uf1.-desenvolupamet-web.md)
 * [Exercicis](uf1/exercicis.md)
 * [Web i PHP](uf1/web-i-php.md)
 

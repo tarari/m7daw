@@ -10,3 +10,23 @@ Les sessions permeten mantenir i utilitzar informació circulant dels usuaris en
 
 
 
+## Formularis
+
+
+
+## Cookies
+
+
+
+## Capçaleres HTTP
+
+
+
+## Autenticació HTTP
+
+
+
+## Codis estat HTTP
+
+
+

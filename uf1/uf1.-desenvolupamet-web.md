@@ -4,7 +4,7 @@ description: >-
   sessions i cookies.
 ---
 
-# UF1. Desenvolupamet web
+# UF1. Desenvolupament web
 
 ### Introducció
 
@@ -625,15 +625,23 @@ Els operadors d'assignació condicional de PHP s'utilitzen per establir un valor
 
 ## Funcions
 
-Quan escrivim programari, sovint ens trobem amb situacions en les quals hem de fer una tasca específica en diferents llocs de l’aplicació que estem construint. Sense pensar-ho, pot ser fàcil caure en l’hàbit de reescriure el mateix codi una i altra vegada, provocant repetició de codi i dificultant la depuració d’errors quan apareixen. Tanmateix, com en tots els altres llenguatges de programació, PHP us ofereix la possibilitat d’estructurar codi reutilitzable en allò que es coneix com a **funció** , que a vegades també s’anomena mètode. Aquests dos termes s’utilitzaran al llarg d’aquest punt.
+Quan escrivim programari, sovint ens trobem amb situacions en les quals hem de fer una tasca específica en diferents llocs de l’aplicació que estem construint. Sense pensar-ho, pot ser fàcil caure en l’hàbit de reescriure el mateix codi una i altra vegada, provocant repetició de codi i dificultant la depuració d’errors quan apareixen. Tanmateix, com en tots els altres llenguatges de programació, PHP us ofereix la possibilitat d’estructurar codi reutilitzable en allò que es coneix com a **funció** , que a vegades també s’anomena **mètode**. 
 
-Pensem en una funció com un conjunt d'instruccions o instruccions reutilitzables. Després d’escriure-ho una vegada, podeu cirdar-la tantes vegades com vulguem. 
+Pensem en una funció com un conjunt d'instruccions o instruccions reutilitzables. Després d’escriure-ho una vegada, podem cridar-la tantes vegades com volguem. 
 
-Agrupar i aïllar un conjunt d’instruccions dins d’una funció comporta una sèrie de beneficis. El més obvi és l’opció de **reutilitzar**-la: un cop hàgiu escrit la vostra funció, no heu de tornar a reescriure ni reinventar aquest conjunt d’instruccions. Les funcions també **milloren la coherència**: això significa que cada vegada que truqueu a la vostra funció, podeu estar segur que s'aplicarà el mateix conjunt d'instruccions.
+Agrupar i aïllar un conjunt d’instruccions dins d’una funció comporta una sèrie de beneficis.
 
-Un altre avantatge menys obvi és que el vostre codi es fa molt **més llegible**, sobretot quan feu nom a les vostres funcions de manera que quedi clar què fan.
+**Reutilització**
 
-Una altra cosa bona sobre una funció és que inclou variables locals dins del seu àmbit, de manera que no contaminin l'àmbit global. Més endavant parlarem d’abast amb més detall.
+El més obvi és l’opció de **reutilitzar-la**: un cop  escrita la  funció, no hem de tornar a reescriure ni reinventar aquest conjunt d’instruccions. Les funcions també **milloren la coherència**: això significa que cada vegada que truqueu a la vostra funció, podeu estar segur que s'aplicarà el mateix conjunt d'instruccions.
+
+**Llegibilitat**
+
+Un altre avantatge menys obvi és que el  codi es fa molt **més llegible**, sobretot quan feu nom a les vostres funcions de manera que queda clar què fan.
+
+**Àmbit**
+
+Una altra cosa bona sobre una funció és que inclou variables locals dins del seu àmbit, de manera que no contaminin l'àmbit global. 
 
 A continuació, es mostra un exemple d’una funció senzilla:
 
@@ -654,18 +662,47 @@ function average()
 
 En poques paraules,  és una part del vostre codi que podeu "cridar". Quan diem que podeu "cridar" alguna cosa, volem dir que podeu dir al programa que l'executi.  
 
-Una funció "callable" es pot escriure amb parèntesis després que, per exemple, `functionName()`.
+Una funció "_**callable**_" es pot escriure amb parèntesis, per exemple, `functionName()`.
 
 Tal com es va descriure anteriorment, una funció és un tipus de _callable_, per la qual cosa es pot cridar a una funció \(és a dir, podeu demanar al vostre programa que la executi\).
 
-Aquesta funció ha d'estart en un script, fixem-nos en l'exemple:
+Aquesta funció ha d'estar en un script, fixem-nos en l'exemple:
 
 ```php
 <?php
-declare(strict_types=1);
-function howManyTimesDidWeTellYou(int $numberOfTimes): string
-{
-    return "M'has cridat {$numberOfTimes} vegades";
-}
+    declare(strict_types=1);
+    function howManyTimesDidWeTellYou(int $numberOfTimes): string
+    {
+        return "M'has cridat {$numberOfTimes} vegades";
+    }
 ```
+
+### Llistat de funcions built-in PHP
+
+{% embed url="https://www.php.net/manual/es/indexes.functions.php" %}
+
+
+
+#### Trobar funcions integrades
+
+Per saber quina versió de PHP estàs utilitzant actualment, obre un terminal, escriu la comanda següent i, a continuació, prem _Enter_ :
+
+```text
+php -v
+```
+
+Per saber quines extensions s’instal·len al vostre sistema, escriu l’ordre següent i fes clic a _Enter_ :
+
+```text
+php -m
+```
+
+Llistarà totes les extensions instal·lades i habilitades actualment a la instal·lació de PHP. També podem enumerar les extensions mitjançant la funció PHP incorporada`get_loaded_extensions`
+
+```php
+<?php 
+   print_r(get_loaded_extensions());
+```
+
+
 
