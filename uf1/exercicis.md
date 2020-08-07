@@ -20,6 +20,8 @@ Aquests passos us ajudaran a completar l’activitat:
 
 Treballeu en una aplicació web basada en calculadores. Se li dóna tot el codi de la interfície d'usuari, però se li demana que construeixi la funció que realitzarà els càlculs. Has de fer  una única funció que pugui ser reutilitzable per a tots els càlculs necessaris dins de l'aplicació.
 
+Utilitza quan puguis l'ús de funcions amb paràmetres per referència.
+
 Els passos següents us ajudaran a completar l'activitat:
 
 1. Creeu una funció que calculi i retorni el factorial del número d’entrada.
