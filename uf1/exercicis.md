@@ -1,6 +1,6 @@
 # Exercicis
 
-## Visualitzar query strings
+## Visualitzar _query strings_
 
 En aquesta activitat, aplicarem els coneixements obtinguts dels exercicis anteriors i utilitzarem variables per recuperar cadenes de consulta d’un URL i imprimir la informació rellevant al navegador.
 

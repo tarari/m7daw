@@ -704,5 +704,113 @@ Llistarà totes les extensions instal·lades i habilitades actualment a la insta
    print_r(get_loaded_extensions());
 ```
 
+### Introducció a funcions definides per l’usuari
+
+Una funció definida per l’usuari és una funció que un usuari o un altre usuari ha escrit i no està integrat a PHP. 
+
+#### Funcions de nom
+
+Posar nom a les coses és difícil. Els noms de funcions molt llargs són il·legibles. Quan llegeixis el nom, idealment hauràs de ser capaç d’endevinar què fa la funció.
+
+ Les regles per anomenar identificadors a PHP s'apliquen aquí. Els noms de funcions són majúscules i minúscules; tanmateix, per convenció, no cridem  a una funció amb una carcassa  diferent de com es va definir. 
+
+Al´hora de posar noms, predominen dos formats: `snake_case()`o `camelCase()`. Ara bé, interessa que sigui coherent amb el que fa. La recomanació a seguir la trobem a  [PHP-FIG](https://www.php-fig.org/psr/psr-1/). Tot i que es refereix a funcions com a mètodes \(com en mètodes de classe\), és possible que suposi que això també s'aplica a les funcions \(globals\), que tracta aquest punt. Això vol dir que si podem escollir lliurement, podem optar per funcions`camelCase()`.
+
+
+
+#### Documentar les  funcions
+
+Podem afegir un comentari a sobre d’una funció, que s’anomena _**DocBlock**_. Conté anotacions prefixades amb el símbol`@`. També inclou una descripció del que fa la funció.:
+
+```php
+ / **
+ * Determina el directori de sortida on es trobaran els vostres fitxers
+ * anar, en funció del lloc on es troba el directori temporal del sistema. Utilitzarà / tmp com
+ * la ruta predeterminada al directori temporal del sistema.
+ * @param string $systemTempDirectory
+ * @return string
+ **/
+ function determineOutputDirectory (string $systemTempDirectory = '/ tmp'): string {
+ // ... el codi va aquí
+}
+```
+
+#### Funcions amb noms
+
+**Els espais de noms** o _**Namespace**_ són una manera d’organitzar el codi de manera que els conflictes de noms són menys probables. Es van introduir al voltant del temps en què diferents biblioteques PHP van proposar classes anomenades `Date`. Si diferents biblioteques fan això, no podreu utilitzar les dues biblioteques alhora, perquè la segona vegada que `Date`es carrega una classe, PHP es queixarà que no podem tornar a declarar la classe `Date`, ja que ja s'ha carregat.
+
+Per solucionar aquest problema, utilitzem espais de noms. Si dos proveïdors diferents de biblioteques utilitzen el seu nom de venedor per a l'espai de noms i creen la seva classe **`Date`** dins d'aquest espai de noms, és menys probable que els noms es posin en conflicte.
+
+Es pot pensar en un espai de noms com un tipus de prefix. Diguem això `You`i `Me`tots dos venem i tots dos volem presentar una `Date`classe. En lloc de nomenar les classes `MeDate`i les `YouDate`creem en fitxers que viuen en un `Me`directori i en un `You`directori. El fitxer de classe només es cridarà `Date.php`als dos venedors. Dins del vostre `Date.php`fitxer, escriureu l’espai de noms com a primera declaració \(després de la declaració de tipus estricta, si n’hi ha\):
+
+```php
+<?php
+  namespace Tu;
+  class Date{}
+```
+
+Escrivim un `Date.php` que comenci així:
+
+```php
+<?php
+   namespace Jo;
+   class Date{}
+```
+
+Ara, com que les classes viuen al seu propi espai de noms, tenen un anomenat **Nom completament qualificat** \( **FQN** \). Les FQN són `Tu\Date`i `Jo\Date`. 
+
+Les funcions espaiades amb noms són rares, però són possibles. Per escriure una funció en un espai de noms, declareu l’espai de noms a la part superior del fitxer on definiu la funció:
+
+```php
+<?php
+  namespace UF1;
+  function foo(){
+     return 'has cridat la funcio';
+ }
+//cridar dins el namespace:
+foo();
+```
+
+A continuació, cridem-lo des de un altre fitxer de l’espai de noms arrel \(sense espai de noms\):
+
+```php
+<?php
+  require_once __DIR__. '/foo.php;
+  // cridar la funció
+  UF1\foo();
+```
+
+Podríem importar l’ espai de noms situat a la part superior de la prova de la unitat amb una declaració **`use`**:
+
+```php
+use UF1;
+// més endavant a la prova, o qualsevol altre espai de noms, fins i tot l’espai de noms arrel.
+ foo(); // funcionarà, perquè "fem servir" UF1.
+```
+
+#### Funcions pures
+
+Les funcions pures **no tenen efectes secundaris**. Les funcions no tan pures tindran efectes secundaris. Quin és un efecte secundari? Doncs bé, quan una funció té un efecte secundari, canvia alguna cosa que existeix **fora de l’àmbi**t d’una funció.
+
+```php
+<?php
+// ambit global
+$count = 0;
+function countMe(){
+     // ambit local aquí
+     // amb la clau global podem portar-nos la variable 
+     // externa $count
+     global $count;
+     $count++;
+}
+countMe();
+countMe();
+echo $count;
+```
+
+Al'exemple observem com podem modificar àmbits diferents.
+
+Podem accedir a l'array de les variables globals definides a través de `$GLOBALS['count']`.
+
 
 
