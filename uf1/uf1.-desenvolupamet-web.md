@@ -831,5 +831,19 @@ function createOutOfCreditsWarning(int $maxCredits, string $period, int $waitDay
 
 #### Paràmetres passats per referència a les nostres funcions
 
-Si recordem la funció **`countMe`** de l'apartat anteriors \(globals\), era necessari si es modificava l'ambit l'ús del prefixe global, o bé enregistrar a les variables $GLOBALS si està disponible.
+Si recordem la funció **`countMe`** de l'apartat anteriors \(globals\), era necessari si es modificava l'ambit l'ús del prefixe global, o bé enregistrar a les variables $GLOBALS si està disponible. Una altra possibilitat és utilitzar el pas per referència **`&`**, no es carrega el valor si no l'adreça de la variable \(punter\). Mirem un exemple:
+
+```php
+<?php
+     function countMeByReference(int &$count): void
+     {
+          $count++;
+     }
+
+  $count = 0;
+  countMeByReference($count);
+  countMeByReference($count);
+  countMeByReference($count);
+  echo $count; // imprimirà 3
+```
 
