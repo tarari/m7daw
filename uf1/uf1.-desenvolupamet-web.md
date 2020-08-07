@@ -812,5 +812,24 @@ Al'exemple observem com podem modificar àmbits diferents.
 
 Podem accedir a l'array de les variables globals definides a través de `$GLOBALS['count']`.
 
+#### SRP aplicat, Principi de responsabilitat única.
 
+Una funció ha de tenir una única responsabilitat, si volem fer-ne un altre ús és convenient tornar a codificar una de nova amb la responsabilitat corresponent.
+
+#### Type hints
+
+En versions posteriors a la 5.1 de PHP, es considera un benefici aportar el tipus de dada dels arguments i les sortides de funcions i mètodes. Mireu l'exemple:
+
+```php
+function createOutOfCreditsWarning(int $maxCredits, string $period, int $waitDays): string
+{
+   $format = 'Has utilitzat el màxim de crèdit de %d, que està permés en el periode %s. Has d\'esperar %d dies abans   
+       no estigui disponible e nou crèdit.';
+   return sprintf($format, $maxCredits, $period, $waitDays);
+}
+```
+
+#### Paràmetres passats per referència a les nostres funcions
+
+Si recordem la funció **`countMe`** de l'apartat anteriors \(globals\), era necessari si es modificava l'ambit l'ús del prefixe global, o bé enregistrar a les variables $GLOBALS si està disponible.
 
