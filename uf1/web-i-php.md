@@ -14,13 +14,21 @@ Les sessions permeten mantenir i utilitzar informació circulant dels usuaris en
 
 ## Formularis
 
+Un formulari permet l'intercanvi de dades entre client \(navegador\) i servidor \(backend de  l'aplicació\).
+
 
 
 ## Cookies
 
+Al contrari que les sessions, les cookies són una eina controlada des de backend o frontend per desar dades al client \(navegador\).
+
+
+
 
 
 ## Capçaleres HTTP
+
+Donat que la comunicació es realitza a través dels protocols HTTP,  són les capçaleres HTTP les que determinen el què, el com, i el quan, s'està comunicant.
 
 
 
