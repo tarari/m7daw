@@ -38,5 +38,9 @@ Donat que la comunicació es realitza a través dels protocols HTTP,  són les c
 
 ## Codis estat HTTP
 
+Com a conseqüència de les operacions realitzades en la comunicació i en el cicle de vida d'una **sol·licitud-resposta \(REQ - RESP\)**, es va informant contínuament als protocols HTTP de l'estat de la comunicació, es tracta d'uns codis numèrics amb una significació especial.
+
+## Error Handlers
+
 
 
