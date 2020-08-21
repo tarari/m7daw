@@ -14,6 +14,10 @@ Alguns dels serveis web més coneguts són les API públiques exposades per les 
 
 **HTTP** és el protocol utilitzat per aquests serveis per comunicar-se. És el mateix protocol que utilitza un navegador web per sol·licitar una pàgina web a un servidor. Realitzar una sol·licitud a un servei web, utilitza el mateix cicle de Request/ Response que ja coneixem.
 
+En aquesta comunicació s'intercavia paquets  de comunicació i per saber l'estat de la comunicació s'utilitzen [codis d'estat](../uf1/web-i-php.md#codis-estat-http).
+
+
+
 
 
 
