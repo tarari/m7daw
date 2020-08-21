@@ -1,3 +1,7 @@
+---
+description: Accés a bases de dades
+---
+
 # PHP PDO
 
 
@@ -31,7 +35,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 ## Select amb un valor WHERE
 
 ```php
-//SELECT with WHERE one value
+//SELECT amb  WHERE un sol valor
 $uid = 1610;
 $stmt = $db->prepare("SELECT `col`, `col2`, `col3` FROM `table` WHERE `uid` = :uid LIMIT 1;");
 $stmt->execute(array(':uid' => $uid));
@@ -42,7 +46,7 @@ $col = $row[0]['col'];
 ## Select retallat
 
 ```php
-//SELECT with WHERE shorter
+//SELECT amb WHERE retallat
 $stmt = $db->prepare("SELECT `col`, `col2` FROM `table` WHERE `id` = :id;");
 $row = $stmt->fetch($stmt->execute(array(':id' => $id)));
 ```

@@ -146,7 +146,7 @@ Si no coneixem l'adreça de el recurs actual, for exemple per afegir un nou arti
     POST /api/articles
 ```
 
-#### DELETE \(Esborrat\)
+#### DELETE \(Esborrar\)
 
 Finalment DELETE hauria es usat quan volem esborrar el recurs especificat a la URI. Per exemple si ja no som més amics de macarena, seguint els principis de REST, podríem esborrar-la fent servir una petició delete a la URI:
 
@@ -167,5 +167,4 @@ Una sol·licitud de tipus PATCH s'utilitza per realitzar una actualització parc
 * Una sol·licitud de tipus HEAD és com una sol·licitud GET, amb l'excepció que només es retornen les capçaleres HTTP i el codi de resposta, no el document en si mateix.
 * Amb aquest mètode el navegador pot comprovar si un document ha estat modificat, per temes de memòria cau per exemple. També pot comprovar si un document existeix o no.
 * Per exemple, si tens un munt d'enllaços a la teva web, periòdicament podries comprovar mitjançant peticions HEAD si els hiperenllaços són correctes o estan trencats. Aquest tipus de comprovació és moltíssim més ràpid que utilitzar GET.
-* **Més informació sobre capçaleres HTTP a:**  [**http://code.tutsplus.com/tutorials/http-headers-for-dummies--net-8039**](http://code.tutsplus.com/tutorials/http-headers-for-dummies--net-8039)
 
