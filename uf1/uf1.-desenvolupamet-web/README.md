@@ -80,7 +80,7 @@ Un fitxer PHP té una extensió .php i pot contenir HTML, JavaScript i CSS, junt
 </html>
 ```
 
-Us adjuntem una [sintaxi més acurada del PHP](../apendixs/sintaxi-php.md).
+Us adjuntem una [sintaxi més acurada del PHP](../../apendixs/sintaxi-php.md).
 
 ## Introducció al PHP
 
@@ -195,7 +195,7 @@ PHP 7.4.3 Development Server (http://localhost:8085) started
 
 Comproveu la sortida:
 
-![Sortida amb variables globals](../.gitbook/assets/captura-de-pantalla-2020-04-07-a-les-13.32.34.png)
+![Sortida amb variables globals](../../.gitbook/assets/captura-de-pantalla-2020-04-07-a-les-13.32.34.png)
 
 ### Isset per veure si una variable té valor
 

@@ -4,7 +4,8 @@
 
 ## UF1 Desenvolupament web <a id="uf1"></a>
 
-* [UF1. Desenvolupament web](uf1/uf1.-desenvolupamet-web.md)
+* [UF1. Desenvolupament web](uf1/uf1.-desenvolupamet-web/README.md)
+  * [PHP PDO](uf1/uf1.-desenvolupamet-web/php-pdo.md)
 * [Web i PHP](uf1/web-i-php.md)
 * [Exercicis](uf1/exercicis.md)
 
@@ -34,8 +35,4 @@
 * [Seguretat en PHP](apendixs/seguretat-en-php.md)
 * [Esquema tipus d'aplicació](apendixs/untitled-1.md)
 * [Sintaxi PHP](apendixs/sintaxi-php.md)
-
----
-
-* [PHP PDO](php-pdo.md)
 
