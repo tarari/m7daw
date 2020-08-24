@@ -4,6 +4,12 @@ description: Un dels frameworks PHP més utilitzats i amb més projecció.
 
 # Laravel
 
+## Què és?
+
+Laravel és una eina que ens ajuda a desenvolupar sisemes web , pot ser un sistema, pàgina web o un API. A aquest tipus d'eines li diem Framework i és un entorn de treball o eina estandaritzada en quant a concepte, bones pràctiques, funcionalitats comunes  i estil per resoldre algun tipus de problema.
+
+
+
 ## Instal·lació
 
 A través de composer com a projecte:
