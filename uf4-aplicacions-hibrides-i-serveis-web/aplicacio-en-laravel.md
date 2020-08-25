@@ -58,7 +58,7 @@ $ php artisan ui bootstrap --auth
 Si volguèssim definir-lo més tard, simplement acondicionem l'autenticació, controladors, proveïdors i vistes:
 
 ```bash
-$ php artisan make:auth
+$ php artisan ui:auth
 ```
 
 ## 4. Definir models i relacions associades i fer les migracions
