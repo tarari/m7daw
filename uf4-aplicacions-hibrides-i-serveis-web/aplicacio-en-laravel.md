@@ -493,9 +493,9 @@ Definir paràmetres de selecció per a la vista Home \(_resources/views/_\):
 
 ```php
 @if(Auth::user()->hasRole('admin'))
-    <div>Acceso como administrador</div>
+    <div>Acces com administrador</div>
 @else
-    <div>Acceso usuario</div>
+    <div>Acces usuari</div>
 @endif
 You are logged in!
 ```
