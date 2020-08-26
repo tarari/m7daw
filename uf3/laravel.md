@@ -50,7 +50,7 @@ laravel new projecte
 
 #### Servidor local de desenvolupament
 
-Laravel disposa, a través del seu comando artisan, un servidor local per a desenvolupar.
+Laravel disposa, a través del seu comando **artisan**, un servidor local per a desenvolupar.
 
 ```text
 cd projecte
