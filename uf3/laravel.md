@@ -16,6 +16,18 @@ Laravel és una eina que ens ajuda a desenvolupar sisemes web , pot ser un siste
 
 **Dins d'app**: Broadcasting, Console, Events, Exceptions, Http, Jobs, Listeners, Mail, Notifications, Policies, Providers, Rules.
 
+
+
+{% hint style="info" %}
+Amb el temps adquirirem l'habilitat de crear qualsevol estructura de carpetes, le que millor s'adapti al projecte que implementem. 
+{% endhint %}
+
+### App
+
+És la carpeta on desenvolupem l'apicació, és on escriurem el nostre codi PHP. 
+
+Aquí dins trobem una varietat important de carpetes com  **Console, Http, Exceptions y Providers**. En **Console** tenim els nostres comandos personalitzats  de **Artisan** i en **Http** creem els nostres controladors, middlewares i processaments de Requests, tot el relacionat amb el HTTP. 
+
 ## Instal·lació
 
 A través de composer com a projecte:
