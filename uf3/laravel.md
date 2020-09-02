@@ -2,7 +2,7 @@
 description: Un dels frameworks PHP més utilitzats i amb més projecció.
 ---
 
-# Laravel
+# Laravel 1a part
 
 ## Què és?
 

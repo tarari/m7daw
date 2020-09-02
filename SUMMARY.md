@@ -14,12 +14,12 @@
 * [Programació orientada a objecte](uf2-generacio-dinamica-de-pagines-web/programacio-orientada-a-objecte.md)
 * [Exercicis](uf2-generacio-dinamica-de-pagines-web/exercicis.md)
 * [Refactorització i bones pràctiques en OOP](uf2-generacio-dinamica-de-pagines-web/uf2.-generacio-dinamica-de-pagines-web.md)
+* [ORM Eloquent en projectes](uf2-generacio-dinamica-de-pagines-web/orm-eloquent-en-projectes.md)
 * [PHPUnit](uf2-generacio-dinamica-de-pagines-web/phpunit.md)
 
 ## UF3 Accés a dades <a id="uf3"></a>
 
-* [ORM Eloquent en projectes](uf3/orm-eloquent-en-projectes.md)
-* [Laravel](uf3/laravel.md)
+* [Laravel 1a part](uf3/laravel.md)
 
 ## UF4 Aplicacions híbrides i serveis web
 
