@@ -4,7 +4,7 @@ description: >-
   sessions i cookies.
 ---
 
-# UF1. Desenvolupament web
+# UF1. Desenvolupament web. Repàs.
 
 ### Introducció
 
