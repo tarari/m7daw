@@ -387,7 +387,7 @@ Per una bona càrrega de classes fem servir l'estandar **PSR- 4** \(autocàrrega
     }
 ```
 
-### Frontend controller  - index.php
+### Front controller  - index.php
 
 El fitxer index.php del nostre projecte actua com a un frontend controller és a dir, totes les Requests, són dirigides a aquest script.
 
