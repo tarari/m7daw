@@ -86,3 +86,9 @@ class DB{
 
 ```
 
+### Introducció a Eloquent
+
+**Eloquent** està inclós  a Laravel i proporciona una forma molt simple de trebllar amb la base de dades. La idea és que cada taula té un MODEL corresponent i és l'element que utilitzem per interactuar amb una taula.
+
+
+
