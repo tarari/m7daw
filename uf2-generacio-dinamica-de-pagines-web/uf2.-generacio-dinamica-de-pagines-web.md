@@ -397,8 +397,8 @@ El fitxer index.php del nostre projecte actua com a un frontend controller és a
     //autoload
     require __DIR__.'/vendor/autoload.php';
 
-    use Rentit\App;
-    use Rentit\Session;
+    use MiApp\App;
+    use MiApp\Session;
 
     Session::init();
 
@@ -408,4 +408,198 @@ El fitxer index.php del nostre projecte actua com a un frontend controller és a
 Un cop inicialitzada la sessió, comencem el tractament del request a través de la funció estàtica de **`App::run()`**.
 
 
+
+**App::run\(\) Controlador Fronta**
+
+Actua com un Front controller, primer construeix les rutes de la nostra aplicació en funció dels controladors detectats en el directori Controllers.
+
+```php
+static function run(){
+ //construir rutes
+    // es tracta de crear un array automàticament 
+    // amb totes les classes de  la carpeta Controllers
+
+    $routes=self::getRoutes();
+    $request=new Request();
+    $controller=$request->getController();
+    $action=$request->getAction();
+   //$method=$request->getMethod();
+   //$params=$request->getParams();
+   if(in_array($controller,$routes)){ //consultar Request
+   // si el controlador està dins l'array, cridarem l'objecte i la seva
+    acció.
+    ......
+
+ }
+```
+
+#### Gestió de  plantilles i vistes :
+
+a través de Controller amb dependències de View:
+
+```php
+interface View{
+   public function render(?Array $dataview, ?string $template);
+  // resta de vistes, p.e. amb json....
+}
+```
+
+ El controlador implementa View i també Model, per accedir a la base de dades:
+
+```php
+abstract class Controller implements View,Model
+{
+    protected $request;
+    function __construct($request)
+    {
+        $this->request=$request;
+    }
+    function error(){
+        throw new \Exception("[ERROR::]:Non existent method");
+    }
+    function render(?array $dataview,?string $template)
+    {
+        //if there's dataview and $template
+        if($template==""){
+            include 'templates/'.$this->request->getController().'.tpl.php';}
+        else{
+                include 'templates/' . $template . '.tpl.php';
+            }
+
+    }
+```
+
+```text
+
+    function getDB(){
+        $db=DB::singleton();
+        return $db;
+    }
+}
+```
+
+I el model pot ser una interface que permet accedir a la base de dades:
+
+```php
+interface Model
+{
+    // function to access DB
+    public function getDB();
+    //function to obtain DAO single results
+    public function getSingleResult();
+    //function to obtain DAO results
+    public function getResults();
+}
+```
+
+per donar suport podem fer servir l'abstracció de la capa d'accés a dades a través de la classe DB
+
+```php
+class DB extends \PDO{
+    static $instance;
+    protected $config;
+    public function __construct(){
+        $config=$this->loadConf();
+        //determines the correct environment in DB
+        $strdbconf='dbconf_'.$this->env();
+        $dbconf=(array)$config->$strdbconf;
+        $dsn=$dbconf['driver'].':host='.$dbconf['dbhost'].';dbname='.$dbconf['dbname'];
+        $usr=$dbconf['dbuser'];
+        $pwd=$dbconf['dbpass'];
+        parent::__construct($dsn,$usr,$pwd);
+    }
+    static function singleton(){
+        if(!(self::$instance instanceof self)){
+            self::$instance=new self();
+        }
+        return self::$instance;
+    }
+    protected function loadConf(){
+        $file= 'config.json';
+        $jsonStr=file_get_contents($file);
+        $arrayJson=json_decode($jsonStr);
+        return $arrayJson;
+    }
+    protected function env(){
+        $ipAddress = gethostbyname($_SERVER['SERVER_NAME']);
+        if ($ipAddress=='127.0.0.1'){
+            return 'dev';
+        }else{
+            return 'pro';
+        }
+    }
+}
+```
+
+El qual accedeix a la configuració de la base de dades a través del fitxer **config.json.**
+
+```php
+{
+  "dbconf_dev":{
+    "driver":"mysql",
+    "dbhost":"localhost",
+    "dbuser":"",
+    "dbpass":"",
+    "dbname":""
+  },
+  "dbconf_pro":{
+    "driver":"mysql",
+    "dbhost":"x.x.x.x",
+    "dbuser":"",
+    "dbpass":"",
+    "dbname":""
+  }
+}
+```
+
+**Amb dos possibles configuracions: dev \(desenvolupament\) i pro \(producció\).**
+
+**L'accés a dades es fa des del controlador .** Per exemple, **extracció** de tots els usuaris en el controlador i acció per defecte:
+
+**DefaultController.php**
+
+```text
+ public function index(){
+        $results=$this->getResults();
+        $this->render($results,"");
+    }
+
+    public function getResults()
+    {
+        $db=$this->getDB();
+        $stmt=$this->query($db,"SELECT * from user",null);
+        $result=$this->row_extract($stmt);
+        return $result;
+    }
+```
+
+Els métodes getResults\(\) getDB\(\) query\(\) i row\_extract\(\) són injectats des de la classe abstracta Controller:
+
+```php
+//query($db,'SELECT  * FROM user WHERE email=:email AND pass=:pass',
+    //[':email'=>$email,':pass'=>$pass])
+    protected function query($db,$sql,$params=null){
+        try {
+            $stmt = $db->prepare($sql);
+            if ($params) {
+                $res = $stmt->execute($params);
+            } else {
+                $res = $stmt->execute();
+            }
+            //returns statement
+            return $stmt;
+        }catch (\PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+    /**
+     *  returns array results
+     * 	$stmt object
+     */
+    protected function row_extract($stmt){
+        //after query please
+        $rows=$stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $rows;
+    }
+```
 
