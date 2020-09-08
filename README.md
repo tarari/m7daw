@@ -11,7 +11,7 @@ description: >-
 {% hint style="info" %}
 ![](.gitbook/assets/by-nc.eu.png)   
   
-Desenvolupament d'apps en PHP by [Toni Jiménez](https://t-jimenez.gitbook.io/desenvolupament-d-apps-en-php/) is licensed under a [Creative Commons Reconocimiento-NoComercial 4.0 Internacional License](http://creativecommons.org/licenses/by-nc/4.0/).
+**Desenvolupament d'apps en PHP** by [Toni Jiménez](https://t-jimenez.gitbook.io/desenvolupament-d-apps-en-php/) is licensed under a [Creative Commons Reconocimiento-NoComercial 4.0 Internacional License](http://creativecommons.org/licenses/by-nc/4.0/).
 
 **Toni Jiménez** [**&lt;t.jimenez@escolesnuria.cat**](mailto:t.jimenez@escolesnuria.cat)**&gt;**
 {% endhint %}
