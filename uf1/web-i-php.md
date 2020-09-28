@@ -14,9 +14,43 @@ A cada **`client`** que accedeix a l'aplicació i inicia sessió se li assigna u
 
 Es defineix sessió com l'interval de temps d'una comunicació en la que s'intercanvien dades relacionades a la mateixa. En aquest procés de connexió persistent es comprova la cookie **`Php_Session_id`** amb la id de sessió emmagatzemada al servidor. El tancament de sessió indica la finalització de la comunicació.
 
+La funció **`session_start()`** inicia la sessió entre l' **usuari** i el **servidor** , i permet als valors guardats en **$ \_SESSION** ser accessibles després.  
+Posteriorment, podem accedir a qualsevol variable sessió mentre la connexió no estigui tancada \(fins i tot des d'un altre script\).
 
+```php
+// Continuem  la sessió
+session_start();
+// Utilitzar variables de sessió
+echo "Nom d'usuari: " . $_SESSION["username"];
+```
 
+Tan important és iniciar una sessió, com tancar-la. Fins i tot quan realment una sessió és només una forma temporal d'emmagatzemar dades, és important **netejar-la després per assegurar la màxima seguretat** especialment quan es tracta amb informació personal.
 
+Per **suprimir un valor de sessió** simplement s'utilitza _unset \(\)_ :
+
+```php
+session_start();
+// Eliminar el nom d'usuari:
+unset($_SESSION["username"]);
+```
+
+Per **desvincular tots els valors de sessió de tant** es pot emprar **`session_unset():`**
+
+```php
+session_start();
+// Eliminar totes les sessions:
+session_unset();
+```
+
+Les dues accions anteriors només afecten els valors guardats a la sessió, no a la pròpia sessió. Encara es poden guardar nous valors en **`$ _SESSION`**. Si es vol **deixar d'utilitzar completament la sessió**, per exemple quan l'usuari fa **logout** , s'utilitza :
+
+```php
+session_start();
+// Finalitzar la sessió:
+session_destroy();
+```
+
+És molt recomanable que **quan ja no es necessiti la sessió es destrueixi** amb **`session_destroy()`**,  en comptes de **desvincular el valor dels seus valors** amb **`session_unset()`**. Si només es desvinculen els valors la sessió romandrà activa, el que deixa la porta oberta a intrusos.
 
 
 
