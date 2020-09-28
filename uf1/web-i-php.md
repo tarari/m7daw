@@ -85,6 +85,66 @@ El teu email es: <?php echo $_POST["email"]; ?>
 </html>
 ```
 
+
+
+Els 10 **tipus d'elements més utilitzats als formularis HTML amb PHP** són:
+
+| **element** | \*\*\*\* | **Descripció** |
+| :--- | :--- | :--- |
+| `input type = "text"` | Caixa de text |  |
+| `input type = "password"` | Caixa de text on es mostren asteriscs en lloc dels caràcters escrits |  |
+| `input type = "checkbox"` | Caixes seleccionables que permet escollir múltiples opcions |  |
+| `input type = "radio"` | Caixes seleccionables en grups que només permeten escollir una opció |  |
+| `input type = "submit"` | Botó per enviar el formulari |  |
+| `input type = "file"` | Caixes de text i botó que permet pujar arxius |  |
+| `input type = "hidden"` | Element amagat. Especialment útil per tokens de seguretat |  |
+| `option` | Una opció possible dins d'un element element |  |
+| `select` | Llista d'opcions d'elements option |  |
+| `textarea` | text multilínia |  |
+
+### Validació de formularis
+
+La **validació de formularis** és un aspecte  fonamental ja que prevé possibles atacs d'intrusos, a més d'assegurar que les dades que es reben són realment de el tipus desitjat.
+
+Hi **ha dues maneres de validació de formularis** : al costat del client i en el costat de servidor. A la banda de el client la validació sol ser mitjançant **JavaScript** , és més ràpida i evita enviar més feina a servidor. 
+
+A la banda de servidor s'utilitza **PHP** per verificar que s'envien valors correctes, és més segur però és més lent i fa treballar una  mica al servidor. Aquí vurem aquesta segona forma.
+
+El següent és un senzill **formulari** mica més complex amb les següent dades: Nom, Contrasenya, Nacionalitat, Idiomes, Email i Lloc web:
+
+```php
+<h2>Formulari:</h2>
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    Nom:
+    <input type="text" name="nom" maxlength="50"><br>
+    Contraseña:
+    <input type="password" name="password"><br>
+    Educacion:
+    <select name="estudis">
+        <option value="sense-estudis">Sense estudis</option>
+        <option value="ESO" selected="selected">Educació Obligatòria</option>
+        <option value="FP">Formació professional</option>
+        <option value="universitat">Universitat</option>
+    </select> <br>
+    Nacionalitat:
+    <input type="radio" name="nacionalitat" value="espanyola">Espanyola</input>
+    <input type="radio" name="nacionalitat" value="altra">Altra</input><br>
+    Idiomes:
+    <input type="checkbox" name="idiomas[]" value="espanyol" checked="checked">Espanyol</input>
+    <input type="checkbox" name="idiomas[]" value="anglés">Anglés</input>
+    <input type="checkbox" name="idiomas[]" value="francés">Francés</input>
+    <input type="checkbox" name="idiomas[]" value="alemany">Alemany</input><br>
+    Email:
+    <input type="text" name="email"><br>
+    Lloc Web:
+    <input type="text" name="llocweb"><br>
+    // Botó d'enviar
+    <input type="submit" name="submit" value="Enviar">
+</form>
+</body>
+</html>
+```
+
 ## Cookies
 
 Al contrari que les sessions, les cookies són una eina controlada des de backend o frontend per desar dades al client \(navegador\).
