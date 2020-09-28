@@ -10,6 +10,14 @@ Una aplicació web  està dissenyada per retornar una resposta per a cada sol·l
 
 Les sessions permeten mantenir i utilitzar informació circulant dels usuaris en el servidor a través  de l'array **`$_SESSION`**
 
+A cada **`client`** que accedeix a l'aplicació i inicia sessió se li assigna un _**session ID**_ **únic** , i és el que li permet identificar la sessió i que estigui disponible per a aquest client en concret. La forma més segura de gestionar sessions és emmagatzemant en el client només aquesta session ID \(cookie\), i qualsevol informació de la sessió guardar-la al costat de servidor.
+
+Es defineix sessió com l'interval de temps d'una comunicació en la que s'intercanvien dades relacionades a la mateixa. En aquest procés de connexió persistent es comprova la cookie **`Php_Session_id`** amb la id de sessió emmagatzemada al servidor. El tancament de sessió indica la finalització de la comunicació.
+
+
+
+
+
 
 
 ## Formularis
