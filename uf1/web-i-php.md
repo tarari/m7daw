@@ -74,6 +74,17 @@ En aquest exemple, es vol processar les dades **`$_POST['nom']`** i **`$_POST['e
 
 
 
+Un cop les dades estan en _form.php_ poden mostrar-se, guardar-se en una base de dades o el que es necessiti. En _form.php_ anem a mostrar-los:
+
+```php
+<html>
+<body>
+Hola <?php echo $_POST["nom"]; ?><br>
+El teu email es: <?php echo $_POST["email"]; ?>
+</body>
+</html>
+```
+
 ## Cookies
 
 Al contrari que les sessions, les cookies són una eina controlada des de backend o frontend per desar dades al client \(navegador\).
