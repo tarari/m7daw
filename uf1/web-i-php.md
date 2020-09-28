@@ -58,6 +58,20 @@ session_destroy();
 
 Un formulari permet l'intercanvi de dades entre client \(navegador\) i servidor \(backend de  l'aplicació\).
 
+```php
+<html>
+<body>
+<form action="form.php" method="post">
+    Nombre: <input type="text" name="nom"><br>
+    Email: <input type="text" name="email"><br>
+    <input type="submit" value="Enviar">
+</form>
+</body>
+</html>
+```
+
+En aquest exemple, es vol processar les dades **`$_POST['nom']`** i **`$_POST['email']`** a través de l'escript  **form.php**, seguint el mètode de http  POST. Sent POST permet enviar les dades clau-valor en el cos del missatge HTTP.
+
 
 
 ## Cookies
