@@ -19,10 +19,18 @@ La idea és la següent:  Passar una dada al formulari \(token \) i comprovar en
     session_start();
     $token=md5(uniqid(rand(),true));
     $_SESSION['token']=$token
-    $_SESSION['token_time]=time();
+    $_SESSION['token_time']=time();
 ```
 
 Resumit, creem un token aleatori i el desem com a variable de sessió juntanment amb el temps.
+
+
+
+Per **protegir formularis** , se sol incloure el **identificador dins d'un camp amagat** , sent enviat amb la resta de les dades de l'formulari:
+
+```php
+<input type="hidden" name="csrf" value="<?php echo $_SESSION["token"]; ?>">
+```
 
 
 
