@@ -29,6 +29,12 @@ try{
 
 ## Select en bucle
 
+**Esquema de funcionament:**
+
+Preparació de sentència --&gt; execute\(\) --&gt; FETCH \(recòrrer resultats\)
+
+Per evitar atacs d'injecció de codi fem servir el mètode **`prepare`** que preprocessa la sentència abans d'executar-la.
+
 ```php
 //SELECT amb bucle 
 $stmt = $db->prepare("SELECT `col`, `col2` FROM `table`");
@@ -42,6 +48,10 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
 ## Select amb un valor WHERE
 
+**Esquema de funcionament:**
+
+Preparació de sentència --&gt; execute\(\[array associatiu de paràmetres ":" i valors\]\) --&gt; FETCH o FETCHALL \(recòrrer resultats\)
+
 ```php
 //SELECT amb  WHERE un sol valor per paràmetre
 $uid = 1610;
@@ -51,11 +61,30 @@ $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $col = $row[0]['col'];
 ```
 
-## Select retallat
+## Insert \(registre\)
+
+**Esquema de funcionament:**
+
+Preparació de sentència --&gt; bind parameters-&gt; execute\(\)
 
 ```php
-//SELECT amb WHERE retallat
-$stmt = $db->prepare("SELECT `col`, `col2` FROM `table` WHERE `id` = :id;");
-$row = $stmt->fetch($stmt->execute(array(':id' => $id)));
+// Prepare
+$stmt = $db->prepare("INSERT INTO clients (nom, ciutat) VALUES (?, ?)");
+// Bind
+$nom = "Pete";
+$ciutat = "BCN";
+$stmt->bindParam(1, $nom);
+$stmt->bindParam(2, $ciutat);
+// Excecute
+$stmt->execute();
+// Bind
+$nombre = "Marta";
+$ciudad = "Paris";
+$stmt->bindParam(1, $nom);
+$stmt->bindParam(2, $ciutat);
+// Execute
+$stmt->execute();
 ```
+
+En aquest exemple, fem bind amb paràmetres per posició segons on es troba el **`?`**.
 
