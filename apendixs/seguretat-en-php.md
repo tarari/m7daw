@@ -14,7 +14,7 @@ La idea és la següent:  Passar una dada al formulari \(token \) i comprovar en
 
 ### Afegir token al formulari
 
-```text
+```php
 <?php
     session_start();
     $token=md5(uniqid(rand(),true));
