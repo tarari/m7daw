@@ -6,13 +6,14 @@
 
 * [UF1. Desenvolupament web. Repàs.](uf1/uf1.-desenvolupamet-web.md)
 * [PHP PDO](uf1/php-pdo.md)
-* [Web i PHP](uf1/web-i-php.md)
+* [Web i PHP](uf1/web-i-php/README.md)
+  * [Cas pràctic](uf1/web-i-php/cas-practic.md)
 * [Exercicis](uf1/exercicis.md)
-* [Programació orientada a objecte](uf1/programacio-orientada-a-objecte.md)
-* [Exercicis](uf1/exercicis-1.md)
 
 ## UF2 Generació dinàmica de pàgines web
 
+* [Programació orientada a objecte](uf2-generacio-dinamica-de-pagines-web/programacio-orientada-a-objecte/README.md)
+  * [Exercicis](uf2-generacio-dinamica-de-pagines-web/programacio-orientada-a-objecte/exercicis-1.md)
 * [Refactorització i bones pràctiques en OOP](uf2-generacio-dinamica-de-pagines-web/uf2.-generacio-dinamica-de-pagines-web.md)
 * [ORM Eloquent en projectes](uf2-generacio-dinamica-de-pagines-web/orm-eloquent-en-projectes.md)
 * [PHPUnit](uf2-generacio-dinamica-de-pagines-web/phpunit.md)

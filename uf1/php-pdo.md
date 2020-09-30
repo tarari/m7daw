@@ -88,3 +88,16 @@ $stmt->execute();
 
 En aquest exemple, fem bind amb paràmetres per posició segons on es troba el **`?`**.
 
+També podríem haver passat paràmetres directament a través d'un array al execute:
+
+```php
+$stmt = $dbh->prepare("INSERT INTO Clients (nom, ciutat) VALUES (:nom, :ciutat)");
+$nome = "Toni";
+$ciutat = "Barcelona";
+if($stmt->execute([':nom'=>$nom, ':ciutat'=>$ciutat]) ){
+    echo "Nou registre!";
+}
+```
+
+
+
