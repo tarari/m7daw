@@ -94,15 +94,36 @@ En quant al fitxer de configuració, aquest podria tenir aquest aspecte:
 ```php
 <?php
 
-    $routes=[
+     $routes=[
         'login',
         'dashboard'
     ];
     $dbhost="127.0.0.1";
     $dbname='prova';
+    $dbuser='prova';
+    $dbpass='linuxlinux';
     $dsn='mysql:host='.$dbhost.';dbname='.$dbname.';';
     $driver='mysql';
-    
+```
+
+## Renderitzat de plantilles
+
+La forma més elegant de treballar les vistes en PHP és separar codi PHP de codi HTML. Amb aquest mètode que presentem, es pot separar perfectament, ubicant una carpeta  **`templates`** amb plantilles renderitzables.
+
+```php
+<?php
+
+    function render_template( $template, $vars ){
+        ob_start();
+        //segon argument com array
+		foreach ( $vars as $key => $value) {
+            //equivalent a extract()
+			${$key} = $value;
+        }
+        //primer argument
+		include ROOT.$template;
+		return ob_get_clean();
+	}
 ```
 
 
