@@ -19,9 +19,9 @@ index.php
    |--/database
          database.sqlite
    |--/templates
-          dashboard.php
-          login.php
-          register.php
+          dashboard.tpl.php
+          login.tpl.php
+          register.tpl.php
     connect.php
     schema.php
     login.php
@@ -77,13 +77,13 @@ Volem que la nostra activitat revisi la connexió a la base de dades amb dos dri
 
     function connectMysql(string $dsn,string $userdb,string $passdb){
         try{
-            $db = new PDO('mysql:host=127.0.0.1;dbname='.$dbname.';', $userdb, $passdb);
+            $db = new PDO($dsn, $userdb, $passdb);
             $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
             $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
 
         }catch(PDOException $e){
-            echo $e->getMessage();
-            die("connect");
+            die( $e->getMessage());
+            
         }
         return $db;
     }
