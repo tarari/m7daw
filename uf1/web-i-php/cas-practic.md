@@ -30,7 +30,9 @@ index.php
 
 A connect.php hi posarem la connexió PDO, ja sigui mysql o bé sqlite \(depenent de les extensions\)
 
-i**`ndex.php`**, arrenca l'aplicació i si troba valor en el paràmetre $\_GET\['page'\], el localitzarà i el carregarà \(la vista i el controlador\).
+**`index.php`**, arrenca l'aplicació i si troba valor en el paràmetre $\_GET\['page'\], el localitzarà i el carregarà \(la vista i el controlador\).
+
+
 
 
 
