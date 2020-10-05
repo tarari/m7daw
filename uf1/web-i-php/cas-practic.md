@@ -105,3 +105,5 @@ En quant al fitxer de configuració, aquest podria tenir aquest aspecte:
     
 ```
 
+
+
