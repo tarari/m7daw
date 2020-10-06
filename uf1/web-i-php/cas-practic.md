@@ -15,6 +15,10 @@ Cal preparar l'estructura en carpetes de l'aplicació:
 
 ```text
 index.php
+login.php
+home.php
+register.php
+dashboard.php
 --/src
    |--/database
          database.sqlite
@@ -25,8 +29,7 @@ index.php
           home.php
     connect.php
     schema.php
-    login.php
-    home.php
+
     
     
 ```
