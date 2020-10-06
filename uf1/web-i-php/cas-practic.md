@@ -33,43 +33,29 @@ index.php
 
 A connect.php hi posarem la connexió PDO, ja sigui mysql o bé sqlite \(depenent de les extensions\)
 
-**`index.php`**, arrenca l'aplicació i si troba valor en el paràmetre `$_GET['page'],` el localitzarà i el carregarà \(la vista i el controlador\).
+**`index.php`**, arrenca l'aplicació i carrega directament el controlador **home**
 
 ```php
-<?php
+ <?php   
+    session_start();
     include 'config.php';
     require __DIR__.'/src/connect.php';
-    require __DIR__.'/src/render.php';
+    require __DIR__.'/src/schema.php';
     
-    //conexió a la base de dades
-    //$db=connectMysql($dsn,$dbuser,$dbpass);
-
-    if (isset($_GET['page'])){
-        $page=filter_input(INPUT_GET,'page',FILTER_SANITIZE_URL);
-        if(in_array($page,$routes)){
-            $page=$page;
-
-        }else{
-            $page='error';
-        }
-    }else{
-        $page='main';
-        
-    }
-    header('Location:'.$page.'.php');
+    // connecta db i crea taula si no existeix
+    $db=connectSqlite('appsess');
+    schemaGenerator($db);
+    //
+    require 'home.php';
 
 ```
 
-Al fitxer de configuració podem afegir l'array de rutes disponibles a la nostra aplicació.
+Al fitxer de configuració podem afegir els valors d'entorn de la nostra app.
 
 ```php
 <?php
    
-    $routes=[
-        'login',
-        'dashboard',
-        'main'
-    ];
+    
     $dbhost="127.0.0.1";
     $dbname='prova';
     $dbuser='prova';
@@ -114,7 +100,7 @@ Volem que la nostra activitat revisi la connexió a la base de dades amb dos dri
     }
 ```
 
-En quant al fitxer de configuració, aquest podria tenir aquest aspecte:
+En quant al fitxer de configuració **`config.php`**, aquest podria tenir aquest aspecte:
 
 ```php
 <?php
@@ -138,17 +124,16 @@ La forma més elegant de treballar les vistes en PHP és separar codi PHP de cod
 ```php
 <?php
 
-    function render_template( $template, $vars ){
-        ob_start();
-        //segon argument com array
-		foreach ( $vars as $key => $value) {
-            //equivalent a extract()
-			${$key} = $value;
+    function render(string $tpl, ?array $data=[]): string
+    {
+        if($data){
+            extract($data,EXTR_OVERWRITE);
         }
-        //primer argument
-		include ROOT.$template;
-		return ob_get_clean();
-	}
+        ob_start();
+        require __DIR__.'/templates/'.$tpl.'.tpl.php';
+        $rendered=ob_get_clean();
+        return (string)$rendered;
+    }
 ```
 
 
