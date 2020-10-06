@@ -22,9 +22,11 @@ index.php
           dashboard.tpl.php
           login.tpl.php
           register.tpl.php
+          home.php
     connect.php
     schema.php
     login.php
+    home.php
     
     
 ```
@@ -35,23 +37,46 @@ A connect.php hi posarem la connexió PDO, ja sigui mysql o bé sqlite \(depenen
 
 ```php
 <?php
-    define ('ROOT',__DIR__);
     include 'config.php';
+    require __DIR__.'/src/connect.php';
     require __DIR__.'/src/render.php';
     
-    
+    //conexió a la base de dades
+    //$db=connectMysql($dsn,$dbuser,$dbpass);
+
     if (isset($_GET['page'])){
         $page=filter_input(INPUT_GET,'page',FILTER_SANITIZE_URL);
         if(in_array($page,$routes)){
-            header('Location:'.$page.'.php');
+            $page=$page;
 
         }else{
-            include 'error.php';
+            $page='error';
         }
+    }else{
+        $page='main';
+        
     }
+    header('Location:'.$page.'.php');
+
 ```
 
 Al fitxer de configuració podem afegir l'array de rutes disponibles a la nostra aplicació.
+
+```php
+<?php
+   
+    $routes=[
+        'login',
+        'dashboard',
+        'main'
+    ];
+    $dbhost="127.0.0.1";
+    $dbname='prova';
+    $dbuser='prova';
+    $dbpass='++++++++';
+    $dsn='mysql:host='.$dbhost.';dbname='.$dbname.';';
+    $driver='mysql';
+```
 
 ## La connexió a la base de dades
 
