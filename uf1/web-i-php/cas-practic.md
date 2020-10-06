@@ -50,6 +50,14 @@ A connect.php hi posarem la connexió PDO, ja sigui mysql o bé sqlite \(depenen
 
 ```
 
+La navegació interna de l'app és la següent:
+
+![](../../.gitbook/assets/rutaapp.png)
+
+**Index** crida a `home.php` i aquest renderitza la plantilla **`home.tpl.php`** passant dades a través de l'array `$data[]`, actua com a controlador.
+
+### Entorn
+
 Al fitxer de configuració podem afegir els valors d'entorn de la nostra app.
 
 ```php
