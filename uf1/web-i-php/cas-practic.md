@@ -4,6 +4,8 @@ description: Aplicació amb registres i autenticació d'usuaris.
 
 # Cas pràctic
 
+## 1a Aplicació en PHP 
+
 Anem a veure un exemple pràctic del que hem estudiat fins ara.
 
 Punts a tenir en compte:
@@ -36,7 +38,7 @@ dashboard.php
 
 A connect.php hi posarem la connexió PDO, ja sigui mysql o bé sqlite \(depenent de les extensions\)
 
-**`index.php`**, arrenca l'aplicació i carrega directament el controlador **home**
+**`index.php`**, arrenca l'aplicació i carrega directament el controlador **home,** així com l'activació de la sessió.
 
 ```php
  <?php   
@@ -53,7 +55,7 @@ A connect.php hi posarem la connexió PDO, ja sigui mysql o bé sqlite \(depenen
 
 ```
 
-La navegació interna de l'app és la següent:
+La **navegació** interna de l'app és la següent:
 
 ![](../../.gitbook/assets/rutaapp.png)
 
@@ -75,9 +77,11 @@ Al fitxer de configuració podem afegir els valors d'entorn de la nostra app.
     $driver='mysql';
 ```
 
-## La connexió a la base de dades
+### La connexió a la base de dades
 
 Volem que la nostra activitat revisi la connexió a la base de dades amb dos drivers o controladors, amb sqlite i amb mysql. Òbviament les connexions seran diferents:
+
+En el cas de SQLITE, es genera un fitxer en la ubicació indicada en el argument del PDO.
 
 ```php
 //connect.php
@@ -111,24 +115,11 @@ Volem que la nostra activitat revisi la connexió a la base de dades amb dos dri
     }
 ```
 
-En quant al fitxer de configuració **`config.php`**, aquest podria tenir aquest aspecte:
+Per  gestionar la creació de la taula que utilitza la nostra app, podem utilitzar la funció **schemaGen\(\)**, que executa un comando de creació de taula, distingim també entre sqlite i mysql.
 
-```php
-<?php
 
-     $routes=[
-        'login',
-        'dashboard'
-    ];
-    $dbhost="127.0.0.1";
-    $dbname='prova';
-    $dbuser='prova';
-    $dbpass='linuxlinux';
-    $dsn='mysql:host='.$dbhost.';dbname='.$dbname.';';
-    $driver='mysql';
-```
 
-## Renderitzat de plantilles
+### Renderitzat de plantilles
 
 La forma més elegant de treballar les vistes en PHP és separar codi PHP de codi HTML. Amb aquest mètode que presentem, es pot separar perfectament, ubicant una carpeta  **`templates`** amb plantilles renderitzables.
 
@@ -146,6 +137,44 @@ La forma més elegant de treballar les vistes en PHP és separar codi PHP de cod
         return (string)$rendered;
     }
 ```
+
+## Spoiler
+
+I si volem més complexitat en el sentit de poder tenir més opcions d'accions i vistes? Ens queda crear un controlador frontal que discrimini segons les rutes capturades...Una cosa similar a això:
+
+```php
+function getRoute():?string
+    {
+        switch ($_SERVER['PATH_INFO'] ?? '/') {
+            case '/login':
+                return 'login';
+            case '/profile':
+                return 'profile';
+            case '/logout':
+                return 'logout';
+            case '/':
+                return 'main';
+            default:
+                return 'main';
+                
+        }
+    }
+```
+
+I per què sigui efectiva recurrirem a que sempre s'ha de consultar al index.php per saber quina ruta cal interpretart \(front controller\). Necessitem un .htaccess que reescrigui les URL:
+
+```php
+Options +FollowSymLinks
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d 
+
+RewriteRule ^.*$ index.php [NC,L]
+```
+
+Si es demana per "algo" que no és ni fitxer ni directori, reescrivim la REQUEST\_URI per reenviar-la al index.php.
 
 
 
