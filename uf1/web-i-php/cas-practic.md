@@ -16,12 +16,17 @@ Punts a tenir en compte:
 Cal preparar l'estructura en carpetes de l'aplicació:
 
 ```text
+.htaccess
 index.php
-login.php
-home.php
-register.php
-dashboard.php
+--/controllers
+   login.php
+   home.php
+   register.php
+   dashboard.php
 --/src
+   render.php
+   connect.php
+   schema.php
    |--/database
          database.sqlite
    |--/templates
@@ -29,11 +34,7 @@ dashboard.php
           login.tpl.php
           register.tpl.php
           home.php
-    connect.php
-    schema.php
-
-    
-    
+       
 ```
 
 A connect.php hi posarem la connexió PDO, ja sigui mysql o bé sqlite \(depenent de les extensions\)
