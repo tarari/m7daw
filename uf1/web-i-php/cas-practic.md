@@ -43,16 +43,16 @@ A connect.php hi posarem la connexió PDO, ja sigui mysql o bé sqlite \(depenen
 
 ```php
  <?php   
+    //configuracio entorn
     session_start();
-    include 'config.php';
-    require __DIR__.'/src/connect.php';
-    require __DIR__.'/src/schema.php';
-    
-    // connecta db i crea taula si no existeix
-    $db=connectSqlite('appsess');
-    schemaGenerator($db);
-    //
-    require 'home.php';
+    //constant APP
+    define('APP',__DIR__);
+   // carreguem gestor de rutes    
+    require APP.'/src/route.php';
+    //enrutament
+    $controller=getRoute();
+    //redirigir a ruta capturada
+    require APP.'/controllers/'.$controller.'.php';
 
 ```
 
@@ -139,26 +139,39 @@ La forma més elegant de treballar les vistes en PHP és separar codi PHP de cod
     }
 ```
 
+El responsable del renderitzat és el controlador
+
 ## Spoiler
 
 I si volem més complexitat en el sentit de poder tenir més opcions d'accions i vistes? Ens queda crear un controlador frontal que discrimini segons les rutes capturades...Una cosa similar a això:
 
 ```php
-function getRoute():?string
+<?php
+    
+    function getRoute():string
     {
-        switch ($_SERVER['PATH_INFO'] ?? '/') {
-            case '/login':
-                return 'login';
-            case '/profile':
-                return 'profile';
-            case '/logout':
-                return 'logout';
-            case '/':
-                return 'main';
-            default:
-                return 'main';
-                
+        if(isset($_REQUEST['url'])){
+             $url=$_REQUEST['url'];
+        }else{
+            $url="home";
         }
+       
+    
+        switch ($url){
+            case 'login': 
+                return 'login';
+            case 'register': 
+                return 'register';
+            case 'regaction': 
+                return "regaction";
+            case 'logaction': 
+                return "logaction";
+            case 'logout': 
+                return "logout";
+            default: 
+                return 'home';
+        }
+            
     }
 ```
 
