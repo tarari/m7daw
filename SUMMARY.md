@@ -8,7 +8,8 @@
 * [PHP PDO](uf1/php-pdo.md)
 * [Web i PHP](uf1/web-i-php/README.md)
   * [Cas pràctic](uf1/web-i-php/cas-practic.md)
-* [Exercicis](uf1/exercicis.md)
+* [Exercicis](uf1/exercicis/README.md)
+  * [Aplicació todo-list](uf1/exercicis/aplicacio-todo-list.md)
 
 ## UF2 Generació dinàmica de pàgines web
 
