@@ -59,9 +59,14 @@ A connect.php hi posarem la connexió PDO, ja sigui mysql o bé sqlite \(depenen
 
 La **navegació** interna de l'app és la següent:
 
-![](../../.gitbook/assets/rutaapp.png)
+```php
+.htaccess ==> index.php >>> (enrutament) >>> controller 
+request ------------------------------------> response
+```
 
-**Index** crida a `home.php` \(controlador - encarregat de les accions de la pantalla inicial\) i aquest renderitza la plantilla **`home.tpl.php`** passant dades a través de l'array `$data[]`, actua com a controlador.
+**Index**  localitza el _controller_ en funció de la ruta indicada a través del REQUEST, concretament podem agafar un paràmetre de la QUERY\_STRING. Ara cal cridar al controller i aquest farà les feines o accions corresponents.
+
+
 
 ### Entorn
 
