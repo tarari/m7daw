@@ -26,7 +26,7 @@ index.php
    dashboard.php
 --/src
    render.php
-   connect.php
+   db.php
    schema.php
    |--/database
          database.sqlite
@@ -64,9 +64,16 @@ La **navegació** interna de l'app és la següent:
 request ------------------------------------> response
 ```
 
-**Index**  localitza el _controller_ en funció de la ruta indicada a través del REQUEST, concretament podem agafar un paràmetre de la QUERY\_STRING. Ara cal cridar al controller i aquest farà les feines o accions corresponents.
+**En alguns casos necessitem reescriure i adaptar la REQUEST , .htaccess se n'ocupa d'això. Index.php**  localitza el _controller_ en funció de la ruta indicada a través del REQUEST, concretament podem agafar un paràmetre de la QUERY\_STRING. Ara cal cridar al controller i aquest farà les feines o accions corresponents.
 
+L'estructura de la REQUEST és similar a la figura:
 
+```php
+QUERY_STRING
+http://app/index.php?url=controlador
+```
+
+El sistema d'enrutament es basa en capturar el paràmetre url de la query\_string i el processa per tal d'obtenir el controlador que s'encarregarà de gestionar la REQUEST.
 
 ### Entorn
 
@@ -75,7 +82,7 @@ Al fitxer de configuració podem afegir els valors d'entorn de la nostra app.
 ```php
 <?php
    
-    
+    // valors d'accés a la base de dades en Mysql
     $dbhost="127.0.0.1";
     $dbname='prova';
     $dbuser='prova';
@@ -90,8 +97,10 @@ Volem que la nostra activitat revisi la connexió a la base de dades amb dos dri
 
 En el cas de SQLITE, es genera un fitxer en la ubicació indicada en el argument del PDO.
 
+En el cas de Msyql, requerim un objecte de connexió PDO.
+
 ```php
-//connect.php
+//db.php
 <?php
 
     function connectSqlite(string $dbname){
@@ -122,11 +131,15 @@ En el cas de SQLITE, es genera un fitxer en la ubicació indicada en el argument
     }
 ```
 
+{% hint style="info" %}
 Per  gestionar la creació de la taula que utilitza la nostra app, podem utilitzar la funció **schemaGen\(\)**, que executa un comando de creació de taula, distingim també entre sqlite i mysql.
+{% endhint %}
 
 ### **Controladors**
 
-Encarregats de les accions de les pantalles o vistes, si tenim vista **home**, també tindrem controlador **home**.
+Estem seguint el paradigma MVC, Model Vista i Controlador. La gestió de la consulta la fa sempre el controlador, el qual actua a través de les accions \(funcions\), que  en temes posteriors tractarem com a _objectes_  i **mètodes**.
+
+Els controladors són: encarregats de les accions de les pantalles o vistes, per exemple  si tenim vista **home**, també tindrem controlador **home**.
 
 A més el controlador passa dades a vista renderitzada com es pot comprovar a l'exemple:
 
@@ -166,7 +179,7 @@ El responsable del renderitzat és el controlador.  En el renderitzat, fem servi
 echo render('home',['title'=>'Home '.$uname]);
 ```
 
-## Spoiler
+### Entrutament
 
 I si volem més complexitat en el sentit de poder tenir més opcions d'accions i vistes? Ens queda crear un controlador frontal que discrimini segons les rutes capturades...Una cosa similar a això:
 
@@ -215,6 +228,10 @@ RewriteRule ^.*$ index.php [NC,L]
 ```
 
 Si es demana per "algo" que no és ni fitxer ni directori, reescrivim la REQUEST\_URI per reenviar-la al index.php.
+
+### Gestió de dades persistents
+
+La gestió de dades persistents la podem fer a través de l'objecte PDO de dades en PHP.
 
 
 
