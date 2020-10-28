@@ -19,22 +19,26 @@ Cal preparar l'estructura en carpetes de l'aplicació:
 ```text
 .htaccess
 index.php
+schemagen.php
 --/controllers
    login.php
+   logaction.php
    home.php
    register.php
+   regaction.php
    dashboard.php
 --/src
    render.php
    db.php
-   schema.php
    |--/database
          database.sqlite
    |--/templates
+          header.tpl.php
+          footer.tpl.php
           dashboard.tpl.php
           login.tpl.php
           register.tpl.php
-          home.php
+          home.php.tpl.php
        
 ```
 
