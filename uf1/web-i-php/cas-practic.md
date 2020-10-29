@@ -271,5 +271,29 @@ Si es demana per "algo" que no és ni fitxer ni directori, reescrivim la **REQUE
 
 La gestió de dades persistents la podem fer a través de l'objecte PDO de dades en PHP.
 
+En el nostre exemple, l'aplicació només realitzarà autenticació i registres d'usuaris.
+
+Comencem per la taula d'usuaris, connectada i relacionada amb la taula roles si volem afegir característiques de privilegis d'ús dins l'aplicació.
+
+```php
+CREATE TABLE `roles` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`role` varchar(100) NOT NULL UNIQUE,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `users` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`email` varchar(100) NOT NULL UNIQUE,
+	`uname` varchar(100) NOT NULL UNIQUE,
+	`passw` varchar(120) NOT NULL,
+	`role` INT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+ALTER TABLE `users` ADD CONSTRAINT `users_fk0` FOREIGN KEY (`role`) REFERENCES `roles`(`id`);
+
+```
+
 
 
