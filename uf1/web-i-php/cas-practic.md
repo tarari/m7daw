@@ -4,9 +4,41 @@ description: Aplicació amb registres i autenticació d'usuaris.
 
 # Cas pràctic
 
-## 1a Aplicació en PHP 
+## 1a Aplicació en PHP i aproximació a MVC
 
 Anem a veure un exemple pràctic del que hem estudiat fins ara.
+
+L'arquitectura web determina que un dels models arquitectònics \( la forma de fer les coses web \) més utilitzats en desenvolupament és el que segueix la separació en tres capes, **client - servidor i dades**. El paradigma de programació MVC \(Model - Vista - Client\), és el que millor s'aproxima a aquest model de tres capes.
+
+Mireu l'esquema:
+
+```php
+Client  --------->> Servidor ----------->> Dades
+Frontend  -------> Backend  ----------->> Bases de dades
+Vistes   --------->  Controlador -------->> Model
+HTML/CSS/JS ------>   PHP  --------------->> Mysql
+
+REQUEST  -->-------------+++-------------|
+RESPONSE <-----------------+++------- -----|
+```
+
+Com es veu, es troben moltes relacions, fins i tot a nivell tecnològic, comproveu la línia 4.
+
+I segons la línia 3
+
+#### **Controlador**
+
+Encarregat de la gestió de la consulta REQUEST.
+
+#### Vista
+
+Encarregat de la visualització i interacció amb el client
+
+#### Model
+
+Encarregat de satisfer les demandes de dades persistents
+
+### Desnvolupament pràctic
 
 Punts a tenir en compte:
 
