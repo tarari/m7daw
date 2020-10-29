@@ -295,5 +295,42 @@ ALTER TABLE `users` ADD CONSTRAINT `users_fk0` FOREIGN KEY (`role`) REFERENCES `
 
 ```
 
+### Autenticació
 
+Podem crear una funció tal que li passem paràmetres com objecte de connexió a la base de dades $db, l'email i el password \(sense encriptar\) i retorna true en el cas que el sistema trobi l'usuari pel seu email i a més coincideix el seu password encriptat amb el que tenim emmagatzemat al camp email de d'aquest registre.
+
+```php
+// src/db.php
+
+function auth($db,$email,$pass):bool
+    {
+        try{   
+            //preparem sentència
+            $stmt=$db->prepare('SELECT * FROM users WHERE email=:email LIMIT 1');
+            $stmt->execute([':email'=>$email]);
+            $count=$stmt->rowCount();
+            $row=$stmt->fetchAll(PDO::FETCH_ASSOC);  
+            // ha trobat incidència
+            if($count==1){       
+                $user=$row[0];
+                $res=password_verify($pass,$user['passw']);
+               
+                if ($res){
+                // establim sessió
+                  $_SESSION['uname']=$user['uname'];
+                  $_SESSION['email']=$user['email'];
+                // retornem true
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }catch(PDOException $e){
+            return false;
+        }
+    }
+    
+```
 
