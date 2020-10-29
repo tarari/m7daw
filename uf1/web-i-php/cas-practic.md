@@ -131,9 +131,9 @@ Al fitxer de configuració podem afegir els valors d'entorn de la nostra app.
 
 Volem que la nostra activitat revisi la connexió a la base de dades amb dos drivers o controladors, amb sqlite i amb mysql. Òbviament les connexions seran diferents:
 
-En el cas de SQLITE, es genera un fitxer en la ubicació indicada en el argument del PDO.
+En el cas de **SQLITE**, es genera un fitxer en la ubicació indicada en el argument del PDO.
 
-En el cas de Msyql, requerim un objecte de connexió PDO.
+En el cas de **Msyql**, requerim un objecte de connexió PDO.
 
 ```php
 //db.php
@@ -168,7 +168,7 @@ En el cas de Msyql, requerim un objecte de connexió PDO.
 ```
 
 {% hint style="info" %}
-Per  gestionar la creació de la taula que utilitza la nostra app, podem utilitzar la funció **schemaGen\(\)**, que executa un comando de creació de taula, distingim també entre sqlite i mysql.
+Per  gestionar la creació de la taula que utilitza la nostra app, podem utilitzar una funció **schemaGen\(\)**, que en esència , executa un comando de creació de taula, distingim també entre sqlite i mysql.
 {% endhint %}
 
 ### **Controladors**
@@ -209,7 +209,7 @@ La forma més elegant de treballar les vistes en PHP és separar codi PHP de cod
     }
 ```
 
-El responsable del renderitzat és el controlador.  En el renderitzat, fem servir els ob \(output-buffer\). La seva missió és desar les dades que arriben a aquest buffer \( el fitxer de plantilla barrejat amb les dades extretes de $data\) i per últim retornar l'string que el controlador s'encarrega de mostrar :
+El responsable del renderitzat és el controlador.  En el renderitzat, fem servir els ob \(**output-buffer**\). La seva missió és desar les dades que arriben a aquest buffer \( el fitxer de plantilla barrejat amb les dades extretes de $data\) i per últim retornar l'string que el controlador s'encarrega de mostrar :
 
 ```php
 echo render('home',['title'=>'Home '.$uname]);
@@ -230,8 +230,7 @@ I si volem més complexitat en el sentit de poder tenir més opcions d'accions i
         }else{
             $url="home";
         }
-       
-    
+           
         switch ($url){
             case 'login': 
                 return 'login';
@@ -250,7 +249,7 @@ I si volem més complexitat en el sentit de poder tenir més opcions d'accions i
     }
 ```
 
-I per què sigui efectiva recurrirem a que sempre s'ha de consultar al index.php per saber quina ruta cal interpretart \(front controller\). Necessitem un .htaccess que reescrigui les URL:
+I per què sigui efectiva recurrirem a que sempre s'ha de consultar al index.php per saber quina ruta cal interpretart \(**front controller**\). Necessitem un .htaccess que reescrigui les URL:
 
 ```php
 Options +FollowSymLinks
@@ -260,10 +259,10 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d 
 
-RewriteRule ^.*$ index.php [NC,L]
+RewriteRule ^(.*)$ index.php [NC,L]
 ```
 
-Si es demana per "algo" que no és ni fitxer ni directori, reescrivim la REQUEST\_URI per reenviar-la al index.php.
+Si es demana per "algo" que no és ni fitxer ni directori, reescrivim la **REQUEST\_URI** per reenviar-la al index.php.
 
 ### Gestió de dades persistents
 
