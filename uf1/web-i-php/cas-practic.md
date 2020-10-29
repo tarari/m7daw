@@ -175,7 +175,9 @@ Per  gestionar la creació de la taula que utilitza la nostra app, podem utilitz
 
 Estem seguint el paradigma MVC, Model Vista i Controlador. La gestió de la consulta la fa sempre el controlador, el qual actua a través de les accions \(funcions\), que  en temes posteriors tractarem com a _objectes_  i **mètodes**.
 
+{% hint style="info" %}
 Els controladors són: encarregats de les accions de les pantalles o vistes, per exemple  si tenim vista **home**, també tindrem controlador **home**.
+{% endhint %}
 
 A més el controlador passa dades a vista renderitzada com es pot comprovar a l'exemple:
 
@@ -220,6 +222,7 @@ echo render('home',['title'=>'Home '.$uname]);
 I si volem més complexitat en el sentit de poder tenir més opcions d'accions i vistes? Ens queda crear un controlador frontal que discrimini segons les rutes capturades...Una cosa similar a això:
 
 ```php
+//Fitxer src/route.php
 // rutes http://app?url=controlador
 <?php
     
