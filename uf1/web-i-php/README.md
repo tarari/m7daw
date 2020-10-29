@@ -130,10 +130,10 @@ El següent és un senzill **formulari** mica més complex amb les següent dade
     <input type="radio" name="nacionalitat" value="espanyola">Espanyola</input>
     <input type="radio" name="nacionalitat" value="altra">Altra</input><br>
     Idiomes:
-    <input type="checkbox" name="idiomas[]" value="espanyol" checked="checked">Espanyol</input>
-    <input type="checkbox" name="idiomas[]" value="anglés">Anglés</input>
-    <input type="checkbox" name="idiomas[]" value="francés">Francés</input>
-    <input type="checkbox" name="idiomas[]" value="alemany">Alemany</input><br>
+    <input type="checkbox" name="idiomes[]" value="espanyol" checked="checked">Espanyol</input>
+    <input type="checkbox" name="idiomes[]" value="anglés">Anglés</input>
+    <input type="checkbox" name="idiomes[]" value="francés">Francés</input>
+    <input type="checkbox" name="idiomes[]" value="alemany">Alemany</input><br>
     Email:
     <input type="text" name="email"><br>
     Lloc Web:
