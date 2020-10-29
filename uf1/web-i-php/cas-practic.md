@@ -334,3 +334,9 @@ function auth($db,$email,$pass):bool
     
 ```
 
+Fixem-nos en la línia 14, aquí es comprova el _hash_ del pasword que passem amb el que tenim ja encriptat en la base de dades.
+
+{% hint style="info" %}
+El _hash_ o funció _hash_, es una funció criptogràfica especial que és utilitzada per generar identificadors únics i irrepetibles.
+{% endhint %}
+
