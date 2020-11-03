@@ -340,3 +340,9 @@ Fixem-nos en la línia 14, aquí es comprova el _hash_ del pasword que passem am
 El _hash_ o funció _hash_, es una funció criptogràfica especial que és utilitzada per generar identificadors únics i irrepetibles.
 {% endhint %}
 
+Per més informació sobre la capa de persistència de dades, podeu consultar: 
+
+{% page-ref page="../php-pdo.md" %}
+
+
+
