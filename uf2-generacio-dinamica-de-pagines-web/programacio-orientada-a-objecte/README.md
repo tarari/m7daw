@@ -239,11 +239,67 @@ function sayGreetings()
 
 Quan parlem de setters i getters estem parlant d'encapsulament, el detalls dels objectes estan encapsulats \(**private** o **proctected**\) i és necessari accedir-hi a través de mètode públic.
 
+### Mètodes màgics
 
+Els noms dels mètodes [\_\_construct \(\)](https://www.php.net/manual/es/language.oop5.decon.php#object.construct) , [\_\_destruct \(\)](https://www.php.net/manual/es/language.oop5.decon.php#object.destruct) , [\_\_call \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.call) , [\_\_callStatic \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.callstatic) , [\_\_get \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.get) , [\_\_set \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.set) , [\_\_isset \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.isset) , [\_\_unset \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.unset) , [\_\_sleep \(\)](https://www.php.net/manual/es/language.oop5.magic.php#object.sleep) , [\_\_wakeup \(\)](https://www.php.net/manual/es/language.oop5.magic.php#object.wakeup) , [\_\_toString \(\)](https://www.php.net/manual/es/language.oop5.magic.php#object.tostring) , [\_\_invoke \(\)](https://www.php.net/manual/es/language.oop5.magic.php#object.invoke) , [\_\_set\_state \(\)](https://www.php.net/manual/es/language.oop5.magic.php#object.set-state) , [\_\_clone \(\)](https://www.php.net/manual/es/language.oop5.cloning.php#object.clone) i [\_\_debugInfo \(\)](https://www.php.net/manual/es/language.oop5.magic.php#object.debuginfo) són màgics en les classes PHP.
+
+#### [\_\_toString \(\)](https://www.php.net/manual/es/language.oop5.magic.php#object.tostring)
+
+`public` **`__toString`** `( void ): cadena`
+
+El mètode [\_\_toString \(\)](https://www.php.net/manual/es/language.oop5.magic.php#object.tostring) permet a una classe decidir com comportar-se quan se li tracta com un string. Per exemple, el que _**echo  $obj;**_ mostraria. Aquest mètode ha de retornar un string, si no s'emetrà un nivell d'error fatal **`E_RECOVERABLE_ERROR`**.
+
+#### Sobrecàrrega de propietats
+
+[\_\_set \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.set) s'executa a l'escriure informació sobre propietats inaccessibles \(protegides o privades\) o inexistents.
+
+[\_\_get \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.get) s'utilitza per consultar dades a partir de propietats inaccessibles \(protegides o privades\) o inexistents.
+
+[\_\_isset \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.isset) es llança a l'trucar a [isset \(\)](https://www.php.net/manual/es/function.isset.php) o [empty \(\)](https://www.php.net/manual/es/function.empty.php) sobre propietats inaccessibles \(protegides o privades\) o inexistents.
+
+[\_\_unset \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.unset) s'invoca quan es fa servir [unset \(\)](https://www.php.net/manual/es/function.unset.php) sobre propietats inaccessibles \(protegides o privades\) o inexistents.  
+
+
+```php
+public __set ( string $name , mixed $value ) : void
+public __get ( string $name ) : mixed
+public __isset ( string $name ) : bool
+public __unset ( string $name ) : void
+```
 
 ### Constructors i destructors
 
 En el procés de creació o instanciació de classe, podem utilitzar el mètode màgic **`__construct()`**.
+
+```php
+class MyClass
+{
+    public $name;
+    function __construct($username)
+    {
+         $this->name = $username;
+    }
+}
+```
+
+La idea clau darrere de l’ús d’un mètode `__construct()` és realitzar el conjunt inicial d’execucions que cal fer immediatament després de la creació d’objectes. En l'enfocament simple anterior, un `__construct()` realitza assignacions d'atributs.
+
+## Destructor
+
+El mètode destructor, `__destruct()`s'invoca automàticament quan es destrueix un objecte. Quan eliminem un objecte o potser un script PHP finalitza la seva execució i allibera la memòria utilitzada per les variables, es crida a   `__destruct()`.
+
+La sintaxi d'un destructor de classes és la següent:
+
+```php
+class Person
+{
+    //atributs i  metodes
+    function __destruct()
+    {
+        echo 'L\'objecte s''\ha elminat ';
+    }
+}
+```
 
 
 
