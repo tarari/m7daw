@@ -329,7 +329,9 @@ Els dos conceptes bàsics que es troben al centre de l’OOP són la **modularit
 
 Abstracció de classe
 
-Interfaces
+### Interfaces
+
+Representen una part important del paradigma OOP. A vegades es pot confondre amb les classes abstractes, però a diferència d'elles, representen un contracte, totes les classes que implementin la `interface` estan obligades \(per contracte\) a implementar els mètodes que estan declarats a la interface.
 
 Classes Abstractes i interfaces
 
