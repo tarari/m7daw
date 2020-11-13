@@ -333,15 +333,23 @@ Abstracció de classe
 
 Representen una part important del paradigma OOP. A vegades es pot confondre amb les classes abstractes, però a diferència d'elles, representen un contracte, totes les classes que implementin la `interface` estan obligades \(per contracte\) a implementar els mètodes que estan declarats a la interface.
 
+
+
 Classes Abstractes i interfaces
 
 Sobrecàrrega de mètodes.!!
 
 Traits
 
-Namespace
+#### **Namespace**
+
+Els espais de noms permeten facilitar la comprensió del codi, de les classes i la seva ubicació.
 
 Autoloading
+
+## Relacions entre objectes
+
+A més a més  de l'herència i la implementació , que ja hem vist, hi ha altres tipus de relacions entre objectes de les que no hem parlat encara.
 
 
 
