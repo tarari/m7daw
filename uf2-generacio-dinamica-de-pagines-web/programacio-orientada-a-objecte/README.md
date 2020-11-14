@@ -351,5 +351,35 @@ Autoloading
 
 A més a més  de l'herència i la implementació , que ja hem vist, hi ha altres tipus de relacions entre objectes de les que no hem parlat encara.
 
+### Dependència
 
+La dependència és el tipus de relació més bàsica i feble entre classes. Existeix una dependència entre dos classes quan certs canvis en la definició d'una classe pot provocar modificaciones en l'altra. 
+
+Podem fer més feble una dependència \(codi menys acoblat\), fent que el codi depengui d'interfaces o classes abstractes en comptes de classes concretes. 
+
+```php
+Professor  -------------->curs
+El professor depèn del curs
+```
+
+### Associació
+
+L' associació és una relació en la que un objecte utilitza o interactua amb  altre. En diagrames UML, la relació d'associació es mostra mitjan´çant una fletxa simple des d'un objecte i apuntant cap a l'altre.
+
+És molt normal trobar-se una associació bidireccional, en aquest cas la fletxa té punta en cada extrem. 
+
+```php
+Professor __________________> estudiant
+El professor es comunica amb els estudiants (i al revés)
+```
+
+Com exemple en pseudo-codi
+
+```php
+class Professor {
+    Estudiant estudiant //...
+    function ensenya(Curs c) 
+     // ...
+     this.estudiant.recorda(c.getConeixements())
+```
 
