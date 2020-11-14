@@ -383,3 +383,13 @@ class Professor {
      this.estudiant.recorda(c.getConeixements())
 ```
 
+### Agregació
+
+```php
+Departament <>__________> Professor
+```
+
+L'agregació és un tipus especialitzat d'associació  que representa relacions "un a molts", "molts a molts" o "tot a part" entre múltiples objectes, mentre que una associació descriu relacions entre un parell d'objectes.
+
+
+
