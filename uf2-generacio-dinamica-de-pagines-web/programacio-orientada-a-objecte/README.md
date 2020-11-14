@@ -393,5 +393,21 @@ L'agregació és un tipus especialitzat d'associació  que representa relacions
 
 ### Composició
 
+La composició és un tipus específic d'agregació en la que un objecte es composa d'una o més instàncies de l'altre. La diferència entre aquesta i altres relacions està en que el component només pot existir com a part de l'objecte contenidor.
 
+ En UML, la relació de composició es  representa igual que la d'agregació, però amb un rombo farcit en la base de la fletxa.
+
+```php
+Universitat <*>____________>Departaments
+La universitat consta de departaments
+```
+
+En resum, en quant a les relacions:
+
+* **Dependència**: La classe A es pot veure afectada pels canvis en la classe B. 
+* **Associació**: L'objecte A coneix  B. La classe A depén de B.
+* **Agregació**: L'objecte  A coneix  B y consisteix en B. La classe A depen de B.
+* **Composició**: L'objeto A coneix l'objecte B, consisteix en B i gestiona el cicle vital de B. La classe A depen de B.
+* **Implementació**: La classe A defineix mètodos declarats en la interfaç B. Els objectes A poden tractar-se com B. La classe A depen de B.
+* **Herència**: La classe A hereda la interfaç i la implementació de la classe B, pero pot estendre-la. L'objecte A pot tractar-se com B. La classe A depen de B.
 
