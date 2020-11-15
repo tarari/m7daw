@@ -22,13 +22,13 @@ Els passos a realitzar són els següents:
 
 Tots dos prenen el nom com a primer argument del constructor; la classe **`Professor`** accepta el segon argument com a **llista d’estudiants \(array\)**
 
-Tots dos tindran la propietat del títol, que per defecte per a la classe `Professor` és **`Prof`**`.`i per a la  classe `Student` és **`student`**.
+Tots dos tindran la propietat del **alies**, que per defecte per a la classe `Professor` és **`Professor`**`.`i per a la  classe `Estudiant` és **`estudiant`**.
 
-1. Creeu una funció que imprimirà el títol del professor, el nom, el recompte d’estudiants i la llista d’estudiants.
-2. Creeu una instància  **`Professor`**, que proporcioni un nom i una llista d’estudiants: casos d’investigador `Student`amb un nom.
-3. Afegiu una quantitat aleatòria d'estudiants`Student`a la instància `Professor`.
-4. Canvieu el títol del professor per  la de `Dr.`.
-5. Imprimeixi la sortida si invoqueu la funció amb la instància  `Professor`instància.
+1. Creeu una funció que imprimirà el alies del professor, el nom, el recompte d’estudiants i la llista d’estudiants. Quin tipus de relació entre objectes s'estableix?
+2. Creeu una instància  **`Professor`**, que proporcioni un nom i una llista d’estudiants: numero d'estudiants amb el nom.
+3. Afegiu una quantitat aleatòria d'estudiants a la instància `Professor`.
+4. Canvieu el títol del professor per  la de `Doctor`.
+5. Imprimeixi la sortida si invoqueu la funció amb la instància  `Professor`
 
 La sortida hauria de tenir el següent:
 

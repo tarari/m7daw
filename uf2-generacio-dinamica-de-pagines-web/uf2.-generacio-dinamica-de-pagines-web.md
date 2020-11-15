@@ -409,9 +409,9 @@ Un cop inicialitzada la sessió, comencem el tractament del request a través de
 
 
 
-**App::run\(\) Controlador Fronta**
+**App::run\(\) Controlador Frontal**
 
-Actua com un Front controller, primer construeix les rutes de la nostra aplicació en funció dels controladors detectats en el directori Controllers.
+Actua com un Front-controller, primer construeix les rutes de la nostra aplicació en funció dels controladors detectats en el directori Controllers.
 
 ```php
 static function run(){
