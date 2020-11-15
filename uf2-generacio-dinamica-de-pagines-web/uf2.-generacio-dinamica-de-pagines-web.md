@@ -333,7 +333,7 @@ Aquest enfocament també ens obliga a escriure codi de tal manera que **eviti de
 
 Això vol dir que quan passem  un objecte **RedisConnection** es comportarà de la mateixa manera que qualsevol altre tipus de classe de connexió.
 
-## Projecte de creació i adaptació d’un marc de treball propi adaptant app simple
+## Creació i adaptació d’un marc de treball propi adaptant app simple
 
 Aprofundim el coneixement de la programació orientada a objecte a través de la creació d'un marc de treball propi adaptant una aplicació.
 
@@ -347,7 +347,8 @@ En el cas de seguir un paradigma MVC \(Model View Controller\), es poden adoptar
 * Reescriptura del REQUEST per fer-lo més amigable \(**`.htaccess`**\)
 * Captura a través del Request del controlador \(objecte\) i l'acció \(mètode\)
 * Llençament de la instància de l'objecte controlador i posteriorment cridar l'acció corresponent com a mètode del controlador
-* Representació de dades a través la interfície d'usuari
+* Manteniment de la sessió i sistema d'autenticació i autorització
+* Sistema de plantilles per al renderitzat i generació de interfície d'usuari.
 
 **Funcionament bàsic de l'app \( paradigma MVC a nivell web\)**
 
