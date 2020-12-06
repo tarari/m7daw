@@ -245,5 +245,351 @@ namespace App;
 
 El mètode init\(\), proporciona l'array de configuració de l'app. Mentre que run\(\) és en sí el nucli de l'aplicació, ja que determina i activa quin controlador és el responsable de la "request", cal destacar que en la instància del controlador, també injectem els objectes Session i Request, que ens facilita el desenvolupament de l'aplicació com ja s'observarà.
 
+## Elements de la carpeta src/
 
+### Request
+
+```php
+<?php
+
+    namespace App;
+
+    class Request{
+        private  $controller;
+        private  $action;
+        private $method;
+        private  $params;
+
+        protected $arrURI;
+        
+        function __construct(){
+            $requestString=\htmlentities($_SERVER['REQUEST_URI']);
+            //adaptar el sistema root a domini o carpeta
+            $reqStr=$this->get_diff($requestString,ROOT);  
+            //extract URI
+            $this->arrURI=explode('/',$reqStr);
+           
+            $this->extractURI();
+        }
+
+        private function get_diff($a, $b){
+            $c=substr($a,strlen($b));
+            return $c;  
+        }
+
+        private function extractURI():void{     
+            $length=count($this->arrURI);
+            //estudi de casos possibles
+            switch($length){
+                case 1: //only controller
+                    if($this->arrURI[0]==""){
+                        $this->setController('index');
+                    }else{
+                        $this->setController($this->arrURI[0]);
+                    }
+                    $this->setAction('index');
+                    break;
+                case 2: //controller & action
+                    $this->setController($this->arrURI[0]);
+                    if($this->arrURI[1]==""){
+                        $this->setAction('index');
+                    }else{
+                        $this->setAction($this->arrURI[1]);
+                    }
+                break;
+                default: // cont. & act & params
+                    $this->setController($this->arrURI[0]);
+                    $this->setAction($this->arrURI[1]);
+                    $this->Params();
+                break;
+            }
+            $this->setMethod(\htmlentities($_SERVER['REQUEST_METHOD']));
+
+        }
+        
+        private function Params():void{
+            if($this->arrURI!=null){
+                $arr_length=count($this->arrURI);
+                if($arr_length > 2){
+                    //quitar contr, y accion
+                    array_shift($this->arrURI);
+                    array_shift($this->arrURI);
+                    $arr_length=count($this->arrURI);
+                    if($arr_length % 2 == 0){
+                        for($i=0;$i<$arr_length;$i++){  
+                            if($i%2 == 0){
+                                $arr_k[]=$this->arrURI[$i];
+                            }else{
+                                $arr_v[]=$this->arrURI[$i];
+                            }
+                        }
+                        $array_res=array_combine($arr_k,$arr_v);
+                        $this->setParams($array_res);
+                    }
+
+                }
+
+            }
+        }
+
+        public function getController(){
+            return $this->controller;
+        }
+        public function setController($controller){
+            $this->controller=$controller;
+        }
+        public function getAction(){
+            return $this->action;
+        }
+        public function setAction($action){
+            $this->action=$action;
+        }
+        public function getMethod(){
+            return $this->method;
+        }
+        public function setMethod($method){
+            $this->method=$method;
+        }
+        public function getParams(){
+            return $this->params;
+        }
+        public function setParams($array){
+            $this->params=$array;
+        }
+    }
+```
+
+### Session
+
+```php
+<?php
+
+    namespace App;
+
+    final class Session {
+        protected $id;
+        public function __construct() {
+    
+            $status = session_status();
+    
+            if($status == PHP_SESSION_DISABLED) {
+                throw new \LogicException('Sessions are disabled.');
+            }
+                if($status == PHP_SESSION_NONE) {
+                session_start();
+                $this->id=session_id();
+            }
+        }
+    
+        /**
+         * Gets a session value associated with the specified key.
+         *
+         * @param string $key
+         *
+         * @return mixed|null Returns the value on success. NULL if the key doesn't exist.
+         */
+        public function get($key) {
+            if(array_key_exists($key, $_SESSION)) {
+                return $_SESSION[$key];
+            }
+            return null;
+        }
+    
+        /**
+         * Set a new session elements or update an existing one.
+         *
+         * @param string $key
+         * @param mixed  $value
+         */
+        public function set($key, $value) {
+            $_SESSION[$key] = $value;
+        }
+        public function unset($key){
+            if ($this->exists($key)){
+                unset($_SESSION[$key]);
+            }
+        }
+    
+        /**
+         * Deletes a session element.
+         *
+         * @param string $key
+         *
+         * @return bool
+         */
+        public function delete($key) {
+            if(array_key_exists($key, $_SESSION)) {
+                unset($_SESSION[$key]);
+                return true;
+            }
+            return false;
+        }
+    
+        /**
+         * Determines if a session key exists.
+         *
+         * @param string $key
+         *
+         * @return bool
+         */
+        public function exists($key) {
+            return array_key_exists($key, $_SESSION);
+        }
+
+        public function destroy(){
+            session_destroy();
+        }
+    
+    }
+```
+
+### DB
+
+```php
+<?php
+
+    namespace App;
+
+    class DB extends \PDO{
+        static $instance;
+        protected  $config;
+
+        static function singleton(){
+            if(!(self::$instance instanceof self)){
+                self::$instance=new self();
+            }
+            return self::$instance;
+        }
+
+        public function __construct(){
+            parent::__construct(DSN,USR,PWD);
+        }
+        
+       
+        // Db functions
+        function insert($table,$data):bool 
+        {
+           if (is_array($data)){
+              $columns='';$bindv='';$values=null;
+                foreach ($data as $column => $value) {
+                    $columns.='`'.$column.'`,';
+                    $bindv.='?,';
+                    $values[]=$value;
+                }
+                $columns=substr($columns,0,-1);
+                $bindv=substr($bindv,0,-1);
+                
+                
+               
+                $sql="INSERT INTO {$table}({$columns}) VALUES ({$bindv})";
+                
+                    try{
+                        $stmt=self::$instance->prepare($sql);
+    
+                        $stmt->execute($values);
+                    }catch(\PDOException $e){
+                        echo $e->getMessage();
+                        return false;
+                    }
+                
+                return true;
+                }
+                return false;
+            }
+    
+            function selectAll($table,array $fields=null):array
+            {
+                if (is_array($fields)){
+                    $columns=implode(',',$fields);
+                    
+                }else{
+                    $columns="*";
+                }
+                
+                $sql="SELECT {$columns} FROM {$table}";
+               
+                $stmt=self::$instance->prepare($sql);
+                $stmt->execute();
+                $rows=$stmt->fetchAll(\PDO::FETCH_ASSOC);
+                return $rows;
+            }
+    
+            function selectAllWithJoin($table1,$table2,array $fields=null,string $join1,string $join2):array
+            {
+                if (is_array($fields)){
+                    $columns=implode(',',$fields);
+                    
+                }else{
+                    $columns="*";
+                }
+               
+                $inners="{$table1}.{$join1} = {$table2}.{$join2}";
+                
+                $sql="SELECT {$columns} FROM {$table1} INNER JOIN {$table2} ON {$inners}";
+                
+                $stmt=self::$instance->prepare($sql);
+                $stmt->execute();
+                $rows=$stmt->fetchAll(\PDO::FETCH_ASSOC);
+                return $rows;
+            }
+            // només una condició
+            function selectWhereWithJoin($table1,$table2,array $fields=null,string $join1,string $join2,array $conditions):array
+            {
+                if (is_array($fields)){
+                    $columns=implode(',',$fields);
+                    
+                }else{
+                    $columns="*";
+                }
+               
+                $inners="{$table1}.{$join1} = {$table2}.{$join2}";
+                $cond="{$conditions[0]}='{$conditions[1]}'";
+                
+            $sql="SELECT {$columns} FROM {$table1} INNER JOIN {$table2} ON {$inners} WHERE {$cond} ";
+            
+                
+                $stmt=self::$instance->prepare($sql);
+                $stmt->execute();
+                $rows=$stmt->fetchAll(\PDO::FETCH_ASSOC);
+                return $rows;   
+            }
+    
+            function update(string $table, array $data,array $conditions)
+            {
+                if ($data){
+                    $keys=array_keys($data);
+                    $values=array_values($data);
+                    $changes="";
+                    for($i=0;$i<count($keys);$i++){
+                        $changes.=$keys[$i].'='.$values[$i].',';
+                    }
+                    $changes=substr($changes,0,-1);
+                    $cond="{$conditions[0]}='{$conditions[1]}'";
+                    $sql="UPDATE {$table} SET {$changes} WHERE {$cond}";
+                    $stmt=self::$instance->prepare($sql);
+                    $res=$stmt->execute();
+                    if($res){
+                        return true;
+                    }    
+                }else{
+                    return false;
+                }
+                
+    
+            }
+    
+            function remove($tbl,$id){
+            
+                $sql="DELETE FROM {$tbl} WHERE id=$id";
+                $stmt=self::$instance->prepare($sql);
+                $res=$stmt->execute();
+                if($res){
+                    return true;
+                }
+                else{
+                    return false;
+                }    
+            }
+    }
+```
 
