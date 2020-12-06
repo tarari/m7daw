@@ -142,6 +142,8 @@ Un cop carregat el PSR-4, definim les constants de l'entorn de l'aplicació, aqu
 
 Al fitxer de configuració hi mostrem dos objectes json en funció de si estem en producció conf\__pro o en desenvolupament conf_\_dev.
 
+### 3 App::run\(\)
+
 Observem la classe src/App.php
 
 ```php
