@@ -93,5 +93,31 @@ El fitxer index.php del nostre projecte actua com a un frontend controller és a
 
 Un cop carregat el PSR-4, definim les constants de l'entorn de l'aplicació, aquestes són extretes del fitxer de configuració **config.json**
 
-\*\*\*\*
+```php
+{
+    "conf_dev":{
+        "driver":"mysql",
+        "dbhost":"127.0.0.1",
+        "dbname":"prouf1",
+        "dbuser":"prouf1",
+        "dbpass":"+++++++++",
+        "web":"http://localhost:8000/",
+        "root":"/"
+    },
+    "conf_pro":{
+        "driver":"mysql",
+        "dbhost":"toni.cesnuria.com",
+        "dbname":"toni_prouf1",
+        "dbuser":"toni_prouf1",
+        "dbpass":"+++++++++",
+        "web":"/m7/todofw/",
+        "root":"/m7/todofw/"
+
+    }
+}
+```
+
+Al fitxer de configuració hi mostrem dos objectes json en funció de si estem en producció conf\__pro o en desenvolupament conf_\_dev.
+
+
 
