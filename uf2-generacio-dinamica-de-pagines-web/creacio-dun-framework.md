@@ -443,6 +443,107 @@ El mètode init\(\), proporciona l'array de configuració de l'app. Mentre que r
     }
 ```
 
+### App
+
+El nucli  o sistema de l'aplicació:
+
+```php
+<?php
+
+namespace App;
+
+   use App\Request;
+   use App\Session;
+
+   final class App{
+        static protected $action;
+        static protected $req;
+
+        private static function env(){
+            $ipAddress=gethostbyname($_SERVER['SERVER_NAME']);
+            if($ipAddress=='127.0.0.1'){
+                return 'dev';
+            }else{
+                return 'pro';
+            }
+        }
+        private static function loadConf(){
+            $file="config.json";
+            $jsonStr=file_get_contents($file);
+            $arrayJson=json_decode($jsonStr);
+            return $arrayJson;
+        }
+        static function init(){
+            //read configuration
+            $config=self::loadConf();
+            //determinar env pro o dev
+            $strconf='conf_'.self::env();   
+            $conf=(array)$config->$strconf;
+            return $conf;
+
+        }
+        public static function run(){
+
+            $session=new Session();
+            $routes=self::getRoutes();
+           
+            
+            // obtener tres parámetros: controlador, accion,[parametros]
+            // url friendly :  http://app/controlador/accion/param1/valor1/param2/valor2
+            self::$req=new Request;
+            $controller=self::$req->getController();
+            
+        
+            self::$action=self::$req->getAction();
+            
+            self::dispatch($controller,$routes,$session);
+
+        }
+        
+        private static function dispatch($controller,$routes,$session):void 
+        {
+            
+            try{
+                if(in_array($controller,$routes)){
+                   // si es ruta de sistema es pot instanciar
+                   // dispatcher
+                   $nameController='\\App\Controllers\\'.ucfirst($controller).'Controller';
+                   $objContr=new $nameController(self::$req,$session);
+                   
+                   //comprobar si existe la acción como método en el objeto
+                   if (is_callable([$objContr,self::$action])){
+                       call_user_func([$objContr,self::$action]);
+                   }else{
+                       call_user_func([$objContr,'error']);
+                   }
+
+               }else{
+                    throw new \Exception("Ruta no disponible");
+                }
+           }catch(\Exception $e){
+               die($e->getMessage());
+           }
+        }
+        /**
+         *  @return array
+         *  returns registered route array
+         */
+        static function getRoutes(){
+            $dir=__DIR__.'/Controllers';
+            $handle=opendir($dir);
+            while(false !=($entry=readdir($handle))){
+               if($entry!="." && $entry!=".."){
+                   $routes[]=strtolower(substr($entry,0,-14));
+               }
+               
+            } 
+            return $routes;
+        }
+           
+    
+   }
+```
+
 ### DB
 
 ```php
@@ -592,4 +693,179 @@ El mètode init\(\), proporciona l'array de configuració de l'app. Mentre que r
             }
     }
 ```
+
+## Procés de resposta
+
+Anem a simular un procés de resposta:
+
+Es tracta de mostrar un "escriptori" un cop s'ha autenticat l'usuari, és a dir provenim d'un procés similar aquest:
+
+```php
+'''La navegació en la app:'''
+
+welcome --> login  ----> dashboard ---> add task
+        --> register               ---> complete task
+                                   ---> remove task
+                                   ---> edit task
+                                   ---> profile
+        USERCONTROLLER          USER/TASKCONTROLLER
+```
+
+En l'autenticació el controlador UserController ens porta cap al controlador User i l'acció dashboard:
+
+```php
+//class UserController
+function log(){
+            if (isset($_POST['email'])&&!empty($_POST['email'])
+            &&isset($_POST['passw'])&&!empty($_POST['passw']))
+            {
+                $email=filter_input(INPUT_POST,'email',FILTER_SANITIZE_EMAIL);
+                $pass=filter_input(INPUT_POST,'passw',FILTER_SANITIZE_STRING);
+            
+           
+                $user=$this->auth($email,$pass);
+                if ($user){
+                    $this->session->set('user',$user);
+                    //si usuari valid
+                    if(isset($_POST['remember-me'])&&($_POST['remember-me']=='on'||$_POST['remember-me']=='1' )&& !isset($_COOKIE['remember'])){
+                        $hour = time()+3600 *24 * 30;
+                        $path=parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);
+                        setcookie('uname', $user['uname'], $hour,$path);
+                        setcookie('email', $user['email'], $hour,$path);
+                        setcookie('active', 1, $hour,$path);          
+                    }
+                    header('Location:'.BASE.'user/dashboard');
+                }
+                else{
+                    header('Location:'.BASE.'user/login');
+                }
+            
+            }
+        }
+```
+
+Fixem-nos en la línia 21:
+
+```php
+ header('Location:'.BASE.'user/dashboard');
+```
+
+Ens crea una REQUEST que demana una cosa similar a **`GET HTTP1.1 /user/dashboard`**
+
+El sistema creat, ens porta a instanciar el controlador UserController i el mètode **dashboard**:
+
+```php
+// class UserController
+function dashboard(){
+            
+            $user=$this->session->get('user');
+            $data=$this->getDB()->selectAllWithJoin('tasks','users',['tasks.id','tasks.description','tasks.due_date'],'user','id');
+            $this->render(['user'=>$user,'data'=>$data],'dashboard');
+        }
+```
+
+En aquest punt, extreiem de la sessió la clau d'usuari que passarem a la vista a través del mètode render, a l'igual que les dades assignades a aquest usuari.
+
+Mirem la plantilla:
+
+```php
+<?php
+    include 'header.tpl.php';
+    ?>
+    <main>
+    <section class="container">
+        <h3>Todo list <?= $user['uname'];?></h3>
+        <div class="row my-auto">
+        <table id="mytable" class="table">
+            <tr>
+            <?php
+                if($data){
+                $columns=array_keys($data[0]);
+                
+                foreach ($columns as $field) {
+                    echo '<th scope="row">'.$field.'</th>';
+                }
+                }
+                
+                ?>
+                <th colspan="2"><strong>Actions</strong></th>   
+            </tr>
+        <?php
+            if($data){
+                foreach ($data as $row){
+                    echo '<tr id="row'.$row["id"].'">';
+                    foreach ($row as $column => $value) {
+                       echo '<td contenteditable>'.$value.'</td>';
+                    }
+                    echo '<td><button class="btn btn-primary" id="update'.$row["id"].'" onclick="edit('.$row["id"].')">Update</button></td>';
+                    echo '<td><button class="btn btn-danger" id="remove'.$row["id"].'" onclick="remove('.$row["id"].')">Remove</button></td>';
+                    echo '</tr>';
+                }   
+            }
+             
+        ?>
+        </table>
+        </div>
+        </section>
+        <section>
+        <a href="/task/new"><button class="btn btn-secondary"><strong>+</strong></button></a>
+        </section>
+        <section>
+            <div id="message"><p></p></div>
+        </section>
+        
+    </main>
+    
+<?php
+    include 'footer.tpl.php';
+    ?>
+
+```
+
+El sistema de plantilles creat és una simple composició entre tres scripts que es troben a **templates**. En aquesta plantilla en concret hem passat les dades $user i $data, des del controlador a través d'un array a l'argument de la funció **render** del controlador.
+
+### El controlador
+
+Basat en una classe abstracta:
+
+```php
+<?php
+
+    namespace App;
+    use App\View;
+    use App\Model;
+    use App\DB;
+    use App\Session;
+
+    abstract class Controller implements View,Model{
+        protected $request;
+        protected $session;
+
+        function __construct($request, $session){
+            $this->request=$request;
+            $this->session=$session;
+        }
+
+        function error($string){
+            $this->render(['error'=>$string],'error');
+        }
+        
+        function render(?array $dataview=null,?string $template=null){
+            if($dataview){
+                extract($dataview,EXTR_OVERWRITE);
+            }
+            if ($template!=null){
+                include 'templates/'.$template.'.tpl.php';
+            }else{
+                include 'templates/'.$this->request->getController().'.tpl.php';
+            }
+        }
+
+        function getDB(){
+            return DB::singleton();
+        }
+    }
+```
+
+
 
