@@ -867,5 +867,34 @@ Basat en una classe abstracta:
     }
 ```
 
+El controlador implementa les interfaces View i Model:
+
+```php
+//interface View
+<?php
+
+    namespace App;
+
+    interface View{
+        public function render(?array $dataview=null,?string $template=null);
+       // public function json();
+    }
+    
+ //interface Model
+ 
+    <?php
+
+  namespace App;
+
+   interface Model{
+     public function getDB();
+
+  }   
+```
+
+Tots els processos segueixen aquest protocol 
+
+usuari--&gt;-Controlador ---&gt;render ---&gt; procés UI ---&gt;usuari
+
 
 
