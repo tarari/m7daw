@@ -33,6 +33,7 @@
 
 ## Apèndixs
 
+* [Tasques comunes en desplegament d'aplicacions PHP](apendixs/tasques-comunes-en-desplegament-daplicacions-php.md)
 * [Apèndix - Crear base de dades i usuari en docker](apendixs/apendix-crear-base-de-dades-i-usuari-en-docker.md)
 * [Tricks Laravel](apendixs/tricks-laravel.md)
 * [Seguretat en PHP](apendixs/seguretat-en-php.md)
