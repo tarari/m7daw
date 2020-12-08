@@ -114,7 +114,11 @@ El fitxer index.php del nostre projecte actua com a un frontend controller és a
     
 ```
 
-Un cop carregat el PSR-4, definim les constants de l'entorn de l'aplicació, aquestes són extretes del fitxer de configuració **config.json**
+Un cop carregat el PSR-4, definim les constants de l'entorn de l'aplicació, aquestes són extretes del fitxer de configuració **config.json.**
+
+{% hint style="info" %}
+**Cal remarcar BASE com a adaptador de rutes en les templates per poder accedir a rutes basades en el DocumentRoot de Apache o el root de nginx.**
+{% endhint %}
 
 ```php
 {
