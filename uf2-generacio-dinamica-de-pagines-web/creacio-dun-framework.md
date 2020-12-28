@@ -613,6 +613,10 @@ Accedir a la base de dades és fàcil si fem servir aquesta classe, l'accés a l
     }
 ```
 
+### FormBuilder
+
+Es tracta de crear de forma semi-automàtica els formularis de la nostra app. Aquests es configuren des del controlador per poder ser renderitzats posteriorment.
+
 ## Procés de resposta
 
 Anem a simular un procés de resposta:
