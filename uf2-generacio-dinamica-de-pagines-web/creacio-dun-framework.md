@@ -673,6 +673,32 @@ namespace App;
 
 ```
 
+I quan volem utilitzar el formulari, el configurem abans de renderitzar-lo, mirem l'exemple:
+
+```php
+ //UserController
+ 
+  function login(){
+            
+            $form=$this->createForm();
+            $form->open(BASE.'user/log')
+                ->label('Email:')
+                ->input('email','email')
+                ->label('Password:')
+                ->input('password','passw')
+                ->csrf($this->session->get('csrf-token'))
+                ->submit('Sign')
+                ->close();
+
+            $this->render([
+                'form'=>$form],'login');
+        }
+```
+
+El procés de configuració consisteix en crear l'objecte **$form**, i després es completa amb tots el items, afegirem també l'atribut ocult csrf-token per protegir-nos d'atacs **CSRF.**
+
+
+
 ## Procés de resposta
 
 Anem a simular un procés de resposta:
