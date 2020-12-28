@@ -747,6 +747,10 @@ El sistema de plantilles creat és una simple composició entre tres scripts que
 
 Basat en una classe abstracta:
 
+Proporciona tots els serveis cap als controladors especialitzats, control de request, control de sessió, accés a dades, renderització de vistes i creació de formularis \(tema que tractarem més endavant\).
+
+
+
 ```php
 <?php
 
@@ -764,7 +768,27 @@ Basat en una classe abstracta:
             $this->request=$request;
             $this->session=$session;
         }
-
+        
+        function createForm(){    
+            return new FormBuilder;
+        }
+        // $this->csrfError() to use in forms processing in Controllers
+        function csrfCheck(){
+            
+            if ($this->request->getMethod() === 'POST') {
+                if (!array_key_exists('csrf-token', $_POST)) {
+                    throw new Exception();
+                  //  echo '<p>ERROR: The CSRF Token was not found in POST payload.</p>';
+                } elseif ($_POST['csrf-token'] !== $this->session->get('csrf-token')) {
+                    throw new Exception();
+                    //echo '<p>ERROR: The CSRF Token is not valid.</p>';
+                } else {
+                    return true;
+                   //echo '<p>OK: The CSRF Token is valid. Will continue with email validation...</p>';
+                }
+            }
+            
+        }
         function error($string){
             $this->render(['error'=>$string],'error');
         }
