@@ -129,8 +129,8 @@ Un cop carregat el PSR-4, definim les constants de l'entorn de l'aplicació, aqu
         "dbname":"prouf1",
         "dbuser":"prouf1",
         "dbpass":"+++++++++",
-        "web":"/",
-        "root":"/"
+        "web":"/"
+        
     },
     "conf_pro":{
         "driver":"mysql",
@@ -139,7 +139,7 @@ Un cop carregat el PSR-4, definim les constants de l'entorn de l'aplicació, aqu
         "dbuser":"toni_prouf1",
         "dbpass":"+++++++++",
         "web":"/m7/todofw/",
-        "root":"/m7/todofw/"
+
 
     }
 }
@@ -188,8 +188,13 @@ namespace App;
 
         }
         public static function run(){
-
+            unset($_SESSION);
             $session=new Session();
+            //csrf-token to avoid csrf attacks
+             if (!($session->exists('csrf-token'))){
+                 $session->set('csrf-token',bin2hex(random_bytes(32)));
+             }
+            //routes array
             $routes=self::getRoutes();
            
             
@@ -249,6 +254,8 @@ namespace App;
 ```
 
 El mètode init\(\), proporciona l'array de configuració de l'app. Mentre que run\(\) és en sí el nucli de l'aplicació, ja que determina i activa quin controlador és el responsable de la "request", cal destacar que en la instància del controlador, també injectem els objectes Session i Request, que ens facilita el desenvolupament de l'aplicació com ja s'observarà.
+
+A cada cicle REQ-RESP creem un token aleatori que ens proporcionarà seguretat CSRF als formularis POST.
 
 ## Elements de la carpeta src/
 
