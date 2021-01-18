@@ -6,7 +6,7 @@ description: Un dels frameworks PHP més utilitzats i amb més projecció.
 
 ## Què és?
 
-Laravel és una eina que ens ajuda a desenvolupar sisemes web , pot ser un sistema, pàgina web o un API. A aquest tipus d'eines li diem Framework i és un entorn de treball o eina estandaritzada en quant a concepte, bones pràctiques, funcionalitats comunes  i estil per resoldre algun tipus de problema.
+Laravel és una eina que ens ajuda a desenvolupar sistemes web , pot ser un sistema, pàgina web o un API. A aquest tipus d'eines li diem Framework i és un entorn de treball o eina estandaritzada en quant a concepte, bones pràctiques, funcionalitats comunes  i estil per resoldre algun tipus de problema.
 
 ## Introducció
 
@@ -72,7 +72,7 @@ Laravel development server started: http://127.0.0.1:8000
 
 ![Quan accedim des del navegador](../.gitbook/assets/captura-de-pantalla-2020-03-02-a-les-21.01.51.png)
 
-### Cicle de vida del REQUEST
+### RECORDATORI: Cicle de vida del REQUEST
 
 Des que el client envia un REQUEST fins que el sistema envia un RESPONSE, Laravel té com a punt d'entrada del tractament del REQUEST el fitxer **public/index.php,** on hi ha la preparació de l'entorn del sistema. Posteriorment s'envia cap a **bootstrap/app.php**, que actua com a contenidor de serveis \( _service container_ \). Aquest actua com a controlador frontal i reenvia cap als kernels o nuclis, bàsicamen HTTP Kernel API kernel i Console Kernel, que acuten com a proveïdors de serveis \(service providers\). Els kernels fan servir el _**middlewares**_ com a filtres específics de les REQUESTS, per exemple un MW verifica si l'usuari s'ha autenticat i actúa en conseqüència, redirigint cap a la pantalla de login o una altra. El tractament final el fa el servei \(_service_\) que permet obtenir una resposta \(RESPONSE\)
 
