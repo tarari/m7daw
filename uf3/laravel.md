@@ -8,6 +8,16 @@ description: Un dels frameworks PHP més utilitzats i amb més projecció.
 
 Laravel és una eina que ens ajuda a desenvolupar sisemes web , pot ser un sistema, pàgina web o un API. A aquest tipus d'eines li diem Framework i és un entorn de treball o eina estandaritzada en quant a concepte, bones pràctiques, funcionalitats comunes  i estil per resoldre algun tipus de problema.
 
+## Introducció
+
+Com tots el frameworks, la seva gran avantatge és que ja té moltes coses resoltes, l'inici de sessió i registre, paginació de les dades, la connexió i consulta a la base de dades, el sistema de cache, les rutes, el sistema de plantilles, la seguretat i moltes coses més.
+
+Hem d'entendre'l com un sistema de capes i depenent del problema has de saber quina capa tractar.
+
+* Podem crear una ruta  i llençar vistes de d'allà \(estàtic\) 
+* O crear una ruta , aquesta apunti al controlador i des d'allà crear una vista en pantalla.
+* O seguint el cas anterior pots agregar una capa de seguretat intermitja i si estàs loguejat aleshores el sistema et deixa anar al controlador i llençar la vista pertinent.
+
 ## Estructura de carpetes
 
 
