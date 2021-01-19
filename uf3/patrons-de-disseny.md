@@ -17,5 +17,17 @@ Aquests patrons expliquen com acoblar objectes i classes en estructures més gra
 
 Aquests patrons tracten amb algoritmes i l'assignació de responsabilitats entre objectes.
 
+## Patrons creacionals
+
+### AbstractFactory
+
+
+
+
+
+## Patrons de comportament
+
+### Chain of Responsability
+
 
 
