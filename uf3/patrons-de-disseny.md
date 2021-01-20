@@ -21,6 +21,10 @@ Aquests patrons tracten amb algoritmes i l'assignació de responsabilitats entre
 
 ### AbstractFactory
 
+**Abstract Factory** és un patró de disseny creacional que ens permet produir famílies d'objectes relacionats sense especificar les seves classes concretes.
+
+Exemple típic seria un gestor de plantilles per la renderització.
+
 
 
 
