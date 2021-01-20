@@ -33,7 +33,7 @@ Exemple típic seria un gestor de plantilles per la renderització.
 
 ### Chain of Responsability
 
-**Chain of Responsibility** és un patró de disseny de comportament que et permet passar sol·licituds al llarg d'una cadena de controladors. A l'rebre una sol·licitud, cada gestor decideix si la processa o si la passa a el següent gestor de la cadena.
+**Chain of Responsibility** és un patró de disseny de comportament que et permet passar sol·licituds al llarg d'una cadena de controladors. En 'rebre una sol·licitud, cada gestor decideix si la processa o si la passa a el següent gestor de la cadena.
 
 Exemple típic seria un _Middleware_
 
