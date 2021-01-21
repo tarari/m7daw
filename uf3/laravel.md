@@ -74,19 +74,21 @@ Laravel development server started: http://127.0.0.1:8000
 
 ### RECORDATORI: Cicle de vida del REQUEST
 
-Des que el client envia un REQUEST fins que el sistema envia un RESPONSE, Laravel té com a punt d'entrada del tractament del REQUEST el fitxer **public/index.php,** on hi ha la preparació de l'entorn del sistema. Posteriorment s'envia cap a **bootstrap/app.php**, que actua com a contenidor de serveis \( _service container_ \). Aquest actua com a controlador frontal i reenvia cap als kernels o nuclis, bàsicamen HTTP Kernel API kernel i Console Kernel, que acuten com a proveïdors de serveis \(service providers\). Els kernels fan servir el _**middlewares**_ com a filtres específics de les REQUESTS, per exemple un MW verifica si l'usuari s'ha autenticat i actúa en conseqüència, redirigint cap a la pantalla de login o una altra. El tractament final el fa el servei \(_service_\) que permet obtenir una resposta \(RESPONSE\)
+Des que el client envia un REQUEST fins que el sistema envia un RESPONSE, Laravel té com a punt d'entrada del tractament del REQUEST el fitxer **public/index.php,** on hi ha la preparació de l'entorn del sistema. Posteriorment s'envia cap a **bootstrap/app.php**, que actua com a contenidor de serveis \( _service container_ \). Aquest actua com a controlador frontal i reenvia cap als kernels o nuclis, bàsicament HTTP Kernel API kernel i Console Kernel, que acuten com a proveïdors de serveis \(**service providers**\). 
+
+Els kernels fan servir el _**middlewares**_ com a filtres específics de les REQUESTS, per exemple un MW verifica si l'usuari s'ha autenticat i actúa en conseqüència, redirigint cap a la pantalla de login o una altra. El tractament final el fa el servei \(_service_\) que permet obtenir una resposta \(RESPONSE\)
 
 
 
 ![Cicle de vida, des del REQUEST fins a RESPONSE](../.gitbook/assets/lifecycle.png)
 
-### Routes
+### Routes \(rutes\)
 
 Defineixen a qui/quins serveis cridem quan se solicita una determinada URI.
 
-Totes les rutes es troben definides en un fitxer  _`routes/web.php,`_ ``totes les rutes es troben aquí definides.
+Totes les rutes es troben definides en un fitxer  _`routes/web.php,`_ ``totes, es troben aquí definides.
 
-A través de les rutes, podem donar servei als mètodes REQUEST get, post, put i delete.​ Podem dir que respongui a un mètode determinat, un conjunt de mètode o bé a qualsevol.
+A través de les rutes, podem donar servei als mètodes REQUEST **get, post, put i delete**.​ Podem dir que respongui a un mètode determinat, un conjunt de mètode o bé a qualsevol.
 
 ```text
 Route::get('/', function () {
