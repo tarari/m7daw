@@ -10,7 +10,7 @@ Laravel és una eina que ens ajuda a desenvolupar sistemes web , pot ser un sist
 
 ## Introducció
 
-Com tots el frameworks, la seva gran avantatge és que ja té moltes coses resoltes, l'inici de sessió i registre, paginació de les dades, la connexió i consulta a la base de dades, el sistema de cache, les rutes, el sistema de plantilles, la seguretat i moltes coses més.
+Com tots el frameworks, el seu gran avantatge és que ja té moltes coses resoltes, l'inici de sessió i registre, paginació de les dades, la connexió i consulta a la base de dades, el sistema de cache, les rutes, el sistema de plantilles, la seguretat i moltes coses més.
 
 Hem d'entendre'l com un sistema de capes i depenent del problema has de saber quina capa tractar.
 
