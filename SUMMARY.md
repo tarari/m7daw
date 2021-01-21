@@ -23,7 +23,7 @@
 
 * [Patrons de disseny](uf3/patrons-de-disseny.md)
 * [ORM Eloquent en projectes](uf3/orm-eloquent-en-projectes.md)
-* [Laravel 1a part](uf3/laravel.md)
+* [Laravel \(1a part\)](uf3/laravel.md)
 
 ## UF4 Aplicacions híbrides i serveis web
 

@@ -2,7 +2,7 @@
 description: Un dels frameworks PHP més utilitzats i amb més projecció.
 ---
 
-# Laravel 1a part
+# Laravel \(1a part\)
 
 ## Què és?
 
@@ -29,7 +29,7 @@ Hem d'entendre'l com un sistema de capes i depenent del problema has de saber qu
 
 
 {% hint style="info" %}
-Amb el temps adquirirem l'habilitat de crear qualsevol estructura de carpetes, le que millor s'adapti al projecte que implementem. 
+Amb el temps adquirirem l'habilitat de crear qualsevol estructura de carpetes, la que millor s'adapti al projecte que implementem. 
 {% endhint %}
 
 ### App
