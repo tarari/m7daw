@@ -90,15 +90,21 @@ Totes les rutes es troben definides en un fitxer  _`routes/web.php,`_ ``totes, e
 
 A través de les rutes, podem donar servei als mètodes REQUEST **get, post, put i delete**.​ Podem dir que respongui a un mètode determinat, un conjunt de mètode o bé a qualsevol.
 
-```text
+{% tabs %}
+{% tab title="PHP" %}
+```php
 Route::get('/', function () {
     return view('welcome');
 });
 ```
+{% endtab %}
+{% endtabs %}
 
-Laravel busca en la carpeta _resources/views_ la plantilla _welcome.blade.php_
+Laravel busca en la carpeta ****_**resources/views**_ ****la plantilla _welcome.blade.php_
 
-```text
+{% tabs %}
+{% tab title="XML/HTML/SVG" %}
+```markup
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -106,10 +112,12 @@ Laravel busca en la carpeta _resources/views_ la plantilla _welcome.blade.php_
         <meta name="viewport" content="width=device-width, initial-scale=1">
 ......
 ```
+{% endtab %}
+{% endtabs %}
 
-Podem veure quines altres opcions tenim com a sortida, en comptes de view...
+Podem veure quines **altres opcions** tenim com a sortida, en comptes de view...
 
-```text
+```php
 Route::get('/', function () {
     return ['foo'=>'cosa'];
 });
@@ -119,7 +127,7 @@ La sortida serà en JSON.
 
 #### Rutes que miren el REQUEST
 
-A vegades és necessari passar paràmetres REQUEST, mirem la forma més simple:
+A vegades és necessari **passar paràmetres REQUEST,** mirem la forma més simple:
 
 ```text
 Route::get('/test',function (){
@@ -130,7 +138,7 @@ Route::get('/test',function (){
 
 Podem fer la prova, al navegador: `http://localhost:8000/test?name=Pepe`
 
-També podem passar la variable a una vista:
+També podem **passar la variable a una vista**:
 
 ```text
 Route::get('/test',function (){
@@ -147,9 +155,9 @@ I al fitxer **views/test.blade.php** podem utilitzar la variable `$name` de la s
 
 ### Response
 
-Retorn de resposta ben formada, amb capçaleres i codi.
+Retorn d'una  resposta ben formada, amb **capçaleres head,** status i contingut. \(response\)
 
-```text
+```php
 Route::get('home', function () {
     return response('Hello World', 200)
                   ->header('Content-Type', 'text/plain');
@@ -158,7 +166,7 @@ Route::get('home', function () {
 
 ### Comandos Artisan
 
-Artisan és el nom de la interfície de comandos en línia incosa en Laravel. Cobreix moltes tasques com ara; treball amb migracions de bases de dades, eliminar catxé, crear els fitxers necessaris per l'autenticació, creació de models, controladors, classes d'events i molt més...
+Artisan és el nom de la interfície de comandos en línia inclosa en Laravel. Cobreix moltes tasques com ara; treball amb migracions de bases de dades, eliminar catxé, crear els fitxers necessaris per l'autenticació, creació de models, controladors, classes d'events i molt més...
 
 ```text
 php artisan list
