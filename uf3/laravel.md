@@ -90,7 +90,18 @@ Aquí dins trobem una varietat important de carpetes com  **Console, Http, Exce
 
 Totes les dades configurables de l'entorn i ecosistema de Laravel es poden configurar a través d'aquest fitxer. Es tracta d'un fitxer que es pot repetir per cada ecosistema on es vulgui establir, ja sigui en producció `.env` en proves **`.env.testing`**, etc.
 
+Entre d'altres coses que podem emmagatzemar, tenim la configuració de la base de dades, usuari, host, base de dades i password \(no és visible, no ens preocupem\). 
 
+També es pot desar la KEY \(encriptada\) del programa, generada en el moment d'instal·lació i modificable en qualsevol instant, que s'utilitza per per exemple, generar el token per evitar atacs CSRF.
+
+### Configuració
+
+En la carpeta config, establim tots els arxius de configuració que necessitem en l'aplicació. Exemple d'arxiu que retorna element de configuració:
+
+```php
+<?php
+    return ['color'=>'#04a23e'];
+```
 
 ## RECORDATORI: Cicle de vida del REQUEST
 
