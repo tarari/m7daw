@@ -18,25 +18,19 @@ Hem d'entendre'l com un sistema de capes i depenent del problema has de saber qu
 * O crear una ruta , aquesta apunti al controlador i des d'allà crear una vista en pantalla.
 * O seguint el cas anterior pots agregar una capa de seguretat intermitja i si estàs loguejat aleshores el sistema et deixa anar al controlador i llençar la vista pertinent.
 
-## Estructura de carpetes
+### Requeriments
+
+Què és el que necessitem per treballar am Laravel:
+
+* PHP v.7.2 o més gran
+* Apache o Nginx
+* Sistema gestor de base de dades: MySql o MariadB
+* Composer
+* Git
+* Editor de codi
+* Navegador
 
 
-
-**Arrel del projecte**: app, bootstrap, config, database, public, resources, routes, storage, tests, vendor.
-
-**Dins d'app**: Broadcasting, Console, Events, Exceptions, Http, Jobs, Listeners, Mail, Notifications, Policies, Providers, Rules.
-
-
-
-{% hint style="info" %}
-Amb el temps adquirirem l'habilitat de crear qualsevol estructura de carpetes, la que millor s'adapti al projecte que implementem. 
-{% endhint %}
-
-### App
-
-És la carpeta on desenvolupem l'apicació, és on escriurem el nostre codi PHP. 
-
-Aquí dins trobem una varietat important de carpetes com  **Console, Http, Exceptions y Providers**. En **Console** tenim els nostres comandos personalitzats  de **Artisan** i en **Http** creem els nostres controladors, middlewares i processaments de Requests, tot el relacionat amb el HTTP. 
 
 ## Instal·lació
 
@@ -72,7 +66,27 @@ Laravel development server started: http://127.0.0.1:8000
 
 ![Quan accedim des del navegador](../.gitbook/assets/captura-de-pantalla-2020-03-02-a-les-21.01.51.png)
 
-### RECORDATORI: Cicle de vida del REQUEST
+## Estructura de carpetes
+
+
+
+**Arrel del projecte**: app, bootstrap, config, database, public, resources, routes, storage, tests, vendor.
+
+**Dins d'app**: Broadcasting, Console, Events, Exceptions, Http, Jobs, Listeners, Mail, Notifications, Policies, Providers, Rules.
+
+
+
+{% hint style="info" %}
+Amb el temps adquirirem l'habilitat de crear qualsevol estructura de carpetes, la que millor s'adapti al projecte que implementem. 
+{% endhint %}
+
+### App
+
+És la carpeta on desenvolupem l'apicació, és on escriurem el nostre codi PHP. 
+
+Aquí dins trobem una varietat important de carpetes com  **Console, Http, Exceptions y Providers**. En **Console** tenim els nostres comandos personalitzats  de **Artisan** i en **Http** creem els nostres controladors, middlewares i processaments de Requests, tot el relacionat amb el HTTP. 
+
+## RECORDATORI: Cicle de vida del REQUEST
 
 Des que el client envia un REQUEST fins que el sistema envia un RESPONSE, Laravel té com a punt d'entrada del tractament del REQUEST el fitxer **public/index.php,** on hi ha la preparació de l'entorn del sistema. Posteriorment s'envia cap a **bootstrap/app.php**, que actua com a contenidor de serveis \( _service container_ \). Aquest actua com a controlador frontal i reenvia cap als kernels o nuclis, bàsicament HTTP Kernel API kernel i Console Kernel, que acuten com a proveïdors de serveis \(**service providers**\). 
 
