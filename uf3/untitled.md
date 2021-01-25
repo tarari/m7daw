@@ -21,7 +21,12 @@ DB_PASSWORD=*****
 
 Dins l'arxiu **routes/web.php.  routes/api.php,** etc..
 
-`Route::get('welcome', function () { return "Hello World!"; }); Route::post('welcome', function () { return "Hello World!"; });`
+```php
+Route::get('welcome', function () { 
+      return "Hello World!"; }); 
+Route::post('welcome', function () { 
+       return "Hello World!"; });
+```
 
 Com es pot observar, la funció estàtica get, post indiquen el mètode HTTP.
 
