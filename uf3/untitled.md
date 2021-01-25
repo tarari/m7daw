@@ -30,7 +30,7 @@ Route::post('welcome', function () {
 
 Com es pot observar, la funció estàtica get, post indiquen el mètode HTTP.
 
-```text
+```php
 Route::match(['get', 'post'], 'match', function() { 
     return "Matches GET and POST";
 }); 
@@ -47,7 +47,7 @@ Nota: En comptes de definir tota la lògica en **routes**, és possible organitz
 
 Habitualment, en comptes de definir un closure, es crida a una acció d'un controlador:
 
-```text
+```php
 Route::get('post/{id}', [
  'uses' => 'PostController@show'
 ]);
@@ -57,13 +57,13 @@ Route::get('post/{id}', [
 
 Podem crear controladors amb artisan d'una manera molt simple:
 
-```text
+```php
 php artisan make:controller PostController
 ```
 
 Això cea un controlador buit, però si volem crear un controlador per a recursos, podem utilitzar -r que afegeix mètodes típics de control de recursos \(index, show, store, destroy, etc\).
 
-```text
+```php
 php artisan make:controller PostController -r
 ```
 
@@ -73,7 +73,7 @@ Els middleware proporcionen un mecanisme de filtrat als REQUESTs de l'aplicació
 
 Laravel inclou per defecte el middleware d'autenticació que detecta si un usuari està autenticat. Si ho està, el middleware deixarà que segueixi l'execució del programa. Si no, portarà a l'usuari a la pantalla de login.
 
-```text
+```php
 Route::post('post/store', ['middleware' => 'auth',
     function () {
     //
