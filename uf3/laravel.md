@@ -276,7 +276,7 @@ Per la via ràpida, instal·lem _**laravel/ui**_ aquest paquet de composer i exe
 
 Laravel instal·la de forma automàtica un sistema d'autenticació, per tant trobareu creat ja el model **App\User.** També trobarem  en **resources** una carpeta anomenada **auth,** amb totes les plantilles blade que s'utilitzaran en els formularis d'autenticació i registre.
 
-## Enutament
+## Enrutament
 
 ### Enrutament bàsic:
 
