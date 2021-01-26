@@ -270,7 +270,66 @@ Llista de comandos artisan més comuns:
 | vendor:publish | Publish any publishable assets from vendor packages |
 | view:clear | Clear all compiled view files |
 
+## Blade 
+
+### Layouts utilitzant plantilles
+
+També es poden crear dissenys mitjançant l'"herència de plantilles". Aquesta era la forma principal de construir aplicacions abans de la introducció dels [components](https://laravel.com/docs/8.x/blade#components) .
+
+Mirem  un exemple senzill. En primer lloc, examinarem un disseny de pàgina. Com  la majoria d’aplicacions web mantenen el mateix disseny general en diverses pàgines, és convenient definir aquest disseny com una sola vista Blade:
+
+```markup
+<!-- resources/views/layouts/app.blade.php -->
+
+<html>
+    <head>
+        <title>App Name - @yield('title')</title>
+    </head>
+    <body>
+        @section('sidebar')
+            This is the master sidebar.
+        @show
+
+        <div class="container">
+            @yield('content')
+        </div>
+    </body>
+</html>
+```
+
+Com podem veure, aquest fitxer contindrà  HTML, perà afegim les directives   `@`**`section`i** **`@yield`**. La directiva **@section** , com el seu nom indica, defineix una secció de contingut, mentre que  **`@yield`s’utilitza** per mostrar el contingut d’una secció determinada.
+
+Ara que hem definit un disseny per a la nostra aplicació, definim una pàgina secundària que heredarà el disseny anterior.
+
+```markup
+<!-- resources/views/child.blade.php -->
+
+@extends('layouts.app')
+
+@section('title', 'Page Title')
+
+@section('sidebar')
+    @parent
+
+    <p>Afegit des del pare</p>
+@endsection
+
+@section('content')
+    <p>Contingut body</p>
+@endsection
+```
+
+En aquest exemple, la secció  `sidebar`utilitza la directiva `@parent`per afegir \(en lloc de sobreescriure\) contingut a la barra lateral del disseny. La directiva`@parent`se substituirà pel contingut del disseny quan es renderitzi la vista.
+
 ## Autenticació
+
+
+
+
+
+
+
+
 
 Per la via ràpida, instal·lem _**laravel/ui**_ aquest paquet de composer i executem `php artisan ui vue --auth` en una aplicació Laravel **nova, sense estrenar,** si fem servir **vue.** Però podria ser **bootstrap** o **react** Després de migrar la bas de dades, comprovem al navegador _**http://app.test/register**_
 
