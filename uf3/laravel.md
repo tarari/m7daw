@@ -392,11 +392,12 @@ Mirem  un exemple senzill. En primer lloc, examinarem un disseny de pàgina. Com
     </head>
     <body>
         @section('sidebar')
-            This is the master sidebar.
+            
         @show
 
         <div class="container">
             @yield('content')
+            //la part que s'anirà modificant
         </div>
     </body>
 </html>
