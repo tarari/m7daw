@@ -119,17 +119,17 @@ Repassem cada carpeta dins **d'app** i després continuem amb les carpetes de l'
 
 #### **Broadcasting** 
 
-Aquesta carpeta es genera amb el comando php artisan make:channel. La usarem si necessitem canals de transició d'esdeveniments. 
+Aquesta carpeta es genera amb el comando `php artisan make:channel`. La usarem si necessitem canals de transició d'esdeveniments. 
 
 #### Console 
 
-Aquí trobem als nostres comandos personalitzats de artisan. Si en el futur vols crear __un comando personalitzat treballaràs en aquesta carpeta. Les classes que seran allí les pots generar amb el comando php artisan make:command. 
+Aquí trobem als nostres comandos personalitzats de artisan. Si en el futur vols crear __un comando personalitzat treballaràs en aquesta carpeta. Les classes que seran allí les pots generar amb el comando `php artisan make:command`. 
 
-En aquesta carpeta trobem a l'arxiu kernel.php, és allí on registrem als nostres comandos. 
+En aquesta carpeta trobem a l'arxiu **kernel.php**, és allí on registrem als nostres comandos. 
 
 #### Events 
 
-Aquesta carpeta es crea quan usem el comando php artisan event:generate i php artisan make:event. 
+Aquesta carpeta es crea quan usem el comando `php artisan event:generate` i `php artisan make:event`. 
 
 Aquí guardem a les nostres classes d'esdeveniments que generin alertes després d'executar una acció. 
 
@@ -139,35 +139,35 @@ Aquí configurem a les nostres classes que es dediquin a respondre a qualsevol c
 
 ####  Http 
 
-Aquí tenim als nostres Controllers, Middleware i Form Requests, allí viu gairebé tot el nostre sistema ja que des d'aquí manegem les sol·licituds HTTP. 
+Aquí tenim als nostres Controllers, Middleware i Form Requests, aquí es troba  gairebé tot el nostre sistema ja que des d'aquí manegem les sol·licituds HTTP. 
 
 #### Jobs 
 
-Aquesta carpeta es crea quan usem el comando php artisan make:job. Allí emmagatzemem a les nostres classes dedicades al control de cues de treball. Podem crear una cua de les tasques pesades per a executar després, això ajuda moltíssim quant al rendiment del nostre sistema. 
+Aquesta carpeta es crea quan usem el comando `php artisan make:job`. Aquí emmagatzemem a les nostres classes dedicades al control de cues de treball. Podem crear una cua de les tasques més pesades per a executar després, això ajuda moltíssim al rendiment del nostre sistema. 
 
 #### Listeners 
 
-Aquesta carpeta es crea quan usem el comando php artisan event:generate i php artisan make:listener. Aquí guardem a les nostres classes que manejaran els nostres esdeveniments \(els events i els listeners treballen junts\). Els listeners s'executen quan un esdeveniment l'ordeni. Per exemple, un esdeveniment de registre de client pot manejar l'esdeveniment d'email de benvinguda. 
+Aquesta carpeta es crea quan usem el comando `php artisan event:generate` i `php artisan make:listener`. Aquí guardem a les nostres classes que manejaran els nostres esdeveniments \(els events i els listeners treballen junts\). Els listeners s'executen quan un esdeveniment l'ordeni. Per exemple, un esdeveniment de registre de client pot manejar l'esdeveniment d'email de benvinguda. 
 
 #### Mail 
 
-Aquí tindrem a les classes que representen a un email, es crea quan usem el comando php artisan make:mail. Per exemple l'email de benvinguda que acabo d'esmentar seria aquí configurat. 
+Aquí tindrem a les classes que representen a un email, es crea quan usem el comando `php artisan make:mail`. Per exemple l'email de benvinguda que acabo d'esmentar seria configurat aquí.
 
 #### Notifications 
 
-Aquesta carpeta es crea quan usem el comando php artisan make:notification. Aquí tindrem a les nostres notificacions guardades perquè siguin enviades pel nostre sistema quan es necessiti. Les notificacions podrien ser un missatge de text, emails, guardades en base de dades per a mostrar a l'usuari, etc. Quan la campana de twitter s'encén és perquè una notificació el va generar. 
+Aquesta carpeta es crea quan usem el comando `php artisan make:notification`. Aquí tindrem a les nostres notificacions guardades perquè siguin enviades pel nostre sistema quan es necessiti. Les notificacions podrien ser un missatge de text, emails, guardades en base de dades per a mostrar a l'usuari, etc. Quan la campana de twitter s'encén és perquè una notificació el va generar. 
 
 #### Policies 
 
-Aquesta carpeta la podem crear amb el comando php artisan make:policy. Aquí guardarem a les nostres classes dedicades a les polítiques d'autorització. Podràs determinar si un usuari compta amb l'habilitat d'eliminar articles per exemple. 
+Aquesta carpeta la podem crear amb el comando `php artisan make:policy`. Aquí guardarem a les nostres classes dedicades a les polítiques d'autorització. Podràs determinar si un usuari compta amb la facultat d'eliminar articles per exemple. 
 
 #### Providers 
 
-Aquí tenim als famosos proveïdors de serveis, aquests enllacen als components amb Laravel. Podem crear els nostres propis providers en aquesta carpeta i usar-ho des de Laravel. En general quan instal·lem un paquet, est ens diu com connectar a Laravel amb el seu \*provider.
+Aquí tenim als famosos proveïdors de serveis, aquests enllacen als components amb Laravel. Podem crear els nostres propis providers en aquesta carpeta i usar-ho des de Laravel. En general quan instal·lem un paquet, est ens diu com connectar a Laravel amb el seu _provider_.
 
 #### Rules 
 
-La podem crear amb el comando php artisan make:rule. Aquí registrem regles de validació pròpies o personalitzades. Bootstrap Podria ser bootstrap o bootstrapping, sempre que vegis aquesta paraula has de saber que fa referència a l'inici d'un sistema informàtic. En aquest cas bootstrap/app.php inicia a Laravel. Aquí també trobes una carpeta anomenada cache que conté arxius de rutes i serveis generats pel sistema per a optimitzar-los i millorar el rendiment. 
+La podem crear amb el comando `php artisan make:rule`. Aquí registrem regles de validació pròpies o personalitzades. Bootstrap Podria ser bootstrap o bootstrapping, sempre que vegis aquesta paraula has de saber que fa referència a l'inici d'un sistema informàtic. En aquest cas bootstrap/app.php inicia a Laravel. Aquí també trobes una carpeta anomenada cache que conté arxius de rutes i serveis generats pel sistema per a optimitzar-los i millorar el rendiment. 
 
 #### Config 
 
@@ -175,37 +175,48 @@ Aquí trobarem tots els arxius de configuració del nostre sistema. De fet quan 
 
 #### Database 
 
-El directori database conté les migracions de la teva base de dades, model factories i seeders. Si ho desitges pots també usar aquest directori per a emmagatzemar una base de dades SQLite. 
+El directori database conté les migracions de la  base de dades, model factories i seeders. Si volem,   també podem usar aquest directori per a emmagatzemar una base de dades SQLite. 
 
 #### Public 
 
-Aquí trobem a l'arxiu index.php, és el punt d'accés de totes les sol·licituds i mai treballem amb aquest arxiu directament, també podem trobar a les imatges, els arxius JS i els documents d'estils CSS. “Tot el públic estarà en aquesta carpeta”. Resources Aquí guardarem a les nostres vistes i arxius originals de LESS, SASS, Stylus o JS, també trobarem els arxius de configuració d'idioma. 
+Aquí trobem a l'arxiu index.php, és el punt d'accés de totes les sol·licituds i mai treballem amb aquest arxiu directament, també podem trobar a les imatges, els arxius JS i els documents d'estils **CSS**. “Tot el públic estarà en aquesta carpeta”. 
+
+#### Resources 
+
+Aquí guardarem a les nostres vistes i arxius originals de LESS, SASS, Stylus o JS, també trobarem els arxius de configuració d'idioma. 
 
 #### Routes 
 
 Aquí tindrem totes les rutes del nostre sistema. Immediatament trobem els següents arxius: 
 
 1. web.php 
-
 2. api.php
-
- 3. console.php 
-
+3. console.php 
 4. channels.php. 
 
 Vegem un a un amb les explicacions d'una manera senzilla. 
 
-1. Les rutes configurades en l'arxiu web.php comptessin amb un estat de sessió, protecció de formularis CSRF i l'encriptació estàndard de cookies. Sempre treballarem aquí. 
+**WEB**. Les rutes configurades en l'arxiu web.php comptessin amb un estat de sessió, protecció de formularis CSRF i l'encriptació estàndard de cookies. Sempre treballarem aquí. 
 
-2. En api.php configurarem a les rutes que precisament tinguin a veure amb l'accés a un API, en fer-ho immediatament comptarem amb una limitació de velocitat i la seguretat pròpia i estàndard d'un API. El que aquí configurem estarà preparat per a treballar amb tokens d'accés i no l'estat de sessió com en web.php. 
+**API**. En api.php configurarem a les rutes que precisament tinguin a veure amb l'accés a un API, en fer-ho immediatament comptarem amb una limitació de velocitat i la seguretat pròpia i estàndard d'un API. El que aquí configurem estarà preparat per a treballar amb tokens d'accés i no l'estat de sessió com en web.php. 
 
-3. En console.php definim tots els accessos que seran basats en comandos o des d'un terminal. Cada ruta és un Closure enllaçat a una acció. Configurar aquí algunes rutes ens ajudarà a treballar de manera simple la interacció amb mètodes d'entrada i sortida. 
+**Console**. En console.php definim tots els accessos que seran basats en comandos o des d'un terminal. Cada ruta és un Closure enllaçat a una acció. Configurar aquí algunes rutes ens ajudarà a treballar de manera simple la interacció amb mètodes d'entrada i sortida. 
 
-4. En channels.php registrem canals per a emetre transmissions d'esdeveniments. Entre altres coses aquí treballarem quan estiguem interessats a configurar notificacions del costat del client quan alguna cosa succeeix en el servidor. 
+**Channels**. En channels.php registrem canals per a emetre transmissions d'esdeveniments. Entre altres coses aquí treballarem quan estiguem interessats a configurar notificacions del costat del client quan alguna cosa succeeix en el servidor. 
 
 #### Storage 
 
-Storage significa “emmagatzematge”, això dóna una idea de la seva utilitat i aquí trobem a les plantilles compilades de Blade, sessions basades en arxius, arxius de cache i altres arxius generats pel Framework, és molt comú usar aquesta carpeta per a guardar a les nostres imatges que després accedim des de public a través d'un enllaç simbòlic “accés directe”. Dins trobarem a les carpetes app, framework i logs. 1. La carpeta app la usem per a desar qualsevol arxiu generat amb intenció com les imatges, els PDF, etc. 2. En framework aconseguim als arxius generats per Laravel i a la cache. 3. Finalment logs, aquí veurem als famosos arxius .log amb la informació de registre generada. Tests Quan treballem amb la metodologia TDD o usem a PHPUnit treballem en aquesta carpeta. Si estem començant en aquest món de la programació no toquem aquesta carpeta perquè programem d'una forma senzilla. Vendor És una carpeta estàndard en els projectes PHP, aquí es guarden totes les dependències generades per Composer.
+Storage significa “emmagatzematge”, això dóna una idea de la seva utilitat i aquí trobem a les plantilles compilades de Blade, sessions basades en arxius, arxius de cache i altres arxius generats pel Framework, és molt comú usar aquesta carpeta per a guardar a les nostres imatges que després accedim des de public a través d'un enllaç simbòlic “accés directe”. 
+
+Dins trobarem a les carpetes app, framework i logs. 
+
+1. La carpeta app la usem per a desar qualsevol arxiu generat amb intenció com les imatges, els PDF, etc. 
+
+2. En framework aconseguim als arxius generats per Laravel i a la cache. 
+
+3. Finalment logs, aquí veurem als famosos arxius .log amb la informació de registre generada. Tests Quan treballem amb la metodologia TDD o usem a PHPUnit treballem en aquesta carpeta. 
+
+Si estem començant en aquest món de la programació no toquem aquesta carpeta perquè programem d'una forma senzilla. Vendor És una carpeta estàndard en els projectes PHP, aquí es guarden totes les dependències generades per Composer.
 
 ### Routes \(rutes\)
 
