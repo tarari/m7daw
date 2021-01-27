@@ -432,7 +432,11 @@ Mirem  un exemple senzill. En primer lloc, examinarem un disseny de pàgina. Com
 </html>
 ```
 
-Com podem veure, aquest fitxer contindrà  HTML, perà afegim les directives   `@`**`section`i** **`@yield`**. La directiva **@section** , com el seu nom indica, defineix una secció de contingut, mentre que  **`@yield`s’utilitza** per mostrar el contingut d’una secció determinada.
+Com podem veure, aquest fitxer contindrà  HTML, perà afegim les directives   `@`**`section`i** **`@yield`**. 
+
+La directiva **@section** , com el seu nom indica, defineix una secció de contingut, mentre que  **`@yield`s’utilitza** per mostrar el contingut d’una secció determinada.
+
+Es a dir, la part sense @section, és la part fixa, @section\('part'\) i en layouts filles posarem @yield\('part'\) en la part variable.
 
 Ara que hem definit un disseny per a la nostra aplicació, definim una pàgina secundària que heredarà el disseny anterior.
 
