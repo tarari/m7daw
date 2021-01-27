@@ -265,7 +265,7 @@ La sortida serà en JSON.
 
 A vegades és necessari **passar paràmetres REQUEST,** mirem la forma més simple:
 
-```text
+```php
 Route::get('/test',function (){
     $name=request('name');
     return $name;
