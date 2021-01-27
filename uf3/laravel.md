@@ -229,14 +229,18 @@ A través de les rutes, podem donar servei als mètodes REQUEST **get, post, put
 {% tabs %}
 {% tab title="PHP" %}
 ```php
+// ruta estàtica
 Route::get('/', function () {
     return view('welcome');
 });
+
 ```
 {% endtab %}
 {% endtabs %}
 
 Laravel busca en la carpeta ****_**resources/views**_ ****la plantilla _welcome.blade.php_
+
+\_\_
 
 {% tabs %}
 {% tab title="XML/HTML/SVG" %}
@@ -250,6 +254,31 @@ Laravel busca en la carpeta ****_**resources/views**_ ****la plantilla _welcome.
 ```
 {% endtab %}
 {% endtabs %}
+
+_Podem trobar també rutes que pivoten sobre el controlador:_
+
+```php
+// routes/web.php
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Route;
+......
+
+
+Route::get('/',[HomeController::class, 'index'])->name('home');
+
+// app/HTTP/Controllers/HomeController.php
+....
+class HomeController extends Controller
+{
+    public function index(){
+        return view('index');
+    }
+}
+```
+
+_En aquest cas, quan es detecta la ruta '/'  es fa una instància al HomeController i es crida la funció index que renderitza la vista 'index'._
+
+\_\_
 
 Podem veure quines **altres opcions** tenim com a sortida, en comptes de view...
 
