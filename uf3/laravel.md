@@ -23,7 +23,7 @@ Hem d'entendre'l com un sistema de capes i depenent del problema has de saber qu
 Què és el que necessitem per treballar am Laravel:
 
 * PHP v.7.2 o més gran
-* Apache o Nginx
+* Apache o nginx
 * Sistema gestor de base de dades: MySql o MariadB
 * Composer
 * Git
