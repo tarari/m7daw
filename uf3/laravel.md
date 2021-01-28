@@ -460,13 +460,26 @@ Ara que hem definit un disseny per a la nostra aplicació, definim una pàgina s
 
 En aquest exemple, la secció  `sidebar`utilitza la directiva `@parent`per afegir \(en lloc de sobreescriure\) contingut a la barra lateral del disseny. La directiva`@parent`se substituirà pel contingut del disseny quan es renderitzi la vista.
 
+## Bootstrap i webpack
+
+Laravel té la possibilitat d'integrar de forma automàtica tots els fitxers públics de web, css i js, en una única distribució dins la carpeta resources. Webpack, a través de node i npm, realitza aquesta operació \(scaffolding\). Mirem com es fa pas a pas:
+
+{% tabs %}
+{% tab title="Bash" %}
+```bash
+composer require laravel/ui
+php artisan ui bootstrap
+Bootstrap scaffolding installed successfully.
+Please run "npm install && npm run dev" to compile your fresh scaffolding
+```
+{% endtab %}
+{% endtabs %}
+
+A continuació, executem **`npm install && npm run dev`**
+
+Dins la carpeta `resources/sass` trobem l'arxiu **app.scss**
+
 ## Autenticació
-
-
-
-
-
-
 
 
 
