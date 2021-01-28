@@ -2,7 +2,7 @@
 description: Suposem que treballem amb Mysql.
 ---
 
-# Apèndix - Crear base de dades i usuari en docker
+# Crear base de dades i usuari en docker
 
 ## Creació de contenidor MySQL docker amb volum compartit
 
