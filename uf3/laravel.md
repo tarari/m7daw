@@ -479,6 +479,34 @@ A continuació, executem **`npm install && npm run dev`**
 
 Dins la carpeta `resources/sass` trobem l'arxiu **app.scss**
 
+```css
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+```
+
+Per configurar el format i ubicació del fitxer d'integració, tenim el fitxer `webpack.mix.js`, cal afegir recursos com ara:
+
+```css
+
+mix.js('resources/js/app.js', 'public/js')
+    .sass('resources/sass/app.scss', 'public/css')
+    .sourceMaps();
+```
+
+Ens indica que els recursos es compilen en `public/js` i `public/css`
+
+I si volem utilitzar aquests recursos, des del Blade fem ús de **asset**.
+
+```css
+<link rel="stylesheet" href="{{asset('css/app.css')}}">
+```
+
 ## Autenticació
 
 
