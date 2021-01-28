@@ -483,7 +483,7 @@ Aquesta no és una recepta única, vosaltres també us fareu una a ben segur:
 | 1 | Configuració inicial de Laravel |
 | 2 | Crear nou projecte |
 | 3 | Generar nova key |
-| 4 | Crear database |
+| 4 | Crear database i usuari. Podem mirar apèndix si tenim problemes. |
 | 5 | Configurar convenientment .`.env` |
 | 6 | Fer les migracions |
 | 7 | Crear els models, o bé els models i controladors associats al recurs: **`php artisan make:model Post -mc`** |
