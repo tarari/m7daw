@@ -474,5 +474,17 @@ Per la via ràpida, instal·lem _**laravel/ui**_ aquest paquet de composer i exe
 
 Laravel instal·la de forma automàtica un sistema d'autenticació, per tant trobareu creat ja el model **App\User.** També trobarem  en **resources** una carpeta anomenada **auth,** amb totes les plantilles blade que s'utilitzaran en els formularis d'autenticació i registre.
 
+## Passos per crear una app en Laravel
 
+Aquesta no és una recepta única, vosaltres també us fareu una a ben segur:
+
+| \# | Tasca |
+| :--- | :--- |
+| 1 | Configuració inicial de Laravel |
+| 2 | Crear nou projecte |
+| 3 | Generar nova key |
+| 4 | Crear database |
+| 5 | Configurar convenientment .`.env` |
+| 6 | Fer les migracions |
+| 7 | Crear els models, o bé els models i controladors associats al recurs: **`php artisan make:model Post -mc`** |
 
