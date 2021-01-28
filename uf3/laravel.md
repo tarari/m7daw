@@ -480,11 +480,13 @@ Aquesta no és una recepta única, vosaltres també us fareu una a ben segur:
 
 | \# | Tasca |
 | :--- | :--- |
-| 1 | Configuració inicial de Laravel |
-| 2 | Crear nou projecte |
-| 3 | Generar nova key |
-| 4 | Crear database i usuari. Podem mirar apèndix si tenim problemes. |
+| 1 | Configuració inicial de Laravel, **git, composer, php, mysql o mariadb** |
+| 2 | Crear nou projecte: **`composer create-project laravel/laravel projecte`** |
+| 3 | Generar nova key: **`php artisan key:generate`** |
+| 4 | Crear database i usuari. Podem mirar [apèndix](../apendixs/apendix-crear-base-de-dades-i-usuari-en-docker.md) si tenim problemes. |
 | 5 | Configurar convenientment .`.env` |
 | 6 | Fer les migracions |
 | 7 | Crear els models, o bé els models i controladors associats al recurs: **`php artisan make:model Post -mc`** |
+
+
 
