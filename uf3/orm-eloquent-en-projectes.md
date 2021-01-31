@@ -189,8 +189,6 @@ return $this->hasMany(Comment::class, 'post');
 
 I a la taula comments, a l'esquema quan fem les migracions, cal afegir:
 
-
-
 ```php
 // table comments
 ....
@@ -198,4 +196,12 @@ $table->unsignedBigInteger('post');
 $table->foreign('post')->references('id')->on('posts');
 
 ```
+
+### Relacions Many to Many
+
+És un tipus de relació un pel més complicada, posem el cas d'uns usuaris que poden tenir més d'un rol dins d'un blog, per exemple lector i editor, per tant els rols poden tenir més d'un usuari associat i viceversa.
+
+
+
+
 
