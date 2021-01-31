@@ -86,9 +86,45 @@ class DB{
 
 ```
 
-### Introducció a Eloquent
+## Introducció a Eloquent
 
 **Eloquent** està inclós  a Laravel i proporciona una forma molt simple de treballar amb la base de dades. La idea bàsica és que cada taula té un **MODEL** corresponent i és l'element que utilitzem per interactuar amb una taula.
 
+Suporta una gran varietat de relacions:
 
+* [One To One](https://laravel.com/docs/8.x/eloquent-relationships#one-to-one)
+* [One To Many](https://laravel.com/docs/8.x/eloquent-relationships#one-to-many)
+* [Many To Many](https://laravel.com/docs/8.x/eloquent-relationships#many-to-many)
+* [Has One Through](https://laravel.com/docs/8.x/eloquent-relationships#has-one-through)
+* [Has Many Through](https://laravel.com/docs/8.x/eloquent-relationships#has-many-through)
+* [One To One \(Polymorphic\)](https://laravel.com/docs/8.x/eloquent-relationships#one-to-one-polymorphic-relations)
+* [One To Many \(Polymorphic\)](https://laravel.com/docs/8.x/eloquent-relationships#one-to-many-polymorphic-relations)
+* [Many To Many \(Polymorphic\)](https://laravel.com/docs/8.x/eloquent-relationships#many-to-many-polymorphic-relations)
+
+### Relacions One to One
+
+Relació d'associació entre un objecte i un altre, per exemple, un usuari té associat un telèfon, a nivell de Model, seria així:
+
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model
+{
+    /**
+     * Get the phone associated with the user.
+     */
+    public function phone()
+    {
+        return $this->hasOne(Phone::class);
+    }
+}
+```
+
+A nivell d'esquema, cal afegir els següent camp a la taula _**phones**_
+
+_\*\*\*\*_
 

@@ -28,7 +28,7 @@ Route::post('welcome', function () {
        return "Hello World!"; });
 ```
 
-Com es pot observar, la funció estàtica get, post indiquen el mètode HTTP.
+Com es pot observar, la funció **estàtica** get, post indiquen el mètode HTTP.
 
 ```php
 Route::match(['get', 'post'], 'match', function() { 
@@ -45,7 +45,7 @@ Nota: En comptes de definir tota la lògica en **routes**, és possible organitz
 
 ### Rutes que criden a un controlador
 
-Habitualment, en comptes de definir un closure, es crida a una acció d'un controlador:
+Habitualment, en comptes de definir un **closure**, es crida a una acció d'un controlador:
 
 ```php
 Route::get('post/{id}', [
