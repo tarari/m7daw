@@ -519,15 +519,58 @@ Laravel instal·la de forma automàtica un sistema d'autenticació, per tant tro
 
 Aquesta no és una recepta única, vosaltres també us fareu una a ben segur:
 
-| \# | Tasca |
-| :--- | :--- |
-| 1 | Configuració inicial de Laravel, **git, composer, php, mysql o mariadb** |
-| 2 | Crear nou projecte: **`composer create-project laravel/laravel projecte`** |
-| 3 | Generar nova key: **`php artisan key:generate`** |
-| 4 | Crear database i usuari. Podem mirar [apèndix](../apendixs/apendix-crear-base-de-dades-i-usuari-en-docker.md) si tenim problemes. |
-| 5 | Configurar convenientment .`.env` |
-| 6 | Fer les migracions |
-| 7 | Crear els models, o bé els models i controladors associats al recurs: **`php artisan make:model Post -mc`** |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">#</th>
+      <th style="text-align:left">Tasca</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">1</td>
+      <td style="text-align:left">Configuraci&#xF3; inicial de Laravel, <b>git, composer, php, mysql o mariadb</b>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">2</td>
+      <td style="text-align:left">Crear nou projecte: <b><code>composer create-project laravel/laravel projecte</code></b>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">3</td>
+      <td style="text-align:left">Generar nova key: <b><code>php artisan key:generate</code></b>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">4</td>
+      <td style="text-align:left">Crear database i usuari. Podem mirar <a href="../apendixs/apendix-crear-base-de-dades-i-usuari-en-docker.md">ap&#xE8;ndix</a> si
+        tenim problemes.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">5</td>
+      <td style="text-align:left">Configurar convenientment .<code>.env</code>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">6</td>
+      <td style="text-align:left">
+        <p>Fer les migracions</p>
+        <p><b><code>php artisan make:migration </code></b><em><b><code>create_name_table</code></b></em>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">7</td>
+      <td style="text-align:left">Crear els models, o b&#xE9; els models i controladors associats al recurs: <b><code>php artisan make:model Post -mc</code></b>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">8</td>
+      <td style="text-align:left">Procedir a generar ruta, associar el controlador i vistes associades.</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
