@@ -106,7 +106,8 @@ Suporta una gran varietat de relacions:
 Relació d'associació entre un objecte i un altre, per exemple, un usuari té associat un telèfon, a nivell de Model, seria així:
 
 ```php
-<?php
+//MODEL
+
 
 namespace App\Models;
 
@@ -122,9 +123,79 @@ class User extends Model
         return $this->hasOne(Phone::class);
     }
 }
+/// i la relcació inversa
+class Phone extends Model
+{
+    /**
+     * Get the user that owns the phone.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+}
 ```
 
-A nivell d'esquema, cal afegir els següent camp a la taula _**phones**_
+A nivell d'esquema, per fer les migracions corresponents, cal afegir els següent camp a la taula _**phones**_
 
-_\*\*\*\*_
+```php
+// table
+....
+$table->unsignedBigInteger('user');
+$table->foreign('user')->references('id')->on('users');
+
+```
+
+### Relacions One to Many
+
+Aquesta relació, estableix una associació  de múltiples objectes a un de sol, per exemple, un únic post d'un blog, estar associat a mútliples comentaris:
+
+```php
+//MODEL
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Post extends Model
+{
+    /**
+     * Get the comments for the blog post.
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+}
+
+// i la relació inversa
+class Comment extends Model
+{
+    /**
+     * Get the post that owns the comment.
+     */
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
+}
+```
+
+Si la clau forània no termina en `_id,` __per exemple `post_id`, cal afegir en la funció de relació la clau forània, en aquest cas hi posarem `post`:
+
+```php
+//return $this->hasMany(Comment::class, 'foreign_key');
+return $this->hasMany(Comment::class, 'post');
+```
+
+I a la taula comments, a l'esquema quan fem les migracions, cal afegir:
+
+
+
+```php
+// table comments
+....
+$table->unsignedBigInteger('post');
+$table->foreign('post')->references('id')->on('posts');
+
+```
 
