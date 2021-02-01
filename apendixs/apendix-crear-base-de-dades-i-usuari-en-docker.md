@@ -1,5 +1,5 @@
 ---
-description: Suposem que treballem amb Mysql.
+description: Suposem que treballem amb un contenidor docker de Mysql.
 ---
 
 # Crear base de dades i usuari en docker
