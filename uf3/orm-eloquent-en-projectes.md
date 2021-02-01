@@ -201,7 +201,7 @@ $table->foreign('post')->references('id')->on('posts');
 
 És un tipus de relació un pel més complicada, posem el cas d'uns usuaris que poden tenir més d'un rol dins d'un blog, per exemple lector i editor, per tant els rols poden tenir més d'un usuari associat i viceversa.
 
-A nivell de taules, la nostra estructura seria la següent:
+A nivell de taules, la nostra estructura seria la següent, com s'observa, cal una tercera taula pivot role\_user:
 
 ```text
 users
@@ -217,7 +217,44 @@ role_user
     role_id - integer
 ```
 
+A nivell de models, cal definir la relació a través del mètode `belongsToMany`. Mirem com queda:
 
+```php
+// Model User
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model
+{
+    /**
+     * The roles that belong to the user.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+}
+
+//Model Role (relació inversa)
+
+class Role extends Model
+{
+    /**
+     * The users that belong to the role.
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+}
+```
+
+Per accedir als diferents rols d'un usuari determinat fem servir la fòrmula:
+
+```php
+$roles = User::find(1)->roles()->get();
+```
 
 
 
