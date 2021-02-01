@@ -4,17 +4,17 @@
 
 #### **1. Etiquetes PHP**
 
-Quan PHP analitza un arxiu, cerca etiquetes d'obertura i tancament, que normalment són **`<? php **i?>`**,i indiquen a PHP quan començar i acabar d'interpretar codi . PHP també permet l'etiqueta d'obertura \`&lt;?, però es desaconsella.
+Quan PHP analitza un arxiu, cerca etiquetes d'obertura i tancament, que normalment són **`<?php  ?>`**,i indiquen a PHP quan començar i acabar d'interpretar codi . PHP també permet l'etiqueta d'obertura \``<?`, però es desaconsella.
 
 Una altra forma d'incloure codi és amb l'element script:.
 
 Si un arxiu és enterament en PHP, sense HTML, és preferible ometre l'etiqueta de tancament a la fi de l'arxiu **?&gt;**.
 
-#### **2. Escape amb HTML**
+#### **2. Escapament amb HTML**
 
 Qualsevol codi fora de les etiquetes d'obertura i tancament és ignorat per l'intèrpret de PHP. Això permet encastar PHP en HTML, cosa que el fa perfecte per crear plantilles HTML:
 
-```text
+```markup
 <p> Text ignorat per PHP.</p>
 <?php echo 'Text que serà interpretat per PHP.'; ?>
 <p> Text també ignorat.</P>
@@ -28,19 +28,19 @@ Quan es fa escapament enmig d'una condició, l'intèrpret tindrà en compte el c
 
  **** Es mostrarà si _$expression_ és true.
 
-&lt;? php  else:?&gt;
+`<?php  else:?>`
 
  **** Si no, es mostrarà aquest contingut.
 
-&lt;? php endif; ?&gt;
+`<?php endif; ?>`
 
-Per imprimir textos llargs aquest mètode és més eficient que enviar el text a través de fet o print.
+Per imprimir textos llargs aquest mètode és més eficient que enviar el text a través de `echo` o `print`.
 
 #### 3. Instrucció de separació
 
 Com en C o en Perl, PHP requereix que cada instrucció s'acabi amb un punt i coma ";" a la fi de cada sentència. L'etiqueta de tancament d'un bloc de codi PHP automàticament implica el punt i coma, de manera que no cal incloure-a al final:
 
-```text
+```php
 <?php echo 'Això és una prova' ?>
 ```
 
@@ -50,7 +50,7 @@ A vegades és recomanable aquest mètode per evitar espais en blanc a al final, 
 
 L'estil de comentaris en PHP és com el de C, C ++ o Perl:
 
-```text
+```php
 <?php echo  'Hola'; // Això és un comentari d'una línia
 /* Això és
 un comentari
@@ -62,7 +62,7 @@ echo 'Més codi';
 
 Els comentaris de diverses línies finalitzen amb el primer _\*/_:
 
-```text
+```php
 <?php
 /*
 echo 'Això és un comentari'; /* Més comentari * /
@@ -90,17 +90,17 @@ _Llista d'operadors ordenats per precedència:_
 
 | Associativitat | Operadors |
 | :--- | :--- |
-| No associatiu | clone, new |
+| No associatiu | `clone, new` |
 | Esquerra | \[ |
-| Dreta | \*\* |
-| Dreta | ++, -, ~, \(int\), \(float\), \(string\), \(array\), \(object\), \(bool \), @ |
-| No associatiu | instanceof |
-| Dreta | ! |
-| Esquerra | \*, /,% |
-| Esquerra | +, -,. |
-| Esquerra | &lt;&lt;, &gt;&gt; |
-| No associatiu | &lt;, &lt;=,&gt;,&gt; = |
-| No associatiu | ==,! =, ===,! ==, &lt;&gt; |
+| Dreta | `**` |
+| Dreta | `++, -, ~, (int), (float), (string), (array), (object), (bool ), @` |
+| No associatiu | `instanceof` |
+| Dreta | `!` |
+| Esquerra | `*, /,%` |
+| Esquerra | `+, -,.` |
+| Esquerra | `<<, >>` |
+| No associatiu | `<, <=,>,> =` |
+| No associatiu | `==,! =, ===,! ==, <>` |
 | Esquerra | & |
 | Esquerra | ^ |
 | Esquerra |  |
@@ -108,9 +108,9 @@ _Llista d'operadors ordenats per precedència:_
 | Esquerra |  |
 | Esquerra | ?: |
 | Dreta | =, + =, - =, \* =, \*\* =, / =,. =,% =, & =, / =, ^ =, &lt;&lt; =, &gt;&gt; =, =&gt; |
-| Esquerra | and |
-| Esquerra | xor |
-| Esquerra | or |
+| Esquerra | `and` |
+| Esquerra | `xor` |
+| Esquerra | `or` |
 | Esquerra | , |
 
 #### 2. Operadors aritmètics
@@ -127,13 +127,13 @@ els operadors aritmètics en PHP són els mateixos que en les matemàtiques:
 | Exponenciació | $x \*\* $i |
 | Negació | -$x |
 
-\*Divisió retorna un \(int\) si $ xi $ i són divisibles, o \(float\) si no ho són.
+\*Divisió retorna un \(int\) si $x i $i són divisibles, o \(float\) si no ho són.
 
-En Mòdul s'eliminarien primer les parts decimals transformant-se en \(int\) en cas de ser \(float\) i després es faria l'operació. El signe \(+ o -\) de l'resultat dependrà de l'dividend\*\*, per exemple: -5% 3 mostraria -2.
+\*\*En Mòdul s'eliminarien primer les parts decimals transformant-se en \(int\) en cas de ser \(float\) i després es faria l'operació. El signe \(+ o -\) de l'resultat dependrà del dividend\*\*, per exemple: -5 % 3 mostraria -2.
 
 #### 3. Operadors d'assignació
 
-ha operadors bàsics i combinats:
+Hi ha operadors bàsics i combinats:
 
 L'operador bàsic d'assignació és"=",que actua com a definidor, no com igualador.El valor d'una expressió d'assignació és el valor que se li ha assignat, és a dir: "$ x = 3" té un valor de 3.
 
@@ -141,41 +141,34 @@ En el cas d'arrays,s'assigna un valor a una clau nomenada mitjançant l'operador
 
 Els operadors combinats permeten utilitzar un valor en una expressió i establir el seu nou valor com a resultat d'aquesta expressió:
 
-&lt;? Php
+```php
+<?php
+  $x = 3;
+  $x + = 5;
+// $x val ara 8
 
-$ x = 3;
+  $i = "Hola";
+  $i.= ", Què tal?";
+  // $i val ara "Hola, Què tal?"
+```
 
-$ x + = 5;
+Hi ha una excepció a l'assignació per valor en PHP, i són els objectes,que s'assignen per referència. Els objectes es copien mitjançant la paraula `clone`.
 
-// $ x val ara agost  
+#### Assignació per referència
 
+L'assignació per referència significa que les variables apunten als mateixos valors, sense fer cap còpia:
 
-$ i = "Hola";
+```php
+<?php
+ $x = 3;
+ $i = &$x;
 
-$ i.= ", Què tal?";
+  print "$x, $i"; // Mostrarà 3, 3
 
-// $ i val ara "Hola, Com va?"
+ $x = 5;
 
-Hi ha una excepció a l'assignació per valor en PHP, i són els objectes,que s'assignen per referència. Els objectes es copien mitjançant la paraula clone.
-
-Assignació per referència
-
-L'assignació per referència significa que les variables apunten als mateixosvalors, sense fer cap còpia:
-
-&lt;? Php
-
-$ x = 3;
-
-$ i = &$x;  
-
-
-print "$ x, $i"; // Mostrarà 3, 3  
-
-
-$ x = 5;  
-
-
-print "$ x, $i"; // Mostrarà 5, 5
+ print "$x, $i"; // Mostrarà 5, 5
+```
 
 Les referències actuen com quan es crea un accés directe o àlies d'un arxiu o carpeta a l'ordinador.
 
@@ -185,30 +178,30 @@ Els operadors bit a bit permeten l'avaluaciói manipulació de bits específics 
 
 |  |  |  |
 | :--- | :--- | :--- |
-| Exemple | Nom |  |
-| $ x & $ i | And |  |
-| $ x | $ i | Or |
-| $ x ^ $ i | Xor |  |
-| ~ $ x | Not |  |
-| $ x &lt;&lt; $ i | Shift left \(desplaçament esquerra\) |  |
-| $ x &gt;&gt; $ i | Shift right \(desplaçament dreta\) |  |
+| **Exemple** | **Nom** |  |
+| `$x & $i` | And |  |
+| `$x` | $ i | Or |
+| `$x ^ $i` | Xor |  |
+| `~ $x` | Not |  |
+| `$x << $i` | Shift left \(desplaçament esquerra\) |  |
+| `$x >> $i` | Shift right \(desplaçament dreta\) |  |
 
 #### 5. Operadors de comparació
 
-Els operadors de comparació permeten comparar dos valors. Aquests valors depenen dels [tipus que tinguin](http://php.net/manual/es/language.types.type-juggling.php)assignats.Es poden veure les diferències comparatives en la [taula de comparació de](http://php.net/manual/es/types.comparisons.php)tipus.
+Els operadors de comparació permeten comparar dos valors. Aquests valors depenen dels [tipus que tinguin](http://php.net/manual/es/language.types.type-juggling.php) assignats.Es poden veure les diferències comparatives en la [taula de comparació de](http://php.net/manual/es/types.comparisons.php) tipus.
 
 |  |  |  |
 | :--- | :--- | :--- |
-| Exemple | Nom | Resultat |
-| $ x == $ i | Igual | true siguin de el mateix tipus o no |
-| $ x === $ i | Idèntic | true només si són de el mateix tipus |
-| $ x! = $ I | Diferent | true si són diferents siguin de el mateix tipus o no |
-| $ x &lt;&gt; $ i | Diferent | true si són diferents siguin de el mateix tipus o no |
-| $ x! == $ i | no idéntido | true només si no són iguals i tampoc de el mateix tipus |
-| $ x &lt;$ i | menor que | true si $ x és menor que i |
-| $ x&gt; $ i | major que | true si $ x és més gran que $ i |
-| $ x &lt;= $ i | menor o igual que | true si $ x és menor o igual que $ i |
-| $ x&gt; = $ a | major o igual que | true si $ x és més gran o igual que $ i |
+| **Exemple** | **Nom** | _Resultat_ |
+| `$x == $i` | Igual | true siguin de el mateix tipus o no |
+| `$x === $i` | Idèntic | true només si són de el mateix tipus |
+| `$x! = $i` | Diferent | true si són diferents siguin de el mateix tipus o no |
+| `$x <> $i` | Diferent | true si són diferents siguin de el mateix tipus o no |
+| `$x! == $i` | no idéntido | true només si no són iguals i tampoc de el mateix tipus |
+| `$x <$i` | menor que | true si $ x és menor que i |
+| `$x> $i` | major que | true si $ x és més gran que $ i |
+| `$x <= $i` | menor o igual que | true si $ x és menor o igual que $ i |
+|  `$x> = $a` | `major o igual` que | true si $ x és més gran o igual que $ i |
 
 Si es compara un nombre amb un string o la comparació és entre strings numèrics,cada string es converteix en nombre i la comparació es realitza numèricament \(això també s'inclou amb l'ús de switch\).Quan es fan comparacions idèntiques com === això no té sentit ja que també es comparen els tipus.
 
