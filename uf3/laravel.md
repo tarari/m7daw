@@ -501,6 +501,12 @@ mix.js('resources/js/app.js', 'public/js')
 
 Ens indica que els recursos es compilen en `public/js` i `public/css`
 
+Qualsevol canvi en resources, cal de nou compilar:
+
+```bash
+npm install && npm run dev
+```
+
 I si volem utilitzar aquests recursos, des del Blade fem ús de **asset**.
 
 ```css
