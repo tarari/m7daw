@@ -256,49 +256,46 @@ Comparacions entre diversostipus:
 
 causa de la forma en què són interpretats internament els floats,la seva comparació pot donar resultats inesperats, encara que existeixen [formes de poder](http://php.net/manual/es/language.types.float.php#language.types.float.comparison)comparar-los.
 
-L'operador ternari
+#### L'operador ternari
 
-&lt;? Php
+```php
+<?php
+    $x = "";
+    $accio =(empty($x))?  'valor1': 'valor2'; // Retornarà (string) valor1
+    
+    // L'anterior serà el mateix que:
+    if(empty($x)){
+        $accio = 'valor1';
+    } else {
+        $accio = 'valor2';
+    }
+```
 
-$ x = "";
-
-$ acció =\(empty\($x\)\)?  'valor1': 'valor2'; // Retornarà \(string\) valor1  
 
 
-// L'anterior serà el mateix que:
+Suposem l'expressió `$x?$i:$z`. Si $x és true,s'avaluarà $i. Si $x és false, s'avaluarà $z.
 
-if\(empty\($x\)\){
-
-    $ acció = 'valor1';
-
-} Else {
-
-    $ acció = 'valor2';
-
-}
-
-Suposem l'expressió $ x? $ i: $ z. Si $ x és true,s'avaluarà $ i. Si $ x és false,s'avaluarà $ z.
-
-Una forma més reduïda de l'operador ternari és mitjançant?:.Suposant $ x?: $ I, tornarà $ x si $ x és true, i $ i si $ x és false.
+Una forma més reduïda de l'operador ternari és mitjançant?:.Suposant $x?: $i, tornarà $x si $x és true, i  $i si $x és false.
 
 #### 6. Operadors de control d'errors
 
-Quan s'anteposa el símbol d'arrova @ davant de qualsevol expressió,qualsevol missatge d'error que pugui generar aquesta expressió serà ignorat.
+Quan s'anteposa el símbol d'arrova **`@`** davant de qualsevol expressió, qualsevol missatge d'error que pugui generar aquesta expressió serà ignorat.
 
-Si [track\_errors](http://php.net/manual/es/errorfunc.configuration.php#ini.track-errors) està activat, l'últimerror es guardarà a la variable \_$ php\_errormsg\_ i podrà emprar-se.
+Si [track\_errors](http://php.net/manual/es/errorfunc.configuration.php#ini.track-errors) està activat, l'últimerror es guardarà a la variable  **``**
 
-&lt;? php
+**`$php_errormsg`**\_ i podrà emprar-se.
 
-$ miarchivo = @file \('archivo\_que\_no\_existe'\) or
+```php
+<?php
+    $myfile = @file('archivo_que_no_existe') or
+    die("No s'ha pogut obrir, l'error ha estat '$php_errormsg'");
+```
 
-    die\("No s'ha pogut obrir, l'error ha estat '$php\_errormsg'"\);  
+// Funciona també si per exemple s'intenta accedir a la key d'un array que no existeix:
 
+`$valor = @$array[$key]`
 
-// Funciona també si per exemple s'intenta accedir a l'key d'un array que no existeix:
-
-$ valor = @$ array\[$key\]
-
-@ Només funciona amb expressions \(variables, crides a funcions o includes, constants ...\) no funciona amb definicions de classes o funcions, condicionals com if o foreach ...
+@ Només funciona amb expressions \(variables, crides a funcions o includes, constants ...\) **no** funciona amb definicions de classes o funcions, condicionals com if o foreach ...
 
 #### 7. Operadors d'execució
 
