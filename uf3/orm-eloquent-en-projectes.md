@@ -201,7 +201,21 @@ $table->foreign('post')->references('id')->on('posts');
 
 És un tipus de relació un pel més complicada, posem el cas d'uns usuaris que poden tenir més d'un rol dins d'un blog, per exemple lector i editor, per tant els rols poden tenir més d'un usuari associat i viceversa.
 
+A nivell de taules, la nostra estructura seria la següent:
 
+```text
+users
+    id - integer
+    name - string
+
+roles
+    id - integer
+    name - string
+
+role_user
+    user_id - integer
+    role_id - integer
+```
 
 
 
