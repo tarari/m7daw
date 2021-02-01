@@ -205,3 +205,5 @@ $table->foreign('post')->references('id')->on('posts');
 
 
 
+
+
