@@ -578,7 +578,7 @@ Aquesta no és una recepta única, vosaltres també us fareu una a ben segur:
   </tbody>
 </table>
 
-### Migració
+### Migració i seeders
 
 Després de generar les classes per la migració, podem migrar:
 
