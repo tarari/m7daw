@@ -578,5 +578,13 @@ Aquesta no és una recepta única, vosaltres també us fareu una a ben segur:
   </tbody>
 </table>
 
+### Migració
+
+Després de generar les classes per la migració, podem migrar:
+
+`php artisan migrate`
+
+Ara ja tenim creades les taules a la base de dades proposada a l'arxiu .**env.**
+
 
 
