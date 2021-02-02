@@ -622,5 +622,11 @@ Per últim, executarem el seeding de la nostra base de dades:
 php artisan db:seed
 ```
 
+Podem consultar la base de dades, comprovem que s'ha insertat un registre:
+
+```css
+SELECT * FROM users
+```
+
 
 
