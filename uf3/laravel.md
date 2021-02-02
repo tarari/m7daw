@@ -601,8 +601,25 @@ public function run(){
       'email'=>'toni@toni.com',
       'password'=>Hash::make('password')
    ]);
+   ......
    }
 }
+```
+
+Per que sigui efectiva, cal afegir la crida a aquesta funció a través de la classe _**DatabaseSeeder**_:
+
+```css
+....
+public function run()
+{
+   $this->call(UsersTableSeeder::class);
+}
+```
+
+Per últim, executarem el seeding de la nostra base de dades:
+
+```css
+php artisan db:seed
 ```
 
 
