@@ -586,5 +586,24 @@ Després de generar les classes per la migració, podem migrar:
 
 Ara ja tenim creades les taules a la base de dades proposada a l'arxiu .**env.**
 
+Un cop definides les taules, podem omplir de dades, per exemple podem crear un usuari, però en comptes de fer un registre, podem fer servir els seeders. La lògica és fàcil, creem una classe seeder, per exemple _**UsersTableSeeder**_, i dins del mètode run\(\) fem una inserció a la taula _users_,
+
+```css
+php artisan make:seeder UsersTableSeeder
+```
+
+```css
+class UserTableSeeder extends Seeder{
+
+public function run(){
+   DB::table('users')->insert([
+      'name'=>'Toni',
+      'email'=>'toni@toni.com',
+      'password'=>Hash::make('password')
+   ]);
+   }
+}
+```
+
 
 
