@@ -293,5 +293,14 @@ Per accedir als diferents rols d'un usuari determinat fem servir la fòrmula:
 $roles = User::find(1)->roles()->get();
 ```
 
+#### Desar registres
+
+```php
+$user->roles()->attach([
+   $role1->id,
+   $role2->id,
+]);
+```
+
 
 
