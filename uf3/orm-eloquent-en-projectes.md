@@ -146,6 +146,17 @@ $table->foreign('user')->references('id')->on('users');
 
 ```
 
+#### Desar un registre
+
+```php
+// entre usuari i telèfon
+$user->phone()->save($phone);
+// entre telèfon i usuari
+$car->user()->associate($user)->save();
+```
+
+
+
 ### Relacions One to Many
 
 Aquesta relació, estableix una associació  de múltiples objectes a un de sol, per exemple, un únic post d'un blog, estar associat a mútliples comentaris:
