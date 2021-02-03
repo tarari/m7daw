@@ -300,6 +300,11 @@ $user->roles()->attach([
    $role1->id,
    $role2->id,
 ]);
+// per prevenir duplicats utilitzem sync()
+$user->roles()->sync([
+   $role1->id,
+   $role2->id,
+]);
 ```
 
 
