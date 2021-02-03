@@ -215,6 +215,25 @@ $table->foreign('post')->references('id')->on('posts');
 
 ```
 
+#### Desar registres
+
+```php
+// desar diversos comentaris sobre un post
+$post->comments()->saveMany([
+   $comment1, 
+   $comment2,
+]);
+
+// o d'un en un
+$post->comments()->save($comment);
+// o associar un comentari a un post
+$comment->post()->associate($post)->save();
+```
+
+
+
+
+
 ### Relacions Many to Many
 
 És un tipus de relació un pel més complicada, posem el cas d'uns usuaris que poden tenir més d'un rol dins d'un blog, per exemple lector i editor, per tant els rols poden tenir més d'un usuari associat i viceversa.
