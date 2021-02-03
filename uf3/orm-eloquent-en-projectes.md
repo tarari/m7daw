@@ -155,6 +155,13 @@ $user->phone()->save($phone);
 $car->user()->associate($user)->save();
 ```
 
+#### Treure registres
+
+```php
+$user->car;
+$phone->user
+```
+
 
 
 ### Relacions One to Many
