@@ -290,6 +290,46 @@ Route::get('/', function () {
 
 La sortida serà en JSON.
 
+#### Rutes amb paràmetres requerits
+
+Quan volem capturar segments de la ruta URI per incorporar-los a la lògica de l'aplicació:
+
+```css
+Route::get('/user/{id}', function ($id) {
+    return 'User '.$id;
+});
+// possible ruta http://app/user/4
+```
+
+#### Rutes amb paràmetres opcionals
+
+Per rutes que podrien o no acceptar paràmetres {param?}:
+
+```css
+Route::get('/user/{name?}', function ($name = null) {
+    return $name;
+});
+// possible ruta http://app/user o bé
+//  http://app/user/pep
+```
+
+#### Rutes amb restriccions de paràmetres
+
+Si volem restringir el format dels paràmetres, podem utilitzar el mètode where en les nostres rutes, podeu consultar expressions regulars si necessiteu més informació
+
+```css
+Route::get('/user/{name}', function ($name) {
+    //
+})->where('name', '[A-Za-z]+');
+// el nom name no adment numeros
+```
+
+
+
+
+
+
+
 #### Rutes que miren el REQUEST
 
 A vegades és necessari **passar paràmetres REQUEST,** mirem la forma més simple:
