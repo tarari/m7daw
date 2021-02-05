@@ -321,31 +321,54 @@ Si volem restringir el format dels paràmetres, podem utilitzar el mètode where
 Route::get('/user/{name}', function ($name) {
     //
 })->where('name', '[A-Za-z]+');
-// el nom name no adment numeros
+// el nom name no admet numeros
+// o combinant paràmetres
+Route::get('/user/{id}/{name}', function ($id, $name) {
+    //
+})->where(['id' => '[0-9]+', 'name' => '[a-z]+']);
+
 ```
 
+#### Rutes amb nom
 
+Per facilitar la vida al programador, sobretot a l'hora de poder redireccionar, podem assignar un nom a una ruta, en aquest exemple, observem l'ús del controlador i del mètode \('**show**'\). 
 
-
-
-
-
-#### Rutes que miren el REQUEST
-
-A vegades és necessari **passar paràmetres REQUEST,** mirem la forma més simple:
+Els noms de les rutes han de ser **ÚNICS**.
 
 ```php
-Route::get('/test',function (){
-    $name=request('name');
-    return $name;
-});
+Route::get(
+    '/user/profile',
+    [UserProfileController::class, 'show']
+)->name('profile');
 ```
 
-Podem fer la prova, al navegador: `http://localhost:8000/test?name=Pepe`
+#### Generant URL a partir de rutes amb nom
+
+Un cop creada la ruta amb nom, podem generar-la per l'ús del sistema:
+
+```css
+// generar URL
+$url = route('profile');
+
+// generar Redirects...
+return redirect()->route('profile');
+```
+
+Si la ruta conté paràmetes, la ruta generada es pot utilitzar passant un array amb els valors:
+
+```php
+Route::get('/user/{id}/profile', function ($id) {
+    //
+})->name('profile');
+
+$url = route('profile', ['id' => 1]);
+```
+
+#### Passant paràmetres a vistes
 
 També podem **passar la variable a una vista**:
 
-```text
+```php
 Route::get('/test',function (){
     return view('test',['name'=>request('name')]);
 });
