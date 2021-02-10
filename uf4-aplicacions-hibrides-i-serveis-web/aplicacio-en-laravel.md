@@ -1,5 +1,5 @@
 ---
-description: Unes pautes per a la creació d'aplicacions a Laravel
+description: Unes pautes per a la creació d'aplicacions a Laravel (v.7x)
 ---
 
 # Crear una aplicació en Laravel
