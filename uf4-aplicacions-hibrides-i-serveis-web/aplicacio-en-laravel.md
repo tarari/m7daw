@@ -100,9 +100,13 @@ class ChangeTableProperties extends Migration
     public function up()
     {
         Schema::create('properties', function (Blueprint $table) {
+         // també es pot fer servir  en L8.x
+         // $table->id(); 
             $table->bigIncrements('id');
             $table->decimal('price',8,2);
             $table->string('description');
+        // també es pot fer servir en L8.x
+        //  $table->unsignedBigInteger('user_id')
             $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
