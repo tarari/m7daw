@@ -696,5 +696,25 @@ Podem consultar la base de dades, comprovem que s'ha insertat un registre:
 SELECT * FROM users
 ```
 
+### Tinker
+
+Si tenim Tinker instal·lat \(client Laravel\), podem crear usuaris en línia, per què no, mirem:
+
+```css
+php artisan tinker
+Psy Shell v0.10.6 (PHP 7.4.15 — cli) by Justin Hileman
+>>> User::create(['name'=>'John','email'=>'john@john.com','password'=>Hash::make('secret')]);
+[!] Aliasing 'User' to 'App\Models\User' for this Tinker session.
+=> App\Models\User {#4298
+     name: "John",
+     email: "john@john.com",
+     updated_at: "2021-02-13 19:01:48",
+     created_at: "2021-02-13 19:01:48",
+     id: 3,
+   }
+>>> 
+
+```
+
 
 
