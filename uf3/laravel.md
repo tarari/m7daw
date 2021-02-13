@@ -381,6 +381,22 @@ I al fitxer **views/test.blade.php** podem utilitzar la variable `$name` de la s
 {{ $name }} equival a <?= htmlentities($name); ?>
 ```
 
+### Rutes més complexes
+
+Podem crear estructures de rutes més complexes, com ara:
+
+**Grup  + Prefixe + middleware + resource** , amb això ens podem estalviar moltes línies...
+
+```css
+Route::group(['prefix'=>'admin','middleware'=>['auth','permission:admin']],function(){
+    Route::resource('videos',\App\Http\Controllers\VideoController::class);
+    Route::resource('users',\App\Http\Controllers\UserController::class);
+});
+//Rutes CRUD /admin/users i /admin/videos només per al rol d'administrador
+```
+
+
+
 ### Response
 
 Retorn d'una  resposta ben formada, amb **capçaleres head,** status i contingut. \(response\)
