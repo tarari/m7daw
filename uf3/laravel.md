@@ -638,6 +638,11 @@ Aquesta no és una recepta única, vosaltres també us fareu una a ben segur:
       <td style="text-align:left">8</td>
       <td style="text-align:left">Procedir a generar ruta, associar el controlador i vistes associades.</td>
     </tr>
+    <tr>
+      <td style="text-align:left"></td>
+      <td style="text-align:left">Per cada entitat administrable, crear el controlador de recursos, vistes
+        associades i autoritzacions (recomanable utilitzar un middleware per controlar-ho).</td>
+    </tr>
   </tbody>
 </table>
 
