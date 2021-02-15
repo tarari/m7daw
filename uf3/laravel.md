@@ -664,6 +664,16 @@ Aquesta no és una recepta única, vosaltres també us fareu una a ben segur:
 
 ### Migració i seeders
 
+Anem amb compte amb les migracions, recordem alguna característica de la seva creació
+
+```css
+php artisan make : migration "create table videos"
+//
+php artisan make:migration create_table_videos
+```
+
+
+
 Després de generar les classes per la migració, podem migrar:
 
 `php artisan migrate`
