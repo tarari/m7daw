@@ -395,7 +395,19 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','permission:admin']],funct
 //Rutes CRUD /admin/users i /admin/videos només per al rol d'administrador
 ```
 
+En quant als recursos, \(_resource_\), aquests generen unes accions dins els controladors i unes vistes associades:
 
+
+
+| Verb | URI | Action | Route Name |
+| :--- | :--- | :--- | :--- |
+| GET | `/photos` | **index** | photos.index |
+| GET | `/photos/create` | **create** | photos.create |
+| POST | `/photos` | **store** | photos.store |
+| GET | `/photos/{photo}` | **show** | photos.show |
+| GET | `/photos/{photo}/edit` | **edit** | photos.edit |
+| PUT/PATCH | `/photos/{photo}` | **update** | photos.update |
+| DELETE | `/photos/{photo}` | **destroy** | photos.destroy |
 
 ### Response
 
