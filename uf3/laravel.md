@@ -669,7 +669,13 @@ Aquesta no és una recepta única, vosaltres també us fareu una a ben segur:
     <tr>
       <td style="text-align:left"></td>
       <td style="text-align:left">Per cada entitat administrable, crear el controlador de recursos, vistes
-        associades i autoritzacions (recomanable utilitzar un middleware per controlar-ho).</td>
+        associades i autoritzacions (recomanable utilitzar un <b>middleware</b> per
+        controlar-ho).</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"></td>
+      <td style="text-align:left">Procurem tenir un codi net i endre&#xE7;at al fitxer <b>routes/web.php</b>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -689,6 +695,24 @@ php artisan make:migration create_table_videos
 Després de generar les classes per la migració, podem migrar:
 
 `php artisan migrate`
+
+Si en algun moment ens hem de fer enrere en les migracions
+
+`php artisan migrate:rollback` 
+
+que fa enrere l'últim processament, però podem indicar fins a quins passos volem anar enrere
+
+`php artisan migrate:rollback --steps=5`
+
+Però si el que volem és resetejar, partir de zero:
+
+`php artisan migrate:reset` 
+
+Si tenim arxius seeders, amb dades inicials  a la nostra base de dades, podem migrar resetejant i fer _seed_:
+
+`php artisan migrate:refresh --seed` 
+
+`migrate:fresh` en canvi, elimina les taules.
 
 Ara ja tenim creades les taules a la base de dades proposada a l'arxiu .**env.**
 
