@@ -645,7 +645,7 @@ class PropertyController extends Controller
     }
 ```
 
-Observem que en la ruta properties.index, volem mostrar totes les propietats, les quals passem a la vista. En **views** crearem la carpeta **properties** i allà dins crearem el fitxer _index.blade.php_
+Observem que en la ruta **properties.index**, volem mostrar totes les propietats, les quals passem a la vista. En **views** crearem la carpeta **properties** i allà dins crearem el fitxer _index.blade.php_
 
 ```php
 @extends('app')
