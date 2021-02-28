@@ -712,36 +712,66 @@ Si tenim arxius seeders, amb dades inicials  a la nostra base de dades, podem mi
 
 `php artisan migrate:refresh --seed` 
 
-`migrate:fresh` en canvi, elimina les taules.
+`migrate:fresh` en canvi, elimina completament totes les taules i executa de nou el migrate.
 
 Ara ja tenim creades les taules a la base de dades proposada a l'arxiu .**env.**
+
+{% hint style="info" %}
+**Pensem l'ordre**
+
+**Quan es fan els seeders, cal pensar l'ordre, qui depén de qui, per exemple Users depén de rols...., per tant primer faríem els rols.**
+{% endhint %}
 
 Un cop definides les taules, podem omplir de dades, per exemple podem crear un usuari, però en comptes de fer un registre, podem fer servir els seeders. La lògica és fàcil, creem una classe seeder, per exemple _**UsersTableSeeder**_, i dins del mètode run\(\) fem una inserció a la taula _users_,
 
 ```css
+php artisan make:seeder RolesTableSeeder
 php artisan make:seeder UsersTableSeeder
 ```
 
 ```css
+class RolesTableSeeder extends Seeder
+{
+   
+    public function run()
+    {
+        $role=new Role();
+        $role->role="visitor";
+        $role->save();
+        $role=new Role();
+        $role->role="editor";
+        $role->save();
+        $role=new Role();
+        $role->role="admin";
+        $role->save();
+
+    }
+}
+/////
 class UserTableSeeder extends Seeder{
 
 public function run(){
-   DB::table('users')->insert([
-      'name'=>'Toni',
-      'email'=>'toni@toni.com',
-      'password'=>Hash::make('password')
-   ]);
-   ......
+        $role_visitor=Role::where('role','visitor')->first();
+        $role_editor=Role::where('role','editor')->first();
+        $role_admin=Role::where('role','admin')->first();
+        $user=new User();
+        $user->name="toni";
+        $user->email="toni@toni.com";
+        $user->password=Hash::make('secret');
+        $user->save();
+        $user->roles()->attach($role_admin);
+        ......
    }
 }
 ```
 
-Per que sigui efectiva, cal afegir la crida a aquesta funció a través de la classe _**DatabaseSeeder**_:
+Per que sigui efectiva, cal afegir la crida a aquesta funció a través de la classe _**DatabaseSeeder,**_ establint l'ordre de crida.
 
 ```css
 ....
 public function run()
 {
+   $this->call(RolesTableSeeder::class);
    $this->call(UsersTableSeeder::class);
 }
 ```
