@@ -10,7 +10,10 @@ description: Trucs per sobreviure en Laravel
 
 ```php
 {{Auth::user()->name}}
+{{Auth::user()->//metodes de model User
 ```
+
+
 
 ### Definir una secció autenticat en menú
 
