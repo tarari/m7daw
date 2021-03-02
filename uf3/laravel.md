@@ -680,6 +680,10 @@ Aquesta no és una recepta única, vosaltres també us fareu una a ben segur:
   </tbody>
 </table>
 
+### 
+
+![Procediments per al desenvolupament d&apos;una app en Laravel](../.gitbook/assets/laravel-procediments.png)
+
 ### Migració i seeders
 
 Anem amb compte amb les migracions, recordem alguna característica de la seva creació
