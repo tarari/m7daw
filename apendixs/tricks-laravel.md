@@ -96,7 +96,7 @@ Publicar les pàgines d'error internes de laravel a les vistes en resources, per
  php artisan vendor:publish --tag=laravel-errors 
 ```
 
-
+![Fitxers copiats i modificables](../.gitbook/assets/captura-de-pantalla-2021-03-08-a-les-19.13.40.png)
 
 
 
