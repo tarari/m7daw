@@ -84,5 +84,19 @@ Modificar **AppServiceProvider** en Providers:
     }
 ```
 
+En el moment de treure la col·lecció, apliquem **`paginate(n)`** amb el número d'elements visualitzats per pàgina
+
+
+
+### Personalitzar les vistes d'errors
+
+Publicar les pàgines d'error internes de laravel a les vistes en resources, per modificar-les al nostre gust:
+
+```php
+ php artisan vendor:publish --tag=laravel-errors 
+```
+
+
+
 
 
