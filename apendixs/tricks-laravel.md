@@ -75,5 +75,14 @@ description: Trucs per sobreviure en Laravel
 
 ### Paginació amb bootstrap
 
+Modificar **AppServiceProvider** en Providers:
+
+```php
+ public function boot()
+    {
+        Paginator::useBootstrap();
+    }
+```
+
 
 
