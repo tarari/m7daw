@@ -122,7 +122,61 @@ OK (2 tests, 5 assertions)
 
 ```
 
+Un pas més seria comprovar si amb un usuari de prova \(fake\) podem accedir i redirigir un cop autenticat:
 
+```php
+ /** @test */
+    public function test_login_authenticates_and_redirects_user()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->post(route('login'), [
+            'email' => $user->email,
+            'password' => 'password'
+        ]);
+
+        $response->assertRedirect(route('dashboard'));
+        $this->assertAuthenticatedAs($user);
+    }
+```
+
+Aquesta prova és molt més completa. Hem utilitzat el helper factory \(**database/factoriew/UserFactory.php**\) que crea \(de forma persistent a la base de dades\) un usuari.
+
+```php
+
+namespace Database\Factories;
+
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+
+class UserFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = User::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'name' => $this->faker->name,
+            'email' => $this->faker->unique()->safeEmail,
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+        ];
+    }
+}
+
+```
 
 
 
