@@ -62,5 +62,16 @@ description: Trucs per sobreviure en Laravel
 </form>
 ```
 
+### Blade, eliminar objecte a través de mètode DELETE
+
+```php
+<form action="{{route('videos.destroy',$video)}}" method="POST">
+ <!--  <input name="_method" type="hidden" value="DELETE"> -->
+      @csrf
+      @method("DELETE")
+      <button class="btn btn-danger">Remove</button>
+</form>
+```
+
 
 
