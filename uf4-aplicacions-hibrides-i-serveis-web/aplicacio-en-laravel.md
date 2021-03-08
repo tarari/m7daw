@@ -860,6 +860,26 @@ public function update(Request $request, $id)
     }
 ```
 
+#### _Característiques_:
+
+* En comptes de passar $id, podem injectar directament l'objecte **Property.**
+* Si el model ja existeix, com és el cas, podem utilitzar el mètode **save\(\).** De manera que només actualitza aquells valors modificats. Mireu el mètode **`isDirty()`** en la documentació per a més informació.
+
+```php
+public function update(Request $request, Property $property)
+    {
+        $property->description=$request->description;
+        $property->price=$request->price;
+        $property->owner_id=$request->owner_id;
+        //$property->update(['description'=>$request->description,
+        //'price'=>$request->price,
+        //'owner_id'=>$request->owner_id
+        //]);
+        $property->save();
+        return redirect()->route('properties.index');
+    }
+```
+
 Aquest sistema d'implementació seria similar en la resta d'accions.
 
 ### Formularis i validacions
