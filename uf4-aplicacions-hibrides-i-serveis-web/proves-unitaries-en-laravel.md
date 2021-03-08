@@ -53,5 +53,76 @@ class LoginControllerTest extends TestCase
 }
 ```
 
+**El nom de la nostra prova automatitzada ha de ser el més descriptiu possible.** 
+
+En el nostre cas, volem assegurar-nos que quan visitem  `/login`, es mostra el formulari d'inici de sessió.
+
+```php
+GET /login ----> view ('auth.login')
+```
+
+I la funció quedaria de la següent manera, sempre començant per test\_:
+
+```php
+/**
+     * A Test login
+     *
+     * @return void
+     */
+    public function test_login_displays_the_login_form()
+    {
+        //objectiu
+        $response = $this->get(route('login'));
+        //comprovació
+        $response->assertStatus(200);
+        $response->assertViewIs('auth.login');
+    }
+```
+
+I per provar-la:
+
+```php
+vendor/bin/phpunit 
+tests/Feature/Http/Controllers/Auth/LoginControllerTest.php
+
+Time: 00:00.250, Memory: 20.00 MB
+
+OK (1 test, 2 assertions)
+
+```
+
+Si tot ha anat bé, sortirà OK i en verd.
+
+Una segona prova consisteix en veure si la resposta POST del login s'ajusta a lo esperat:
+
+```php
+/** @test */
+public function test_login_displays_validation_errors()
+{
+    $response = $this->post(route('login'), []);
+
+    $response->assertStatus(302);
+    $response->assertSessionHasErrors('email');
+}
+```
+
+Aquí provem que passa si no enviem dades a través de post \(array de línia 4\). Si dona errors de validació i ens redirigeix \(**302**\), en una altre línia comprovem si hi ha errors en el camp **'email'.**
+
+**El resultat seria el següent:**
+
+```php
+vendor/bin/phpunit tests/Feature/Http/Controllers/Auth/LoginControllerTest.php
+PHPUnit 9.5.2 by Sebastian Bergmann and contributors.
+
+..                                                                  2 / 2 (100%)
+
+Time: 00:00.253, Memory: 22.00 MB
+
+OK (2 tests, 5 assertions)
+
+```
+
+
+
 
 
