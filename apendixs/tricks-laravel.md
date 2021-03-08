@@ -73,5 +73,7 @@ description: Trucs per sobreviure en Laravel
 </form>
 ```
 
+### Paginació amb bootstrap
+
 
 
