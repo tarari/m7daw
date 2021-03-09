@@ -98,5 +98,11 @@ Publicar les pàgines d'error internes de laravel a les vistes en resources, per
 
 ![Fitxers copiats i modificables](../.gitbook/assets/captura-de-pantalla-2021-03-08-a-les-19.13.40.png)
 
+### Recòrrer una col·lecció amb dades buides
 
+```php
+@forelse
+@empty
+@endforelse
+```
 
