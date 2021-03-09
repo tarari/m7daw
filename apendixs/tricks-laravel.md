@@ -84,7 +84,18 @@ Modificar **AppServiceProvider** en Providers:
     }
 ```
 
-En el moment de treure la col·lecció, apliquem **`paginate(n)`** amb el número d'elements visualitzats per pàgina
+En el moment de treure la col·lecció, apliquem **`paginate(n)`** amb el número d'elements visualitzats per pàgina.
+
+
+
+I en blade:
+
+```php
+{{-- Pagination --}}
+<div class="d-flex justify-content-center">
+    {!! $videos->links() !!}
+</div>
+```
 
 
 
@@ -101,8 +112,29 @@ Publicar les pàgines d'error internes de laravel a les vistes en resources, per
 ### Recòrrer una col·lecció amb dades buides
 
 ```php
-@forelse
-@empty
-@endforelse
+ @forelse($videos as $video)
+            <div class="col-lg-4 bg-dark">
+                <div class="card m-2">
+                    <div class="card-header">
+                        {{$video->title}}
+                    </div>
+                    <div class="card-body">
+                        <div style="overflow: hidden; width: 100%; height: 150px;">
+                            <a href="{{route('videos.show',$video)}}">
+                            <video autoplay loop muted>
+                            <source src="{{asset('storage/'.$video->url)}}" type="video/mp4">
+                        </video></a>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <cite>Valoració</cite>
+                    </div>
+                </div>
+            </div>
+    @empty
+                No videos found yet
+    @endforelse
 ```
+
+
 
