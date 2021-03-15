@@ -101,6 +101,10 @@ A més, les imatges de Docker es poden extreure i extreure d'un registre de Dock
 3. Introduïu l'aplicació al registre Docker
 4. SSH al servidor de producció a. Docker pull b. Docker run
 
+## Desplegament d'aplicació Laravel sobre Heroku
+
+Sobretot caldrà revisar la documentació, atès que aquesta va variant en funció de les versions disponibles.
+
   
 
 
