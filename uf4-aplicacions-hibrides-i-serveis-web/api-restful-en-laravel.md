@@ -6,7 +6,7 @@ Si ja tens un projecte funcionant  en Laravel, ens podem   saltar la següent se
 
 #### **Requisits:**
 
-* PHP ≥7.1
+* PHP ≥7.2
 * Composer: Per instal·lar Laravel.
 * Una base de dades creada. En aquest apartat farem servir Mysql i la BD es dirà **PROVESAPI** .
 
@@ -83,17 +83,17 @@ Hauria d'estar la taula ja creada en la nostra BD. A l'revisar que tot va sortir
 **Model:**
 
 ```text
-$ php artisan make: model Pokemon
+$ php artisan make:model Pokemon
  Model creat amb èxit.
 ```
 
-El model acabat de crear hauria d'estar dins de la carpeta **App/.**
+El model acabat de crear hauria d'estar dins de la carpeta **App/Models.**
 
 Ja que el camp **name** és l'únic que modificarem en aquest cas, el afegim a l'atribut **$fillable** de la classe Pokemons.
 
 Nota: Per crear el model + la migració amb un sol comandament pots utilitzar:
 
-> `php artisan make:model pokemon -m`
+> `php artisan make:model pokemon -mf`
 
 Ara, estem preparats per crear el _controller_ que tindrà els mètodes a cridar per la nostra API.
 
@@ -102,7 +102,7 @@ Ara, estem preparats per crear el _controller_ que tindrà els mètodes a cridar
 Un dels avantatges de Laravel, és que pot crear un controlador amb mètodes ja establerts per a una api, i tenir a punt tot per a l'ús dels verbs HTTP. Tot en un senzill pas:
 
 ```text
-$ php artisan make: controller PokemonController -r
+$ php artisan make: controller Api/PokemonController -r
 ```
 
 El **-r** , vol dir que aquest controller es farà servir com a recurs, i laravel deixa els mètodes llestos per ser omplerts. Si no afegir -r, es crearà un controller totalment buit.
@@ -163,7 +163,7 @@ En PokemonController, importaré l'arxiu **App\Pokémon** per poder canviar dade
 ```php
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Pokemon;
@@ -287,7 +287,7 @@ Ara provem el mètode **show** \(\):
 
 Postman va sol·licitar amb un mètode GET  el Pokémon amb l'id = 1 a la nostra BD, en aquest cas sent Lugia.
 
-## I l'autenticació
+## I l'autenticació?
 
 El propi Laravel recomana l'ús de Laravel/passport que permet gestionar l'autenticació en accessos via API. 
 
