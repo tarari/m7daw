@@ -103,7 +103,27 @@ A més, les imatges de Docker es poden extreure i extreure d'un registre de Dock
 
 ## Desplegament d'aplicació Laravel sobre Heroku
 
-Sobretot caldrà revisar la documentació, atès que aquesta va variant en funció de les versions disponibles.
+Sobretot caldrà revisar la documentació, atès que aquesta va variant en funció de les [versions](https://devcenter.heroku.com/articles/getting-started-with-laravel) disponibles .
+
+A continuació repasem quins serien:
+
+### 1. Creació de projecte laravel
+
+`composer create-project laravel/laravel projecte`
+
+### 2. Inicialitzar git
+
+Dins de la carpeta de projecte:
+
+**`git init`**
+
+### 3. Crear Procfile
+
+Per modificar el DocumentRoot de l'aplicació Laravel i deixar-lo en la carpeta public/, en la carpeta de projecte
+
+```text
+echo "web: vendor/bin/heroku-php-apache2 public/" > Procfile
+```
 
   
 
