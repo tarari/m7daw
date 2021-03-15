@@ -126,5 +126,16 @@ echo "web: vendor/bin/heroku-php-apache2 public/" > Procfile
 ```
 
   
+I pugem els canvis al nostre repositori local.
+
+```text
+git add .
+git commit -m "Procfile de heroku"
+```
+
+### 4. Crear la nova aplicació en Heroku
+
+Si estem loguejats a heroku amb el nostre compte, podem utilitzar el comando **`heroku create`** des de la carpeta de projecte, això genera un canal push per al projecte local amb el projecte remot en Heroku.
+
 
 
