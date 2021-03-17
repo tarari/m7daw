@@ -157,5 +157,15 @@ També podem accedir al [Dashboard](https://dashboard.heroku.com/apps) de l'apli
 
 ![Variables de configuraci&#xF3;](../.gitbook/assets/captura-de-pantalla-2021-03-17-a-les-17.46.40.png)
 
+### 6. Canvi de nom de l'aplicació.
+
+Podem canviar el nom de l'aplicació amb el comando :
+
+**`heroku apps:rename nou_nom`**
+
+Això canvia el nom DNS de l'aplicació i el nom de projecte al git de Heroku.
+
+
+
 
 
