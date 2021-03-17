@@ -175,5 +175,38 @@ Si el que volem és executar comandos tipus **`php artisan`** acompanyem al coma
 heroku run php artisan ....
 ```
 
+### 8. Afegir addon de PostgreSQL
+
+Heroku permet de forma gratuïta i sense haver de ficar la targeta de crèdit, afegir un recurs, mòdul de PostgreSQL, es pot afegir des del Dashboard o bé des del client:
+
+```bash
+heroku addons:create heroku-postgresql:hobby-dev
+```
+
+Es genera al cap d'uns instants una sèrie de variables de configuració com ara DATABASE\_URL, que podem afegir en el fitxer de configuració **`config/database.php`**
+
+```bash
+....
+'pgsql' => [
+            'driver' => 'pgsql',
+            'url' => env('DATABASE_URL'),
+           /* 'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '5432'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),*/
+            .....
+```
+
+I el fitxer d'entorn:
+
+```bash
+DB_CONNECTION=pgsql
+```
+
+
+
+
+
 
 
