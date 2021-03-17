@@ -137,6 +137,14 @@ git commit -m "Procfile de heroku"
 
 Si estem loguejats a heroku amb el nostre compte, podem utilitzar el comando **`heroku create`** des de la carpeta de projecte, això genera un canal push per al projecte local amb el projecte remot en Heroku.
 
+Ja podem fer servir el comando git push per actualitzar el projecte a Heroku, des de  la carpeta de projecte:
+
+```bash
+git push heroku master
+```
+
+
+
 ### 5. Variables d'entorn de l'aplicació a Heroku
 
 Es tracta de definir les variables .env de l'aplicació Laravel a Heroku. Tenim dues vies d'entrada, a través de **Heroku cli**, 
@@ -145,5 +153,9 @@ Es tracta de definir les variables .env de l'aplicació Laravel a Heroku. Tenim 
 heroku config:set APP_KEY=$(php artisan key:generate --show)
 ```
 
-També podem accedir al [Dashboard](https://dashboard.heroku.com/apps) de l'aplicació a heroku.com i
+També podem accedir al [Dashboard](https://dashboard.heroku.com/apps) de l'aplicació a heroku.com i seleccioneu l'aplicació, i en _Settings_, accedim a _Config Vars._ Ara podem afegir les variables d'entorn en producció.
+
+![Variables de configuraci&#xF3;](../.gitbook/assets/captura-de-pantalla-2021-03-17-a-les-17.46.40.png)
+
+
 
