@@ -41,7 +41,7 @@ En aquest flux de treball, l’aplicació es compila i prova primer, i després 
 
 Això és bàsicament el mateix que el número 1, però requereix Git instal·lat al servidor de producció. El desplegament es fa amb la **càrrega**  de fitxers`git push` en lloc de la normal. A continuació, a Git, el ganxo posterior a la recepció activa la compilació. Mireu [article](https://coderwall.com/p/xczkaq/ftp-is-so-90-s-let-s-deploy-via-git-instead)
 
-###  **Temps d'inactivitat zero / desplegament atòmic**
+###  **Temps d'inactivitat zero/ desplegament atòmic**
 
 Els fluxos de treball anteriors tenen un defecte: el temps d'inactivitat. Això significa que la vostra aplicació no estarà disponible per al client durant el desplegament. La solució a això és molt senzilla: **desplegueu i creeu l'aplicació en una carpeta diferent a la de la qual s'ha servit** .  
 
