@@ -204,9 +204,14 @@ I el fitxer d'entorn:
 DB_CONNECTION=pgsql
 ```
 
+### Afegir característiques php a l'execució del dyno
 
+Si volem afegir característiques de **php.ini** a la nostra aplicació, cal modificar el fitxer Procfile i afegir paràmetres de configuració.
 
-
+1. Creem fitxer ini al nostre projecte, p.e. custom\_php.ini
+2. Afegim les línies de canvi de configuració p.e. `post_max_size` i `upload_max_filesize`, 
+3. ho afegim al Procfile: `web: vendor/bin/heroku-php-apache2 -i custom_php.ini`
+4. Fer commit dels canvis: ...... `git push heroku master`
 
 
 
