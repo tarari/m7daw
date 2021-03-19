@@ -214,9 +214,12 @@ class PokemonController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
+    //public function show(Pokemon $pokemon)
     {
         //Demanem al model el Pokemon amb  id requerit pele mètode HTTP  GET.
         return Pokemon::where('id', $id)->get();
+        // una altra opció si ens passen per paràmetre Pokemon
+        // return $pokemon;
     }
 
     /**
