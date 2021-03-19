@@ -169,7 +169,7 @@ Això canvia el nom DNS de l'aplicació i el nom de projecte al git de Heroku.
 
 ### 7. Executar comandos de consola  cli en heroku
 
-Si el que volem és executar comandos tipus **`php artisan`** acompanyem al comando el següent, en la carpeta de projecte:
+Si el que volem és executar comandos tipus **`php artisan`** acompanyem al comando el següent: **`heroku run`** , en la carpeta de projecte:
 
 ```bash
 heroku run php artisan ....
