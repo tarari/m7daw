@@ -487,22 +487,24 @@ Primer crearem un controlador per l'autenticació via Passport en API:
 
         return response()->json(['token' => $token], 200);
     }
+    
     /**
-         * User Login
-         */
-        public function login(Request $request)
-        {
-            $credentials = [
-                'email' => $request->email,
-                'password' => $request->password
-            ];
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function login(Request $request){
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
 
-            if (auth()->attempt($credentials)) {
-                $token = auth()->user()->createToken('AppNAME')->accessToken;
-                return response()->json(['token' => $token], 200);
-            } else
-                return response()->json(['error' => 'UnAuthorised'], 401);
+            $user = Auth::user();
+            $success['token'] =  $user->createToken('AppName')-> accessToken;
+            $success['user'] =  $user->email;
+
+            return $this->sendResponse($success, 'User login successfully.');
         }
+        else{
+            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
+        }
+    }
         /**
          * Returns Authenticated User Details
          *
@@ -516,7 +518,7 @@ Primer crearem un controlador per l'autenticació via Passport en API:
 
 ```
 
-La idea és que si tot va bé ens genera un token  `->createToken('AppNAME'`que actua com a testimoni de seguretat i que cal incorporar.lo en qualsevol petició.
+La idea és que si tot va bé ens genera un token  `->createToken('AppNAME'`que actua com a testimoni de seguretat i que cal incorporar.lo en qualsevol petició, Assegureu-vos que _App\Models\User_ fa servir el **trait `HasApiTokens`**
 
 Per tant si volguèssim , per exemple, veure els detalls de l'usuari, necessitem el token. En cas d'utilitzar l'eina Postman, seleccionarem **Authorization: Bearer Token**
 
