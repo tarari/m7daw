@@ -381,16 +381,20 @@ return [
 
 ### Crear rutes
 
-Les rutes cal definir-les en les rutes per a API: **`routes/api.php`**:
+Les rutes cal definir-les en les rutes per a API: **`routes/api.php.`** La definició de rutes en aquest fitxer incorpora _de facto_ el prefixe **api/**
+
+
 
 ```php
+use App\Http\Controllers\Api\UserController;
+
 Route::middleware('auth:api')->group(function () {
     Route::get('user', 'API\UserController@details');
     Route::resource('properties', 'API\PropertyController');
 });
 
-Route::post('register', 'API\UserController@register');
-Route::post('login', 'API\UserController@login');
+Route::post('login', [UserController::class,'login']);
+Route::post('register',[UserController::class,'register']);
 
 ```
 
@@ -399,7 +403,7 @@ Route::post('login', 'API\UserController@login');
 Primer crearem un controlador per l'autenticació via Passport en API:
 
 ```php
- namespace App\Http\Controllers\API;
+ namespace App\Http\Controllers\Api;
 
     use Illuminate\Http\Request;
     use App\User;
