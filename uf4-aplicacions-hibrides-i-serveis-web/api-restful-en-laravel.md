@@ -398,6 +398,62 @@ Route::post('register',[UserController::class,'register']);
 
 ```
 
+### Controlador  base API
+
+Podem gestionar tota la sortida API amb un controlador base que formategi en JSON la informació que donem al client:
+
+Creem en primer lloc el controlador: **`php artisan make:controller Api/BaseController`**
+
+```php
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class BaseController extends Controller
+{
+    /**
+     * success response method.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function sendResponse($result, $message)
+    {
+        $response = [
+            'success' => true,
+            'data'    => $result,
+            'message' => $message,
+        ];
+
+
+        return response()->json($response, 200);
+    }
+    /**
+     * return error response.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function sendError($error, $errorMessages = [], $code = 404)
+    {
+        $response = [
+            'success' => false,
+            'message' => $error,
+        ];
+
+
+        if(!empty($errorMessages)){
+            $response['data'] = $errorMessages;
+        }
+
+
+        return response()->json($response, $code);
+    }
+}
+
+```
+
+
+
 ### Crear CRUD
 
 Primer crearem un controlador per l'autenticació via Passport en API:
@@ -406,12 +462,12 @@ Primer crearem un controlador per l'autenticació via Passport en API:
  namespace App\Http\Controllers\Api;
 
     use Illuminate\Http\Request;
-    use App\User;
+    use App\Models\User;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Hash;
     use Illuminate\Contracts\Validation\{Validator};
 
-    class UserController
+    class UserController extends BaseController
     {
     /**
     * User Register
