@@ -389,8 +389,8 @@ Les rutes cal definir-les en les rutes per a API: **`routes/api.php.`** La defin
 use App\Http\Controllers\Api\UserController;
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('user', 'API\UserController@details');
-    Route::resource('properties', 'API\PropertyController');
+    Route::get('user', [UserController::class,'details']);
+    Route::resource('pokemons',PokemonController::class);
 });
 
 Route::post('login', [UserController::class,'login']);
