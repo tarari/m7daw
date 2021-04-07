@@ -524,25 +524,25 @@ Per tant si volguèssim , per exemple, veure els detalls de l'usuari, necessitem
 
 ![Exemple de visualitzaci&#xF3; de sol&#xB7;licitud de detall de l&apos;usuari loguejat](../.gitbook/assets/captura-de-pantalla-2020-04-20-a-les-16.36.11.png)
 
-Caldrà ara fer servir el PropertyController per poder desenvolupar de forma correcta la nostra API.
+Caldrà ara fer servir el PokemonController per poder desenvolupar de forma correcta la nostra API.
 
-Només un apunt: us adjunto com seria mostrar una propietat:
+Només un apunt: us adjunto com seria mostrar una pokemon:
 
 ```php
 public function show($id)
     {
-        $$property = auth()->user()->properties()->find($id);
+        $$property = auth()->user()->pokemons()->find($id);
  
         if (!$property) {
             return response()->json([
                 'success' => false,
-                'message' => 'Property with id ' . $id . ' not found'
+                'message' => 'Pokemon with id ' . $id . ' not found'
             ], 400);
         }
  
         return response()->json([
             'success' => true,
-            'data' => $property->toArray()
+            'data' => $pokemon->toArray()
         ], 400);
     }
 ```
