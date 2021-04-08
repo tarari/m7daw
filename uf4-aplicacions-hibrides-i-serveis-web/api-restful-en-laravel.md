@@ -537,13 +537,13 @@ public function show($id)
             return response()->json([
                 'success' => false,
                 'message' => 'Pokemon with id ' . $id . ' not found'
-            ], 400);
+            ], 200);
         }
  
         return response()->json([
             'success' => true,
             'data' => $pokemon->toArray()
-        ], 400);
+        ], 200);
     }
 ```
 
