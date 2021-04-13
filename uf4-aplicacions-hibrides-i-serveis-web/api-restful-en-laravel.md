@@ -156,9 +156,13 @@ Primer, per guardar dades, si ens fixem en la llista de rutes, el verb **POST** 
 
 Segon, per mostrar les dades, el mètode **GET** està associat amb **api/pokemons/{pokemon}** , i amb el mètode **pokemons.show.**
 
-Fem-li cas a la ruta.
+{% hint style="info" %}
+**CRUD** significa crear, llegir, actualitzar i esborrar. És el que fem habitualment amb les APIS
+{% endhint %}
 
-En PokemonController, importaré l'arxiu **App\Pokémon** per poder canviar dades d'aquest, i omplirem els mètodes **store\(\)** i **show \(\)** .
+Fem cas a la ruta.
+
+En PokemonController, importaré l'arxiu **App\Models\Pokemon** per poder canviar dades d'aquest, i omplirem els mètodes **store\(\)** i **show \(\)** .
 
 ```php
 <?php
@@ -166,7 +170,7 @@ En PokemonController, importaré l'arxiu **App\Pokémon** per poder canviar dade
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Pokemon;
+use App\Models\Pokemon;
 
 class PokemonController extends Controller
 {
@@ -266,7 +270,7 @@ Ara podem utilitzar el nostre mètode preferit per provar APIs. En el meu cas fa
 curl -d "name=Lugia" -X POST http://localhost:8000/api/pokemons
 ```
 
-o en format application/json
+o en format application/json, afegim -H amb la capçalera modificada.
 
 ```php
 curl  -d '{"name":"Lugia"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/pokemons
@@ -292,7 +296,7 @@ Postman va sol·licitar amb un mètode GET  el Pokémon amb l'id = 1 a la nostra
 
 ## I l'autenticació?
 
-El propi Laravel recomana l'ús de Laravel/passport que permet gestionar l'autenticació en accessos via API. 
+El propi Laravel recomana l'ús de Laravel/passport que permet gestionar l'autenticació en accessos via API. Podeu seguir la documentació que aporta laravel.com:
 
 [Laravel Passport](https://laravel.com/docs/7.x/passport)
 
