@@ -259,7 +259,7 @@ Modificarem el model User, afegirem el camp de 'roles', i l'actualitzarem, Despr
 
 Pas a pas, caldrà crear una migració per afegir el camp roles al model - taula User, in cop migrat, afegim els mètodes al model.
 
-
+### Rols d'usuari
 
 Sino tenim instal·lat l'auntenticació:
 
