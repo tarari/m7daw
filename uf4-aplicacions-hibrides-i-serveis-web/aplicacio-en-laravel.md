@@ -110,7 +110,10 @@ class ChangeTableProperties extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
-        });
+       // en Laravel 8.x:
+       // $table->foreignId('user_id')->constrained()->onDelete('cascade');
+
+          });
     }
 
     /**
