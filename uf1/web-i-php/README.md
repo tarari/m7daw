@@ -14,7 +14,7 @@ A cada **`client`** que accedeix a l'aplicació i inicia sessió se li assigna u
 
 Es defineix sessió com l'interval de temps d'una comunicació en la que s'intercanvien dades relacionades a la mateixa. En aquest procés de connexió persistent es comprova la cookie **`Php_Session_id`** amb la id de sessió emmagatzemada al servidor. El tancament de sessió indica la finalització de la comunicació.
 
-La funció **`session_start()`** inicia la sessió entre l' **usuari** i el **servidor** , i permet als valors guardats en **$ \_SESSION** ser accessibles després.  
+La funció **`session_start()`** inicia la sessió entre l' **usuari** i el **servidor** , i permet als valors guardats en **$\_SESSION** ser accessibles després.  
 Posteriorment, podem accedir a qualsevol variable sessió mentre la connexió no estigui tancada \(fins i tot des d'un altre script\).
 
 ```php
@@ -42,7 +42,7 @@ session_start();
 session_unset();
 ```
 
-Les dues accions anteriors només afecten els valors guardats a la sessió, no a la pròpia sessió. Encara es poden guardar nous valors en **`$ _SESSION`**. Si es vol **deixar d'utilitzar completament la sessió**, per exemple quan l'usuari fa **logout** , s'utilitza :
+Les dues accions anteriors només afecten els valors guardats a la sessió, no a la pròpia sessió. Encara es poden guardar nous valors en **`$_SESSION`**. Si es vol **deixar d'utilitzar completament la sessió**, per exemple quan l'usuari fa **logout** , s'utilitza :
 
 ```php
 session_start();
@@ -51,6 +51,12 @@ session_destroy();
 ```
 
 És molt recomanable que **quan ja no es necessiti la sessió es destrueixi** amb **`session_destroy()`**,  en comptes de **desvincular el valor dels seus valors** amb **`session_unset()`**. Si només es desvinculen els valors la sessió romandrà activa, el que deixa la porta oberta a intrusos.
+
+## Navegació en la aplicació
+
+Una característica molt agraïda en una aplicació web és la navegació dins l'aplicació. 
+
+És una forma de conèixer en cada moment on som i quines accions estan disponibles en qualsevol moment. Implica tenir clar el mapa de l'aplicació. És la nostra tasca saber implementar aquesta eina tan profitosa.
 
 
 
