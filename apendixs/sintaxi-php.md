@@ -28,11 +28,15 @@ Quan es fa escapament enmig d'una condició, l'intèrpret tindrà en compte el c
 
  **** Es mostrarà si _$expression_ és true.
 
-`<?php  else:?>`
+```php
+<?php  else:?>
+```
 
  **** Si no, es mostrarà aquest contingut.
 
-`<?php endif; ?>`
+```php
+<?php endif; ?>
+```
 
 Per imprimir textos llargs aquest mètode és més eficient que enviar el text a través de `echo` o `print`.
 
