@@ -10,11 +10,13 @@ Cal instal·lar previament l'extensió necessària per a cada cas.
 
 ## Crear connexió i comprovar status
 
+Comencem per la creació d'un connector a la base de dades, en aquest exemple exposem dos tipus, sqlite i mysql.
+
 ```php
 try{
     //Crear connexio
     $db = new PDO('mysql:host=localhost;dbname=DATABASENAME;charset=utf8mb4', 'USERNAME', 'PASSWORD');
-    // cas que sigui squlite
+    // cas que sigui sqlite
     $db = new PDO('sqlite:database.squlite');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);//https://www.php.net/manual/en/pdo.setattribute.php
     // com extreiem dades (en array associatiu)
@@ -29,6 +31,8 @@ try{
 
 ## Select en bucle
 
+Com fem la selecció de registres? habitualment preparem la consulta i recuperem resultats amb **fetch**.
+
 **Esquema de funcionament:**
 
 Preparació de sentència --&gt; execute\(\) --&gt; FETCH \(recòrrer resultats\)
@@ -37,7 +41,7 @@ Per evitar atacs d'injecció de codi fem servir el mètode **`prepare`** que pre
 
 ```php
 //SELECT amb bucle 
-$stmt = $db->prepare("SELECT `col`, `col2` FROM `table`");
+$stmt = $db->prepare("SELECT col,col2 FROM table");
 $stmt->execute();
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $db_col = $row['col'];
@@ -50,12 +54,14 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
 **Esquema de funcionament:**
 
-Preparació de sentència --&gt; execute\(\[array associatiu de paràmetres ":" i valors\]\) --&gt; FETCH o FETCHALL \(recòrrer resultats\)
+Preparació de sentència --&gt; execute\(\[array associatiu de paràmetres ":" i valors\]\) --&gt; FETCH o FETCHALL \(recòrrer resultats\).
+
+Col1, col2 i col3 són els camps o columnes que extreiem al resultat.
 
 ```php
 //SELECT amb  WHERE un sol valor per paràmetre
 $uid = 1610;
-$stmt = $db->prepare("SELECT `col`, `col2`, `col3` FROM `table` WHERE `uid` = :uid LIMIT 1;");
+$stmt = $db->prepare("SELECT col,col2,col3 FROM `table` WHERE `uid` = :uid LIMIT 1;");
 $stmt->execute([':uid' => $uid]);
 $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $col = $row[0]['col'];
@@ -63,9 +69,13 @@ $col = $row[0]['col'];
 
 ## Insert \(registre\)
 
+Com afegim registres a la nostra base de dades?
+
 **Esquema de funcionament:**
 
-Preparació de sentència --&gt; bind parameters-&gt; execute\(\)
+Preparació de sentència --&gt; **bind parameters**-&gt; execute\(\)
+
+L'operació **bind**, permet separar php de la consulta sql, això dona més seguretat ja que evita injecció de codi SQL a la nostra sentència.
 
 ```php
 // Prepare
