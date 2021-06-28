@@ -35,7 +35,11 @@ Com fem la selecció de registres? habitualment preparem la consulta i recuperem
 
 **Esquema de funcionament:**
 
-Preparació de sentència --&gt; execute\(\) --&gt; FETCH \(recòrrer resultats\)
+{% hint style="info" %}
+_`Preparació de sentència --> execute() --> FETCH (recòrrer resultats)`_
+{% endhint %}
+
+
 
 Per evitar atacs d'injecció de codi fem servir el mètode **`prepare`** que preprocessa la sentència abans d'executar-la.
 
