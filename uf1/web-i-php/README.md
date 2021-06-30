@@ -193,7 +193,45 @@ setcookie(
 Això requereix es cridi  a aquesta funció abans de qualsevol sortida, incloent etiquetes`<html>`i `<head>`així com qualsevol espai en blanc
 {% endhint %}
 
-.
+.**`name`**
+
+El nom de la cookies.
+
+**`value`**
+
+El valor de la cookie. Aquest valor s'emmagatzema a l'ordinador d'el client; no emmagatzemar informació sensible. Per recuperar -lo :
+
+```php
+$cookie_name=$_COOKIE['cookie_name'];
+```
+
+**`expires`**
+
+El temps en què la cookie expira. Aquesta és una marca de temps Unix en nombre de segons des del momment actual. En altres paraules, el més probable és que es faci amb la funció [time \(\)](https://www.php.net/manual/es/function.time.php) més el nombre de segons abans que sigui que expiri. O es podria usar [mktime \(\)](https://www.php.net/manual/es/function.mktime.php) . `time()+60*60*24*30`farà que la cookie establerta expiri en 30 dies. Si s'estableix a 0, o és omès, la galeta expirarà a la **fi de la sessió** \(quan el navegador és tancat\).
+
+> **Nota** :
+>
+>  Observem  que el paràmetre `expires`pren una marca de temps Unix, en lloc de format de data `Wdy, DD-Mon-YYYY HH:MM:SS GMT`, això és perquè PHP fa la conversió internament.
+
+**`path`**
+
+La ruta dins el servidor en la qual la cookie estarà disponible. Si s'utilitza `'/'`, la cookie estarà disponible a la totalitat de l' `domain`. Si es configura com `'/foo/'`, la cookie només estarà disponible dins de directori `/foo/`i tots els seus sub-directoris en el `domain`, com ara `/foo/bar/`. El valor per defecte és el directori actual a on s'està configurant la galeta.`domain`
+
+El \(sub\) domini a què la cookie està disponible. Establint això a un subdomini \(com `'www.example.com'`\) farà que la cookie estigui disponible per a aquest subdomini i tots els altres subdominis d'ell mateix \(pe w2.www.example.com\). Perquè la cookie estigui disponible per a tot el domini \(incloent tots els seus subdominis\), simplement estableixi el nom de domonio \( `'example.com'`, en aquest cas\).
+
+Els navegadors més antics encara implementen l'obsoleta [»RFC 2109](http://www.faqs.org/rfcs/rfc2109) poden necessitar un `.`per comparar tots els subdominis.
+
+**`secure`**
+
+Indica que la cookie només hauria de transmetre per una connexió segura HTTPS des del client. Quan es configura com **`true`**, la cookie només es crearà si és que hi ha una connexió segura. De la banda de servidor, depèn de l'programador el enviar aquest tipus de cookies solament a través de connexions segures \(per exemple, amb [$ \_SERVER \[ "HTTPS"\]](https://www.php.net/manual/es/reserved.variables.server.php) \).
+
+**`httponly`**
+
+Quan és **`true`**la galeta serà accessible només a través de l'protocol HTTP. Això vol dir que la galeta no serà accessible per llenguatges de scripting, com JavaScript. S'ha indicat que aquesta configuració ajuda efectivament a reduir el robatori d'identitat a través d'atacs **XSS** \(encara que no és suportada per tots els navegadors\). Afegit a PHP 5.2.0. Pot ser **`true`**o**`false`**
+
+**`options`**
+
+Un array associatiu que pot tenir qualsevol de les claus `expires`, `path`, `domain`, `secure`, `httponly`i `samesite`. Els valors tenen el mateix significat que es descriu per als paràmetres amb el mateix nom. El valor de l'element `samesite`hauria de ser `None`, `Lax`o `Strict`. Si no es dóna cap de les opcions permeses, els seus valors per defecte són els mateixos que els valors per defecte dels paràmetres explícits. Si l'element `samesite`és omès, no s'estableix cap atribut de la `cookie` SameSite.
 
   
 
