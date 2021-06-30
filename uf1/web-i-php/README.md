@@ -4,7 +4,7 @@ description: Característiques avançades de PHP per a la web
 
 # Web i PHP
 
-Una aplicació web  està dissenyada per retornar una resposta per a cada sol·licitud, que condueix a un **cicle de REQUEST - RESPONSE \(sol·licitud -resposta\)** . En el món de les aplicacions web, aquest cicle es realitza mitjançant **Hypertext Transfer Protocol** \( **HTTP\)**\), que és un protocol que garanteix que les dues parts es comuniquen amb el mateix llenguatge o estructura.
+Una aplicació web  està dissenyada per retornar una resposta per a cada sol·licitud, que condueix a un **cicle de REQUEST - RESPONSE \(sol·licitud - resposta\)** . En el món de les aplicacions web, aquest cicle es realitza mitjançant **Hypertext Transfer Protocol** \( **HTTP\)**\), que és un protocol que garanteix que les dues parts es comuniquen amb el mateix llenguatge o estructura.
 
 ## Sessions 
 
@@ -173,8 +173,29 @@ Les cookies tenen una **data d'expiració** . Aquesta data permet el navegador e
 
 Aquestes cookies, normalment denominades _**session\_cookies**_ , són usades principalment per guardar ajustos temporals.
 
+#### Sintaxi
 
+```php
+setcookie(
+    string $name,
+    string $value = "",
+    int $expires = 0,
+    string $path = "",
+    string $domain = "",
+    bool $secure = false,
+    bool $httponly = false
+): bool
+```
 
+**setcookie \(\)** defineix una cookie per ser enviada juntament amb la resta de capçaleres HTTP. Com altres capçaleres, cookies han de ser enviades _abans_ de qualsevol sortida \(echo\) en l'script \(aquest és un protocol de restricció\). 
+
+{% hint style="danger" %}
+Això requereix es cridi  a aquesta funció abans de qualsevol sortida, incloent etiquetes`<html>`i `<head>`així com qualsevol espai en blanc
+{% endhint %}
+
+.
+
+  
 
 
 ## Capçaleres HTTP
