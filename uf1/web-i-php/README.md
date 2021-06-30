@@ -155,6 +155,24 @@ El següent és un senzill **formulari** mica més complex amb les següent dade
 
 Al contrari que les sessions, les cookies són una eina controlada des de backend o frontend per desar dades al client \(navegador\).
 
+Les cookies són com **arxius de text que es guarden a l'ordinador** . A petició d'un **servidor web** , el navegador crea un arxiu d'aquest tipus. Una vegada que passa això, el servidor pot llegir i escriure contingut en aquest arxiu. 
+
+Pot semblar perillós, però hi ha una sèrie de restriccions per fer-ho el més segur possible:
+
+
+
+* **Els servidors web només poden accedir a cookies creades al seu propi domini** . Aquest domini és establert pel navegador quan el servidor crea un nou cookie, i només pot ser un domini o subdomini de servidor.
+* Segons el **protocol HTTP** , les cookies no poden ser més grans de **4096 Bytes \(4KB\)** .
+* Hi ha un **límit de cookies per domini** . Depèn del navegador, però solen ser 20 cookies.
+* També hi ha un **límit en el nombre total de cookies al disc dur de el client** . Solen ser  300 cookies. Quan s'arriba a aquest número, una cookie antiga s'elimina abans de crear la nova.
+
+Les cookies tenen una **data d'expiració** . Aquesta data permet el navegador eliminar cookies antigues quan ja no són requerides pel servidor web. Si la data d'expiració està buida, la cookies s'eliminarà quan finalitzi la connexió amb el servidor. Això passarà quan:
+
+* l'usuari **tanqui la finestra** o pestanya del lloc web, 
+* o directament tanqui el navegador. 
+
+Aquestes cookies, normalment denominades _**session\_cookies**_ , són usades principalment per guardar ajustos temporals.
+
 
 
 
