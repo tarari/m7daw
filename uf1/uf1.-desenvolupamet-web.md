@@ -27,7 +27,7 @@ PHP s'utilitza juntament amb **HTML**, **JavaScript** i **CSS** per crear aplica
 
 PHP és un llenguatge script  de servidor. El script de costat del servidor és una manera de com els servidors web poden respondre a les sol·licituds del client mitjançant **HTTP**. 
 
-El seu **funcionament** és que un client \(un navegador\) sol·licita una URL **REQUEST**. Una sol·licitud és enviada per un servidor web a un script. A continuació, l'script llegeix aquesta sol·licitud i, depenent del codi de l'script, retorna el contingut d'una pàgina **RESPONSE**.
+El seu **funcionament** és el següent:  un client \(un navegador\) sol·licita una URL **REQUEST**. Una sol·licitud és enviada per un servidor web a un script. A continuació, l'script llegeix aquesta sol·licitud i, depenent del codi de l'script, retorna el contingut d'una pàgina **RESPONSE**.
 
 Aquest procés es produeix cada vegada que es visita una pàgina web. Quan es treballa amb formularis, les dades s’envien des del client al servidor. Les dades es processen i es retorna una resposta. 
 
@@ -96,8 +96,8 @@ En aquest moment, hem après com utilitzar la `echo`instrucció. Continuem i cre
 4. Escrivim el codi següent `hello.php`i guardem-lo:
 
    ```text
-   <? php 
-   eco "Hello World!"; 
+   <?php 
+      echo "Hello World!"; 
    ?>
    ```
 
@@ -105,7 +105,7 @@ En aquest moment, hem après com utilitzar la `echo`instrucció. Continuem i cre
 6. Executem l'ordre següent a l'indicador d'ordres:
 
    ```text
-   php hola.php
+   php hello.php
    ```
 
    Veurem `Hello World!`imprès a la pantalla
