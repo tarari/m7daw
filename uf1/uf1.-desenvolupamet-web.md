@@ -417,32 +417,32 @@ Els operadors aritmètics s'utilitzen per realitzar operacions matemàtiques, pe
 
 Operador +: Es tracta de diferents números separats per un `+`operador i afegirà els valors junts:
 
-```text
-<? php echo 24 + 2; ?>
+```php
+<?php echo 24 + 2; ?>
 ```
 
 Això ens donarà `26`com a sortida.
 
 Operador -. Es tracta de diferents números separats per un `–` i restarà els valors:
 
-```text
-<? php echo 24 - 2; ?>
+```php
+<?php echo 24 - 2; ?>
 ```
 
 Això ens donarà `22`com a sortida.
 
 Operador \*.  Aquest número té diferents números separats per un `*` i mostrarà el producte:
 
-```text
-<? php echo 24 * 2; ?>
+```php
+<?php echo 24 * 2; ?>
 ```
 
 Això ens donarà `48`com a sortida.
 
 Operador /. Aquest número té diferents números separats per un `/`operador i imprimirà el resultat:
 
-```text
-<? php echo 24/2; ?>
+```php
+<?php echo 24/2; ?>
 ```
 
 Això ens donarà `12`com a sortida.
