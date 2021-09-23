@@ -10,7 +10,7 @@ description: >-
 
 La clau per **aprendre** és sempre anar pas a pas, entendre quines tecnologies impliquen el desenvolupament web.
 
-El primer pas és precisament estudiar el llenguatge **html,** comprendre per exemple, Quina finalitat té el bloc etiqueta _**`<div>`**_**`.`** Aprendre a estructurar un document que servirà de base a la nostra aplicació. 
+El primer pas és precisament estudiar el llenguatge **html,** comprendre per exemple, Quina finalitat té el bloc etiqueta _**`<div> .`**_Aprendre a estructurar un document que servirà de base a la nostra aplicació. 
 
 Un cop tenim l'**arquitectura html**, anem a deixar-lo bonic, per això tenim el CSS, i si volem que pugui interactuar am l'usuari, tenim el javascript , per tant **HTML + CSS +JS**, el que diem _**frontend**_ ****de l'aplicació. Més enllà d'això trobem el que hi ha al darrera, el _backend_, que proporciona lògica, funcionament i accés a dades.
 
@@ -621,15 +621,26 @@ Els operadors d'assignació condicional de PHP s'utilitzen per establir un valor
 
 ## Sentències de control
 
+Controlen com flueix el codi.
+
+Exemples:
+
 ```php
-1. if	9. continue
-2. else	10. switch
-3. elseif/else if	11. declare
-4. while	12. return
-5. do-while	13. include/include_once
-6. for	14. require/require_once
-7. foreach	15. goto
-8. break	
+1. if	
+2. else	
+3. elseif/else if	
+4. while	
+5. do-while	
+6. for	
+7. foreach	
+8. break
+9. continue
+10. switch
+11. declare
+12. return
+13. include/include_once
+14. require/require_once
+15. goto
 ```
 
 ## Funcions
