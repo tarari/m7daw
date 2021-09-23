@@ -136,7 +136,7 @@ I per executar-lo, argv\[1\] representa primer argument que es passa després de
 
 ```php
 $ php script.php Toni
-Hello Toni
+  Hello Toni
 ```
 
 ### Exercici : utilitzar el servidor integrat per imprimir una cadena
@@ -186,7 +186,7 @@ Preparem el següent script:
 
 Executem servidor integrar des de la carpeta de l'script, doneu el nom **index.php** a l'script, de forma automàtica els servidors busquen aquest nom per executar-lo.
 
-**RECOMANACIÓ. UNA APLICACIÓ  EN UNA CARPETA**
+**RECOMANACIÓ =&gt; UNA APLICACIÓ  EN UNA CARPETA**
 
 ```php
 $ php -S localhost:8085
@@ -449,8 +449,8 @@ Això ens donarà `12`com a sortida.
 
 Operador % \(modul\) s'utilitza per calcular la resta de la divisió de dos nombres donats:
 
-```text
-<? php echo 24 % 5 ; ?>
+```php
+<?php echo 24 % 5 ; ?>
 ```
 
 Això ens donarà `4`com a sortida.
@@ -459,7 +459,7 @@ Això ens donarà `4`com a sortida.
 
 Els operadors de cadena tenen operadors de concatenació i operadors d'assignació de concatenació. Concatenació significa afegir una o més variables a una variable existent. Per exemple, diguem que tenim el següent:
 
-```text
+```php
 <?php
   $primer = "Hola";
   $segon = "Món!";
@@ -467,7 +467,7 @@ Els operadors de cadena tenen operadors de concatenació i operadors d'assignaci
 
 Ara, volem mostrar aquests elements junts mitjançant la concatenació:
 
-```text
+```php
 <?php echo $primer.' '.$segon; ?>
 ```
 
@@ -552,7 +552,7 @@ Aquí teniu un exemple:
 
 Per incrementar un valor, utilitzeu l'operador `++`. Això augmentarà el valor per un. Alternativament, s'utilitzarà `+`i un número augmentarà un valor per aquest número. Per exemple, `+3`augmentarà per `3`:
 
-```text
+```php
 <?php
  $cost = 200;
  $cost++;
@@ -561,7 +561,7 @@ Per incrementar un valor, utilitzeu l'operador `++`. Això augmentarà el valor 
 
 Per decrementar un valor, el procés és el mateix, però amb `–`:
 
-```text
+```php
 <?php
   $cost = 200;
   $cost--;
@@ -576,12 +576,12 @@ L’ `and`operador realitza la conjunció lògica de dues expressions. Retorna e
 
 L’ `!`operador significa NO. Es pot utilitzar per comprovar si una expressió no coincideix. Per exemple, considereu el següent:
 
-```text
-<? php
-$ isAdmin = true;
-If (! $ IsAdmin) {
-// només funcionarà si $ isAdmin == false
-}
+```php
+<?php
+ $isAdmin = true;
+ if (!$IsAdmin) {
+  // només funcionarà si $IsAdmin == false
+ }
 ```
 
 #### Operadors de matrius o arrays
@@ -621,7 +621,16 @@ Els operadors d'assignació condicional de PHP s'utilitzen per establir un valor
 
 ## Sentències de control
 
-
+```php
+1. if	9. continue
+2. else	10. switch
+3. elseif/else if	11. declare
+4. while	12. return
+5. do-while	13. include/include_once
+6. for	14. require/require_once
+7. foreach	15. goto
+8. break	
+```
 
 ## Funcions
 
