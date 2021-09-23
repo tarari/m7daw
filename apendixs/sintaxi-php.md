@@ -56,11 +56,11 @@ L'estil de comentaris en PHP és com el de C, C ++ o Perl:
 
 ```php
 <?php echo  'Hola'; // Això és un comentari d'una línia
-/* Això és
-un comentari
-en diverses línies */
-echo 'Més codi'; 
-# Això és un altre comentari d'una línia
+    /* Això és
+    un comentari
+    en diverses línies */
+    echo 'Més codi'; 
+    # Això és un altre comentari d'una línia
 ?>
 ```
 
@@ -68,9 +68,9 @@ Els comentaris de diverses línies finalitzen amb el primer _\*/_:
 
 ```php
 <?php
-/*
-echo 'Això és un comentari'; /* Més comentari * /
-*/
+    /*
+    echo 'Això és un comentari'; /* Més comentari * /
+    */
 ?>
 ```
 
@@ -82,7 +82,7 @@ La precedència dels operadors en PHP segueix gairebé les mateixes regles que e
 
 Quan tenen la mateixa precedència,la seva associativitat decideix com ordenar els operadors. Per exemple l'operador suma **+** té associativitat esquerra, de manera que l'operació **1 + 2 + 3** sumarà primer 1 i 2, i després 3 =&gt; \(1 + 2\) + 3. 
 
-Per contra, l'operador **=** té associativitat dreta, per la qual cosa $x =$i =$z s'agrupa de manera $x = \($ i = $z\).
+Per contra, l'operador **=** té associativitat dreta, per la qual cosa `$x =$i =$z` s'agrupa de manera `$x = ($ i = $z)`.
 
 Els operadors de mateixa precedència que no són associatius no poden usar-se junts, això: 1 &lt; 2 &gt; 1 és incorrecte.
 
@@ -131,17 +131,17 @@ els operadors aritmètics en PHP són els mateixos que en les matemàtiques:
 | Exponenciació | $x \*\* $i |
 | Negació | -$x |
 
-\*Divisió retorna un \(int\) si $x i $i són divisibles, o \(float\) si no ho són.
+_\*Divisió retorna un \(int\) si $x i $i són divisibles, o \(float\) si no ho són._
 
-\*\*En Mòdul s'eliminarien primer les parts decimals transformant-se en \(int\) en cas de ser \(float\) i després es faria l'operació. El signe \(+ o -\) de l'resultat dependrà del dividend\*\*, per exemple: -5 % 3 mostraria -2.
+_\*\*En Mòdul s'eliminarien primer les parts decimals transformant-se en \(int\) en cas de ser \(float\) i després es faria l'operació. El signe \(+ o -\) de l'resultat dependrà del dividend\*\*, per exemple: -5 % 3 mostraria -2._
 
 #### 3. Operadors d'assignació
 
 Hi ha operadors bàsics i combinats:
 
-L'operador bàsic d'assignació és"=",que actua com a definidor, no com igualador.El valor d'una expressió d'assignació és el valor que se li ha assignat, és a dir: "$ x = 3" té un valor de 3.
+L'operador bàsic d'assignació és"=",que actua com a definidor, no com igualador.El valor d'una expressió d'assignació és el valor que se li ha assignat, és a dir: "$x = 3" té un valor de 3.
 
-En el cas d'arrays,s'assigna un valor a una clau nomenada mitjançant l'operador"=&gt;".
+En el cas d'arrays, s'assigna un valor a una clau nomenada mitjançant l'operador"=&gt;".
 
 Els operadors combinats permeten utilitzar un valor en una expressió i establir el seu nou valor com a resultat d'aquesta expressió:
 
@@ -149,29 +149,29 @@ Els operadors combinats permeten utilitzar un valor en una expressió i establir
 <?php
   $x = 3;
   $x + = 5;
-// $x val ara 8
+  // $x val ara 8
 
   $i = "Hola";
-  $i.= ", Què tal?";
+  $i.= ", Què tal?";  //concatenació de cadenes
   // $i val ara "Hola, Què tal?"
 ```
 
 Hi ha una excepció a l'assignació per valor en PHP, i són els objectes,que s'assignen per referència. Els objectes es copien mitjançant la paraula `clone`.
 
-#### Assignació per referència
+#### Assignació per referència \(Ai! els punters!\)
 
 L'assignació per referència significa que les variables apunten als mateixos valors, sense fer cap còpia:
 
 ```php
 <?php
- $x = 3;
- $i = &$x;
+  $x = 3;
+  $i = &$x; //$i és còpia del valor de $x
 
   print "$x, $i"; // Mostrarà 3, 3
 
- $x = 5;
+  $x = 5;
 
- print "$x, $i"; // Mostrarà 5, 5
+  print "$x, $i"; // Mostrarà 5, 5
 ```
 
 Les referències actuen com quan es crea un accés directe o àlies d'un arxiu o carpeta a l'ordinador.
@@ -187,8 +187,8 @@ Els operadors bit a bit permeten l'avaluaciói manipulació de bits específics 
 | `$x` | $ i | Or |
 | `$x ^ $i` | Xor |  |
 | `~ $x` | Not |  |
-| `$x << $i` | Shift left \(desplaçament esquerra\) |  |
-| `$x >> $i` | Shift right \(desplaçament dreta\) |  |
+| `$x << $i` | Shift left \(desplaçament esquerra binari\)  |  |
+| `$x >> $i` | Shift right \(desplaçament dreta binari\) |  |
 
 #### 5. Operadors de comparació
 
@@ -197,44 +197,34 @@ Els operadors de comparació permeten comparar dos valors. Aquests valors depene
 |  |  |  |
 | :--- | :--- | :--- |
 | **Exemple** | **Nom** | _Resultat_ |
-| `$x == $i` | Igual | true siguin de el mateix tipus o no |
-| `$x === $i` | Idèntic | true només si són de el mateix tipus |
-| `$x! = $i` | Diferent | true si són diferents siguin de el mateix tipus o no |
-| `$x <> $i` | Diferent | true si són diferents siguin de el mateix tipus o no |
-| `$x! == $i` | no idéntido | true només si no són iguals i tampoc de el mateix tipus |
-| `$x <$i` | menor que | true si $ x és menor que i |
-| `$x> $i` | major que | true si $ x és més gran que $ i |
+| `$x==$i` | Igual | true siguin de el mateix tipus o no |
+| `$x===$i` | Idèntic | true només si són de el mateix tipus |
+| `$x!=$i` | Diferent | true si són diferents siguin de el mateix tipus o no |
+| `$x<>$i` | Diferent | true si són diferents siguin de el mateix tipus o no |
+| `$x!==$i` | no idéntico | true només si no són iguals i tampoc de el mateix tipus |
+| `$x<$i` | menor que | true si $ x és menor que i |
+| `$x>$i` | major que | true si $ x és més gran que $ i |
 | `$x <= $i` | menor o igual que | true si $ x és menor o igual que $ i |
-|  `$x> = $a` | `major o igual` que | true si $ x és més gran o igual que $ i |
+|  `$x>=$a` | `major o igual` que | true si $ x és més gran o igual que $ i |
 
 Si es compara un nombre amb un string o la comparació és entre strings numèrics,cada string es converteix en nombre i la comparació es realitza numèricament \(això també s'inclou amb l'ús de switch\).Quan es fan comparacions idèntiques com === això no té sentit ja que també es comparen els tipus.
 
-&lt;? php
-
-var\_dump\(0 == "x"\); // 0 == 0 true
-
-var\_dump \("1" == "01"\); // 1 == 1 true
-
-var\_dump \("10" == "1y1"\); // 10 == 10 true
-
-var\_dump\(100 == "1e2"\); // 100 == 100 true  
-
-
-switch \("x"\)
-
-{case 0:
-
-    echo "0";
-
-    break;
-
-casi "x": // Mai arribarà perquè "x" ja s'ha trobat amb el cas "0"
-
-    echo "x";
-
-    break;
-
-}
+```php
+<?php
+    var_dump(0 == "x"); // 0 == 0 true
+    var_dump ("1" == "01"); // 1 == 1 true
+    var_dump ("10" == "1y1"); // 10 == 10 true
+    var_dump(100 == "1e2"); // 100 == 100 true
+    
+    switch ("x"){
+        case 0:
+            echo "0";
+            break;
+        case "x": // Mai arribarà perquè "x" ja s'ha trobat amb el cas "0"
+            echo "x";
+        break;
+    }
+```
 
 Quan un string s'avalua en un context numèric, el valor i el tipus depenen de la [conversió de string a](http://php.net/manual/es/language.types.string.php#language.types.string.conversion)nombres.
 
