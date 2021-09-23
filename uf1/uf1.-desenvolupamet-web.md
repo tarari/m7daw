@@ -838,7 +838,7 @@ Una funció ha de tenir una única responsabilitat, si volem fer-ne un altre ús
 
 #### Type hints
 
-En versions posteriors a la 5.1 de PHP, es considera un benefici aportar el tipus de dada dels arguments i les sortides de funcions i mètodes. Mireu l'exemple:
+En versions posteriors a la 5.1 de PHP,  es considera un benefici aportar el tipus de dada dels arguments i les sortides de funcions i mètodes. Mireu l'exemple:
 
 ```php
 function createOutOfCreditsWarning(int $maxCredits, string $period, int $waitDays): string
