@@ -93,20 +93,20 @@ El teu email es: <?php echo $_POST["email"]; ?>
 
 
 
-Els 10 **tipus d'elements més utilitzats als formularis HTML amb PHP** són:
+Els 10 **tipus d'elements més utilitzats als formularis HTML amb PHP** són \([w3schools](https://www.w3schools.com/html/html_form_elements.asp)\):
 
-| **element** | \*\*\*\* | **Descripció** |
-| :--- | :--- | :--- |
-| `input type = "text"` | Caixa de text |  |
-| `input type = "password"` | Caixa de text on es mostren asteriscs en lloc dels caràcters escrits |  |
-| `input type = "checkbox"` | Caixes seleccionables que permet escollir múltiples opcions |  |
-| `input type = "radio"` | Caixes seleccionables en grups que només permeten escollir una opció |  |
-| `input type = "submit"` | Botó per enviar el formulari |  |
-| `input type = "file"` | Caixes de text i botó que permet pujar arxius |  |
-| `input type = "hidden"` | Element amagat. Especialment útil per tokens de seguretat |  |
-| `option` | Una opció possible dins d'un element element |  |
-| `select` | Llista d'opcions d'elements option |  |
-| `textarea` | text multilínia |  |
+| **element** | **descripció** |
+| :--- | :--- |
+| `input type = "text"` | Caixa de text |
+| `input type = "password"` | Caixa de text on es mostren asteriscs en lloc dels caràcters escrits |
+| `input type = "checkbox"` | Caixes seleccionables que permet escollir múltiples opcions |
+| `input type = "radio"` | Caixes seleccionables en grups que només permeten escollir una opció |
+| `input type = "submit"` | Botó per enviar el formulari |
+| `input type = "file"` | Caixes de text i botó que permet pujar arxius |
+| `input type = "hidden"` | Element amagat. Especialment útil per tokens de seguretat |
+| `option` | Una opció possible dins d'un element element |
+| `select` | Llista d'opcions d'elements option |
+| `textarea` | text multilínia |
 
 ### Validació de formularis
 
