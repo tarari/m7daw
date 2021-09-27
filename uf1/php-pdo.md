@@ -4,7 +4,7 @@ description: Accés a bases de dades
 
 # PHP PDO
 
-L'extensió _Objectes de Dades de PHP_ \( PDO per les seves sigles en anglès\) defineix una interfície i capa d'abstracció lleugera per poder accedir a bases de dades en PHP. Cada controlador de bases de dades que implementi la interfície PDO \(sqlite, mysql, sqlserver, pgsql\) pot exposar característiques específiques de la base de dades, com les funcions habituals de l'extensió. 
+L'extensió _Objectes de Dades de PHP_ \( PDO per les seves sigles en anglès\) defineix una interfície i capa d'abstracció lleugera per poder accedir a bases de dades en PHP. Cada controlador de bases de dades que implementi la interfície PDO \(**sqlite, mysql, sqlserver, pgsql\)** pot exposar característiques específiques de la base de dades, com les funcions habituals de l'extensió. 
 
 Cal instal·lar previament l'extensió necessària per a cada cas.
 
