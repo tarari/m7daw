@@ -8,7 +8,7 @@ description: Aplicació amb registres i autenticació d'usuaris.
 
 Anem a veure un exemple pràctic del que hem estudiat fins ara.
 
-L'arquitectura web determina que un dels models arquitectònics \( la forma de fer les coses web \) més utilitzats en desenvolupament és el que segueix la separació en tres capes, **client - servidor i dades**. El paradigma de programació MVC \(Model - Vista - Client\), és el que millor s'aproxima a aquest model de tres capes.
+L'arquitectura web determina que un dels models arquitectònics ( la forma de fer les coses web ) més utilitzats en desenvolupament és el que segueix la separació en tres capes, **client - servidor i dades**. El paradigma de programació MVC (Model - Vista - Client), és el que millor s'aproxima a aquest model de tres capes.
 
 Mireu l'esquema:
 
@@ -42,13 +42,13 @@ Encarregat de satisfer les demandes de dades persistents
 
 Punts a tenir en compte:
 
-* _Separació de codi \(vista, fitxers i funcions \)_
+* _Separació de codi (vista, fitxers i funcions )_
 * Connexió a base de dades tant en mysql i/o sqlite, opció configurable.
 * Les accions de la nostra aplicació estaran en els scripts de la carpeta _controllers_
 
 Cal preparar l'estructura en carpetes de l'aplicació:
 
-```text
+```
 .htaccess
 index.php
 schemagen.php
@@ -74,7 +74,7 @@ schemagen.php
        
 ```
 
-A connect.php hi posarem la connexió PDO, ja sigui mysql o bé sqlite \(depenent de les extensions\)
+A connect.php hi posarem la connexió PDO, ja sigui mysql o bé sqlite (depenent de les extensions)
 
 **`index.php`**, arrenca l'aplicació i carrega directament el controlador **home,** així com l'activació de la sessió.
 
@@ -100,7 +100,7 @@ La **navegació** interna de l'app és la següent:
 request ------------------------------------> response
 ```
 
-**En alguns casos necessitem reescriure i adaptar la REQUEST , .htaccess se n'ocupa d'això. Index.php**  localitza el _controller_ en funció de la ruta indicada a través del REQUEST, concretament podem agafar un paràmetre de la QUERY\_STRING. Ara cal cridar al controller i aquest farà les feines o accions corresponents.
+**En alguns casos necessitem reescriure i adaptar la REQUEST , .htaccess se n'ocupa d'això. Index.php**  localitza el _controller_ en funció de la ruta indicada a través del REQUEST, concretament podem agafar un paràmetre de la QUERY_STRING. Ara cal cridar al controller i aquest farà les feines o accions corresponents.
 
 L'estructura de la REQUEST és similar a la figura:
 
@@ -109,7 +109,7 @@ QUERY_STRING
 http://app/index.php?url=controlador
 ```
 
-El sistema d'enrutament es basa en capturar el paràmetre url de la query\_string i el processa per tal d'obtenir el controlador que s'encarregarà de gestionar la REQUEST.
+El sistema d'enrutament es basa en capturar el paràmetre url de la query_string i el processa per tal d'obtenir el controlador que s'encarregarà de gestionar la REQUEST.
 
 ### Entorn
 
@@ -168,12 +168,12 @@ En el cas de **Msyql**, requerim un objecte de connexió PDO.
 ```
 
 {% hint style="info" %}
-Per  gestionar la creació de la taula que utilitza la nostra app, podem utilitzar una funció **schemaGen\(\)**, que en esència , executa un comando de creació de taula, distingim també entre sqlite i mysql.
+Per  gestionar la creació de la taula que utilitza la nostra app, podem utilitzar una funció **schemaGen()**, que en esència , executa un comando de creació de taula, distingim també entre sqlite i mysql.
 {% endhint %}
 
 ### **Controladors**
 
-Estem seguint el paradigma MVC, Model Vista i Controlador. La gestió de la consulta la fa sempre el controlador, el qual actua a través de les accions \(funcions\), que  en temes posteriors tractarem com a _objectes_  i **mètodes**.
+Estem seguint el paradigma MVC, Model Vista i Controlador. La gestió de la consulta la fa sempre el controlador, el qual actua a través de les accions (funcions), que  en temes posteriors tractarem com a _objectes_  i **mètodes**.
 
 {% hint style="info" %}
 Els controladors són: encarregats de les accions de les pantalles o vistes, per exemple  si tenim vista **home**, també tindrem controlador **home**.
@@ -211,7 +211,7 @@ La forma més elegant de treballar les vistes en PHP és separar codi PHP de cod
     }
 ```
 
-El responsable del renderitzat és el controlador.  En el renderitzat, fem servir els ob \(**output-buffer**\). La seva missió és desar les dades que arriben a aquest buffer \( el fitxer de plantilla barrejat amb les dades extretes de $data\) i per últim retornar l'string que el controlador s'encarrega de mostrar :
+El responsable del renderitzat és el controlador.  En el renderitzat, fem servir els ob (**output-buffer**). La seva missió és desar les dades que arriben a aquest buffer ( el fitxer de plantilla barrejat amb les dades extretes de $data) i per últim retornar l'string que el controlador s'encarrega de mostrar :
 
 ```php
 echo render('home',['title'=>'Home '.$uname]);
@@ -252,7 +252,7 @@ I si volem més complexitat en el sentit de poder tenir més opcions d'accions i
     }
 ```
 
-I per què sigui efectiva recurrirem a que sempre s'ha de consultar al index.php per saber quina ruta cal interpretart \(**front controller**\). Necessitem un .htaccess que reescrigui les URL:
+I per què sigui efectiva recurrirem a que sempre s'ha de consultar al index.php per saber quina ruta cal interpretart (**front controller**). Necessitem un .htaccess que reescrigui les URL:
 
 ```php
 Options +FollowSymLinks
@@ -265,7 +265,7 @@ RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^(.*)$ index.php [NC,L]
 ```
 
-Si es demana per "algo" que no és ni fitxer ni directori, reescrivim la **REQUEST\_URI** per reenviar-la al index.php.
+Si es demana per "algo" que no és ni fitxer ni directori, reescrivim la **REQUEST_URI **per reenviar-la al index.php.
 
 ### Gestió de dades persistents
 
@@ -297,7 +297,7 @@ ALTER TABLE `users` ADD CONSTRAINT `users_fk0` FOREIGN KEY (`role`) REFERENCES `
 
 ### Autenticació
 
-Podem crear una funció tal que li passem paràmetres com objecte de connexió a la base de dades $db, l'email i el password \(sense encriptar\) i retorna true en el cas que el sistema trobi l'usuari pel seu email i a més coincideix el seu password encriptat amb el que tenim emmagatzemat al camp email de d'aquest registre.
+Podem crear una funció tal que li passem paràmetres com objecte de connexió a la base de dades $db, l'email i el password (sense encriptar) i retorna true en el cas que el sistema trobi l'usuari pel seu email i a més coincideix el seu password encriptat amb el que tenim emmagatzemat al camp email de d'aquest registre.
 
 ```php
 // src/db.php
@@ -342,7 +342,16 @@ El _hash_ o funció _hash_, es una funció criptogràfica especial que és utili
 
 Per més informació sobre la capa de persistència de dades, podeu consultar: 
 
-{% page-ref page="../php-pdo.md" %}
+{% content-ref url="../php-pdo.md" %}
+[php-pdo.md](../php-pdo.md)
+{% endcontent-ref %}
 
+Si volem pujar la nostra app a un servidor en remot, podem utilitzar el comando scp de ssh:
 
+```shell
+scp  -r A1/* usuari@servidor:~/httpdocs/m7/A1/
+
+```
+
+Com a resultat es crea copia el contingut de la carpeta A1 de local a la carpeta A1 en remot.
 
