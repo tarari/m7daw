@@ -2,17 +2,17 @@
 
 ## Introducció
 
-Per entendre l’ enfocament de  **programació orientat a objectes** \( **OOP** \), primer hauríem de començar discutint l’enfocament de programació orientat a **procediments**. L’enfocament procedimental és la forma convencional d’escriure codi en llenguatges d’alt nivell on es considera un problema una seqüència de coses a realitzar, com caminar, menjar, llegir, etc. Es poden escriure diverses funcions per realitzar aquestes tasques. L'enfocament processal, organitza un conjunt d'instruccions informàtiques en grups anomenats procediments, també coneguts com a **funcions**. 
+Per entendre l’ enfocament de ** programació orientat a objectes** ( **OOP** ), primer hauríem de començar discutint l’enfocament de programació orientat a **procediments**. L’enfocament procedimental és la forma convencional d’escriure codi en llenguatges d’alt nivell on es considera un problema una seqüència de coses a realitzar, com caminar, menjar, llegir, etc. Es poden escriure diverses funcions per realitzar aquestes tasques. L'enfocament processal, organitza un conjunt d'instruccions informàtiques en grups anomenats procediments, també coneguts com a **funcions**.&#x20;
 
 En un programa multifunció, malgrat que les funcions poden albergar dades locals, es defineixen moltes dades importants com a dades globals. Algunes funcions poden funcionar amb aquestes dades globals i, per tant, es podrien convertir en vulnerables. A més, aquest enfocament pot no establir una forma segura d’interaccionar amb les dades mitjançant funcions.
 
 La figura següent us mostra com funcionen les funcions en dades globals i com interaccionen entre elles:
 
-![Dades i funcions en l&#x2019;enfocament orientat al procediment ](https://s3.amazonaws.com/thinkific/file_uploads/59347/images/22c/b0a/736/C14196_05_01.png)
+![Dades i funcions en l’enfocament orientat al procediment ](https://s3.amazonaws.com/thinkific/file\_uploads/59347/images/22c/b0a/736/C14196\_05\_01.png)
 
 Ara, l’enfocament orientat a l’objecte inclou diverses maneres de protegir les vostres dades lligant les dades més a prop de les funcions de manera que es poden evitar modificacions accidentals a les dades de funcions externes. El plantejament, per naturalesa, ens permet descompondre un gran problema en entitats més petites anomenades objectes i agrupar les dades i les funcions en aquests objectes. La figura següent mostra com les dades i les funcions s’organitzen en objectes:
 
-![Dades i funcions en l&apos;enfocament orientat a objectes ](https://s3.amazonaws.com/thinkific/file_uploads/59347/images/994/c9c/1dc/C14196_05_02.png)
+![Dades i funcions en l'enfocament orientat a objectes ](https://s3.amazonaws.com/thinkific/file\_uploads/59347/images/994/c9c/1dc/C14196\_05\_02.png)
 
 Un enfocament de programació hauria de tractar grans preocupacions, com ara, com representem entitats problemàtiques de la vida real en un programa, com dissenyar un programa amb interfícies estàndard per interactuar amb funcions, com organitzar un programa en diversos mòduls de manera que puguem reutilitzar-los i amplieu-les més endavant, com afegir noves funcions a aquests mòduls i molt més. L'enfocament orientat a objectes es va desenvolupar per solucionar aquests problemes.
 
@@ -20,18 +20,20 @@ Un enfocament de programació hauria de tractar grans preocupacions, com ara, co
 
 L'enfocament orientat a objectes tracta problemes de programació mitjançant els conceptes generalitzats que es proporcionen més endavant. En aquest punt, tractarem detalls d’aquests conceptes amb detall :
 
-* Els **objectes** són entitats amb dades i **interfícies**. Poden representar una persona, un vehicle, un ventilador de taula o, potser, un compte bancari que tingui un paper important en el nostre programa. Les dades i les funcions \(o mètodes\) conviuen dins d’un objecte.
+* Els **objectes** són entitats amb dades i **interfícies**. Poden representar una persona, un vehicle, un ventilador de taula o, potser, un compte bancari que tingui un paper important en el nostre programa. Les dades i les funcions (o mètodes) conviuen dins d’un objecte.
 * Les **classes són plantilles** per crear objectes. Les dades són la descripció d’un objecte, mentre que les funcions són els comportaments d’aquest objecte, de manera que aquestes definicions de dades i mètodes es poden escriure mitjançant una classe. Les classes es poden denominar tipus de dades personalitzades.
 * L'**encapsulació de dades és l'embalatge de dades** i funcions en una sola unitat, és a dir, en una classe. Imagineu-vos una càpsula inigualable amb dades i funcions encapsulades al seu interior de manera que el món exterior no pugui accedir a les dades sempre que no exposem mètodes per a elles. Aquest aïllament de les dades d’accés directe pel programa s’anomena amagada de dades. En definitiva, declarar una classe és l'encapsulat de dades.
 * L’**abstracció** de dades és l’acte de representar propietats i característiques essencials sense donar detalls. Així doncs, la descripció de l'entitat continua sent abstracta i la responsabilitat de detallar l'entitat es pot fer a través del procés de creació o herència de l'entitat. Aquesta abstracció permet que tothom "segueixi les pautes i ho faci de la vostra manera".
 * La **herència** és el procés d’adquisició de propietats i comportaments d’una altra classe de manera que les propietats i comportaments comuns es poden reutilitzar de manera jeràrquica.
 * El **polimorfisme** és el concepte d’utilitzar la mateixa definició per a múltiples propòsits. Per exemple, volar és un comportament polimòrfic, ja que els ocells i els avions tenen les seves diferents maneres de volar.
-* L’enllaç dinàmic \(dynamic linking\) és l’enllaç d’una crida de funció al codi que s’executarà en resposta a la crida de funció. Amb aquest concepte, es desconeix el codi associat a la funció donada fins que es faci la crida en temps d'execució. Diguem que diversos objectes implementaven la mateixa funció de manera diferent i en temps d'execució es cridaria  el codi que coincideix amb l'objecte al qual es feia referència.
+* **Acoblament**, és el comportamentde com les classes depenen unes d'altres, quan menys depenen (acoblament feble), més reusable serà el codi.
+*
+* L’enllaç dinàmic (dynamic linking) és l’enllaç d’una crida de funció al codi que s’executarà en resposta a la crida de funció. Amb aquest concepte, es desconeix el codi associat a la funció donada fins que es faci la crida en temps d'execució. Diguem que diversos objectes implementaven la mateixa funció de manera diferent i en temps d'execució es cridaria  el codi que coincideix amb l'objecte al qual es feia referència.
 * El **missatge** és la manera en què els objectes interactuen entre ells. Es tracta d’especificar el nom de l’objecte, el nom dels mètodes i la informació que s’ha d’enviar. Per exemple, si un cotxe és un objecte, canviar la velocitat és un mètode i la velocitat en quilòmetres per hora és el paràmetre de velocitat que cal superar. El món exterior utilitzarà l’objecte del cotxe per enviar el missatge de “velocitat de canvi” a aquest paràmetre. La figura següent representa els conceptes anteriors mitjançant una analogia del vehicle:
 
 
 
-![Diagrama d&#x2019;her&#xE8;ncia de la propietat del vehicle](https://s3.amazonaws.com/thinkific/file_uploads/59347/images/9fd/025/c7c/C14196_05_03.png)
+![Diagrama d’herència de la propietat del vehicle](https://s3.amazonaws.com/thinkific/file\_uploads/59347/images/9fd/025/c7c/C14196\_05\_03.png)
 
 Hi ha molts tipus diferents de vehicles, com ara cotxes, autobusos, motocicletes, avions i molts més. Els vehicles tenen propietats generals com ara marca, model, color, rodes, mida del motor, etc. Aquestes són les propietats comunes que es troben en subtipus o classes de vehicles també. Atès que els cotxes, autobusos, motocicletes, etc., comparteixen una llista comuna de propietats, aquestes propietats i comportaments comuns provenen de la classe progenitora i cada subclasse afegeix les seves pròpies propietats i comportaments. Per exemple, els cotxes tenen quatre rodes i les motocicletes són de dues rodes, els cotxes tenen més capacitat de passatgers que una moto, etc. Per tant, aquestes desviacions dels tipus de vehicles haurien de situar-se a les seves pròpies subclasses de vehicles. Així, podem heretar propietats comunes i anar afegint les nostres pròpies propietats utilitzant conceptes orientats a objectes.
 
@@ -39,7 +41,7 @@ Hi ha molts tipus diferents de vehicles, com ara cotxes, autobusos, motocicletes
 
 Una classe és un model d'un objecte. Quines dades ha de contenir un objecte i quins mètodes es necessiten per accedir a aquestes dades es poden descriure mitjançant una classe. Una classe actua com una plantilla per a la creació d'objectes. Penseu com a guia,  un cotxe dissenyat amb un model. El tipus de vehicle, la marca, el model, la mida del motor, el color, etc. es defineixen a la classe `Car` juntament amb els mètodes per recuperar aquesta informació, com ara obtenir el nom del model, engegar el motor, etc.
 
-Una classe comença amb la paraula clau**`class`**seguida del nom indicat i el cos inclòs en un parell de claus. El **cos** de la classe allotja els membres de la classe i són variables, constants, funcions, variables de classe \(també conegudes com a propietats de classe o atributs de classe\) i les funcions que pertanyen a la classe, conegudes com a mètodes de classe.
+Una classe comença amb la paraula clau**`class`**seguida del nom indicat i el cos inclòs en un parell de claus. El **cos** de la classe allotja els membres de la classe i són variables, constants, funcions, variables de classe (també conegudes com a propietats de classe o atributs de classe) i les funcions que pertanyen a la classe, conegudes com a mètodes de classe.
 
 Mireu l'exemple de la següent declaració de classe:
 
@@ -122,13 +124,13 @@ public $arr = array('Apple', 'Mango', 'Banana');
 {% hint style="info" %}
 **Visibilitat**
 
-Les paraules clau  \(public, protected, private\) determinen com és l'accesibilitat a aquestes propietats/mètodes :
+Les paraules clau  (public, protected, private) determinen com és l'accesibilitat a aquestes propietats/mètodes :
 
 * **public**: accesible des de qualsevol lloc.
 * **protected**: accessible per la classe i subclasses.
 * **private**: només accesible per la classe.
 
-Una propietat sempre s'ha de definir amb una d'aquestes pararules clau. 
+Una propietat sempre s'ha de definir amb una d'aquestes pararules clau.&#x20;
 
 Un mètode sense cap definició d'accesibilitat és per defecte public.
 {% endhint %}
@@ -176,13 +178,13 @@ echo SampleClass::ONE; //1
 echo SampleClass::NAME; //John Dani
 ```
 
-**Operador d'abast \(::\)**
+**Operador d'abast (::)**
 
-En comptes  d'utilitzar **-&gt;** , el doble punt permet accedir a la part estàtica i constant. Aquest operador també s'utilitza per accedir a les funcions de super classe **`parent::.`**
+En comptes  d'utilitzar **->** , el doble punt permet accedir a la part estàtica i constant. Aquest operador també s'utilitza per accedir a les funcions de super classe** `parent::.`**
 
-###  **'self' i this**
+### ** 'self' i this**
 
-En comptes d'utilitzar **$this** , s'utilitza la paraula clau **self** per accedir a constants de la classe. En general, per a tots els accessos nivell de classe  utilitzem **self,**  per les instàncies de classe utilitzem **$this**.
+En comptes d'utilitzar **$this** , s'utilitza la paraula clau **self** per accedir a constants de la classe. En general, per a tots els accessos nivell de classe  utilitzem **self, ** per les instàncies de classe utilitzem **$this**.
 
 ```php
 class SampleClass
@@ -237,27 +239,27 @@ function sayGreetings()
 
 ### Setters i getters
 
-Quan parlem de setters i getters estem parlant d'encapsulament, el detalls dels objectes estan encapsulats \(**private** o **proctected**\) i és necessari accedir-hi a través de mètode públic.
+Quan parlem de setters i getters estem parlant d'encapsulament, el detalls dels objectes estan encapsulats (**private** o **proctected**) i és necessari accedir-hi a través de mètode públic.
 
 ### Mètodes màgics
 
-Els noms dels mètodes [\_\_construct \(\)](https://www.php.net/manual/es/language.oop5.decon.php#object.construct) , [\_\_destruct \(\)](https://www.php.net/manual/es/language.oop5.decon.php#object.destruct) , [\_\_call \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.call) , [\_\_callStatic \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.callstatic) , [\_\_get \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.get) , [\_\_set \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.set) , [\_\_isset \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.isset) , [\_\_unset \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.unset) , [\_\_sleep \(\)](https://www.php.net/manual/es/language.oop5.magic.php#object.sleep) , [\_\_wakeup \(\)](https://www.php.net/manual/es/language.oop5.magic.php#object.wakeup) , [\_\_toString \(\)](https://www.php.net/manual/es/language.oop5.magic.php#object.tostring) , [\_\_invoke \(\)](https://www.php.net/manual/es/language.oop5.magic.php#object.invoke) , [\_\_set\_state \(\)](https://www.php.net/manual/es/language.oop5.magic.php#object.set-state) , [\_\_clone \(\)](https://www.php.net/manual/es/language.oop5.cloning.php#object.clone) i [\_\_debugInfo \(\)](https://www.php.net/manual/es/language.oop5.magic.php#object.debuginfo) són màgics en les classes PHP.
+Els noms dels mètodes [\_\_construct ()](https://www.php.net/manual/es/language.oop5.decon.php#object.construct) , [\_\_destruct ()](https://www.php.net/manual/es/language.oop5.decon.php#object.destruct) , [\_\_call ()](https://www.php.net/manual/es/language.oop5.overloading.php#object.call) , [\_\_callStatic ()](https://www.php.net/manual/es/language.oop5.overloading.php#object.callstatic) , [\_\_get ()](https://www.php.net/manual/es/language.oop5.overloading.php#object.get) , [\_\_set ()](https://www.php.net/manual/es/language.oop5.overloading.php#object.set) , [\_\_isset ()](https://www.php.net/manual/es/language.oop5.overloading.php#object.isset) , [\_\_unset ()](https://www.php.net/manual/es/language.oop5.overloading.php#object.unset) , [\_\_sleep ()](https://www.php.net/manual/es/language.oop5.magic.php#object.sleep) , [\_\_wakeup ()](https://www.php.net/manual/es/language.oop5.magic.php#object.wakeup) , [\_\_toString ()](https://www.php.net/manual/es/language.oop5.magic.php#object.tostring) , [\_\_invoke ()](https://www.php.net/manual/es/language.oop5.magic.php#object.invoke) , [\_\_set\_state ()](https://www.php.net/manual/es/language.oop5.magic.php#object.set-state) , [\_\_clone ()](https://www.php.net/manual/es/language.oop5.cloning.php#object.clone) i [\_\_debugInfo ()](https://www.php.net/manual/es/language.oop5.magic.php#object.debuginfo) són màgics en les classes PHP.
 
-#### [\_\_toString \(\)](https://www.php.net/manual/es/language.oop5.magic.php#object.tostring)
+#### [\_\_toString ()](https://www.php.net/manual/es/language.oop5.magic.php#object.tostring)
 
-`public` **`__toString`** `( void ): cadena`
+`public `**`__toString`**` ( void ): cadena`
 
-El mètode [\_\_toString \(\)](https://www.php.net/manual/es/language.oop5.magic.php#object.tostring) permet a una classe decidir com comportar-se quan se li tracta com un string. Per exemple, el que _**echo  $obj;**_ mostraria. Aquest mètode ha de retornar un string, si no s'emetrà un nivell d'error fatal **`E_RECOVERABLE_ERROR`**.
+El mètode [\_\_toString ()](https://www.php.net/manual/es/language.oop5.magic.php#object.tostring) permet a una classe decidir com comportar-se quan se li tracta com un string. Per exemple, el que _**echo  $obj;** _mostraria. Aquest mètode ha de retornar un string, si no s'emetrà un nivell d'error fatal **`E_RECOVERABLE_ERROR`**.
 
 #### Sobrecàrrega de propietats
 
-[\_\_set \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.set) s'executa a l'escriure informació sobre propietats inaccessibles \(protegides o privades\) o inexistents.
+[\_\_set ()](https://www.php.net/manual/es/language.oop5.overloading.php#object.set) s'executa a l'escriure informació sobre propietats inaccessibles (protegides o privades) o inexistents.
 
-[\_\_get \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.get) s'utilitza per consultar dades a partir de propietats inaccessibles \(protegides o privades\) o inexistents.
+[\_\_get ()](https://www.php.net/manual/es/language.oop5.overloading.php#object.get) s'utilitza per consultar dades a partir de propietats inaccessibles (protegides o privades) o inexistents.
 
-[\_\_isset \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.isset) es llança a l'trucar a [isset \(\)](https://www.php.net/manual/es/function.isset.php) o [empty \(\)](https://www.php.net/manual/es/function.empty.php) sobre propietats inaccessibles \(protegides o privades\) o inexistents.
+[\_\_isset ()](https://www.php.net/manual/es/language.oop5.overloading.php#object.isset) es llança a l'trucar a [isset ()](https://www.php.net/manual/es/function.isset.php) o [empty ()](https://www.php.net/manual/es/function.empty.php) sobre propietats inaccessibles (protegides o privades) o inexistents.
 
-[\_\_unset \(\)](https://www.php.net/manual/es/language.oop5.overloading.php#object.unset) s'invoca quan es fa servir [unset \(\)](https://www.php.net/manual/es/function.unset.php) sobre propietats inaccessibles \(protegides o privades\) o inexistents.  
+[\_\_unset ()](https://www.php.net/manual/es/language.oop5.overloading.php#object.unset) s'invoca quan es fa servir [unset ()](https://www.php.net/manual/es/function.unset.php) sobre propietats inaccessibles (protegides o privades) o inexistents.\
 
 
 ```php
@@ -317,11 +319,11 @@ L'herència es pot considerar un tipus de relació entre classes. Aquestes class
 
 ### Modificadors d'accés
 
-Els dos conceptes bàsics que es troben al centre de l’OOP són la **modularitat** \(que permet la reutilització\) i l’ **encapsulació** \(que agrupa dades i mètodes per ocultar informació\). 
+Els dos conceptes bàsics que es troben al centre de l’OOP són la **modularitat** (que permet la reutilització) i l’ **encapsulació** (que agrupa dades i mètodes per ocultar informació).&#x20;
 
- Els modificadors d’accés proporcionen **protecció d’accés** per a constants d’objecte, atributs i mètodes. 
+&#x20;Els modificadors d’accés proporcionen** protecció d’accés **per a constants d’objecte, atributs i mètodes.&#x20;
 
-![Modificadors d&apos;acc&#xE9;s segon nivells](../../.gitbook/assets/acces_mod.png)
+![Modificadors d'accés segon nivells](../../.gitbook/assets/acces\_mod.png)
 
 ### Mètodes i atributs estàtics
 
@@ -331,7 +333,7 @@ Abstracció de classe
 
 ### Interfaces
 
-Representen una part important del paradigma OOP. A vegades es pot confondre amb les classes abstractes, però a diferència d'elles, representen un contracte, totes les classes que implementin la `interface` estan obligades \(per contracte\) a implementar els mètodes que estan declarats a la interface.
+Representen una part important del paradigma OOP. A vegades es pot confondre amb les classes abstractes, però a diferència d'elles, representen un contracte, totes les classes que implementin la `interface` estan obligades (per contracte) a implementar els mètodes que estan declarats a la interface.
 
 
 
@@ -353,9 +355,9 @@ A més a més  de l'herència i la implementació , que ja hem vist, hi ha altre
 
 ### Dependència
 
-La dependència és el tipus de relació més bàsica i feble entre classes. Existeix una dependència entre dos classes quan certs canvis en la definició d'una classe pot provocar modificaciones en l'altra. 
+La dependència és el tipus de relació més bàsica i feble entre classes. Existeix una dependència entre dos classes quan certs canvis en la definició d'una classe pot provocar modificaciones en l'altra.&#x20;
 
-Podem fer més feble una dependència \(codi menys acoblat\), fent que el codi depengui d'interfaces o classes abstractes en comptes de classes concretes. 
+Podem fer més feble una dependència (codi menys acoblat), fent que el codi depengui d'interfaces o classes abstractes en comptes de classes concretes.&#x20;
 
 ```php
 Professor  -------------->curs
@@ -366,7 +368,7 @@ El professor depèn del curs
 
 L' associació és una relació en la que un objecte utilitza o interactua amb  altre. En diagrames UML, la relació d'associació es mostra mitjan´çant una fletxa simple des d'un objecte i apuntant cap a l'altre.
 
-És molt normal trobar-se una associació bidireccional, en aquest cas la fletxa té punta en cada extrem. 
+És molt normal trobar-se una associació bidireccional, en aquest cas la fletxa té punta en cada extrem.&#x20;
 
 ```php
 Professor __________________> estudiant
@@ -395,7 +397,7 @@ L'agregació és un tipus especialitzat d'associació  que representa relacions
 
 La composició és un tipus específic d'agregació en la que un objecte es composa d'una o més instàncies de l'altre. La diferència entre aquesta i altres relacions està en que el component només pot existir com a part de l'objecte contenidor.
 
- En UML, la relació de composició es  representa igual que la d'agregació, però amb un rombo farcit en la base de la fletxa.
+&#x20;En UML, la relació de composició es  representa igual que la d'agregació, però amb un rombo farcit en la base de la fletxa.
 
 ```php
 Universitat <*>____________>Departaments
@@ -404,10 +406,9 @@ La universitat consta de departaments
 
 En resum, en quant a les relacions:
 
-* **Dependència**: La classe A es pot veure afectada pels canvis en la classe B. 
+* **Dependència**: La classe A es pot veure afectada pels canvis en la classe B.&#x20;
 * **Associació**: L'objecte A coneix  B. La classe A depén de B.
 * **Agregació**: L'objecte  A coneix  B y consisteix en B. La classe A depen de B.
 * **Composició**: L'objeto A coneix l'objecte B, consisteix en B i gestiona el cicle vital de B. La classe A depen de B.
 * **Implementació**: La classe A defineix mètodos declarats en la interfaç B. Els objectes A poden tractar-se com B. La classe A depen de B.
 * **Herència**: La classe A hereda la interfaç i la implementació de la classe B, pero pot estendre-la. L'objecte A pot tractar-se com B. La classe A depen de B.
-
