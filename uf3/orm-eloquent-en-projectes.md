@@ -4,7 +4,7 @@ description: Integració del component Eloquent i Database en projectes PHP
 
 # ORM Eloquent en projectes
 
-L'ús de ORM \(Object Relational Mapping\) en projectes PHP orientat a objecte, permeten realitzar l'abstracció desitjada, deslligar-nos del llenguatge SQL per a manipulació de dades en la capa de persistència.
+L'ús de ORM (Object Relational Mapping) en projectes PHP orientat a objecte, permeten realitzar l'abstracció desitjada, deslligar-nos del llenguatge SQL per a manipulació de dades en la capa de persistència.
 
 ## Instal·lació
 
@@ -12,7 +12,7 @@ Per instal·lar el component Eloquent, podem utilitzar _composer_. Aquesta eina 
 
 Crearem el nostre arxiu de dependències composer.json a l'arrel del nostre projecte:
 
-```text
+```
 {
   "name": "app-orm",
   "type": "project",
@@ -31,15 +31,15 @@ Observem la clau _**require**_, és la que determina les dependències.
 
 Des de la consola, en el directori arrel del projecte, podem iniciar la actualització o instal·lació.
 
-```text
+```
 composer install
 ```
 
-### Configuració del component 
+### Configuració del component&#x20;
 
 La configuració prèvia per poder utilitzar les característiquees del ORM, consisteix en crear un arxiu de configuració _**config.php**_ on definirem les constants de la connexió a la base de dades. En el directori arrel,
 
-```text
+```
 <?php
 
     define('DBDRIVER','mysql');
@@ -49,7 +49,7 @@ La configuració prèvia per poder utilitzar les característiquees del ORM, con
     define('DBPASS','*********');
 ```
 
-Les dades d'accés són, el driver mysql si fem servir mysq o mariadb, el host que conté el servei de base de dades, el nom de la base de dades, l'usuari de la base de dades amb privilegis CRUD \(crear, llegir, actualitzar i eliminar\), i el password d'aquest usuari.
+Les dades d'accés són, el driver mysql si fem servir mysq o mariadb, el host que conté el servei de base de dades, el nom de la base de dades, l'usuari de la base de dades amb privilegis CRUD (crear, llegir, actualitzar i eliminar), i el password d'aquest usuari.
 
 [Si teniu dubtes, mireu com crear una base de dades i un usuari](../apendixs/apendix-crear-base-de-dades-i-usuari-en-docker.md)
 
@@ -57,7 +57,7 @@ Les dades d'accés són, el driver mysql si fem servir mysq o mariadb, el host q
 
 La class DB, inicia la connexió a la base de dades i estableix els paràmetres inicials.
 
-```text
+```
 namespace App\Models;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
@@ -97,9 +97,9 @@ Suporta una gran varietat de relacions:
 * [Many To Many](https://laravel.com/docs/8.x/eloquent-relationships#many-to-many)
 * [Has One Through](https://laravel.com/docs/8.x/eloquent-relationships#has-one-through)
 * [Has Many Through](https://laravel.com/docs/8.x/eloquent-relationships#has-many-through)
-* [One To One \(Polymorphic\)](https://laravel.com/docs/8.x/eloquent-relationships#one-to-one-polymorphic-relations)
-* [One To Many \(Polymorphic\)](https://laravel.com/docs/8.x/eloquent-relationships#one-to-many-polymorphic-relations)
-* [Many To Many \(Polymorphic\)](https://laravel.com/docs/8.x/eloquent-relationships#many-to-many-polymorphic-relations)
+* [One To One (Polymorphic)](https://laravel.com/docs/8.x/eloquent-relationships#one-to-one-polymorphic-relations)
+* [One To Many (Polymorphic)](https://laravel.com/docs/8.x/eloquent-relationships#one-to-many-polymorphic-relations)
+* [Many To Many (Polymorphic)](https://laravel.com/docs/8.x/eloquent-relationships#many-to-many-polymorphic-relations)
 
 ### Relacions One to One
 
@@ -198,7 +198,7 @@ class Comment extends Model
 }
 ```
 
-Si la clau forània no termina en `_id,` __per exemple `post_id`, cal afegir en la funció de relació la clau forània, en aquest cas hi posarem `post`:
+Si la clau forània no termina en `_id,`_ _per exemple `post_id`, cal afegir en la funció de relació la clau forània, en aquest cas hi posarem `post`:
 
 ```php
 //return $this->hasMany(Comment::class, 'foreign_key');
@@ -240,7 +240,7 @@ $comment->post()->associate($post)->save();
 
 A nivell de taules, la nostra estructura seria la següent, com s'observa, cal una tercera taula pivot role\_user:
 
-```text
+```
 users
     id - integer
     name - string
@@ -306,6 +306,4 @@ $user->roles()->sync([
    $role2->id,
 ]);
 ```
-
-
 

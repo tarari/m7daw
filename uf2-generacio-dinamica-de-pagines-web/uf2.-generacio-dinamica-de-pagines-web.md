@@ -12,13 +12,13 @@ Aquest patró va ser promogut per Robert C. Martin, conegut com _Uncle Bob_  el 
 
 **SOLID** es un acrònim per a simbolitzar els 5 principis bàsics de disseny a l'hora de treballar amb el  paradigma de la programació orientada a objectes. Ajustar-nos a aquests principis ens permetrà desenvolupar arquitectures molt més fàcils de mantindre i esacalables , per tant convé familiaritzar-se amb elles de cara a entendre les seves implicacions i saber com aplicar-les. Recordem, tot és **PRÀCTICA**.
 
-###  **S:** Single-responsibility principle
+### &#x20;**S: **Single-responsibility principle
 
 > Una classe només hauria de tenir una única raó per canviar
 >
-> Una classe &lt;==&gt; una responsabilitat
+> Una classe <==> una responsabilitat
 
-Principi de responsabilitat única: Una classe ha de tenir una i només una raó per canviar o el que és el mateix: **Una classe** ha de tenir **una única responsabilitat**.
+Principi de responsabilitat única: Una classe ha de tenir una i només una raó per canviar o el que és el mateix: **Una classe** ha de tenir** una única responsabilitat**.
 
 Vist en un exemple real, si necessitem exportar un document en diferents formats com HTML i PDF, no podem delegar totes les funcions i implementacions a una única classe, la idea seria repartir **cada tasca a una classe per separat**. Vegem un exemple de coma quedaria una implementació aplicant aquest principi:
 
@@ -90,7 +90,7 @@ class PdfExportableDocument
 
 ### “O”: Open-Closed principle
 
-> Els objectes haurien d'estart oberts per a la seva extensió i tancats per la seva modificació.
+> Els objectes haurien d'estart oberts per a la seva extensió i tancats per la seva modificació.&#x20;
 
 Imaginem que necessitem implementar un sistema de **login**. Inicialment per autenticar al nostre usuari necessitem d'un usuari i una contrasenya, fins aquí tot bé, però què passa si requerim que l'usuari s'autentiqui mitjançant twiter, gmail o facebook ?
 
@@ -143,7 +143,7 @@ class LoginService
 }
 ```
 
-Com podem  observar, la classe **`LoginService`** és indiferent al  mètode d'autenticació \(per base de dades, via google o twitter, etc.\) que es vagi a utilitzar, tota la lògica aquesta dins de cada Classe dels diferents tipus d'autenticació que puguem tenir.
+Com podem  observar, la classe **`LoginService`** és indiferent al  mètode d'autenticació (per base de dades, via google o twitter, etc.) que es vagi a utilitzar, tota la lògica aquesta dins de cada Classe dels diferents tipus d'autenticació que puguem tenir.
 
 
 
@@ -157,15 +157,15 @@ Para resolver este problema una solución sería crear la interfaz `Shape` que d
 
 > Si F és una classe filla de P, llavors els objectes de P podrien ser substituïts per objectes de tipus F sense alterar les propietats del problema.
 
-El principi de substitució de Liskov \(conegut com LSP\) és un concepte important quan es tracta de programació orientada a objectes.
+El principi de substitució de Liskov (conegut com LSP) és un concepte important quan es tracta de programació orientada a objectes.
 
 **Matemàticament**
 
-> Sigui ϕ**\(x\)** una propiedad comprovable sobre els objectes **x** de tipus T. Llavors ϕ**\(y\)** ha de ser cert per a tots els objectes y  del tipus **S** on **S**, és un subtipus de **T**.
+> Sigui ϕ**(x)** una propiedad comprovable sobre els objectes **x** de tipus T. Llavors ϕ**(y)** ha de ser cert per a tots els objectes y  del tipus **S** on **S**, és un subtipus de **T**.
 
 El que vol dir és que qualsevol classe filla hauria de poder ser substituïble per la classe pare sense necessitat de conèixer les diferències entre elles.
 
-Una altra manera de pensar en això és: si tens una classe \(base\), i després tens cinc classes que estenen aquesta classe **base**, qualsevol codi que usi la classe base també hauria de funcionar si reemplaça aquesta classe base amb alguna de les seves classes filles i viceversa.
+Una altra manera de pensar en això és: si tens una classe (base), i després tens cinc classes que estenen aquesta classe **base**, qualsevol codi que usi la classe base també hauria de funcionar si reemplaça aquesta classe base amb alguna de les seves classes filles i viceversa.
 
 Vegem un exemple on es requereix calcular el preu total amb impost inclòs segons país de l'usuari.
 
@@ -236,9 +236,9 @@ echo "Italy Total: " . $italyTotal;
 
 ### “I”: Interface Segregation principle
 
-> Un client \(entenen una classe\) mai ha de ser obligat a implementar una interface que no utilitzem o els clients no han de ser forçats a dependre de mètodes que no facin servir.
+> Un client (entenen una classe) mai ha de ser obligat a implementar una interface que no utilitzem o els clients no han de ser forçats a dependre de mètodes que no facin servir.
 
-En aquest punt, estaria bé  esmentar un argot més, els _Fat Interface_. Això és que hem d'evitar fer que les nostres interfaces es tornin grosses quan es manegen gran quantitat de contractes. Una interface grossa viola també el principi de Responsabilitat Única \(_Single Responsability Principle_\) ja que segurament aquesta interface estaria manejant més d'una responsabilitat alhora.
+En aquest punt, estaria bé  esmentar un argot més, els _Fat Interface_. Això és que hem d'evitar fer que les nostres interfaces es tornin grosses quan es manegen gran quantitat de contractes. Una interface grossa viola també el principi de Responsabilitat Única (_Single Responsability Principle_) ja que segurament aquesta interface estaria manejant més d'una responsabilitat alhora.
 
 En resum, hem de garantir separar funcionalitats i definir els contractes mitjançant interfícies la responsabilitat sigui única.
 
@@ -271,7 +271,7 @@ class Developer implements Worker {
 }
 ```
 
-Com es pot observar, la interface  obliga a ambdues classes a implementar mètodes que no necessita, per exemple un Manager no té perquè implementar el mètode « **code \(..\)»** però si « **attendMeeting \(...\)** » i un Developer no té perquè implementar el mètode « **attendMeeting \(...\)** » però si « **code \(...\)** «. La solució és aplicar SRP i separar responsabilitats \(més interfaces\).
+Com es pot observar, la interface  obliga a ambdues classes a implementar mètodes que no necessita, per exemple un Manager no té perquè implementar el mètode « **code (..)»** però si « **attendMeeting (...)** » i un Developer no té perquè implementar el mètode « **attendMeeting (...)** » però si « **code (...)** «. La solució és aplicar SRP i separar responsabilitats (més interfaces).
 
 
 
@@ -296,7 +296,7 @@ class PageLoader {
 
 Aquesta estructura significa que essencialment estem estancats amb l'ús de **MySQL** per a la nostra capa de base de dades.
 
-Què passa si volem canviar això per un adaptador de base de dades diferent? Podríem estendre la classe **MySqlConnection** per crear una connexió amb **la Memòria Cau** o [**Redis**](https://redis.io/) per exemple, però això violaria el principi de la substitució de **Liskov** .
+Què passa si volem canviar això per un adaptador de base de dades diferent? Podríem estendre la classe **MySqlConnection** per crear una connexió amb **la Memòria Cau** o [**Redis**](https://redis.io) per exemple, però això violaria el principi de la substitució de **Liskov** .
 
 El més probable és que els administradors de bases de dades alternatius puguin usar-se per carregar les pàgines, de manera que necessitem trobar una manera de fer-ho.
 
@@ -329,9 +329,8 @@ class PageLoader {
 
 Amb aquesta implementació, va ser possible crear una classe **RedisConnection** i sempre que implementi la interface **ConnectionInterface** , podem usar-lo en la classe **PageLoader** per carregar pàgines.
 
-Aquest enfocament també ens obliga a escriure codi de tal manera que **eviti detalls** **d'implementació** específics en classes que no es preocupen per això. A causa de que hem passat una classe **MySqlConnection** a la nostra classe **PageLoader** , ja no tindríem perquè escriure consultes natives **SQL** a la classe **PageLoader** , o fer sentències IF per determinar quin tipus de connexió és i implementar per exemple una connexió a **Redis** .
+Aquest enfocament també ens obliga a escriure codi de tal manera que **eviti detalls** **d'implementació **específics en classes que no es preocupen per això. A causa de que hem passat una classe **MySqlConnection** a la nostra classe **PageLoader** , ja no tindríem perquè escriure consultes natives **SQL** a la classe **PageLoader** , o fer sentències IF per determinar quin tipus de connexió és i implementar per exemple una connexió a **Redis** .
 
 Això vol dir que quan passem  un objecte **RedisConnection** es comportarà de la mateixa manera que qualsevol altre tipus de classe de connexió.
 
-## 
-
+##

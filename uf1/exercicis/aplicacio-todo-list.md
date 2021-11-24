@@ -10,28 +10,27 @@ El nostre objectiu és realitzar una aplicació  de control de tasques i activit
 
 Elements d'estudi:
 
-1. Objectius de l'aplicació. Anotacions del tipus:
+1\. Objectius de l'aplicació. Anotacions del tipus:
 
-**Vull que faci..... \(amb idees clares\)  .. i quan ....**
+**Vull que faci..... (amb idees clares)  .. i quan ....**
 
-2. Esquema de funcionament lògic \(Algoritme\) segons acció.
+2\. Esquema de funcionament lògic (Algoritme) segons acció.
 
 * Autenticació/registre
 * Creació de tasca i quins elements sòn necessaris desar.
 * Compleció de tasca
 * Modificació de tasca
 * Eliminació de tasca
-* Accions avançades \(desar en fitxer totes les tasques i descarregar-lo\)
+* Accions avançades (desar en fitxer totes les tasques i descarregar-lo)
 
-3. Disseny de la base de dades. \(Esquema ER i codi SQL\)
+3\. Disseny de la base de dades. (Esquema ER i codi SQL)
 
 **users  ----- tasks ------ task\_items**
 
-4.  Anàlisi de pantalles i navegació.
+4\.  Anàlisi de pantalles i navegació.
 
-5. Codificació
+5\. Codificació
 
-6. Proves  funcionals per acció i tests de funcionament.
+6\. Proves  funcionals per acció i tests de funcionament.
 
-7. **Desplegament** \(pas de entorn de desenvolupament a producció\)
-
+7\. **Desplegament** (pas de entorn de desenvolupament a producció)

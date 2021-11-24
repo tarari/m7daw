@@ -14,19 +14,19 @@ El diagrama d'entitats seria el següent:
 
 Ens permet entendre les diferents accions  de navegació del nostre projecte, seguim esquema tradicional d'aplicació web en escriptori.
 
-| EXEMPLE | Tasca |
-| :--- | :--- |
-| USUARI \(ROLE\) | Login |
-|  | Registre |
-|  | Propietat /Registrar |
-|  | Propietat /Editar |
-|  | Propietat / Eliminar |
-|  | Publicació / Crear |
-|  | Publicació / Editar |
-|  | Publicació / Eliminar |
-| ADMIN \(ROLE\) | Backend Users |
-|  | Backend Properties |
-|  | Backend Publications |
+| EXEMPLE       | Tasca                 |
+| ------------- | --------------------- |
+| USUARI (ROLE) | Login                 |
+|               | Registre              |
+|               | Propietat /Registrar  |
+|               | Propietat /Editar     |
+|               | Propietat / Eliminar  |
+|               | Publicació / Crear    |
+|               | Publicació / Editar   |
+|               | Publicació / Eliminar |
+| ADMIN (ROLE)  | Backend Users         |
+|               | Backend Properties    |
+|               | Backend Publications  |
 
 ## 2.Crear i modificar l'entorn .env de l'app
 
@@ -49,7 +49,7 @@ Si utilitzem sistema d'autenticació d'usuaris, caldria configurar-lo:
 $ composer require laravel/ui
 ```
 
-I activat amb el frontend que desitgem \(bootstrap, vue, react...\)
+I activat amb el frontend que desitgem (bootstrap, vue, react...)
 
 ```bash
 $ php artisan ui bootstrap --auth
@@ -67,27 +67,27 @@ Podem fer servir els comandos artisan per crear els models. Un cop creats, cal a
 
 
 
-```text
+```
 php artisan make:model Property -m
 ```
 
-Després de definir els models i les seves migracions \(-m\), podem continuar modificant les migracions.
+Després de definir els models i les seves migracions (-m), podem continuar modificant les migracions.
 
-```text
+```
 php artisan make:migrations create_table_properties
 ```
 
-Si migreu \( `php artisan migrate` \), ja tindreu creades les taules a la vostra base de dades.
+Si migreu ( `php artisan migrate` ), ja tindreu creades les taules a la vostra base de dades.
 
 Ara caldrà comprovar com queda l'script de migració:
 
 Crearem un altre script de migració:
 
-```text
+```
 php artisan make:migrations change_table_properties
 ```
 
- El modifiquem afegint les funcions **up**\(\) i **down**\(\) \(crear i eliminar taula\). Aneu amb compte amb els tipus de dades relacionats **id** de _users_ i **users\_id** de _properties_
+&#x20;El modifiquem afegint les funcions **up**() i **down**() (crear i eliminar taula). Aneu amb compte amb els tipus de dades relacionats **id** de _users_ i **users\_id** de _properties_
 
 ```php
 class ChangeTableProperties extends Migration
@@ -176,7 +176,7 @@ php artisan migrate
 
 #### Completar mètodes en models
 
-Ara queda acabar de copiar les relacions  i característiques $fillable, etc. en Eloquent, sempre fixant-nos en l'esquema ER anterior, per exemple, entre User i Property \(1:M\):
+Ara queda acabar de copiar les relacions  i característiques $fillable, etc. en Eloquent, sempre fixant-nos en l'esquema ER anterior, per exemple, entre User i Property (1:M):
 
 ```php
 class Property extends Model
@@ -243,7 +243,7 @@ class AddPhotoToProperties extends Migration
 
 ```
 
-Fixem-nos en el mètode **down\(\)**, efectivament, elimina el camp _photo_. Per últim, només queda que migrar : `php artisan migrate`
+Fixem-nos en el mètode **down()**, efectivament, elimina el camp _photo_. Per últim, només queda que migrar : `php artisan migrate`
 
 
 
@@ -251,9 +251,9 @@ Fixem-nos en el mètode **down\(\)**, efectivament, elimina el camp _photo_. Per
 
 ## 5. Crear els "_middlewares_" que en siguin necessaris. Middleware de control d'accès.
 
-Podem crear un middleware de _control del rol_ d'usuari, recordem que un middleware actua com un filtre. 
+Podem crear un middleware de _control del rol_ d'usuari, recordem que un middleware actua com un filtre.&#x20;
 
-![Els middlewares actuen com a filtres dels REQUESTs abans de processar la sol&#xB7;licitud](../.gitbook/assets/dibujo-sin-titulo.png)
+![Els middlewares actuen com a filtres dels REQUESTs abans de processar la sol·licitud](../.gitbook/assets/dibujo-sin-titulo.png)
 
 Modificarem el model User, afegirem el camp de 'roles', i l'actualitzarem, Després afegirem els mètodes per manipular els rols al mateix model.
 
@@ -263,13 +263,13 @@ Pas a pas, caldrà crear una migració per afegir el camp roles al model - taula
 
 Sino tenim instal·lat l'auntenticació:
 
-```text
+```
 $ php artisan ui bootstrap --auth
 ```
 
-Crear el model **Role** amb la seva respectiva migració \(paràmetre -m\):
+Crear el model **Role** amb la seva respectiva migració (paràmetre -m):
 
-```text
+```
 $ php artisan make:model Role -m
 ```
 
@@ -294,7 +294,7 @@ public function down()
 
 Crear una nova migració per a la taula dinàmica _**role\_user**_ :
 
-```text
+```
 $ php artisan make:migration create_role_user_table
 ```
 
@@ -342,12 +342,12 @@ public function users()
 
 És moment de crear alguns _seeders_ i afegir rols i usuaris a la base de dades:
 
-```text
+```
 $ php artisan make:seeder RoleTableSeeder
 $ php artisan make:seeder UserTableSeeder
 ```
 
-Editem la classe _**RoleTableSeeder**_ \(es troba dins de la carpeta: _database/seeds/_\) afegint el següent codi a mètode _**run**_ :
+Editem la classe _**RoleTableSeeder**_ (es troba dins de la carpeta:_ database/seeds/_) afegint el següent codi a mètode _**run**_ :
 
 ```php
 use Illuminate\Database\Seeder;
@@ -396,7 +396,7 @@ class UserTableSeeder extends Seeder
 }
 ```
 
-Editem la classe _**DatabaseSeeder**_ \(situada a la carpeta: database/seeds/\) afegint el següent codi a mètode _**run**_ :
+Editem la classe _**DatabaseSeeder**_ (situada a la carpeta: database/seeds/) afegint el següent codi a mètode _**run**_ :
 
 ```php
 public function run()
@@ -412,11 +412,11 @@ Ja queda poc ... està gairebé tot a punt. Ara és temps d'executar les migraci
 
 > Cal assegurar-se tenir definides les variables d'entorn al nostre arxiu **.env** relatives a la base de dades que utilitzarem
 
-```text
+```
 php artisan migrate:refresh --seed
 ```
 
-Obrim el model **User.php** i afegim aquests tres  mètodes \(mireu a veure si interpreteu per a què serveixen \):
+Obrim el model **User.php** i afegim aquests tres  mètodes (mireu a veure si interpreteu per a què serveixen ):
 
 ```php
 public function authorizeRoles($roles)
@@ -450,7 +450,7 @@ public function hasRole($role)
 }
 ```
 
-Obrim l'arxiu app/Http/Controllers/Auth/_**RegisterController.php**_i canviem  el mètode _**create\(\)**_ per definir per defecte el Role per als nous usuaris:
+Obrim l'arxiu app/Http/Controllers/Auth/_**RegisterController.php**_i canviem  el mètode _**create()**_ per definir per defecte el Role per als nous usuaris:
 
 ```php
 use App\Role;
@@ -469,7 +469,7 @@ protected function create(array $data)
 }
 ```
 
-Finalment el pas final. Ara, tot el que es necessita és cridar al mètode _authorizeRoles_\(\) dins de les accions del controlador i passar l'array amb els rols d'usuari i el nivell d'accés que es desitgi.
+Finalment el pas final. Ara, tot el que es necessita és cridar al mètode _authorizeRoles_() dins de les accions del controlador i passar l'array amb els rols d'usuari i el nivell d'accés que es desitgi.
 
 ```php
 class HomeController extends Controller
@@ -496,7 +496,7 @@ class HomeController extends Controller
 
 **Opcional**:
 
-Definir paràmetres de selecció per a la vista Home \(_resources/views/_\):
+Definir paràmetres de selecció per a la vista Home (_resources/views/_):
 
 ```php
 @if(Auth::user()->hasRole('admin'))
@@ -509,7 +509,7 @@ You are logged in!
 
 ### Creació del Middleware
 
-Laravel inclou un middleware que permet verificar si un usuari està autenticat quan accedeix a l'aplicació. Si l'usuari no ho estigués, el middleware ho redireccionaria a la pantalla de **login**. I per contra, si ho estigués, el middleware permetria l'accés a l'aplicació \(dashboard\).
+Laravel inclou un middleware que permet verificar si un usuari està autenticat quan accedeix a l'aplicació. Si l'usuari no ho estigués, el middleware ho redireccionaria a la pantalla de **login**. I per contra, si ho estigués, el middleware permetria l'accés a l'aplicació (dashboard).
 
 ```php
 php artisan make:middleware CheckRole
@@ -552,7 +552,7 @@ abort(403, “Non authorized”);
 return redirect(‘home’);
 ```
 
-Enregistrem el middleware al kernel \(línia 17 de App\HTTP\Kernel\) :
+Enregistrem el middleware al kernel (línia 17 de App\HTTP\Kernel) :
 
 ```php
 /**
@@ -591,7 +591,7 @@ Si ja tenim clar quina és l'estructura de l'aplicació i per tant les rutes ass
 
 #### Controladors de recursos
 
-En principi, començarem per tots els controladors associats a les entitats \(_resource controllers_\), amb artisan podem començar a crear:
+En principi, començarem per tots els controladors associats a les entitats (_resource controllers_), amb artisan podem començar a crear:
 
 ```php
 php artisan make:controller PropertyController -r
@@ -612,21 +612,21 @@ Això genera una llista de rutes i noms de ruta associade
 
 
 
-| Verb | URI | Action | Route Name |
-| :--- | :--- | :--- | :--- |
-| GET | `/propeties` | index | properties.index |
-| GET | `/properties/create` | create | properties.create |
-| POST | `/properties` | store | properties.store |
-| GET | `/properties/{property}` | show | properties.show |
-| GET | `/properties/{property}/edit` | edit | properties.edit |
-| PUT/PATCH | `/properties/{property}` | update | properties.update |
-| DELETE | `/properties/{property}` | destroy | properties.destroy |
+| Verb      | URI                           | Action  | Route Name         |
+| --------- | ----------------------------- | ------- | ------------------ |
+| GET       | `/propeties`                  | index   | properties.index   |
+| GET       | `/properties/create`          | create  | properties.create  |
+| POST      | `/properties`                 | store   | properties.store   |
+| GET       | `/properties/{property}`      | show    | properties.show    |
+| GET       | `/properties/{property}/edit` | edit    | properties.edit    |
+| PUT/PATCH | `/properties/{property}`      | update  | properties.update  |
+| DELETE    | `/properties/{property}`      | destroy | properties.destroy |
 
 
 
 ### Tractament dels controladors de recursos
 
-Recordem que aquesta és tasca dels administradors de backend per tant, podem establir un middleware en el controlador \(línia 5\):
+Recordem que aquesta és tasca dels administradors de backend per tant, podem establir un middleware en el controlador (línia 5):
 
 ```php
 class PropertyController extends Controller
@@ -681,7 +681,7 @@ Observem que en la ruta **properties.index**, volem mostrar totes les propietats
     @endsection
 ```
 
-Quan editem un determinat item \($property\), es crida a la ruta _property.edit,_ que al mateix temps s'encarrega de portar a la vista d'edició l'item seleccionat:
+Quan editem un determinat item ($property), es crida a la ruta _property.edit, _que al mateix temps s'encarrega de portar a la vista d'edició l'item seleccionat:
 
 ```php
 public function edit($id)
@@ -692,7 +692,7 @@ public function edit($id)
     }
 ```
 
-Veiem ara la vista _properties.edit_. Aquesta té com a característica un formulari que incorpora una **action** que accedeix al mètode _update_ del controlador, passant l'element que volem editar, amb els canvis  realitzats es torna al servidor a través del mètode PUT, tot tenit¡nt la protecció CSRF \(recordeu! forms segurs \)
+Veiem ara la vista _properties.edit_. Aquesta té com a característica un formulari que incorpora una **action** que accedeix al mètode _update_ del controlador, passant l'element que volem editar, amb els canvis  realitzats es torna al servidor a través del mètode PUT, tot tenit¡nt la protecció CSRF (recordeu! forms segurs )
 
 ```php
 @extends('app')
@@ -746,7 +746,7 @@ Ara caldria observar com actua el mètode _update_ de Properties:
     }
 ```
 
-Pràcticament el que fa és modificar a través d'Eloquent **update** utilitzant el Request i tornar a la ruta anterior \(_properties.index_\).
+Pràcticament el que fa és modificar a través d'Eloquent **update** utilitzant el Request i tornar a la ruta anterior (_properties.index_).
 
 
 
@@ -756,17 +756,17 @@ En el punt anterior ja s'intueix com funciona tot, seguim el paradigma MVC.
 
 Suposem l'accés **backend** al nostre exemple de properties, hem vist les accions generades al recurs:
 
-| Acció | Efecte |
-| :--- | :--- |
-| index | Llistat de tots els recursos |
-| create | Renderitza formulari de creació del recurs |
-| store | Acció d'emmagatzemar en la base de dades, cridada des del formulari **create** |
-| show | Mostrar el recurs seleccionat |
-| edit | Renderitza formulari per modificar recurs |
-| update | Acció d'actualitzar dades del recurs, cridada des del formulari **edit** |
-| destroy | Acció d'eliminar el recurs seleccionat |
+| Acció   | Efecte                                                                         |
+| ------- | ------------------------------------------------------------------------------ |
+| index   | Llistat de tots els recursos                                                   |
+| create  | Renderitza formulari de creació del recurs                                     |
+| store   | Acció d'emmagatzemar en la base de dades, cridada des del formulari **create** |
+| show    | Mostrar el recurs seleccionat                                                  |
+| edit    | Renderitza formulari per modificar recurs                                      |
+| update  | Acció d'actualitzar dades del recurs, cridada des del formulari **edit**       |
+| destroy | Acció d'eliminar el recurs seleccionat                                         |
 
-Totes les accions finals \(store, update, destroy\) han de retornar al catàleg del recurs:
+Totes les accions finals (store, update, destroy) han de retornar al catàleg del recurs:
 
 ```php
  return redirect()->route('properties.index');
@@ -794,7 +794,7 @@ class PropertyController extends Controller
 
 Comprovem el controlador, i agafem l'acció de modificar una propietat, des de la pantalla de catàleg de propietats:
 
-![Cat&#xE0;leg de propietats](../.gitbook/assets/captura-de-pantalla-2020-04-02-a-les-21.10.52.png)
+![Catàleg de propietats](../.gitbook/assets/captura-de-pantalla-2020-04-02-a-les-21.10.52.png)
 
 Fixem-nos, que, si premem **edit** provoquem la visualització d'un formulari amb valors precarregats del registre en qüestió. Primer, la crida al controlador@edit:
 
@@ -807,7 +807,7 @@ Fixem-nos, que, si premem **edit** provoquem la visualització d'un formulari am
     }
 ```
 
-Se selecciona la propietat \(línia 3\), agafem la llista de possibles usuaris propietaris \(línia 4 \) i retornem la vista de formulari 'properties.edit' \(carpeta _resources/views/properties_ i fitxer _edit.blade.php\)_
+Se selecciona la propietat (línia 3), agafem la llista de possibles usuaris propietaris (línia 4 ) i retornem la vista de formulari 'properties.edit' (carpeta _resources/views/properties_ i fitxer _edit.blade.php)_
 
 ```php
 @extends('app')
@@ -846,9 +846,9 @@ Se selecciona la propietat \(línia 3\), agafem la llista de possibles usuaris p
 
 Aquest formulari envia a través de mètode post però emmascara el mètode PUT, típic  mètode HTTP d'actualització de recursos.
 
-Com a anècdota, utilitzem un &lt;datalist&gt;  per visualitzar el llistat de propietaris disponibles \(línies 20 a 24\).
+Com a anècdota, utilitzem un \<datalist>  per visualitzar el llistat de propietaris disponibles (línies 20 a 24).
 
-L'acció del formulari és el mètode **PropertyController@update**, :
+L'acció del formulari és el mètode** PropertyController@update**, :
 
 ```php
 public function update(Request $request, $id)
@@ -866,7 +866,7 @@ public function update(Request $request, $id)
 #### _Característiques_:
 
 * En comptes de passar $id, podem injectar directament l'objecte **Property.**
-* Si el model ja existeix, com és el cas, podem utilitzar el mètode **save\(\).** De manera que només actualitza aquells valors modificats. Mireu el mètode **`isDirty()`** en la documentació per a més informació.
+* Si el model ja existeix, com és el cas, podem utilitzar el mètode **save(). **De manera que només actualitza aquells valors modificats. Mireu el mètode**` isDirty()`** en la documentació per a més informació.
 
 ```php
 public function update(Request $request, Property $property)
@@ -910,13 +910,13 @@ Des de la classe Request també podem aplicar els validadors des dels controlado
     }
 ```
 
-Una altra manera de fer-ho \(i recomanable \) és  crear una classe específica per poder validar requests als formularis específics:
+Una altra manera de fer-ho (i recomanable ) és  crear una classe específica per poder validar requests als formularis específics:
 
 ```php
 php artisan make:request StoreUserRequest
 ```
 
-I reescrivim les regles aquí en App\HTTP\Requests, posant **authorize\(\)** a true i posant a **rules\(\)** les regles validator
+I reescrivim les regles aquí en App\HTTP\Requests, posant **authorize()** a true i posant a **rules()** les regles validator
 
 ```php
 namespace App\Http\Requests;
@@ -951,7 +951,7 @@ class StoreUserRequest extends FormRequest
 
 ```
 
-Modifiquem ara el mètode **store\(\)** canviant el paràmetre Request  per la nova classe.
+Modifiquem ara el mètode **store()** canviant el paràmetre Request  per la nova classe.
 
 ```php
  public function store(StoreUserRequest $request)
@@ -971,11 +971,11 @@ Modifiquem ara el mètode **store\(\)** canviant el paràmetre Request  per la n
 
 Bé, espero que us funcioni!
 
-### Emmgatzematge \(storage\)
+### Emmgatzematge (storage)
 
-Suposem que volem afegir una foto a cadascuna de les nostres entitats \(properties\). Laravel ens ofereix la possibilitat d'afegir un espai públic a través del seu _filesystem_.
+Suposem que volem afegir una foto a cadascuna de les nostres entitats (properties). Laravel ens ofereix la possibilitat d'afegir un espai públic a través del seu _filesystem_.
 
-Des del fitxer _config/filesystems.php_, es determinen tres tipus d'emmagatzematge disk, que són **local, public i s3,** nosaltre utilitzarem a la pràctica el 'public', això permet accessos des de `http://app/arxiu`
+Des del fitxer _config/filesystems.php_, es determinen tres tipus d'emmagatzematge disk, que són** local, public i s3,** nosaltre utilitzarem a la pràctica el 'public', això permet accessos des de` http://app/arxiu`
 
 Per poder-lo utilitzar és necessari establir un link o accés directe, d'aquesta manera:
 
@@ -998,7 +998,7 @@ public function store(Request $request)
     }
 ```
 
-Extreiem el PATH del fitxer \(en **public** \) per poder desar a la base de dades \(línia 7\). Òbviament això està relacionat amb el formulari de creació de l'entitat:
+Extreiem el PATH del fitxer (en **public** ) per poder desar a la base de dades (línia 7). Òbviament això està relacionat amb el formulari de creació de l'entitat:
 
 ```php
 @extends('app')
@@ -1077,7 +1077,7 @@ Accedim a ella a través d'un asset prefixant el directori storage: `{{asset('st
 
 ## 8. Tests
 
-Laravel està orientat al testing, per tant ja trobem instal·lat **`phpunit`**. A més tota la configuració de l'entorn de proves es troba **phpunit.xm**l. Si bé podem crear un fitxer `.env.testing` amb els paràmetres de prova, per exemple, la base de dades ha de ser diferent, podem treballar pot ser amb **`sqlite`**.
+Laravel està orientat al testing, per tant ja trobem instal·lat **`phpunit`**. A més tota la configuració de l'entorn de proves es troba** phpunit.xm**l. Si bé podem crear un fitxer `.env.testing `amb els paràmetres de prova, per exemple, la base de dades ha de ser diferent, podem treballar pot ser amb **`sqlite`**.
 
 ```php
     APP_NAME=Laravel
@@ -1093,7 +1093,7 @@ Laravel està orientat al testing, per tant ja trobem instal·lat **`phpunit`**.
 
 ```
 
-Per crear una prova podem fer servir el comando artisan  
+Per crear una prova podem fer servir el comando artisan &#x20;
 
 Un cop generada la prova podem utilitzar phpunit o bé el comando **`artisan test`**
 
@@ -1103,7 +1103,7 @@ Què és el que volem provar?
 
 ### Casos de prova finals o endpoints
 
-Es crea la unitat, per exemple provar propietats i es codifiquen tots els casos de prova anteriors p.e. testCreateProperty\(\)\) 
+Es crea la unitat, per exemple provar propietats i es codifiquen tots els casos de prova anteriors p.e. testCreateProperty())&#x20;
 
 ## Apèndix - Mail: configuració i ús amb Gmail
 
@@ -1132,9 +1132,9 @@ Habilitar accés a aplicacions no segures: [https://myaccount.google.com/securit
 
 Accedim a contrasenyes d'aplicació i en generem una de nova
 
-![Contrasenyes d&apos;aplicaci&#xF3;](../.gitbook/assets/captura-de-pantalla-2020-05-08-a-les-19.26.09.png)
+![Contrasenyes d'aplicació](../.gitbook/assets/captura-de-pantalla-2020-05-08-a-les-19.26.09.png)
 
-![Indiquem l&apos;aplicaci&#xF3; i dispositu i generem](../.gitbook/assets/captura-de-pantalla-2020-05-08-a-les-19.29.57.png)
+![Indiquem l'aplicació i dispositu i generem](../.gitbook/assets/captura-de-pantalla-2020-05-08-a-les-19.29.57.png)
 
 Un cop generada la clau, la traslladarem a la nostra aplicació:
 
@@ -1191,7 +1191,7 @@ En Laravel cada tipus de mail es representa amb la classe _Mailable_. Aquestes c
 php artisan make:mail ContactRequired
 ```
 
-En la classe generada farem una sèrie de canvis. En el **construct** li passem dades de les quals omplir dades al nostre mail. I en el mètode **build\(\)**, construim els elements de nostre mail, que es basarà en una plantilla _blade_
+En la classe generada farem una sèrie de canvis. En el **construct** li passem dades de les quals omplir dades al nostre mail. I en el mètode **build()**, construim els elements de nostre mail, que es basarà en una plantilla _blade_
 
 ```php
 class ContactRequired extends Mailable
@@ -1265,4 +1265,3 @@ public function reqContact(Publication $publication){
         return view('contactRequest',compact('publication'))->with('success','We have sent you a message!');
     }
 ```
-

@@ -8,7 +8,7 @@ Busquem les funcions del sistema i el posem a prova per determinar si tal o qual
 
 ## Proves unitàries
 
-Són proves  que ataquen a una part espeífica del sistema \(un mètode normalment\) i són les proves que s'executen més ràpid.
+Són proves  que ataquen a una part espeífica del sistema (un mètode normalment) i són les proves que s'executen més ràpid.
 
 Laravel inclou  un entorn de proves pre-configurat basat en **phpunit**  i amb alguns tests d'exemple.
 
@@ -22,7 +22,7 @@ php artisan make:auth
 
 Preparem una prova unitària per al sistema login, concretament el mètode que ens porta cap a la _view_ **`login`**
 
-Preparem el controlador, aquest l'ubicarem a **tests/Feature**, 
+Preparem el controlador, aquest l'ubicarem a **tests/Feature**,&#x20;
 
 ```php
 php artisan make:test Http/Controllers/Auth/LoginControllerTest
@@ -53,7 +53,7 @@ class LoginControllerTest extends TestCase
 }
 ```
 
-**El nom de la nostra prova automatitzada ha de ser el més descriptiu possible.** 
+**El nom de la nostra prova automatitzada ha de ser el més descriptiu possible. **
 
 En el nostre cas, volem assegurar-nos que quan visitem  `/login`, es mostra el formulari d'inici de sessió.
 
@@ -106,7 +106,7 @@ public function test_login_displays_validation_errors()
 }
 ```
 
-Aquí provem que passa si no enviem dades a través de post \(array de línia 4\). Si dona errors de validació i ens redirigeix \(**302**\), en una altre línia comprovem si hi ha errors en el camp **'email'.**
+Aquí provem que passa si no enviem dades a través de post (array de línia 4). Si dona errors de validació i ens redirigeix (**302**), en una altre línia comprovem si hi ha errors en el camp **'email'.**
 
 **El resultat seria el següent:**
 
@@ -122,7 +122,7 @@ OK (2 tests, 5 assertions)
 
 ```
 
-Un pas més seria comprovar si amb un usuari de prova \(fake\) podem accedir i redirigir un cop autenticat:
+Un pas més seria comprovar si amb un usuari de prova (fake) podem accedir i redirigir un cop autenticat:
 
 ```php
  /** @test */
@@ -140,7 +140,7 @@ Un pas més seria comprovar si amb un usuari de prova \(fake\) podem accedir i r
     }
 ```
 
-Aquesta prova és molt més completa. Hem utilitzat el helper factory \(**database/factoriew/UserFactory.php**\) que crea \(de forma persistent a la base de dades\) un usuari.
+Aquesta prova és molt més completa. Hem utilitzat el helper factory (**database/factoriew/UserFactory.php**) que crea (de forma persistent a la base de dades) un usuari.
 
 ```php
 
@@ -177,6 +177,4 @@ class UserFactory extends Factory
 }
 
 ```
-
-
 

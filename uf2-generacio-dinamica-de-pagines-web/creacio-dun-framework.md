@@ -77,9 +77,9 @@ public/ incorpora les característiques estàtiques i de front-end de l'aplicaci
 
 ### **El Cicle REQUEST - RESPONSE**
 
-Si seguim el cicle entre client i servidor, podem analitzar com es desenvolupa la resposta, aquesta es dona sempre a nivell de Controlador, ja que estem fent servir paradigmes MVC.
+Si seguim el cicle entre client i servidor, podem analitzar com es desenvolupa la resposta, aquesta es dona sempre a nivell de Controlador, ja que estem fent servir paradigmes MVC
 
-![Cicle Request abans d'arribar al controlador](../.gitbook/assets/cicle-request.png)
+![](../.gitbook/assets/fwork.png)
 
 ### **1 Reescriptura de la URI**
 
@@ -99,18 +99,7 @@ RewriteRule ^.*$ index.php [NC,L]
 
 Com s'observa, es tracta de redirigir tota consulta (_query_ ) cap al controlador frontal de l'aplicació (**index.php**).
 
-Per una bona càrrega de classes fem servir l'estandar **PSR- 4** (autocàrrega de classes)
-
-**Adaptació a estàndar PSR-4 (autoload) composer.json segons el namespace utlitzat**
-
-```
-{
-    "autoload": {
-        "psr-4":{
-            "App\\": "src/"
-        }
-    }
-```
+Per una bona càrrega de classes fem servir l'estandar **PSR- 4** (autocàrrega de classes) i a més afegim la clàusula files que permet accedir a fitxers de funcions _src/helpers.php_
 
 ### 2 Front controller  - index.php
 
@@ -118,117 +107,149 @@ El fitxer index.php del nostre projecte actua com a un frontend controller és a
 
 ```php
 <?php
-
-    ini_set('display_errors','On');
-   
-
+    ini_set('display_errors', 'On');
     require __DIR__.'/vendor/autoload.php';
-    
-    use App\App;
-    
-    $conf=App::init();
-    //constants d'enrutament i BBDD
-    define('BASE',$conf['web']);
-    define('ROOT',$conf['root']);
-    define('DSN',$conf['driver'].':host='.$conf['dbhost'].';dbname='.$conf['dbname']);
-    define('USR',$conf['dbuser']);
-    define('PWD',$conf['dbpass']);
+    require __DIR__ . '/bootstrap.php';
 
-    App::run();
+    use App\App;
+
+
+
+    $config=require 'config.php';
+    
+
+    App::start();
     
 ```
 
-Un cop carregat el PSR-4, definim les constants de l'entorn de l'aplicació, aquestes són extretes del fitxer de configuració **config.json.**
+Un cop carregat el PSR-4, definim les constants de l'entorn de l'aplicació, aquestes són extretes del fitxer de configuració d'entorn .**env** i del fitxer config.php. Les variables $\_ENV són extretes del fitxer .env, una forma de desar la nostra configuració de forma secreta.
+
+```php
+<?php
+
+
+    return [
+      'db'=>[
+          'dbuser'=>$_ENV['DB_USER'],
+          'dbpassword'=>$_ENV['DB_PASSWORD'],
+          'connection'=>$_ENV['DB_DRIVER'].':host='.$_ENV['DB_HOST'],
+          'dbname'=>$_ENV['DB_NAME'],
+          'options'=>[
+              \PDO::ATTR_ERRMODE=>\PDO::ERRMODE_WARNING
+          ]
+      ]
+    ];
+```
 
 {% hint style="info" %}
-**Cal remarcar BASE com a adaptador de rutes en les templates per poder accedir a rutes basades en el DocumentRoot de Apache o el root de nginx.**
+**Utilitzem la llibreria  vlucas/phpdotenv  des de composer.json.**
 {% endhint %}
 
+
+
 ```php
-{
-    "conf_dev":{
-        "driver":"mysql",
-        "dbhost":"127.0.0.1",
-        "dbname":"prouf1",
-        "dbuser":"prouf1",
-        "dbpass":"+++++++++",
-        "web":"/"
-        
-    },
-    "conf_pro":{
-        "driver":"mysql",
-        "dbhost":"toni.cesnuria.com",
-        "dbname":"toni_prouf1",
-        "dbuser":"toni_prouf1",
-        "dbpass":"+++++++++",
-        "web":"/m7/todofw/",
-
-
-    }
-}
+DB_DRIVER='mysql'
+DB_HOST='127.0.0.1'
+DB_USER='++++'
+DB_PASSWORD='++++++++'
+DB_NAME='+++++++'
+ROOT='/'
 ```
 
-Al fitxer de configuració hi mostrem dos objectes json en funció de si estem en producció conf\__pro o en desenvolupament conf_\_dev.
+### 3 App::start()
 
-### 3 App::run()
-
-Observem la classe src/App.php
+Observem el fitxer boostrap.php, requerit per la nostra App, el que fa es registrar els serveis que utilitzarem dins l'aplicació.
 
 ```php
-src/App.php
+<?php
+
+
+    $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+
+    define('ROOT', $_ENV['ROOT']);
+    use App\Database\QueryBuilder;
+    use App\Database\Connection;
+    use App\Registry;
+    // register all the services
+    
+
+    Registry::bind('config', require 'config.php');
+    
+    Registry::bind('database', new QueryBuilder(
+        Connection::make(Registry::get('config')['db'])
+    ));
+    
+```
+
+que requereix la classe Registry
+
+```php
 <?php
 
 namespace App;
 
-   use App\Request;
-   use App\Session;
+class Registry
+{
+    /**
+     * All registered keys.
+     *
+     * @var array
+     */
+    protected static $services = [];
 
-   final class App{
+    /**
+     * Bind a new key/value into the container.
+     *
+     * @param  string $key
+     * @param  mixed  $value
+     */
+    public static function bind($key, $value)
+    {
+        static::$services[$key] = $value;
+    }
+
+    /**
+     * Retrieve a value from the registry.
+     *
+     * @param  string $key
+     */
+    public static function get($key)
+    {
+        if (! array_key_exists($key, static::$services)) {
+            throw new \Exception("No {$key} is bound in the container.");
+        }
+
+        return static::$services[$key];
+    }
+}
+```
+
+```php
+src/App.php
+<?php
+    namespace App;
+
+    use App\Request;
+    
+
+    final class App{
         static protected $action;
         static protected $req;
 
-        private static function env(){
-            $ipAddress=gethostbyname($_SERVER['SERVER_NAME']);
-            if($ipAddress=='127.0.0.1'){
-                return 'dev';
-            }else{
-                return 'pro';
-            }
-        }
-        private static function loadConf(){
-            $file="config.json";
-            $jsonStr=file_get_contents($file);
-            $arrayJson=json_decode($jsonStr);
-            return $arrayJson;
-        }
-        static function init(){
-            //read configuration
-            $config=self::loadConf();
-            //determinar env pro o dev
-            $strconf='conf_'.self::env();   
-            $conf=(array)$config->$strconf;
-            return $conf;
 
-        }
-        public static function run(){
-            unset($_SESSION);
+        static function start(){
             $session=new Session();
-            //csrf-token to avoid csrf attacks
-             if (!($session->exists('csrf-token'))){
-                 $session->set('csrf-token',bin2hex(random_bytes(32)));
-             }
-            //routes array
             $routes=self::getRoutes();
            
             
-            // obtenir tres parametres: controlador, accio,[parametres]
-            // url friendly :  http://app/controlador/accio/param1/valor1/param2/valor2
+            // obtenir tres parámetres: controlador, accio,[parametres]
+            // url friendly :  http://app/controlador/accion/param1/valor1/param2/valor2
             self::$req=new Request;
             $controller=self::$req->getController();
             
-        
             self::$action=self::$req->getAction();
-            
+         
             self::dispatch($controller,$routes,$session);
 
         }
@@ -238,11 +259,12 @@ namespace App;
             
             try{
                 if(in_array($controller,$routes)){
-                   
+                   // si es ruta de sistema es pot instanciar
+                   // dispatcher
                    $nameController='\\App\Controllers\\'.ucfirst($controller).'Controller';
                    $objContr=new $nameController(self::$req,$session);
                    
-                   //comprovar si existeix l'acció com mètode a l'objecte
+                   //comprovar si existeix l'acció como mètode a l'objecte
                    if (is_callable([$objContr,self::$action])){
                        call_user_func([$objContr,self::$action]);
                    }else{
@@ -257,26 +279,25 @@ namespace App;
            }
         }
         /**
-         *  @return array
-         *  returns registered route array
+         *  register all available routes in controllers folder
+         *  @return array $routes[]
          */
         static function getRoutes(){
             $dir=__DIR__.'/Controllers';
+
             $handle=opendir($dir);
-            while(false !=($entry=readdir($handle))){
-               if($entry!="." && $entry!=".."){
-                   $routes[]=strtolower(substr($entry,0,-14));
-               }
+            while(($entry=readdir($handle))!=false){
+                if ($entry!='.' && $entry!='..'){
+                    $routes[]=strtolower(substr($entry,0,-14));
+                }
                
-            } 
+            }
             return $routes;
         }
-           
-    
-   }
+    }
 ```
 
-El mètode init(), proporciona l'array de configuració de l'app. Mentre que run() és en sí el nucli de l'aplicació, ja que determina i activa quin controlador és el responsable de la "request", cal destacar que en la instància del controlador, també injectem els objectes Session i Request, que ens facilita el desenvolupament de l'aplicació com ja s'observarà.
+Mentre que start() és en sí el nucli de l'aplicació, ja que determina i activa quin controlador és el responsable de la "request", cal destacar que en la instància del controlador, també injectem els objectes Session i Request, que ens facilita el desenvolupament de l'aplicació com ja s'observarà.
 
 A cada cicle REQ-RESP creem un token aleatori que ens proporcionarà seguretat CSRF als formularis POST.
 

@@ -4,18 +4,18 @@ description: Característiques avançades de PHP per a la web
 
 # Web i PHP
 
-Una aplicació web  està dissenyada per retornar una resposta per a cada sol·licitud, que condueix a un **cicle de REQUEST - RESPONSE \(sol·licitud - resposta\)** . En el món de les aplicacions web, aquest cicle es realitza mitjançant **Hypertext Transfer Protocol** \( **HTTP\)**\), que és un protocol que garanteix que les dues parts es comuniquen amb el mateix llenguatge o estructura.
+Una aplicació web  està dissenyada per retornar una resposta per a cada sol·licitud, que condueix a un **cicle de REQUEST - RESPONSE (sol·licitud - resposta)** . En el món de les aplicacions web, aquest cicle es realitza mitjançant **Hypertext Transfer Protocol** ( **HTTP)**), que és un protocol que garanteix que les dues parts es comuniquen amb el mateix llenguatge o estructura.
 
-## Sessions 
+## Sessions&#x20;
 
 Les sessions permeten mantenir i utilitzar informació circulant dels usuaris en el servidor a través  de l'array **`$_SESSION`**
 
-A cada **`client`** que accedeix a l'aplicació i inicia sessió se li assigna un _**session ID**_ **únic** , i és el que li permet identificar la sessió i que estigui disponible per a aquest client en concret. La forma més segura de gestionar sessions és emmagatzemant en el client només aquesta session ID \(cookie\), i qualsevol informació de la sessió guardar-la al costat de servidor.
+A cada **`client`** que accedeix a l'aplicació i inicia sessió se li assigna un _**session ID**_** únic** , i és el que li permet identificar la sessió i que estigui disponible per a aquest client en concret. La forma més segura de gestionar sessions és emmagatzemant en el client només aquesta session ID (cookie), i qualsevol informació de la sessió guardar-la al costat de servidor.
 
-Es defineix sessió com l'interval de temps d'una comunicació en la que s'intercanvien dades relacionades a la mateixa. En aquest procés de connexió persistent es comprova la cookie **`php_session_id`** amb la id de sessió emmagatzemada al servidor. El tancament de sessió indica la finalització de la comunicació.
+Es defineix sessió com l'interval de temps d'una comunicació en la que s'intercanvien dades relacionades a la mateixa. En aquest procés de connexió persistent es comprova la cookie **`php_session_id `**amb la id de sessió emmagatzemada al servidor. El tancament de sessió indica la finalització de la comunicació.
 
-La funció **`session_start()`** inicia la sessió entre l' **usuari** i el **servidor** , i permet als valors guardats en **$\_SESSION** ser accessibles després.  
-Posteriorment, podem accedir a qualsevol variable sessió mentre la connexió no estigui tancada \(fins i tot des d'un altre script\).
+La funció **`session_start()`** inicia la sessió entre l' **usuari** i el **servidor** , i permet als valors guardats en **$\_SESSION** ser accessibles després.\
+Posteriorment, podem accedir a qualsevol variable sessió mentre la connexió no estigui tancada (fins i tot des d'un altre script).
 
 ```php
 // Continuem  la sessió
@@ -26,7 +26,7 @@ echo "Nom d'usuari: " . $_SESSION["username"];
 
 Tan important és iniciar una sessió, com tancar-la. Fins i tot quan realment una sessió és només una forma temporal d'emmagatzemar dades, és important **netejar-la després per assegurar la màxima seguretat** especialment quan es tracta amb informació personal.
 
-Per **suprimir un valor de sessió** simplement s'utilitza _unset \(\)_ :
+Per **suprimir un valor de sessió** simplement s'utilitza _unset ()_ :
 
 ```php
 session_start();
@@ -54,7 +54,7 @@ session_destroy();
 
 ## Navegació en la aplicació
 
-Una característica molt agraïda en una aplicació web és la navegació dins l'aplicació. 
+Una característica molt agraïda en una aplicació web és la navegació dins l'aplicació.&#x20;
 
 És una forma de conèixer en cada moment on som i quines accions estan disponibles en qualsevol moment. Implica tenir clar el mapa de l'aplicació. És la nostra tasca saber implementar aquesta eina tan profitosa.
 
@@ -62,7 +62,7 @@ Una característica molt agraïda en una aplicació web és la navegació dins l
 
 ## Formularis
 
-Un formulari permet l'intercanvi de dades entre client \(navegador\) i servidor \(backend de  l'aplicació\).
+Un formulari permet l'intercanvi de dades entre client (navegador) i servidor (backend de  l'aplicació).
 
 ```php
 <html>
@@ -93,26 +93,26 @@ El teu email es: <?php echo $_POST["email"]; ?>
 
 
 
-Els 10 **tipus d'elements més utilitzats als formularis HTML amb PHP** són \([w3schools](https://www.w3schools.com/html/html_form_elements.asp)\):
+Els 10 **tipus d'elements més utilitzats als formularis HTML amb PHP** són ([w3schools](https://www.w3schools.com/html/html\_form\_elements.asp)):
 
-| **element** | **descripció** |
-| :--- | :--- |
-| `input type = "text"` | Caixa de text |
+| **element**               | **descripció**                                                       |
+| ------------------------- | -------------------------------------------------------------------- |
+| `input type = "text"`     | Caixa de text                                                        |
 | `input type = "password"` | Caixa de text on es mostren asteriscs en lloc dels caràcters escrits |
-| `input type = "checkbox"` | Caixes seleccionables que permet escollir múltiples opcions |
-| `input type = "radio"` | Caixes seleccionables en grups que només permeten escollir una opció |
-| `input type = "submit"` | Botó per enviar el formulari |
-| `input type = "file"` | Caixes de text i botó que permet pujar arxius |
-| `input type = "hidden"` | Element amagat. Especialment útil per tokens de seguretat |
-| `option` | Una opció possible dins d'un element element |
-| `select` | Llista d'opcions d'elements option |
-| `textarea` | text multilínia |
+| `input type = "checkbox"` | Caixes seleccionables que permet escollir múltiples opcions          |
+| `input type = "radio"`    | Caixes seleccionables en grups que només permeten escollir una opció |
+| `input type = "submit"`   | Botó per enviar el formulari                                         |
+| `input type = "file"`     | Caixes de text i botó que permet pujar arxius                        |
+| `input type = "hidden"`   | Element amagat. Especialment útil per tokens de seguretat            |
+| `option`                  | Una opció possible dins d'un element element                         |
+| `select`                  | Llista d'opcions d'elements option                                   |
+| `textarea`                | text multilínia                                                      |
 
 ### Validació de formularis
 
 La **validació de formularis** és un aspecte  fonamental ja que prevé possibles atacs d'intrusos, a més d'assegurar que les dades que es reben són realment de el tipus desitjat.
 
-Hi **ha dues maneres de validació de formularis** : al costat del client i en el costat de servidor. A la banda de el client la validació sol ser mitjançant **JavaScript** , és més ràpida i evita enviar més feina a servidor. 
+Hi **ha dues maneres de validació de formularis** : al costat del client i en el costat de servidor. A la banda de el client la validació sol ser mitjançant **JavaScript** , és més ràpida i evita enviar més feina a servidor.&#x20;
 
 A la banda de servidor s'utilitza **PHP** per verificar que s'envien valors correctes, és més segur però és més lent i fa treballar una  mica al servidor. Aquí vurem aquesta segona forma.
 
@@ -153,23 +153,23 @@ El següent és un senzill **formulari** mica més complex amb les següent dade
 
 ## Cookies
 
-Al contrari que les sessions, les cookies són una eina controlada des de backend o frontend per desar dades al client \(navegador\).
+Al contrari que les sessions, les cookies són una eina controlada des de backend o frontend per desar dades al client (navegador).
 
-Les cookies són com **arxius de text que es guarden a l'ordinador** . A petició d'un **servidor web** , el navegador crea un arxiu d'aquest tipus. Una vegada que passa això, el servidor pot llegir i escriure contingut en aquest arxiu. 
+Les cookies són com **arxius de text que es guarden a l'ordinador** . A petició d'un **servidor web** , el navegador crea un arxiu d'aquest tipus. Una vegada que passa això, el servidor pot llegir i escriure contingut en aquest arxiu.&#x20;
 
 Pot semblar perillós, però hi ha una sèrie de restriccions per fer-ho el més segur possible:
 
 
 
 * **Els servidors web només poden accedir a cookies creades al seu propi domini** . Aquest domini és establert pel navegador quan el servidor crea un nou cookie, i només pot ser un domini o subdomini de servidor.
-* Segons el **protocol HTTP** , les cookies no poden ser més grans de **4096 Bytes \(4KB\)** .
+* Segons el **protocol HTTP** , les cookies no poden ser més grans de **4096 Bytes (4KB)** .
 * Hi ha un **límit de cookies per domini** . Depèn del navegador, però solen ser 20 cookies.
 * També hi ha un **límit en el nombre total de cookies al disc dur de el client** . Solen ser  300 cookies. Quan s'arriba a aquest número, una cookie antiga s'elimina abans de crear la nova.
 
 Les cookies tenen una **data d'expiració** . Aquesta data permet el navegador eliminar cookies antigues quan ja no són requerides pel servidor web. Si la data d'expiració està buida, la cookies s'eliminarà quan finalitzi la connexió amb el servidor. Això passarà quan:
 
-* l'usuari **tanqui la finestra** o pestanya del lloc web, 
-* o directament tanqui el navegador. 
+* l'usuari **tanqui la finestra** o pestanya del lloc web,&#x20;
+* o directament tanqui el navegador.&#x20;
 
 Aquestes cookies, normalment denominades _**session\_cookies**_ , són usades principalment per guardar ajustos temporals.
 
@@ -187,7 +187,7 @@ setcookie(
 ): bool
 ```
 
-**setcookie \(\)** defineix una cookie per ser enviada juntament amb la resta de capçaleres HTTP. Com altres capçaleres, cookies han de ser enviades _abans_ de qualsevol sortida \(echo\) en l'script \(aquest és un protocol de restricció\). 
+**setcookie ()** defineix una cookie per ser enviada juntament amb la resta de capçaleres HTTP. Com altres capçaleres, cookies han de ser enviades _abans_ de qualsevol sortida (echo) en l'script (aquest és un protocol de restricció).&#x20;
 
 {% hint style="danger" %}
 Això requereix es cridi  a aquesta funció abans de qualsevol sortida, incloent etiquetes`<html>`i `<head>`així com qualsevol espai en blanc
@@ -207,33 +207,33 @@ $cookie_name=$_COOKIE['cookie_name'];
 
 **`expires`**
 
-El temps en què la cookie expira. Aquesta és una marca de temps Unix en nombre de segons des del momment actual. En altres paraules, el més probable és que es faci amb la funció [time \(\)](https://www.php.net/manual/es/function.time.php) més el nombre de segons abans que sigui que expiri. O es podria usar [mktime \(\)](https://www.php.net/manual/es/function.mktime.php) . `time()+60*60*24*30`farà que la cookie establerta expiri en 30 dies. Si s'estableix a 0, o és omès, la galeta expirarà a la **fi de la sessió** \(quan el navegador és tancat\).
+El temps en què la cookie expira. Aquesta és una marca de temps Unix en nombre de segons des del momment actual. En altres paraules, el més probable és que es faci amb la funció [time ()](https://www.php.net/manual/es/function.time.php) més el nombre de segons abans que sigui que expiri. O es podria usar [mktime ()](https://www.php.net/manual/es/function.mktime.php) . `time()+60*60*24*30`farà que la cookie establerta expiri en 30 dies. Si s'estableix a 0, o és omès, la galeta expirarà a la **fi de la sessió** (quan el navegador és tancat).
 
 > **Nota** :
 >
->  Observem  que el paràmetre `expires`pren una marca de temps Unix, en lloc de format de data `Wdy, DD-Mon-YYYY HH:MM:SS GMT`, això és perquè PHP fa la conversió internament.
+> &#x20;Observem  que el paràmetre `expires`pren una marca de temps Unix, en lloc de format de data `Wdy, DD-Mon-YYYY HH:MM:SS GMT`, això és perquè PHP fa la conversió internament.
 
 **`path`**
 
 La ruta dins el servidor en la qual la cookie estarà disponible. Si s'utilitza `'/'`, la cookie estarà disponible a la totalitat de l' `domain`. Si es configura com `'/foo/'`, la cookie només estarà disponible dins de directori `/foo/`i tots els seus sub-directoris en el `domain`, com ara `/foo/bar/`. El valor per defecte és el directori actual a on s'està configurant la galeta.`domain`
 
-El \(sub\) domini a què la cookie està disponible. Establint això a un subdomini \(com `'www.example.com'`\) farà que la cookie estigui disponible per a aquest subdomini i tots els altres subdominis d'ell mateix \(pe w2.www.example.com\). Perquè la cookie estigui disponible per a tot el domini \(incloent tots els seus subdominis\), simplement estableixi el nom de domonio \( `'example.com'`, en aquest cas\).
+El (sub) domini a què la cookie està disponible. Establint això a un subdomini (com `'www.example.com'`) farà que la cookie estigui disponible per a aquest subdomini i tots els altres subdominis d'ell mateix (pe w2.www.example.com). Perquè la cookie estigui disponible per a tot el domini (incloent tots els seus subdominis), simplement estableixi el nom de domonio ( `'example.com'`, en aquest cas).
 
 Els navegadors més antics encara implementen l'obsoleta [»RFC 2109](http://www.faqs.org/rfcs/rfc2109) poden necessitar un `.`per comparar tots els subdominis.
 
 **`secure`**
 
-Indica que la cookie només hauria de transmetre per una connexió segura HTTPS des del client. Quan es configura com **`true`**, la cookie només es crearà si és que hi ha una connexió segura. De la banda de servidor, depèn de l'programador el enviar aquest tipus de cookies solament a través de connexions segures \(per exemple, amb [$ \_SERVER \[ "HTTPS"\]](https://www.php.net/manual/es/reserved.variables.server.php) \).
+Indica que la cookie només hauria de transmetre per una connexió segura HTTPS des del client. Quan es configura com **`true`**, la cookie només es crearà si és que hi ha una connexió segura. De la banda de servidor, depèn de l'programador el enviar aquest tipus de cookies solament a través de connexions segures (per exemple, amb [$ \_SERVER \[ "HTTPS"\]](https://www.php.net/manual/es/reserved.variables.server.php) ).
 
 **`httponly`**
 
-Quan és **`true`**la galeta serà accessible només a través de l'protocol HTTP. Això vol dir que la galeta no serà accessible per llenguatges de scripting, com JavaScript. S'ha indicat que aquesta configuració ajuda efectivament a reduir el robatori d'identitat a través d'atacs **XSS** \(encara que no és suportada per tots els navegadors\). Afegit a PHP 5.2.0. Pot ser **`true`**o**`false`**
+Quan és **`true`**la galeta serà accessible només a través de l'protocol HTTP. Això vol dir que la galeta no serà accessible per llenguatges de scripting, com JavaScript. S'ha indicat que aquesta configuració ajuda efectivament a reduir el robatori d'identitat a través d'atacs **XSS** (encara que no és suportada per tots els navegadors). Afegit a PHP 5.2.0. Pot ser **`true`**o**`false`**
 
 **`options`**
 
 Un array associatiu que pot tenir qualsevol de les claus `expires`, `path`, `domain`, `secure`, `httponly`i `samesite`. Els valors tenen el mateix significat que es descriu per als paràmetres amb el mateix nom. El valor de l'element `samesite`hauria de ser `None`, `Lax`o `Strict`. Si no es dóna cap de les opcions permeses, els seus valors per defecte són els mateixos que els valors per defecte dels paràmetres explícits. Si l'element `samesite`és omès, no s'estableix cap atribut de la `cookie` SameSite.
 
-  
+\
 
 
 ## Capçaleres HTTP
@@ -377,7 +377,7 @@ print 'enters wrong login data';
 
 ## Codis estat HTTP
 
-Com a conseqüència de les operacions realitzades en la comunicació i en el cicle de vida d'una **sol·licitud-resposta \(REQ - RESP\)**, es va informant contínuament als protocols HTTP de l'estat de la comunicació, es tracta d'uns codis numèrics amb una significació especial.
+Com a conseqüència de les operacions realitzades en la comunicació i en el cicle de vida d'una **sol·licitud-resposta (REQ - RESP)**, es va informant contínuament als protocols HTTP de l'estat de la comunicació, es tracta d'uns codis numèrics amb una significació especial.
 
 
 
@@ -389,7 +389,7 @@ Aquest tipus de codi d'estat indica una **resposta provisional** . HTTP / 1.0 no
 
 * **100 Continue** . El servidor ha rebut els **headers de l'request** i el client hauria de procedir a enviar el cos de la resposta.
 * **101 Switching Protocols** . El **requester** ha sol·licitat a l'servidor commutar protocols.
-* **102 Processing \(WebDAV; RFC 2518\)** . Usat en **requests** per reprendre peticions PUT o POST avortades.
+* **102 Processing (WebDAV; RFC 2518)** . Usat en **requests** per reprendre peticions PUT o POST avortades.
 
 #### 2. 2XX Peticions correctes
 
@@ -401,8 +401,8 @@ Aquest codi d'estat indica que l'acció sol·licitada pel **client** ha estat re
 * **203 Non-authoritative Information** . El request s'ha processat correctament, però retorna informació que podria venir d'una altra font.
 * **204 No Content** . El request s'ha processat correctament, però no torna cap contingut.
 * **205 Reset Content** . El request s'ha processat correctament, però no torna cap contingut i es requereix que el requester recarregui el contingut.
-* **206 Partial Content** . El servidor retorna només part de el recurs a causa d'una limitació que ha configurat el client \(s'usa en eines de descàrrega com [wget](http://es.wikipedia.org/wiki/Wget) \).
-* **207 Multi-Status \(WebDAV; RFC 4918\)** . El cos de l'missatge és XML i pot contenir un nombre de codis d'estat diferents depenent de el nombre de sub-requests.
+* **206 Partial Content** . El servidor retorna només part de el recurs a causa d'una limitació que ha configurat el client (s'usa en eines de descàrrega com [wget](http://es.wikipedia.org/wiki/Wget) ).
+* **207 Multi-Status (WebDAV; RFC 4918)** . El cos de l'missatge és XML i pot contenir un nombre de codis d'estat diferents depenent de el nombre de sub-requests.
 
 #### 3. Redireccions 3XX
 
@@ -413,33 +413,33 @@ El client ha de prendre una acció addicional per completar el **request** . Mol
 * **302 Found** . La pàgina sol·licitada s'ha mogut temporalment a una nova URI.
 * **303 See Other** . La pàgina sol·licitada es pot trobar en un URI diferent.
 * **304 Not Modified** . Indica que la pàgina sol·licitada no s'ha modificat des de l'última petició.
-* **305 Utilitza Proxy \(des HTTP / 1.1\)** . El recurs sol·licitat només està disponible a través d'intermediari, la direcció es proporciona en la resposta. Molts clients HTTP com Mozilla o Internet Explorer no manegen bé aquestes respostes amb aquests codis d'estat, sobretot per seguretat.
-* **307 Temporary Redirect \(des HTTP / 1.1\)** . La pàgina sol·licitada s'ha mogut temporalment a un altre URL. En aquest cas el recurs hauria de repetir-se amb una altra URI, però, futurs requests hauran d'usar la URI original. A l'contrari que amb la 302, el mètode request no pot canviar quan es reubique el request original.
-* **308 Permanent Redirect \(RFC 7538\)** . El request i futurs requests s'haurien de repetir usant un altre URI. Aquest també és similar a l'301, però no permet a l'mètode HTTP que canviï.
+* **305 Utilitza Proxy (des HTTP / 1.1)** . El recurs sol·licitat només està disponible a través d'intermediari, la direcció es proporciona en la resposta. Molts clients HTTP com Mozilla o Internet Explorer no manegen bé aquestes respostes amb aquests codis d'estat, sobretot per seguretat.
+* **307 Temporary Redirect (des HTTP / 1.1)** . La pàgina sol·licitada s'ha mogut temporalment a un altre URL. En aquest cas el recurs hauria de repetir-se amb una altra URI, però, futurs requests hauran d'usar la URI original. A l'contrari que amb la 302, el mètode request no pot canviar quan es reubique el request original.
+* **308 Permanent Redirect (RFC 7538)** . El request i futurs requests s'haurien de repetir usant un altre URI. Aquest també és similar a l'301, però no permet a l'mètode HTTP que canviï.
 
 #### 4. 4XX Errors de el client
 
-Excepte quan es respon a un **HEAD request** , el servidor ha d'incloure una entitat que conté una explicació de l'error, i si és temporal o permanent. Són aplicables a qualsevol mètode de sol·licitud \(GET, POST ...\). Els **user agents** han de mostrar qualsevol entitat a l'usuari:
+Excepte quan es respon a un **HEAD request** , el servidor ha d'incloure una entitat que conté una explicació de l'error, i si és temporal o permanent. Són aplicables a qualsevol mètode de sol·licitud (GET, POST ...). Els **user agents** han de mostrar qualsevol entitat a l'usuari:
 
 * **400 Bad Request** . El servidor no pot o no va a processar el request per un error de sintaxi de client.
-* **401 Unauthorized \(RFC 7235\)** . Similar a l'error 403, però s'usa quan es requereix una autenticació i ha fallat o encara no a facilitat.
+* **401 Unauthorized (RFC 7235)** . Similar a l'error 403, però s'usa quan es requereix una autenticació i ha fallat o encara no a facilitat.
 * **402 Payment Required** . Reservat per a futur ús. La intenció original va ser per a **pagament amb targeta** o **micropagament** , però això no ha passat, i aquest codi amb prou feines s'usa.
 * **403 Forbidden** . El request va ser vàlid però **el servidor es nega a respondre** .
 * **404 Not Found** . El recurs de l'request no s'ha pogut trobar però podria estar disponible en el futur. Es permeten **requests subsecuentes** per part de client.
-* **405 Method Not Allowed** . S'ha fet un request amb un recurs utilitzant un **mètode request no suportat** per aquest recurs \(per exemple usant GET en un formulari que requereix POST\).
+* **405 Method Not Allowed** . S'ha fet un request amb un recurs utilitzant un **mètode request no suportat** per aquest recurs (per exemple usant GET en un formulari que requereix POST).
 * **406 Not Acceptable** . El recurs sol·licitat només genera **contingut no acceptat** d'acord amb els headers Accept enviats al request.
-* **407 Proxy Authentication Required \(RFC 7235\)** . El client s'ha d'identificar primer amb el **proxy** .
+* **407 Proxy Authentication Required (RFC 7235)** . El client s'ha d'identificar primer amb el **proxy** .
 * **408 Request Timeout** . El client no ha enviat un **request amb el temps necessari** amb el qual el servidor estava preparat per esperar. El client podria repetir el request sense modificacions més tard.
 * **409 Conflict** . Conflicte al request, com quan s'actualitzen a el mateix temps dos recursos.
 * **410 Gone** . El recurs sol·licitat no està disponible ni ho estarà en el futur. **Un cercador eliminarà abans una pàgina 410 que una 404** .
 * **411 Length Required** . El request no va especificar la **longitud de l'contingut** , la qual és requerida pel recurs sol·licitat.
-* **412 precondition Failed \(RFC 7232\)** . El servidor no compleix una de les precondicions que el requester afegeix al request.
+* **412 precondition Failed (RFC 7232)** . El servidor no compleix una de les precondicions que el requester afegeix al request.
 * **413 Request Entity Too Large** . El request és més llarg que el que està disposat a acceptar el servidor.
 * **414 Request-URI Too Long** . L' **URI** és molt llarg perquè el servidor ho processi.
 * **415 Unsupported Mitjana Type** . L'entitat request té un **mitjana type** que el servidor o recurs no suporten.
-* **416 Requested Range Not satisfiable \(RFC 7233\)** . El client ha sol·licitat una porció d'arxiu, però el servidor no pot oferir aquesta porció.
+* **416 Requested Range Not satisfiable (RFC 7233)** . El client ha sol·licitat una porció d'arxiu, però el servidor no pot oferir aquesta porció.
 * **417 Expectation Failed** . El servidor no pot complir els requeriments de l'header de l'request Expect.
-* **418 I'm a teapot \(RFC 2324\)** . Va ser part d'un [April Fool 's day](http://en.wikipedia.org/wiki/April_Fools%27_Day_Request_for_Comments) , i no s'espera que s'implementi en servidors HTTP. La RFC especifica que aquest codi hauria de ser retornat per teteres per servir te.
+* **418 I'm a teapot (RFC 2324)** . Va ser part d'un [April Fool 's day](http://en.wikipedia.org/wiki/April\_Fools'\_Day\_Request\_for\_Comments) , i no s'espera que s'implementi en servidors HTTP. La RFC especifica que aquest codi hauria de ser retornat per teteres per servir te.
 
 #### 5. 5XX Errors de servidor
 
@@ -451,11 +451,10 @@ El servidor ha fallat a l'completar una sol·licitud aparentment vàlida. Quan e
 * **503 Service Unavailable** . El servidor està actualment no disponible, ja sigui per **manteniment** o per **sobrecàrrega** .
 * **504 Gateway Timeout** . El servidor estava actuant com **a porta d'entrada** o **servidor intermediari** i no va rebre una resposta oportuna per part de servidor upstream.
 * **505 HTTP Version Not Supported** . El servidor no suporta la **versió de el protocol HTTP** utilitzada en el request.
-* **511 Network Authentication Required \(RFC 6585\)** . El client necessita autenticar-vos per poder accedir a la xarxa.
+* **511 Network Authentication Required (RFC 6585)** . El client necessita autenticar-vos per poder accedir a la xarxa.
 
 ## Error Handlers - gestors
 
 Els errors i els gestors d’errors de la programació de programari són un concepte impagable que ajuda als desenvolupadors a identificar punts de fallada en temps de compilació de l’aplicació o en temps d’execució. Poden assenyalar diferents nivells de gravetat.
 
 A PHP, es gestionen i registren els errors mitjançant una sèrie de funcions integrades. Faciliten l’adaptació de la gestió i el registre d’errors per adaptar-se a les necessitats d’una aplicació registrant gestors d’errors personalitzats o configurant informes d’errors per a un rang específic de nivells.
-
