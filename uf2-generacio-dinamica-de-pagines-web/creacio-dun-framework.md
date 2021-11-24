@@ -225,6 +225,10 @@ class Registry
 }
 ```
 
+Fixem-nos en bootstrap, la seva funció és lligar aquests serveis de database i configuració per després ser utilitzats.
+
+Ara, fixem la nostra atenció en la classe App
+
 ```php
 src/App.php
 <?php
@@ -299,7 +303,7 @@ src/App.php
 
 Mentre que start() és en sí el nucli de l'aplicació, ja que determina i activa quin controlador és el responsable de la "request", cal destacar que en la instància del controlador, també injectem els objectes Session i Request, que ens facilita el desenvolupament de l'aplicació com ja s'observarà.
 
-A cada cicle REQ-RESP creem un token aleatori que ens proporcionarà seguretat CSRF als formularis POST.
+
 
 ## Elements de la carpeta src/
 
@@ -503,157 +507,76 @@ A cada cicle REQ-RESP creem un token aleatori que ens proporcionarà seguretat C
 
 El nucli  o sistema de l'aplicació: que ja vam veure amb anterioritat.
 
-### DB
+### QueryBuilder i Connection
 
-Accedir a la base de dades és fàcil si fem servir aquesta classe, l'accés a la instància es fa a través del Controller:
+Accedir a la capa de persistència (infraestructura) és fàcil si fem servir aquesta classe, el podem definir com un servei que utilitzen els controladors.
 
-**`$this->getDB();`**
+Mirem el codi d'un controlador
 
 ```php
 <?php
 
-    namespace App;
+    namespace App\Controllers;
 
-    class DB extends \PDO{
-        static $instance;
-        protected  $config;
+    
+    use App\Registry;
 
-        static function singleton(){
-            if(!(self::$instance instanceof self)){
-                self::$instance=new self();
-            }
-            return self::$instance;
-        }
+class IndexController {
 
-        public function __construct(){
-            parent::__construct(DSN,USR,PWD);
-        }
-        
-       
-        // Db functions
-        function insert($table,$data):bool 
+        public function index()
         {
-           if (is_array($data)){
-              $columns='';$bindv='';$values=null;
-                foreach ($data as $column => $value) {
-                    $columns.='`'.$column.'`,';
-                    $bindv.='?,';
-                    $values[]=$value;
-                }
-                $columns=substr($columns,0,-1);
-                $bindv=substr($bindv,0,-1);
-                
-                
-               
-                $sql="INSERT INTO {$table}({$columns}) VALUES ({$bindv})";
-                
-                    try{
-                        $stmt=self::$instance->prepare($sql);
-    
-                        $stmt->execute($values);
-                    }catch(\PDOException $e){
-                        echo $e->getMessage();
-                        return false;
-                    }
-                
-                return true;
-                }
-                return false;
-            }
-    
-            function selectAll($table,array $fields=null):array
-            {
-                if (is_array($fields)){
-                    $columns=implode(',',$fields);
-                    
-                }else{
-                    $columns="*";
-                }
-                
-                $sql="SELECT {$columns} FROM {$table}";
-               
-                $stmt=self::$instance->prepare($sql);
-                $stmt->execute();
-                $rows=$stmt->fetchAll(\PDO::FETCH_ASSOC);
-                return $rows;
-            }
-    
-            function selectAllWithJoin($table1,$table2,array $fields=null,string $join1,string $join2):array
-            {
-                if (is_array($fields)){
-                    $columns=implode(',',$fields);
-                    
-                }else{
-                    $columns="*";
-                }
-               
-                $inners="{$table1}.{$join1} = {$table2}.{$join2}";
-                
-                $sql="SELECT {$columns} FROM {$table1} INNER JOIN {$table2} ON {$inners}";
-                
-                $stmt=self::$instance->prepare($sql);
-                $stmt->execute();
-                $rows=$stmt->fetchAll(\PDO::FETCH_ASSOC);
-                return $rows;
-            }
-            // només una condició
-            function selectWhereWithJoin($table1,$table2,array $fields=null,string $join1,string $join2,array $conditions):array
-            {
-                if (is_array($fields)){
-                    $columns=implode(',',$fields);
-                    
-                }else{
-                    $columns="*";
-                }
-               
-                $inners="{$table1}.{$join1} = {$table2}.{$join2}";
-                $cond="{$conditions[0]}='{$conditions[1]}'";
-                
-            $sql="SELECT {$columns} FROM {$table1} INNER JOIN {$table2} ON {$inners} WHERE {$cond} ";
+            $roles = Registry::get('database')->selectAll('roles');
             
-                
-                $stmt=self::$instance->prepare($sql);
-                $stmt->execute();
-                $rows=$stmt->fetchAll(\PDO::FETCH_ASSOC);
-                return $rows;   
+            return view('index', compact('roles'));
+        }
+    }
+```
+
+I ara observem les classes Connection i QueryBuilder:
+
+```php
+//Connection
+<?php
+    namespace App\Database;
+
+    class Connection{
+        public static function make($config){
+          $dsn=$config['connection'].';dbname='.$config['dbname'];
+            try {
+                return new \PDO(
+                   $dsn,
+                    $config['dbuser'],
+                    $config['dbpassword'],
+                    $config['options']
+                );
+            } catch (\PDOException $e) {
+                die($e->getMessage());
             }
+
+        }
+    }
     
-            function update(string $table, array $data,array $conditions)
-            {
-                if ($data){
-                    $keys=array_keys($data);
-                    $values=array_values($data);
-                    $changes="";
-                    for($i=0;$i<count($keys);$i++){
-                        $changes.=$keys[$i].'='.$values[$i].',';
-                    }
-                    $changes=substr($changes,0,-1);
-                    $cond="{$conditions[0]}='{$conditions[1]}'";
-                    $sql="UPDATE {$table} SET {$changes} WHERE {$cond}";
-                    $stmt=self::$instance->prepare($sql);
-                    $res=$stmt->execute();
-                    if($res){
-                        return true;
-                    }    
-                }else{
-                    return false;
-                }
-                
-    
-            }
-    
-            function remove($tbl,$id){
-            
-                $sql="DELETE FROM {$tbl} WHERE id=$id";
-                $stmt=self::$instance->prepare($sql);
-                $res=$stmt->execute();
-                if($res){
-                    return true;
-                }
-                else{
-                    return false;
-                }    
-            }
+    // QueryBuilder
+<?php
+
+namespace App\Database;
+class QueryBuilder{
+    private $selectables=[];
+    private $table;
+    private $whereClause;
+    private $limit;
+    protected $pdo;
+
+    function __construct($pdo)
+    {
+        $this->pdo=$pdo;
+    }
+
+    function selectAll($table){
+        $statement = $this->pdo->prepare("select * from {$table}");
+        $statement->execute();
+        return $statement->fetchAll(\PDO::FETCH_CLASS);
+    }
     }
 ```
 
