@@ -798,94 +798,44 @@ El sistema de plantilles creat és una simple composició entre tres scripts que
 
 ### El controlador
 
-Basat en una classe abstracta:
-
-Proporciona tots els serveis cap als controladors especialitzats, control de request, control de sessió, accés a dades, renderització de vistes i creació de formularis (tema que tractarem més endavant).
+Proporciona la intermediación entre les capes de persistència i la UI, per tant és qui fa servir els serveis.&#x20;
 
 
 
 ```php
 <?php
 
-    namespace App;
-    use App\View;
-    use App\Model;
-    use App\DB;
-    use App\Session;
+    namespace App\Controllers;
 
-    abstract class Controller implements View,Model{
-        protected $request;
-        protected $session;
+    
+    use App\Registry;
 
-        function __construct($request, $session){
-            $this->request=$request;
-            $this->session=$session;
-        }
-        
-        function createForm(){    
-            return new FormBuilder;
-        }
-        // $this->csrfError() to use in forms processing in Controllers
-        function csrfCheck(){
+   class IndexController {
+
+        public function index()
+        {
+            $users = Registry::get('database')->selectAll('users');
             
-            if ($this->request->getMethod() === 'POST') {
-                if (!array_key_exists('csrf-token', $_POST)) {
-                    throw new Exception();
-                  //  echo '<p>ERROR: The CSRF Token was not found in POST payload.</p>';
-                } elseif ($_POST['csrf-token'] !== $this->session->get('csrf-token')) {
-                    throw new Exception();
-                    //echo '<p>ERROR: The CSRF Token is not valid.</p>';
-                } else {
-                    return true;
-                   //echo '<p>OK: The CSRF Token is valid. Will continue with email validation...</p>';
-                }
-            }
-            
-        }
-        function error($string){
-            $this->render(['error'=>$string],'error');
-        }
-        
-        function render(?array $dataview=null,?string $template=null){
-            if($dataview){
-                extract($dataview,EXTR_OVERWRITE);
-            }
-            if ($template!=null){
-                include 'templates/'.$template.'.tpl.php';
-            }else{
-                include 'templates/'.$this->request->getController().'.tpl.php';
-            }
-        }
-
-        function getDB(){
-            return DB::singleton();
+            return view('index', compact('users'));
         }
     }
 ```
 
-El controlador implementa les interfaces View i Model:
+El controlador implementa les funcions render del helpers.php:
 
 ```php
-//interface View
-<?php
+//src/helpers.php
+    /** Require a view.
+     *
+     * @param  string $name
+     * @param  array  $data
+     */
+    function view($name, $data = [])
+    {
+        extract($data);
 
-    namespace App;
-
-    interface View{
-        public function render(?array $dataview=null,?string $template=null);
-       // public function json();
+        return require "src/views/{$name}.view.php";
     }
-    
- //interface Model
- 
-    <?php
-
-  namespace App;
-
-   interface Model{
-     public function getDB();
-
-  }   
 ```
 
 Tots els processos segueixen aquest protocol&#x20;
