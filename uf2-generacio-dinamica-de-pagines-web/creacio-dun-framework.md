@@ -13,42 +13,65 @@ Aprofundim el coneixement de la programació orientada a objecte a través de la
 En les aplicacions web és important resoldre els següents problemes :
 
 * Captura del **REQUEST** del client
-* Adaptar **resposta** al tipus de client \(HTML, JSON...\)
+* Adaptar **resposta** al tipus de client (HTML, JSON...)
 
-En el cas de seguir un paradigma MVC \(Model View Controller\), es poden adoptar els següents elements:
+En el cas de seguir un paradigma MVC (Model View Controller), es poden adoptar els següents elements:
 
-* Reescriptura del REQUEST per fer-lo més amigable \(**`.htaccess`**\)
-* Captura a través del Request del controlador \(objecte\) i l'acció \(mètode\)
+* Reescriptura del REQUEST per fer-lo més amigable (**`.htaccess`**)
+* Captura a través del Request del controlador (objecte) i l'acció (mètode)
 * Llençament de la instància de l'objecte controlador i posteriorment cridar l'acció corresponent com a mètode del controlador
 * Manteniment de la sessió i sistema d'autenticació i autorització
-* Sistema de plantilles per al renderitzat i generació de interfície d'usuari.
+* Sistema de vistes (_views_) per al renderitzat i generació de interfície d'usuari.
 
 
 
 
 
-## **Funcionament bàsic de l'app \( paradigma MVC a nivell web\)**
+## **Funcionament bàsic de l'app ( paradigma MVC i altres ginys)**
 
-#### **Estructura de carpetes i fitxers**
+#### **Estructura de carpetes i fitxers importants**
 
 ```php
 /index.php
- config.json
+.env
+ config.php
  composer.json
+ bootstrap.php
+ .htaccess
  vendor/
  src/
- templates/
+     Controllers/
+     Database/
+     views/
+         partials/
  public/
     css/
     img/
     js/
 ```
 
-La carpeta src/ incorpora les classes bàsiques de funcionament, incloent App que és la classe mestra inicial.
+La carpeta src/ incorpora les classes bàsiques de funcionament, incloent App que és la classe mestra inicial i l'arrencada del sistema (**bootstrap.php**)
 
-La carpeta vendor/ inclou únicament la característica autoload de PSR-4.
+La carpeta _vendor_/ inclou les llibreries externes que utilitzarem, entre elles la característica autoload de PSR-4.
 
-templates/ incorpora totes les plantilles php-html que s'utilitzen a les vistes.
+```json
+{ 
+   "autoload":
+   { 
+     "psr-4": 
+      {
+         "App\":"src" }, 
+         "files": ["src/helpers.php"] 
+      }, 
+      "require": { 
+           "vlucas/phpdotenv":"^5.3", 
+           "psr/container": "^1.0", 
+           "ext-pdo": "*" 
+        }
+  }
+```
+
+&#x20;views incorpora totes les vistes php-html que s'utilitzen a les vistes.
 
 public/ incorpora les característiques estàtiques i de front-end de l'aplicació.
 
@@ -56,13 +79,13 @@ public/ incorpora les característiques estàtiques i de front-end de l'aplicaci
 
 Si seguim el cicle entre client i servidor, podem analitzar com es desenvolupa la resposta, aquesta es dona sempre a nivell de Controlador, ja que estem fent servir paradigmes MVC.
 
-![Cicle Request abans d&apos;arribar al controlador](../.gitbook/assets/cicle-request.png)
+![Cicle Request abans d'arribar al controlador](../.gitbook/assets/cicle-request.png)
 
 ### **1 Reescriptura de la URI**
 
 **.htaccess**
 
-```text
+```
 Options +FollowSymLinks
 
 RewriteEngine On
@@ -74,13 +97,13 @@ RewriteRule ^.*$ - [NC,L]
 RewriteRule ^.*$ index.php [NC,L]
 ```
 
-Com s'observa, es tracta de redirigir tota consulta \(_query_ \) cap al controlador frontal de l'aplicació \(**index.php**\).
+Com s'observa, es tracta de redirigir tota consulta (_query_ ) cap al controlador frontal de l'aplicació (**index.php**).
 
-Per una bona càrrega de classes fem servir l'estandar **PSR- 4** \(autocàrrega de classes\)
+Per una bona càrrega de classes fem servir l'estandar **PSR- 4** (autocàrrega de classes)
 
-**Adaptació a estàndar PSR-4 \(autoload\) composer.json segons el namespace utlitzat**
+**Adaptació a estàndar PSR-4 (autoload) composer.json segons el namespace utlitzat**
 
-```text
+```
 {
     "autoload": {
         "psr-4":{
@@ -147,7 +170,7 @@ Un cop carregat el PSR-4, definim les constants de l'entorn de l'aplicació, aqu
 
 Al fitxer de configuració hi mostrem dos objectes json en funció de si estem en producció conf\__pro o en desenvolupament conf_\_dev.
 
-### 3 App::run\(\)
+### 3 App::run()
 
 Observem la classe src/App.php
 
@@ -253,7 +276,7 @@ namespace App;
    }
 ```
 
-El mètode init\(\), proporciona l'array de configuració de l'app. Mentre que run\(\) és en sí el nucli de l'aplicació, ja que determina i activa quin controlador és el responsable de la "request", cal destacar que en la instància del controlador, també injectem els objectes Session i Request, que ens facilita el desenvolupament de l'aplicació com ja s'observarà.
+El mètode init(), proporciona l'array de configuració de l'app. Mentre que run() és en sí el nucli de l'aplicació, ja que determina i activa quin controlador és el responsable de la "request", cal destacar que en la instància del controlador, també injectem els objectes Session i Request, que ens facilita el desenvolupament de l'aplicació com ja s'observarà.
 
 A cada cicle REQ-RESP creem un token aleatori que ens proporcionarà seguretat CSRF als formularis POST.
 
@@ -833,7 +856,7 @@ El sistema de plantilles creat és una simple composició entre tres scripts que
 
 Basat en una classe abstracta:
 
-Proporciona tots els serveis cap als controladors especialitzats, control de request, control de sessió, accés a dades, renderització de vistes i creació de formularis \(tema que tractarem més endavant\).
+Proporciona tots els serveis cap als controladors especialitzats, control de request, control de sessió, accés a dades, renderització de vistes i creació de formularis (tema que tractarem més endavant).
 
 
 
@@ -921,9 +944,7 @@ El controlador implementa les interfaces View i Model:
   }   
 ```
 
-Tots els processos segueixen aquest protocol 
+Tots els processos segueixen aquest protocol&#x20;
 
-usuari--&gt;-Controlador ---&gt;render ---&gt; procés UI ---&gt;usuari
-
-
+usuari-->-Controlador --->render ---> procés UI --->usuari
 
