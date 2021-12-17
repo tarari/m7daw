@@ -842,3 +842,6 @@ Tots els processos segueixen aquest protocol&#x20;
 
 usuari-->-Controlador --->render ---> procés UI --->usuari
 
+### Projecte
+
+Ens demanen crear una aplicació per una escola.
