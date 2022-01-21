@@ -136,5 +136,20 @@ Publicar les pàgines d'error internes de laravel a les vistes en resources, per
     @endforelse
 ```
 
+## Desplegament en carpeta en producció
 
+En aquest cas és necessari procedir a crear en la mateixa carpeta del projecte un fitxer .htaccess que permeti redirigir tot cap a **public/.**
+
+```
+// .htaccess en carpeta de projecte
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} -d [OR]
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ ^$1 [N]
+RewriteCond %{REQUEST_URI} (\.\w+$) [NC]
+RewriteRule ^(.*)$ public/$1
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ server.php
+```
 
