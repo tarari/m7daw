@@ -2,7 +2,7 @@
 
 * [Introducció](README.md)
 
-## UF1 Desenvolupament web <a id="uf1"></a>
+## UF1 Desenvolupament web <a href="#uf1" id="uf1"></a>
 
 * [UF1. Desenvolupament web. Repàs.](uf1/uf1.-desenvolupamet-web.md)
 * [PHP PDO](uf1/php-pdo.md)
@@ -19,11 +19,12 @@
 * [Creació d'un framework](uf2-generacio-dinamica-de-pagines-web/creacio-dun-framework.md)
 * [PHPUnit](uf2-generacio-dinamica-de-pagines-web/phpunit.md)
 
-## UF3 Accés a dades <a id="uf3"></a>
+## UF3 Accés a dades <a href="#uf3" id="uf3"></a>
 
 * [Patrons de disseny](uf3/patrons-de-disseny.md)
 * [ORM Eloquent en projectes](uf3/orm-eloquent-en-projectes.md)
-* [Laravel \(1a part\)](uf3/laravel.md)
+* [Introducció a Laravel](uf3/laravel.md)
+* [Eloquent](uf3/eloquent.md)
 
 ## UF4 Aplicacions híbrides i serveis web
 
@@ -42,4 +43,3 @@
 * [Seguretat en PHP](apendixs/seguretat-en-php.md)
 * [Esquema tipus d'aplicació](apendixs/untitled-1.md)
 * [Sintaxi PHP](apendixs/sintaxi-php.md)
-
