@@ -12,7 +12,7 @@ El diagrama d'entitats seria el següent:
 
 ## 1.Accions de navegació
 
-Ens permet entendre les diferents accions  de navegació del nostre projecte, seguim esquema tradicional d'aplicació web en escriptori.
+Ens permet entendre les diferents accions de navegació del nostre projecte, seguim esquema tradicional d'aplicació web en escriptori.
 
 | EXEMPLE       | Tasca                 |
 | ------------- | --------------------- |
@@ -63,13 +63,15 @@ $ php artisan ui:auth
 
 ## 4. Definir models i relacions associades i fer les migracions
 
+**Model**
+
 Podem fer servir els comandos artisan per crear els models. Un cop creats, cal acabar-los d'implementar.
-
-
 
 ```
 php artisan make:model Property -m
 ```
+
+**Taula**
 
 Després de definir els models i les seves migracions (-m), podem continuar modificant les migracions.
 
@@ -87,7 +89,7 @@ Crearem un altre script de migració:
 php artisan make:migrations change_table_properties
 ```
 
-&#x20;El modifiquem afegint les funcions **up**() i **down**() (crear i eliminar taula). Aneu amb compte amb els tipus de dades relacionats **id** de _users_ i **users\_id** de _properties_
+El modifiquem afegint les funcions **up**() i **down**() (crear i eliminar taula). Aneu amb compte amb els tipus de dades relacionats **id** de _users_ i **users\_id** de _properties_
 
 ```php
 class ChangeTableProperties extends Migration
@@ -126,18 +128,31 @@ class ChangeTableProperties extends Migration
         Schema::dropIfExists('properties');
     }
 }
-
 ```
 
 Ara ja podríem executar la migració: `php artisan migrate`
 
 Acabem de fer la resta de models i les relacions pertinents.
 
-![](../.gitbook/assets/inmo.png)
+![Esquema ER](../.gitbook/assets/inmo.png)
+
+En aquest cas veiem també les relacions que es poden crear, són vàries:
+
+user --->properties
+
+property--->user
+
+user --->contacts
+
+contact--->user
+
+........
+
+recordem-ho per més endavant.
 
 
 
-Segons l'esquema ER hem de poder crear els models necessaris amb les seves corresponents migracions:
+Segons l'esquema ER, també hem de poder crear els models necessaris amb les seves corresponents migracions:
 
 ```php
 php artisan make:model Property -m
@@ -159,13 +174,10 @@ class CreateContactsTable extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('interested_id')->unsigned();
-            $table->bigInteger('publication_id')->unsigned();
-            $table->foreign('interested_id')->references('id')->on('users');
-            $table->foreign('publication_id')->references('id')->on('publications');
+            $table->foreignId('interested_id')->constrained();
+            $table->foreignId('publication_id')->constrained();
             $table->timestamps();
         });
-
 ```
 
 Un cop fets els fitxers de migració completarem la migració:
@@ -176,31 +188,31 @@ php artisan migrate
 
 #### Completar mètodes en models
 
-Ara queda acabar de copiar les relacions  i característiques $fillable, etc. en Eloquent, sempre fixant-nos en l'esquema ER anterior, per exemple, entre User i Property (1:M):
+Ara queda acabar de copiar les relacions i característiques $fillable, etc. en Eloquent, sempre fixant-nos en l'esquema ER anterior, per exemple, entre User i Property (1:M):
 
 ```php
 class Property extends Model
 {
     protected $fillable=['description','price','type','owner_id'];
     
+    //relació inversa
     public function user(){
         return $this->belongsTo('App\User','owner_id');
     }
 }
-
 ```
 
 i User :
 
 ```php
   ........
-    public function properties(){
+    //relació directa
+     public function properties(){
         return $this->hasMany('App\Property');
     }
     public function publications(){
         return $this->hasMany('App\Publication');
     }
-
 ```
 
 #### Afegir un camp a una taula
@@ -240,18 +252,13 @@ class AddPhotoToProperties extends Migration
         });
     }
 }
-
 ```
 
 Fixem-nos en el mètode **down()**, efectivament, elimina el camp _photo_. Per últim, només queda que migrar : `php artisan migrate`
 
-
-
-
-
 ## 5. Crear els "_middlewares_" que en siguin necessaris. Middleware de control d'accès.
 
-Podem crear un middleware de _control del rol_ d'usuari, recordem que un middleware actua com un filtre.&#x20;
+Podem crear un middleware de _control del rol_ d'usuari, recordem que un middleware actua com un filtre.
 
 ![Els middlewares actuen com a filtres dels REQUESTs abans de processar la sol·licitud](../.gitbook/assets/dibujo-sin-titulo.png)
 
@@ -343,16 +350,16 @@ public function users()
 És moment de crear alguns _seeders_ i afegir rols i usuaris a la base de dades:
 
 ```
-$ php artisan make:seeder RoleTableSeeder
-$ php artisan make:seeder UserTableSeeder
+$ php artisan make:seeder RoleSeeder
+$ php artisan make:seeder UserSeeder
 ```
 
-Editem la classe _**RoleTableSeeder**_ (es troba dins de la carpeta:_ database/seeds/_) afegint el següent codi a mètode _**run**_ :
+Editem la classe _**RoleSeeder**_ (es troba dins de la carpeta:\_ database/seeds/\_) afegint el següent codi a mètode _**run**_ :
 
 ```php
 use Illuminate\Database\Seeder;
 use App\Role;
-class RoleTableSeeder extends Seeder
+class RoleSeeder extends Seeder
 {
     public function run()
     {
@@ -368,13 +375,13 @@ class RoleTableSeeder extends Seeder
 }
 ```
 
-Fem el mateix amb la classe _**UserTableSeeder**_ :
+Fem el mateix amb la classe _**UserSeeder**_ :
 
 ```php
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Role;
-class UserTableSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     public function run()
     {
@@ -402,9 +409,9 @@ Editem la classe _**DatabaseSeeder**_ (situada a la carpeta: database/seeds/) af
 public function run()
 {
     // La creación de datos de roles debe ejecutarse primero
-    $this->call(RoleTableSeeder::class);
+    $this->call(RoleSeeder::class);
     // Los usuarios necesitarán los roles previamente generados
-    $this->call(UserTableSeeder::class);
+    $this->call(UserSeeder::class);
 }
 ```
 
@@ -414,9 +421,12 @@ Ja queda poc ... està gairebé tot a punt. Ara és temps d'executar les migraci
 
 ```
 php artisan migrate:refresh --seed
+o bé
+php artisan db:seed
+(aquesta no fa migració) 
 ```
 
-Obrim el model **User.php** i afegim aquests tres  mètodes (mireu a veure si interpreteu per a què serveixen ):
+Obrim el model **User.php** i afegim aquests tres mètodes (mireu a veure si interpreteu per a què serveixen ):
 
 ```php
 public function authorizeRoles($roles)
@@ -450,7 +460,7 @@ public function hasRole($role)
 }
 ```
 
-Obrim l'arxiu app/Http/Controllers/Auth/_**RegisterController.php**_i canviem  el mètode _**create()**_ per definir per defecte el Role per als nous usuaris:
+Obrim l'arxiu app/Http/Controllers/Auth/\_**RegisterController.php**\_i canviem el mètode _**create()**_ per definir per defecte el Role per als nous usuaris:
 
 ```php
 use App\Role;
@@ -491,7 +501,6 @@ class HomeController extends Controller
     }
     */
 }
-
 ```
 
 **Opcional**:
@@ -540,7 +549,6 @@ class CheckRole
         return $next($request);
     }
 }
-
 ```
 
 Hem agregat una redirección estàndar cap a 'home' però igualment es podria fer:
@@ -610,8 +618,6 @@ Route::resource([
 
 Això genera una llista de rutes i noms de ruta associade
 
-
-
 | Verb      | URI                           | Action  | Route Name         |
 | --------- | ----------------------------- | ------- | ------------------ |
 | GET       | `/propeties`                  | index   | properties.index   |
@@ -621,8 +627,6 @@ Això genera una llista de rutes i noms de ruta associade
 | GET       | `/properties/{property}/edit` | edit    | properties.edit    |
 | PUT/PATCH | `/properties/{property}`      | update  | properties.update  |
 | DELETE    | `/properties/{property}`      | destroy | properties.destroy |
-
-
 
 ### Tractament dels controladors de recursos
 
@@ -681,7 +685,7 @@ Observem que en la ruta **properties.index**, volem mostrar totes les propietats
     @endsection
 ```
 
-Quan editem un determinat item ($property), es crida a la ruta _property.edit, _que al mateix temps s'encarrega de portar a la vista d'edició l'item seleccionat:
+Quan editem un determinat item ($property), es crida a la ruta \_property.edit, \_que al mateix temps s'encarrega de portar a la vista d'edició l'item seleccionat:
 
 ```php
 public function edit($id)
@@ -692,7 +696,7 @@ public function edit($id)
     }
 ```
 
-Veiem ara la vista _properties.edit_. Aquesta té com a característica un formulari que incorpora una **action** que accedeix al mètode _update_ del controlador, passant l'element que volem editar, amb els canvis  realitzats es torna al servidor a través del mètode PUT, tot tenit¡nt la protecció CSRF (recordeu! forms segurs )
+Veiem ara la vista _properties.edit_. Aquesta té com a característica un formulari que incorpora una **action** que accedeix al mètode _update_ del controlador, passant l'element que volem editar, amb els canvis realitzats es torna al servidor a través del mètode PUT, tot tenit¡nt la protecció CSRF (recordeu! forms segurs )
 
 ```php
 @extends('app')
@@ -728,7 +732,6 @@ Veiem ara la vista _properties.edit_. Aquesta té com a característica un formu
     </div>
 
     @endsection
-
 ```
 
 Ara caldria observar com actua el mètode _update_ de Properties:
@@ -747,8 +750,6 @@ Ara caldria observar com actua el mètode _update_ de Properties:
 ```
 
 Pràcticament el que fa és modificar a través d'Eloquent **update** utilitzant el Request i tornar a la ruta anterior (_properties.index_).
-
-
 
 ## 7. Associar i crear les vistes a través de blade
 
@@ -789,7 +790,6 @@ class PropertyController extends Controller
     {
         $this->middleware(['auth','role:admin']);
     }
-
 ```
 
 Comprovem el controlador, i agafem l'acció de modificar una propietat, des de la pantalla de catàleg de propietats:
@@ -841,14 +841,13 @@ Se selecciona la propietat (línia 3), agafem la llista de possibles usuaris pro
         </form>
     <br/>
     </div>
-
 ```
 
-Aquest formulari envia a través de mètode post però emmascara el mètode PUT, típic  mètode HTTP d'actualització de recursos.
+Aquest formulari envia a través de mètode post però emmascara el mètode PUT, típic mètode HTTP d'actualització de recursos.
 
-Com a anècdota, utilitzem un \<datalist>  per visualitzar el llistat de propietaris disponibles (línies 20 a 24).
+Com a anècdota, utilitzem un \<datalist> per visualitzar el llistat de propietaris disponibles (línies 20 a 24).
 
-L'acció del formulari és el mètode** PropertyController@update**, :
+L'acció del formulari és el mètode\*\* PropertyController@update\*\*, :
 
 ```php
 public function update(Request $request, $id)
@@ -866,7 +865,7 @@ public function update(Request $request, $id)
 #### _Característiques_:
 
 * En comptes de passar $id, podem injectar directament l'objecte **Property.**
-* Si el model ja existeix, com és el cas, podem utilitzar el mètode **save(). **De manera que només actualitza aquells valors modificats. Mireu el mètode**` isDirty()`** en la documentació per a més informació.
+* Si el model ja existeix, com és el cas, podem utilitzar el mètode **save(). De manera que només actualitza aquells valors modificats. Mireu el mètode `isDirty()`** en la documentació per a més informació.
 
 ```php
 public function update(Request $request, Property $property)
@@ -910,7 +909,7 @@ Des de la classe Request també podem aplicar els validadors des dels controlado
     }
 ```
 
-Una altra manera de fer-ho (i recomanable ) és  crear una classe específica per poder validar requests als formularis específics:
+Una altra manera de fer-ho (i recomanable ) és crear una classe específica per poder validar requests als formularis específics:
 
 ```php
 php artisan make:request StoreUserRequest
@@ -948,10 +947,9 @@ class StoreUserRequest extends FormRequest
         ];
     }
 }
-
 ```
 
-Modifiquem ara el mètode **store()** canviant el paràmetre Request  per la nova classe.
+Modifiquem ara el mètode **store()** canviant el paràmetre Request per la nova classe.
 
 ```php
  public function store(StoreUserRequest $request)
@@ -975,7 +973,7 @@ Bé, espero que us funcioni!
 
 Suposem que volem afegir una foto a cadascuna de les nostres entitats (properties). Laravel ens ofereix la possibilitat d'afegir un espai públic a través del seu _filesystem_.
 
-Des del fitxer _config/filesystems.php_, es determinen tres tipus d'emmagatzematge disk, que són** local, public i s3,** nosaltre utilitzarem a la pràctica el 'public', això permet accessos des de` http://app/arxiu`
+Des del fitxer _config/filesystems.php_, es determinen tres tipus d'emmagatzematge disk, que són\*\* local, public i s3,\*\* nosaltre utilitzarem a la pràctica el 'public', això permet accessos des de `http://app/arxiu`
 
 Per poder-lo utilitzar és necessari establir un link o accés directe, d'aquesta manera:
 
@@ -1037,13 +1035,12 @@ Extreiem el PATH del fitxer (en **public** ) per poder desar a la base de dades 
     </div>
 
     @endsection
-
 ```
 
 Observem:
 
 * el formulari té una encriptació per suportar multipart/form-data
-* afegim control  tipus **file** amb name="photo"
+* afegim control tipus **file** amb name="photo"
 
 Quedaran els fitxers emmagatzemats a **storage/app/public**
 
@@ -1077,7 +1074,7 @@ Accedim a ella a través d'un asset prefixant el directori storage: `{{asset('st
 
 ## 8. Tests
 
-Laravel està orientat al testing, per tant ja trobem instal·lat **`phpunit`**. A més tota la configuració de l'entorn de proves es troba** phpunit.xm**l. Si bé podem crear un fitxer `.env.testing `amb els paràmetres de prova, per exemple, la base de dades ha de ser diferent, podem treballar pot ser amb **`sqlite`**.
+Laravel està orientat al testing, per tant ja trobem instal·lat **`phpunit`**. A més tota la configuració de l'entorn de proves es troba\*\* phpunit.xm\*\*l. Si bé podem crear un fitxer `.env.testing` amb els paràmetres de prova, per exemple, la base de dades ha de ser diferent, podem treballar pot ser amb **`sqlite`**.
 
 ```php
     APP_NAME=Laravel
@@ -1090,10 +1087,9 @@ Laravel està orientat al testing, per tant ja trobem instal·lat **`phpunit`**.
 
     DB_CONNECTION=sqlite
     DB_DATABASE=/absolute/path/to/test.sqlite
-
 ```
 
-Per crear una prova podem fer servir el comando artisan &#x20;
+Per crear una prova podem fer servir el comando artisan
 
 Un cop generada la prova podem utilitzar phpunit o bé el comando **`artisan test`**
 
@@ -1103,7 +1099,7 @@ Què és el que volem provar?
 
 ### Casos de prova finals o endpoints
 
-Es crea la unitat, per exemple provar propietats i es codifiquen tots els casos de prova anteriors p.e. testCreateProperty())&#x20;
+Es crea la unitat, per exemple provar propietats i es codifiquen tots els casos de prova anteriors p.e. testCreateProperty())
 
 ## Apèndix - Mail: configuració i ús amb Gmail
 
@@ -1219,10 +1215,9 @@ class ContactRequired extends Mailable
         return $this->from('zzzzzz@gmail.com')->view('mailcontact');
     }
 }
-
 ```
 
-La vista la generem  a **resources/views** :
+La vista la generem a **resources/views** :
 
 ```php
 <!doctype html>
@@ -1247,7 +1242,6 @@ La vista la generem  a **resources/views** :
 
 </body>
 </html>
-
 ```
 
 Un cop creada la plantilla, podem usar la classe Mail des del controlador. Fixem-nos en els mètodes **`::to()`** i **`->send()`**
