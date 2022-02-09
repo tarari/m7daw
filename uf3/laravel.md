@@ -20,7 +20,7 @@ Hem d'entendre'l com un sistema de capes i depenent del problema has de saber qu
 
 ### Requeriments
 
-Què és el que necessitem per treballar am Laravel:
+Què és el que necessitem per treballar am Laravel 7.x:
 
 * PHP v.7.2 o més gran
 * Apache o nginx
@@ -35,7 +35,7 @@ Què és el que necessitem per treballar am Laravel:
 A través de composer com a projecte:
 
 ```
-composer create-project --prefer-dist laravel/laravel projecte
+composer create-project --prefer-dist laravel/laravel:  7.* projecte
 ```
 
 També es podria haver fet de forma global i utilitzar després el comando **laravel**.
@@ -228,9 +228,15 @@ Route::get('/', function () {
 {% endtab %}
 {% endtabs %}
 
-Laravel busca en la carpeta\*\* **\_**resources/views**\_** \*\*la plantilla _welcome.blade.php_
+Laravel busca en la carpeta  **\_resources/views\_**  la plantilla _welcome.blade.php_
 
-\_\_
+
+
+{% hint style="info" %}
+La resposta associada a la ruta URI que representa cada ruta, pot ser a través de un **Closure** o a través d'un **Controlador**. Es recomana treballar a través de Controladors.
+{% endhint %}
+
+Si mirem la **view**:
 
 {% tabs %}
 {% tab title="XML/HTML/SVG" %}
@@ -278,7 +284,7 @@ Route::get('/', function () {
 });
 ```
 
-La sortida serà en JSON.
+La sortida (response ) serà en JSON.
 
 #### Rutes amb paràmetres requerits
 
@@ -374,7 +380,7 @@ I al fitxer **views/test.blade.php** podem utilitzar la variable `$name` de la s
 
 Podem crear estructures de rutes més complexes, com ara:
 
-\*\*Grup + Prefixe + middleware + resource \*\*, amb això ens podem estalviar moltes línies...
+**Grup + Prefixe + middleware + resource** , amb això ens podem estalviar moltes línies...
 
 ```css
 Route::group(['prefix'=>'admin','middleware'=>['auth','permission:admin']],function(){
@@ -382,6 +388,34 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','permission:admin']],funct
     Route::resource('users',\App\Http\Controllers\UserController::class);
 });
 //Rutes CRUD /admin/users i /admin/videos només per al rol d'administrador
+```
+
+Tot i que en el cas dels middleware, es recomana fer-los servir com a mètodes (heretats de Controller) dins dels controladors.
+
+```php
+// Some codeclass UserController extends Controller
+{
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('log')->only('index');
+        $this->middleware('subscribed')->except('store');
+    }
+}
+```
+
+o inclús definir el middleware sense registrar-lo al RouteServiceProvid$this->middleware(function ($request, $next) {
+
+```php
+    // ...
+ 
+    return $next($request);
+});
 ```
 
 En quant als recursos, (_resource_), aquests generen unes accions dins els controladors i unes vistes associades:
@@ -407,6 +441,8 @@ Route::get('home', function () {
 });
 ```
 
+tot i que ja coneixem que la sortida habitual pot ser una vista (view).
+
 ### Comandos Artisan
 
 Artisan és el nom de la interfície de comandos en línia inclosa en Laravel. Cobreix moltes tasques com ara; treball amb migracions de bases de dades, eliminar catxé, crear els fitxers necessaris per l'autenticació, creació de models, controladors, classes d'events i molt més...
@@ -427,11 +463,11 @@ Llista de comandos artisan més comuns:
 | `migrate`           | Run the database migrations                                     |
 | `optimize`          | Optimize the framework for better performance                   |
 | `serve`             | Serve the application on the PHP development server             |
-| `tinker`            | Interact with your application                                  |
+| **`tinker`**        | Interact with your application                                  |
 | `up`                | Bring the application out of maintenance mode                   |
 | `app:name`          | Set the application namespace                                   |
 | `auth:clear-resets` | Flush expired password reset tokens                             |
-| `cache:clear`       | Flush the application cache                                     |
+| **`cache:clear`**   | Flush the application cache                                     |
 | `cache:table`       | Create a migration for the cache database table                 |
 | `config:cache`      | Create a cache file for faster configuration loading            |
 | `config:clear`      | Remove the configuration cache file                             |
@@ -448,12 +484,12 @@ Llista de comandos artisan més comuns:
 | `make:job`           | Create a new job class                                      |
 | `make:listener`      | Create a new event listener class                           |
 | `make:middleware`    | Create a new middleware class                               |
-| `make:migration`     | Create a new migration file                                 |
-| `make:model`         | Create a new Eloquent model class                           |
-| `make:policy`        | Create a new policy class                                   |
+| **`make:migration`** | Create a new migration file                                 |
+| **`make:model`**     | Create a new Eloquent model class                           |
+| **`make:policy`**    | Create a new policy class                                   |
 | `make:provider`      | Create a new service provider class                         |
 | `make:request`       | Create a new form request class                             |
-| `make:seeder`        | Create a new seeder class                                   |
+| **`make:seeder`**    | Create a new seeder class                                   |
 | `make:test`          | Create a new test class                                     |
 | `migrate:install`    | Create the migration repository                             |
 | `migrate:refresh`    | Reset and re-run all migrations                             |
