@@ -35,7 +35,7 @@ Què és el que necessitem per treballar am Laravel 7.x:
 A través de composer com a projecte:
 
 ```
-composer create-project --prefer-dist laravel/laravel:  7.* projecte
+composer create-project --prefer-dist laravel/laravel:7.* projecte
 ```
 
 També es podria haver fet de forma global i utilitzar després el comando **laravel**.
@@ -572,6 +572,92 @@ Ara que hem definit un disseny per a la nostra aplicació, definim una pàgina s
 
 En aquest exemple, la secció `sidebar`utilitza la directiva `@parent`per afegir (en lloc de sobreescriure) contingut a la barra lateral del disseny. La directiva`@parent`se substituirà pel contingut del disseny quan es renderitzi la vista.
 
+## Autoritzacions amb "Policies"
+
+Per autoritzar accions del REQUEST sobre les entitats(models) podem utilitzar dos element, GATES i POLICIES.
+
+* GATE :: Similars als middlewares, es a dir, com els mètodes d'una classe.
+* POLICY:: Com els controladors, agrupen tota la lògica d'autoritzacions sobre un determinat model.
+
+### PostPolicy
+
+Com podem crear una _policy_ aplicada al recurs Post?
+
+```
+php artisan make:policy PostPolicy --model=Post
+```
+
+#### Primer
+
+Registrar la policy
+
+```php
+<?php
+ 
+namespace App\Providers;
+ 
+use App\Policies\PostPolicy;
+use App\Post;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+ 
+class AuthServiceProvider extends ServiceProvider
+{
+    /**
+     * The policy mappings for the application.
+     *
+     * @var array
+     */
+    protected $policies = [
+        Post::class => PostPolicy::class,
+    ];
+ 
+    /**
+     * Register any application authentication / authorization services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->registerPolicies();
+ 
+        //
+    }
+}
+```
+
+#### Segon
+
+Editar o escriure les regles:
+
+Per exemple, un usuari pot actualitzar el post si és seu:
+
+```php
+<?php
+ 
+namespace App\Policies;
+ 
+use App\Post;
+use App\User;
+ 
+class PostPolicy
+{
+    /**
+     * Determine if the given post can be updated by the user.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Post  $post
+     * @return bool
+     */
+    public function update(User $user, Post $post)
+    {
+        return $user->id === $post->user_id
+                ? Response::allow()
+                : Response::deny('You do not own this post.');
+    }
+}
+```
+
 ## Bootstrap i webpack
 
 Laravel té la possibilitat d'integrar de forma automàtica tots els fitxers públics de web, css i js, en una única distribució dins la carpeta resources. Webpack, a través de node i npm, realitza aquesta operació (scaffolding). Mirem com es fa pas a pas:
@@ -634,18 +720,18 @@ Laravel instal·la de forma automàtica un sistema d'autenticació, per tant tro
 
 Aquesta no és una recepta única, vosaltres també us fareu una a ben segur:
 
-| # | Tasca                                                                                                                                                            |
-| - | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1 | Configuració inicial de Laravel, **git, composer, php, mysql o mariadb**                                                                                         |
-| 2 | Crear nou projecte: **`composer create-project laravel/laravel projecte`**                                                                                       |
-| 3 | Generar nova key: **`php artisan key:generate`**                                                                                                                 |
-| 4 | Crear database i usuari. Podem mirar [apèndix](../apendixs/apendix-crear-base-de-dades-i-usuari-en-docker.md) si tenim problemes.                                |
-| 5 | Configurar convenientment .`.env`                                                                                                                                |
-| 6 | <p>Fer les migracions</p><p><strong><code>php artisan make:migration </code></strong><em><strong><code>create_name_table</code></strong></em></p>                |
-| 7 | Crear els models, o bé els models i controladors associats al recurs: **`php artisan make:model Post -mc`**                                                      |
-| 8 | Procedir a generar ruta, associar el controlador i vistes associades.                                                                                            |
-|   | Per cada entitat administrable, crear el controlador de recursos, vistes associades i autoritzacions (recomanable utilitzar un **middleware** per controlar-ho). |
-|   | Procurem tenir un codi net i endreçat al fitxer **routes/web.php**                                                                                               |
+| # | Tasca                                                                                                                                                                            |
+| - | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1 | Configuració inicial de Laravel, **git, composer, php, mysql o mariadb**                                                                                                         |
+| 2 | Crear nou projecte: **`composer create-project laravel/laravel projecte`**                                                                                                       |
+| 3 | Generar nova key: **`php artisan key:generate`**                                                                                                                                 |
+| 4 | Crear database i usuari. Podem mirar [apèndix](../apendixs/apendix-crear-base-de-dades-i-usuari-en-docker.md) si tenim problemes.                                                |
+| 5 | Configurar convenientment .`.env`                                                                                                                                                |
+| 6 | <p>Fer les migracions</p><p><strong><code>php artisan make:migration </code></strong><em><strong><code>create_name_table</code></strong></em></p>                                |
+| 7 | Crear els models, o bé els models i controladors associats al recurs: **`php artisan make:model Post -mc`**                                                                      |
+| 8 | Procedir a generar ruta, associar el controlador i vistes associades.                                                                                                            |
+|   | Per cada entitat administrable, crear el controlador de recursos, vistes associades i autoritzacions (recomanable utilitzar un **middleware**  i **policies** per controlar-ho). |
+|   | Procurem tenir un codi net i endreçat al fitxer **routes/web.php**                                                                                                               |
 
 ###
 
