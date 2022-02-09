@@ -658,6 +658,19 @@ class PostPolicy
 }
 ```
 
+#### Aplicació de les autoritzacions a controladors de recursos
+
+Podem aplicar directament les políticas d'autorització a tot el controlador de recursos simplement a través del  seu constructor:
+
+```php
+class PostController extends Controller
+{
+    public function __construct()
+    {
+        $this->authorizeResource(Post::class, 'post');
+    }
+```
+
 ## Bootstrap i webpack
 
 Laravel té la possibilitat d'integrar de forma automàtica tots els fitxers públics de web, css i js, en una única distribució dins la carpeta resources. Webpack, a través de node i npm, realitza aquesta operació (scaffolding). Mirem com es fa pas a pas:
