@@ -651,9 +651,18 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
-        return $user->id === $post->user_id
-                ? Response::allow()
-                : Response::deny('You do not own this post.');
+        return $user->id === $post->user_id;
+                
+    }
+    // actualitza si és administrador o bé
+    // el propietari del post
+    public function update(User $user, Post $post)
+    {
+        if($user->isAdmin() || $user->id === $post->user_id ){
+            return true;
+        }
+        return  false;
+
     }
 }
 ```
