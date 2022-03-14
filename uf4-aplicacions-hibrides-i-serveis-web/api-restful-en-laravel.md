@@ -1,8 +1,8 @@
 # API RestFUL en Laravel
 
-Aquest apartat només mostrarà com crear un endpoint i una petita explicació de com fer-lo servir  amb alguns verbs **HTTP**.\
+Aquest apartat només mostrarà com crear un endpoint i una petita explicació de com fer-lo servir amb alguns verbs **HTTP**.\
 La part de crear un projecte **Laravel**, migracions i models ho veurem molt ràpidament, ja que se suposa que està vist en la UF3, i crearem només una taula, molt senzilla, per no complicar-nos , però que potser vegem en detall més endavant en un altre apartat.\
-Si ja tens un projecte funcionant  en Laravel, ens podem   saltar la següent secció.
+Si ja tens un projecte funcionant en Laravel, ens podem saltar la següent secció.
 
 #### **Requisits:**
 
@@ -10,11 +10,11 @@ Si ja tens un projecte funcionant  en Laravel, ens podem   saltar la següent se
 * Composer: Per instal·lar Laravel.
 * Una base de dades creada. En aquest apartat farem servir Mysql i la BD es dirà **PROVESAPI** .
 
-El com manegen la  base de dades ho deixarem com a personal. La majoria de les operacions les farem amb Laravel.
+El com manegen la base de dades ho deixarem com a personal. La majoria de les operacions les farem amb Laravel.
 
 #### **Instal·lant Composer:**
 
-Tenim  [ el lloc oficial.](https://getcomposer.org)
+Tenim [el lloc oficial.](https://getcomposer.org)
 
 #### **Instal·lant Laravel:**
 
@@ -22,7 +22,7 @@ Tenim  [ el lloc oficial.](https://getcomposer.org)
 composer global require "laravel/installer”
 ```
 
-(  triga una mica.)
+( triga una mica.)
 
 Un cop estigui a punt la instal·lació podem crear el nostre projecte en Laravel!
 
@@ -36,7 +36,7 @@ Sense entrar en molt detall, el que fa la comanda és crear una carpeta **miApiR
 
 Aquesta part és easy peasy. L'únic que hem de fer és modificar el fitxer **.env** que es troba a l'arrel del nostre projecte **miApiRest**.
 
-L'omplirm amb les dades de la  BD (que haurem creat, amb les dades definides):
+L'omplirm amb les dades de la BD (que haurem creat, amb les dades definides):
 
 ```
 [...] DB_CONNECTION = mysql 
@@ -50,19 +50,19 @@ DB_PASSWORD = ********* [...]
 **Migracions:**
 
 Per no estendre'ns gaire, crearem una taula ultra senzilla anomenada **Pokémon** amb els camps **id** i **nom** .\
-La gràcia de les migracions és que podem  tenir la base de dades dins del control de versions com _git_.
+La gràcia de les migracions és que podem tenir la base de dades dins del control de versions com _git_.
 
-Amb el terminal que vulguis entrem  a la carpeta arrel del nostre projecte i executem la següent comanda:
+Amb el terminal que vulguis entrem a la carpeta arrel del nostre projecte i executem la següent comanda:
 
 ```
 $ php artisan make: migració create_table_pokemons
- Migració creada: 2018_05_08_044418_create_table_pokemons
+ Migration created: 2020_05_08_044418_create_table_pokemons
 ```
 
 Revisem el que acaba de crear-se:\
 La recentment creada migració hauria d'estar en **base de dades / migrations.**
 
-Juntament amb **2020\_02\_08\_044418\_create\_table\_pokemons.php** , si estem en un projecte nou, haurien d'haver 2 migracions més. Aquestes les crea Laravel per defecte per mantenir usuaris. Les esborraré en aquest cas ja que no les farem servir, però depèn del que volguem fer.
+Juntament amb **2020\_05\_08\_044418\_create\_table\_pokemons** , si estem en un projecte nou, haurien d'haver 2 migracions més. Aquestes les crea Laravel per defecte per mantenir usuaris. Les esborraré en aquest cas ja que no les farem servir, però depèn del que volguem fer.
 
 Editem la nostra recent creada migració de la següent manera:
 
@@ -74,8 +74,8 @@ Aquesta migració hauria de crear una taula **pokemons** amb les camps **id** , 
 
 ```
 $ php artisan migrate
- Migració: 2018_05_08_044418_create_table_pokemons Migrat 
-: 2018_05_08_044418_create_table_pokemons
+ Migration: 2020_05_08_044418_create_table_pokemons Migrated 
+: 2020_05_08_044418_create_table_pokemons
 ```
 
 Hauria d'estar la taula ja creada en la nostra BD. A l'revisar que tot va sortir bé, podem començar a crear el nostre model, per poder modificar aquesta taula.
@@ -93,7 +93,7 @@ Ja que el camp **name** és l'únic que modificarem en aquest cas, el afegim a l
 
 Nota: Per crear el model + la migració amb un sol comandament pots utilitzar:
 
-> `php artisan make:model pokemon -mf`
+> `php artisan make:model Pokemon -mf`
 
 Ara, estem preparats per crear el _controller_ que tindrà els mètodes a cridar per la nostra API.
 
@@ -137,16 +137,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 //Agreguem ruta al controlador de pokemons
-Route::resource('pokemons', 'PokemonController');
+Route::resource('pokemons', 'Api/PokemonController');
 ```
-
-
 
 Fem servir la comanda **`php artisan route:list`** , per veure si les nostres rutes quedar bé configurades:
 
 ![](https://miro.medium.com/max/819/1\*2nUW15qD2V3bWfTaJEXnBQ.png)
 
-Laravel, ha configurat   les rutes per als verbs **http** que vulguem fer servir, com [**GET, POST, PUT, PATCH i DELETE**](https://developer.mozilla.org/es/docs/Web/HTTP/Methods) . Si seguim l'estructura definida en aquesta llista, no ens podem perdre.
+Laravel, ha configurat les rutes per als verbs **http** que vulguem fer servir, com [**GET, POST, PUT, PATCH i DELETE**](https://developer.mozilla.org/es/docs/Web/HTTP/Methods) . Si seguim l'estructura definida en aquesta llista, no ens podem perdre.
 
 ## **Proves ...**
 
@@ -264,7 +262,7 @@ class PokemonController extends Controller
 
 Iniciem el nostre server amb la comanda **php artisan serve.**
 
-Ara podem utilitzar el nostre mètode preferit per provar APIs. En el meu cas faré servir [**Postman**](https://www.getpostman.com)**., **o el comando** curl -X:**
+Ara podem utilitzar el nostre mètode preferit per provar APIs. En el meu cas faré servir [**Postman**](https://www.getpostman.com)**., o el comando curl -X:**
 
 ```php
 curl -d "name=Lugia" -X POST http://localhost:8000/api/pokemons
@@ -274,7 +272,6 @@ o en format application/json, afegim -H amb la capçalera modificada.
 
 ```php
 curl  -d '{"name":"Lugia"}' -H "Content-Type: application/json" -X POST http://localhost:8000/api/pokemons
-
 ```
 
 Provem el mètode **store**() a POSTMAN
@@ -292,11 +289,17 @@ Ara provem el mètode **show** ():
 
 ![](https://miro.medium.com/max/1047/1\*EUxIy1OFctUSExkxHERKug.png)
 
-Postman va sol·licitar amb un mètode GET  el Pokémon amb l'id = 1 a la nostra BD, en aquest cas sent Lugia.
+Postman va sol·licitar amb un mètode GET el Pokémon amb l'id = 1 a la nostra BD, en aquest cas sent Lugia.
 
 ## I l'autenticació?
 
 El propi Laravel recomana l'ús de Laravel/passport que permet gestionar l'autenticació en accessos via API. Podeu seguir la documentació que aporta laravel.com:
+
+La idea és simple, donat que HTTP és un protocol que no desa l'estat i no podem utilitzar variables de sessió, podem genera uns _tokens_ que, només les accions que incorporin aquest token generat als servidors podran ser realitzades.
+
+
+
+
 
 [Laravel Passport](https://laravel.com/docs/7.x/passport)
 
@@ -310,7 +313,7 @@ composer require laravel/passport
 
 ### Afegint laravel/passport
 
-Afegir nou servei al proveïdor de serveis, en**` config/app.php`**
+Afegir nou servei al proveïdor de serveis, en\*\* `config/app.php`\*\*
 
 ```php
 'providers' => [
@@ -345,7 +348,7 @@ class User extends Authenticatable
 ....
 ```
 
-I en el proveïdor de serveis d'autenticació, **app/Providers/AuthServiceProvider.php**  on afegirem `Passport::routes` en el mètode boot()
+I en el proveïdor de serveis d'autenticació, **app/Providers/AuthServiceProvider.php** on afegirem `Passport::routes` en el mètode boot()
 
 ```php
 public function boot()
@@ -357,7 +360,7 @@ public function boot()
     }
 ```
 
-En la configuració de mètodes d'autenticació en **config/auth.php **afegim**:**
+En la configuració de mètodes d'autenticació en **config/auth.php afegim:**
 
 ```php
 return [
@@ -381,13 +384,11 @@ return [
 
 **driver de api ha de ser 'passport'**
 
-****
+***
 
 ### Crear rutes
 
-Les rutes cal definir-les en les rutes per a API: **`routes/api.php.`** La definició de rutes en aquest fitxer incorpora_ de facto _el prefixe **api/**
-
-
+Les rutes cal definir-les en les rutes per a API: **`routes/api.php.`** La definició de rutes en aquest fitxer incorpora\_ de facto \_el prefixe **api/**
 
 ```php
 use App\Http\Controllers\Api\UserController;
@@ -399,10 +400,9 @@ Route::middleware('auth:api')->group(function () {
 
 Route::post('login', [UserController::class,'login']);
 Route::post('register',[UserController::class,'register']);
-
 ```
 
-### Controlador  base API
+### Controlador base API
 
 Podem gestionar tota la sortida API amb un controlador base que formategi en JSON la informació que donem al client:
 
@@ -453,10 +453,19 @@ class BaseController extends Controller
         return response()->json($response, $code);
     }
 }
-
 ```
 
+### Per incorporar el token:
 
+```php
+
+$response = $client->request('GET', '/api/user', [
+    'headers' => [
+        'Accept' => 'application/json',
+        'Authorization' => 'Bearer '.$accessToken,
+    ],
+])
+```
 
 ### Crear CRUD
 
@@ -519,10 +528,9 @@ Primer crearem un controlador per l'autenticació via Passport en API:
             return response()->json(['user' => auth()->user()], 200);
         }
     }
-
 ```
 
-La idea és que si tot va bé ens genera un token  `->createToken('AppNAME'`que actua com a testimoni de seguretat i que cal incorporar.lo en qualsevol petició, Assegureu-vos que _App\Models\User_ fa servir el **trait` HasApiTokens`**
+La idea és que si tot va bé ens genera un token `->createToken('AppNAME'`que actua com a testimoni de seguretat i que cal incorporar.lo en qualsevol petició, Assegureu-vos que _App\Models\User_ fa servir el **trait `HasApiTokens`**
 
 Per tant si volguèssim , per exemple, veure els detalls de l'usuari, necessitem el token. En cas d'utilitzar l'eina Postman, seleccionarem **Authorization: Bearer Token**
 
@@ -554,12 +562,3 @@ public function show($id)
 ### Testejar
 
 Uilitzeu POSTMAN per poder comprovar el correcte funcionament.
-
-
-
-
-
-
-
-
-
