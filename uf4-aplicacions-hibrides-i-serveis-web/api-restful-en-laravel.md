@@ -313,7 +313,7 @@ composer require laravel/passport:9.0
 
 ### Afegint laravel/passport
 
-Afegir nou servei al proveïdor de serveis, en\*\* `config/app.php`\*\*
+Afegir nou servei al proveïdor de serveis, en `config/app.php`
 
 ```php
 'providers' => [
@@ -334,7 +334,7 @@ I instal·lació de passport:
 php artisan passport:install
 ```
 
-Aquest últim comando proporciona els clients [OAuth](https://es.wikipedia.org/wiki/OAuth) per poder accedir-hi
+Aquest últim comando proporciona els clients [OAuth](https://es.wikipedia.org/wiki/OAuth) per poder accedir-hi.
 
 ### Service provider i configuració de Passport
 
@@ -390,77 +390,31 @@ return [
 
 ### Crear rutes
 
-Les rutes cal definir-les en les rutes per a API: **`routes/api.php.`** La definició de rutes en aquest fitxer incorpora\_ de facto \_el prefixe **api/**
+Les rutes cal definir-les en les rutes per a API: **`routes/api.php.`** La definició de rutes en aquest fitxer incorpora de facto  el prefixe **api/**
 
 ```php
-use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\PokemomController;
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('user', [UserController::class,'details']);
+    Route::get('user', [AuthController::class,'user']);
     Route::resource('pokemons',PokemonController::class);
 });
 
-Route::post('login', [UserController::class,'login']);
-Route::post('register',[UserController::class,'register']);
+Route::post('login', [AuthController::class,'login']);
+Route::post('register',[AuthController::class,'register']);
 ```
 
-### Controlador base API
+Donat que estem consultant una API Rest que retorna dades en format JSON, és important agregar els següents 2 headers en cadascuna de les nostres peticions:
 
-Podem gestionar tota la sortida API amb un controlador base que formategi en JSON la informació que donem al client:
-
-Creem en primer lloc el controlador: **`php artisan make:controller Api/BaseController`**
-
-```php
-namespace App\Http\Controllers\Api;
-
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
-class BaseController extends Controller
-{
-    /**
-     * success response method.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function sendResponse($result, $message)
-    {
-        $response = [
-            'success' => true,
-            'data'    => $result,
-            'message' => $message,
-        ];
-
-
-        return response()->json($response, 200);
-    }
-    /**
-     * return error response.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function sendError($error, $errorMessages = [], $code = 404)
-    {
-        $response = [
-            'success' => false,
-            'message' => $error,
-        ];
-
-
-        if(!empty($errorMessages)){
-            $response['data'] = $errorMessages;
-        }
-
-
-        return response()->json($response, $code);
-    }
-}
+```
+Content-Type: application/json
+X-Requested-With: XMLHttpRequest
 ```
 
-### Per incorporar el token:
+Si preparem una resposta del nostre client, el codi quedaria tal qual:
 
 ```php
-
 $response = $client->request('GET', '/api/user', [
     'headers' => [
         'Accept' => 'application/json',
@@ -568,68 +522,11 @@ class AuthController extends Controller
 
 ### Crear CRUD
 
-Primer crearem un controlador per l'autenticació via Passport en API:
+Un cop creat el controlador d'autenticació, passem a crear el controlador de recurs i veure com treure resultats.
 
-```php
- namespace App\Http\Controllers\Api;
 
-    use Illuminate\Http\Request;
-    use App\Models\User;
-    use Illuminate\Support\Facades\Auth;
-    use Illuminate\Support\Facades\Hash;
-    use Illuminate\Contracts\Validation\{Validator};
 
-    class UserController extends BaseController
-    {
-    /**
-    * User Register
-    */
-    public function register(Request $request)
-    {
-        $dataValidated=$request->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-        ]);
-        $dataValidated['password']=Hash::make($request->password);
-
-        $user = User::create($dataValidated);
-
-        $token = $user->createToken('AppNAME')->accessToken;
-
-        return response()->json(['token' => $token], 200);
-    }
-    
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function login(Request $request){
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
-
-            $user = Auth::user();
-            $success['token'] =  $user->createToken('AppName')-> accessToken;
-            $success['user'] =  $user->email;
-
-            return $this->sendResponse($success, 'User login successfully.');
-        }
-        else{
-            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
-        }
-    }
-        /**
-         * Returns Authenticated User Details
-         *
-         * @return \Illuminate\Http\JsonResponse
-         */
-        public function details()
-        {
-            return response()->json(['user' => auth()->user()], 200);
-        }
-    }
-```
-
-La idea és que si tot va bé ens genera un token `->createToken('AppNAME'`que actua com a testimoni de seguretat i que cal incorporar.lo en qualsevol petició, Assegureu-vos que _App\Models\User_ fa servir el **trait `HasApiTokens`**
+La idea és que si tot va bé ens genera un token `$user->createToken('Personal Access Token')`;que actua com a testimoni de seguretat i que cal incorporar.lo en qualsevol petició, Assegureu-vos que _App\User_ fa servir el **trait `HasApiTokens`**
 
 Per tant si volguèssim , per exemple, veure els detalls de l'usuari, necessitem el token. En cas d'utilitzar l'eina Postman, seleccionarem **Authorization: Bearer Token**
 
@@ -642,9 +539,9 @@ Només un apunt: us adjunto com seria mostrar una pokemon:
 ```php
 public function show($id)
     {
-        $$property = auth()->user()->pokemons()->find($id);
+        $pokemon= auth()->user()->pokemons()->find($id);
  
-        if (!$property) {
+        if (!$pokemon) {
             return response()->json([
                 'success' => false,
                 'message' => 'Pokemon with id ' . $id . ' not found'
