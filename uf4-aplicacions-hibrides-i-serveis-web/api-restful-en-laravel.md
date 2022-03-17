@@ -19,7 +19,7 @@ Tenim [el lloc oficial.](https://getcomposer.org)
 #### **Instal·lant Laravel:**
 
 ```
-composer global require "laravel/installer”
+composer global require "laravel/installer:~9.0”
 ```
 
 ( triga una mica.)
@@ -55,12 +55,12 @@ La gràcia de les migracions és que podem tenir la base de dades dins del contr
 Amb el terminal que vulguis entrem a la carpeta arrel del nostre projecte i executem la següent comanda:
 
 ```
-$ php artisan make: migració create_table_pokemons
+$ php artisan make:migration create_table_pokemons
  Migration created: 2020_05_08_044418_create_table_pokemons
 ```
 
 Revisem el que acaba de crear-se:\
-La recentment creada migració hauria d'estar en **base de dades / migrations.**
+La recentment creada migració hauria d'estar en **database/ migrations.**
 
 Juntament amb **2020\_05\_08\_044418\_create\_table\_pokemons** , si estem en un projecte nou, haurien d'haver 2 migracions més. Aquestes les crea Laravel per defecte per mantenir usuaris. Les esborraré en aquest cas ja que no les farem servir, però depèn del que volguem fer.
 
@@ -87,9 +87,9 @@ $ php artisan make:model Pokemon
  Model creat amb èxit.
 ```
 
-El model acabat de crear hauria d'estar dins de la carpeta **App/Models.**
+El model acabat de crear hauria d'estar dins de la carpeta **App.**
 
-Ja que el camp **name** és l'únic que modificarem en aquest cas, el afegim a l'atribut **$fillable** de la classe Pokemons.
+Ja que el camp **name** és l'únic que modificarem en aquest cas, el afegim a l'atribut **$fillable** de la classe Pokemon.
 
 Nota: Per crear el model + la migració amb un sol comandament pots utilitzar:
 
@@ -160,7 +160,7 @@ Segon, per mostrar les dades, el mètode **GET** està associat amb **api/pokemo
 
 Fem cas a la ruta.
 
-En PokemonController, importaré l'arxiu **App\Models\Pokemon** per poder canviar dades d'aquest, i omplirem els mètodes **store()** i **show ()** .
+En PokemonController, importaré l'arxiu **App\Pokemon** per poder canviar dades d'aquest, i omplirem els mètodes **store()** i **show ()** .
 
 ```php
 <?php
@@ -220,7 +220,7 @@ class PokemonController extends Controller
     {
         //Demanem al model el Pokemon amb  id requerit pele mètode HTTP  GET.
         return Pokemon::where('id', $id)->get();
-        // una altra opció si ens passen per paràmetre Pokemon
+        // una altra opció si ens passen per paràmetre Pokemon com a bindind
         // return $pokemon;
     }
 
@@ -308,7 +308,7 @@ La idea és simple, donat que HTTP és un protocol que no desa l'estat i no pode
 ### Instal·lació de passport
 
 ```php
-composer require laravel/passport
+composer require laravel/passport:9.0
 ```
 
 ### Afegint laravel/passport
@@ -333,6 +333,8 @@ I instal·lació de passport:
 ```php
 php artisan passport:install
 ```
+
+Aquest últim comando proporciona els clients [OAuth](https://es.wikipedia.org/wiki/OAuth) per poder accedir-hi
 
 ### Service provider i configuració de Passport
 
