@@ -573,3 +573,8 @@ Moltes aplicacions mòbils basades en el navegador web, aplicacions híbrides, p
 
 **i per últim, revocació del token**
 
+{% hint style="info" %}
+Si voleu més informaciá sobre apps natives i  híbrides podeu llegir aquest article:
+
+[https://www.lambdatest.com/blog/progressive-web-apps-and-the-future-of-mobile-web/](https://www.lambdatest.com/blog/progressive-web-apps-and-the-future-of-mobile-web/)
+{% endhint %}
