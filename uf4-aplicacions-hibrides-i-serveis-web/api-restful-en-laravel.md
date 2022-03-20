@@ -557,4 +557,19 @@ public function show($id)
 
 ### Testejar
 
-Uilitzeu POSTMAN per poder comprovar el correcte funcionament.
+Uilitzeu POSTMAN o hoppscotch.io per poder comprovar el correcte funcionament.
+
+### Clients API
+
+Els clients API que fan servir Passport, estan basats en OAUTH2.0. un protocol estàndar de la indústria en autoritzacions (apps web i d'escriptori i apps mòbils).
+
+Moltes aplicacions mòbils basades en el navegador web, aplicacions híbrides, progressives, etc, utilitzen aquest estàndar. Ens podem imaginar com funciona,&#x20;
+
+**reconeixement del client**
+
+**handshake - intercanvi de tokens**
+
+**comunicació**
+
+**i per últim, revocació del token**
+
