@@ -578,3 +578,10 @@ Si voleu més informaciá sobre apps natives i  híbrides podeu llegir aquest ar
 
 [https://www.lambdatest.com/blog/progressive-web-apps-and-the-future-of-mobile-web/](https://www.lambdatest.com/blog/progressive-web-apps-and-the-future-of-mobile-web/)
 {% endhint %}
+
+{% hint style="info" %}
+Per convertir una aplicació Laravel en una PWA:
+
+[https://omarbarbosa.com/posts/convertir-aplicacion-laravel-en-una-pwa](https://omarbarbosa.com/posts/convertir-aplicacion-laravel-en-una-pwa)
+{% endhint %}
+
