@@ -4,6 +4,8 @@ description: Unes pautes per a la creació d'aplicacions a Laravel (v.7x)
 
 # Crear una aplicació en Laravel
 
+En el nostre exemple, crearem una app de publicació d'anuncis d'habitatges de lloguer/venda.
+
 A continuació us indiquem quins passos cal seguir per realitzar una aplicació en Laravel:
 
 El diagrama d'entitats seria el següent:
