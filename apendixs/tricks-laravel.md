@@ -13,8 +13,6 @@ description: Trucs per sobreviure en Laravel
 {{Auth::user()->//metodes de model User
 ```
 
-
-
 ### Definir una secció autenticat en menú
 
 ```php
@@ -86,8 +84,6 @@ Modificar **AppServiceProvider** en Providers:
 
 En el moment de treure la col·lecció, apliquem **`paginate(n)`** amb el número d'elements visualitzats per pàgina.
 
-
-
 I en blade:
 
 ```php
@@ -97,6 +93,46 @@ I en blade:
 </div>
 ```
 
+### No carrega css ja que demana esquema https
+
+Si tenim un problema amb la funció  `asset`  a l'hora de carregar recursos amb protocol HTTP en comptes de HTTPS que és el que utilitza el nostre lloc, causant un problema de   "Mixed content" .
+
+Per arreglar-ho cal afegir   `\URL::forceScheme('https')` en el fitxer  `AppServiceProvider,` dins de `Providers,` indicant si estem en producció.
+
+```php
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        if(config('app.env') === 'production') {
+            \URL::forceScheme('https');
+        }
+    }
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
+    }
+}
+```
+
+\
 
 
 ### Personalitzar les vistes d'errors
@@ -152,4 +188,3 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ server.php
 ```
-
