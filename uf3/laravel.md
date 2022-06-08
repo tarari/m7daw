@@ -6,21 +6,21 @@ description: Un dels frameworks PHP més utilitzats i amb més projecció.
 
 ## Què és?
 
-Laravel és una eina que ens ajuda a desenvolupar sistemes web , pot ser un sistema, pàgina web o un API. A aquest tipus d'eines li diem Framework i és un entorn de treball o eina estandaritzada en quant a concepte, bones pràctiques, funcionalitats comunes i estil per resoldre algun tipus de problema.
+Laravel és una eina que ens ajuda a desenvolupar aplicacions web , pot ser un sistema, pàgina web o un API. A aquest tipus d'eines li diem "Framework " i actua com  un entorn de treball o eina estandaritzada en quant a concepte, bones pràctiques, funcionalitats comunes i estil per resoldre algun tipus de problema.
 
 ## Introducció
 
-Com tots el frameworks, el seu gran avantatge és que ja té moltes coses resoltes, l'inici de sessió i registre, paginació de les dades, la connexió i consulta a la base de dades, el sistema de cache, les rutes, el sistema de plantilles, la seguretat i moltes coses més.
+Com tots el frameworks, el seu gran avantatge és que ja té moltes coses resoltes, l'inici de sessió i registre, paginació de les dades, la connexió i consulta a la base de dades, el sistema de catxé, les rutes, el sistema de plantilles blade, els components web, la seguretat i moltes coses més.
 
 Hem d'entendre'l com un sistema de capes i depenent del problema has de saber quina capa tractar.
 
-* Podem crear una ruta i llençar vistes de d'allà (estàtic)
+* Podem crear una ruta i llençar vistes des d'allà (estàtic)
 * O crear una ruta , aquesta apunti al controlador i des d'allà crear una vista en pantalla.
 * O seguint el cas anterior pots agregar una capa de seguretat intermitja i si estàs loguejat aleshores el sistema et deixa anar al controlador i llençar la vista pertinent.
 
 ### Requeriments
 
-Què és el que necessitem per treballar am Laravel 7.x:
+Què és el que necessitem per treballar amb Laravel 7.x:( recomanable mirar les dependències en composer.json)
 
 * PHP v.7.2 o més gran
 * Apache o nginx
@@ -98,17 +98,17 @@ En la carpeta config, establim tots els arxius de configuració que necessitem e
 
 ## RECORDATORI: Cicle de vida del REQUEST
 
-Des que el client envia un REQUEST fins que el sistema envia un RESPONSE, Laravel té com a punt d'entrada del tractament del REQUEST el fitxer \*\*public/index.php, \*\*on hi ha la preparació de l'entorn del sistema. Posteriorment s'envia cap a **bootstrap/app.php**, que actua com a contenidor de serveis ( \_service container \_). Aquest actua com a controlador frontal i reenvia cap als kernels o nuclis, bàsicament HTTP Kernel API kernel i Console Kernel, que acuten com a proveïdors de serveis (**service providers**).
+Des que el client envia un REQUEST fins que el sistema envia un RESPONSE, Laravel té com a punt d'entrada del tractament del REQUEST el fitxer **public/index.php**, on hi ha la preparació de l'entorn del sistema. Posteriorment s'envia cap a **bootstrap/app.php**, que actua com a contenidor de serveis ( \_service container \_). Aquest actua com a controlador frontal i reenvia cap als kernels o nuclis, bàsicament HTTP Kernel API kernel i Console Kernel, que acuten com a proveïdors de serveis (**service providers**).
 
 Els kernels fan servir el _**middlewares**_ com a filtres específics de les REQUESTS, per exemple un MW verifica si l'usuari s'ha autenticat i actúa en conseqüència, redirigint cap a la pantalla de login o una altra. El tractament final el fa el servei (_service_) que permet obtenir una resposta (RESPONSE)
 
 ![Cicle de vida, des del REQUEST fins a RESPONSE](../.gitbook/assets/lifecycle.png)
 
-### Comencem a conèixer
+### Comencem
 
 Repassem cada carpeta dins **d'app** i després continuem amb les carpetes de l'arrel.
 
-#### \*\*Broadcasting \*\*
+#### Broadcasting&#x20;
 
 Aquesta carpeta es genera amb el comando `php artisan make:channel`. La usarem si necessitem canals de transició d'esdeveniments.
 
@@ -193,7 +193,7 @@ Vegem un a un amb les explicacions d'una manera senzilla.
 
 **Console**. En console.php definim tots els accessos que seran basats en comandos o des d'un terminal. Cada ruta és un Closure enllaçat a una acció. Configurar aquí algunes rutes ens ajudarà a treballar de manera simple la interacció amb mètodes d'entrada i sortida.
 
-**Channels**. En channels.php registrem canals per a emetre transmissions d'esdeveniments. Entre altres coses aquí treballarem quan estiguem interessats a configurar notificacions del costat del client quan alguna cosa succeeix en el servidor.
+**Channels**. En channels.php registrem canals per a emetre transmissions  full duplex d'esdeveniments. Entre altres coses aquí treballarem quan estiguem interessats a configurar notificacions del costat del client quan alguna cosa succeeix en el servidor.
 
 #### Storage
 
@@ -213,6 +213,16 @@ Si estem començant en aquest món de la programació no toquem aquesta carpeta 
 
 Defineixen a qui/quins serveis cridem quan se solicita una determinada URI.
 
+Les rutes, representen un esquema  flexible  per vincular una URI a un procés , i aquest procés  pot ser:&#x20;
+
+Un **callback**, que és una funció local definida dins la mateixa ruta.&#x20;
+
+Un **controlador**, que és una classe apart.&#x20;
+
+Un **component**, semblant a  un controlador, però més flexible.
+
+
+
 Totes les rutes es troben definides en un fitxer _`routes/web.php,`_` ``` totes, es troben aquí definides.
 
 A través de les rutes, podem donar servei als mètodes REQUEST **get, post, put i delete**.​ Podem dir que respongui a un mètode determinat, un conjunt de mètode o bé a qualsevol.
@@ -228,7 +238,7 @@ Route::get('/', function () {
 {% endtab %}
 {% endtabs %}
 
-Laravel busca en la carpeta  **\_resources/views\_**  la plantilla _welcome.blade.php_
+Laravel busca en la carpeta  **resources/views** la plantilla _welcome.blade.php_
 
 
 
