@@ -8,23 +8,27 @@ Els que estudiarem:
 
 ### Patrons estructurals
 
-Adapter
+#### Adapter
 
-Decorator
+De tipus estructural, converteix la instància d'una classe en una altra esperada pel client.
 
-Facade
+
+
+#### Decorator
+
+#### Facade
 
 ### Patrons de comportament
 
-Strategy
+#### Strategy
 
-Chain of responsibility
+#### Chain of responsibility
 
-Observer
+#### Observer
 
 ### Patrons creacionals
 
-Factory
+#### Factory
 
 
 
