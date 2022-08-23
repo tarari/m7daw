@@ -10,13 +10,21 @@ Els que estudiarem:
 
 #### Adapter
 
-De tipus estructural, converteix la instància d'una classe en una altra esperada pel client.
+De tipus estructural, converteix la instància d'una classe en una altra esperada pel client. &#x20;
 
 
 
 #### Decorator
 
 #### Facade
+
+És un patró de disseny estructural que proporciona una interfície simplificada (però limitada) a un sistema complex de classes, biblioteca o marc.
+
+Delega les peticions del client als objectes apropiats dins del subsistema.  També s'encarrega de gestionar el seu cicle de vida. Tot això protegeix el client de la complexitat no desitjada del subsistema.
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>Facade i els subsistemes</p></figcaption></figure>
+
+El patró Facade s'utilitza habitualment a les aplicacions PHP per simplificar  el treball amb biblioteques o API complexes.&#x20;
 
 ### Patrons de comportament
 
