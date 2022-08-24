@@ -22,7 +22,7 @@ De tipus estructural, converteix la instància d'una classe en una altra esperad
 
 Delega les peticions del client als objectes apropiats dins del subsistema.  També s'encarrega de gestionar el seu cicle de vida. Tot això protegeix el client de la complexitat no desitjada del subsistema.
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>Facade i els subsistemes</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>Facade i els subsistemes</p></figcaption></figure>
 
 El patró Facade s'utilitza habitualment a les aplicacions PHP per simplificar  el treball amb biblioteques o API complexes.&#x20;
 
@@ -31,6 +31,10 @@ El patró Facade s'utilitza habitualment a les aplicacions PHP per simplificar  
 #### Strategy
 
 #### Chain of responsibility
+
+Hi ha un nombre potencialment variable d'objectes "handler" o d'"elements de processament" o "node"s, i un flux de peticions que s'han de gestionar. Cobrir la necessitat de processar les sol·licituds de manera eficient sense les relacions i precedències del gestor principal, ni les assignacions de sol·licitud a gestor.
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 #### Observer
 
