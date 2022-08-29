@@ -10,9 +10,9 @@ description: >-
 
 La clau per **aprendre** és sempre anar pas a pas, entendre quines tecnologies impliquen el desenvolupament web.
 
-El primer pas és precisament estudiar el llenguatge **html, **comprendre per exemple, Quina finalitat té el bloc etiqueta _**`<div> `**_Aprendre a estructurar un document que servirà de base a la nostra aplicació.&#x20;
+El primer pas és precisament estudiar el llenguatge **html, comprendre per exemple, Quina finalitat té el bloc etiqueta \_`<div>`** \_Aprendre a estructurar un document que servirà de base a la nostra aplicació.
 
-Un cop tenim l'**arquitectura html**, anem a deixar-lo bonic, per això tenim el CSS, i si volem que pugui interactuar am l'usuari, tenim el javascript , per tant **HTML + CSS +JS**, el que diem _**frontend**_** **de l'aplicació. Més enllà d'això trobem el que hi ha al darrera, el _backend_, que proporciona lògica, funcionament i accés a dades.
+Un cop tenim l'**arquitectura html**, anem a deixar-lo bonic, per això tenim el CSS, i si volem que pugui interactuar am l'usuari, tenim el javascript , per tant **HTML + CSS +JS**, el que diem _**frontend**_\*\* \*\*de l'aplicació. Més enllà d'això trobem el que hi ha al darrera, el _backend_, que proporciona lògica, funcionament i accés a dades.
 
 ### **PHP?**
 
@@ -23,15 +23,13 @@ PHP s'utilitza juntament amb **HTML**, **JavaScript** i **CSS** per crear aplica
 
 ### Com funciona?
 
+PHP és un llenguatge script de servidor. El script de costat del servidor és una manera de com els servidors web poden respondre a les sol·licituds del client mitjançant **HTTP**.
 
+El seu **funcionament** és el següent: un client (un navegador) sol·licita una URL **REQUEST**. Una sol·licitud és enviada per un servidor web a un script. A continuació, l'script llegeix aquesta sol·licitud i, depenent del codi de l'script, retorna el contingut d'una pàgina **RESPONSE**.
 
-PHP és un llenguatge script  de servidor. El script de costat del servidor és una manera de com els servidors web poden respondre a les sol·licituds del client mitjançant **HTTP**.&#x20;
+Aquest procés es produeix cada vegada que es visita una pàgina web. Quan es treballa amb formularis, les dades s’envien des del client al servidor. Les dades es processen i es retorna una resposta.
 
-El seu **funcionament** és el següent:  un client (un navegador) sol·licita una URL **REQUEST**. Una sol·licitud és enviada per un servidor web a un script. A continuació, l'script llegeix aquesta sol·licitud i, depenent del codi de l'script, retorna el contingut d'una pàgina **RESPONSE**.
-
-Aquest procés es produeix cada vegada que es visita una pàgina web. Quan es treballa amb formularis, les dades s’envien des del client al servidor. Les dades es processen i es retorna una resposta.&#x20;
-
-Un exemple habitual és que a Facebook, introduïu una actualització d'estat i premeu _Enter_ . El text s’envia a través d’una `POST`sol·licitud al servidor, comprovat per les seqüències del servidor i després es desa a una base de dades. La pàgina web s'actualitza amb la nova publicació. Els llocs PHP també poden ser serveis d’API, que es poden cridar des de scripts JavaScript (com  AJAX, per exemple) o des d’altres serveis. En aquests casos i similars, no hi ha cap sol·licitud de navegador implicada.
+Un exemple habitual és que a Facebook, introduïu una actualització d'estat i premeu _Enter_ . El text s’envia a través d’una `POST`sol·licitud al servidor, comprovat per les seqüències del servidor i després es desa a una base de dades. La pàgina web s'actualitza amb la nova publicació. Els llocs PHP també poden ser serveis d’API, que es poden cridar des de scripts JavaScript (com AJAX, per exemple) o des d’altres serveis. En aquests casos i similars, no hi ha cap sol·licitud de navegador implicada.
 
 Per al desenvolupament de la web es necessiten les següents eines:
 
@@ -43,9 +41,9 @@ Per al desenvolupament de la web es necessiten les següents eines:
 
 PHP es va crear exclussivament per escriure aplicacions web. Es pot escriure juntament amb HTML per crear pàgines **dinàmiques**. Veurem exemples d’això en un moment.
 
-Un motor de plantilla de PHP és: una manera de permetre que el codi PHP pugui notrir  de contingut **HTML**. Això dóna flexibilitat a les pàgines. Qualsevol pàgina destinada a utilitzar el codi PHP té una extensió .**php** en lloc d’una extensió .**html**. Això informa al servidor web que espera el contingut de PHP.
+Un motor de plantilla de PHP és: una manera de permetre que el codi PHP pugui notrir de contingut **HTML**. Això dóna flexibilitat a les pàgines. Qualsevol pàgina destinada a utilitzar el codi PHP té una extensió .**php** en lloc d’una extensió .**html**. Això informa al servidor web que espera el contingut de PHP.
 
-#### **Important**::&#x20;
+#### **Important**::
 
 Un fitxer PHP té una extensió .php i pot contenir HTML, JavaScript i CSS, juntament amb PHP. Com que l'intèrpret de PHP necessita saber on es col·loca el codi en un fitxer PHP, el codi PHP s'escriu entre dues etiquetes especials ( `<?php... ?>`). Aquestes etiquetes s'anomenen etiquetes d'obertura i tancament. Un fitxer PHP típic s’assembla a aquest:
 
@@ -84,9 +82,7 @@ Us adjuntem una [sintaxi més acurada del PHP](../apendixs/sintaxi-php.md).
 
 ## Introducció al PHP
 
-
-
-### Sortida  amb un script PHP
+### Sortida amb un script PHP
 
 En aquest moment, hem après com utilitzar la `echo`instrucció. Continuem i creem el vostre primer script PHP. Imprimirem la mateixa declaració que abans, però utilitzarem un fitxer PHP aquesta vegada. Seguim aquests passos:
 
@@ -117,8 +113,8 @@ Les variables han de començar per una lletra. No poden començar amb un número
 
 Les dades emmagatzemades en variables poden ser dels següents tipus:
 
-* Nombres sencers&#x20;
-* Booleà: cert o fals&#x20;
+* Nombres sencers
+* Booleà: cert o fals
 * Float: número de coma flotant
 * Cadena: lletres i números
 
@@ -140,17 +136,15 @@ $ php script.php Toni
 
 ### Exercici : utilitzar el servidor integrat per imprimir una cadena
 
-En aquest exercici, utilitzarem el servidor integrat per imprimir `Hello FruitCP`mitjançant la cadena de consulta`companyName=FruitCP`. Això  permetrà començar a utilitzar el navegador per visualitzar la sortida del codi, en comptes de fer servir el shell interactiu. Seguim aquests passos:
+En aquest exercici, utilitzarem el servidor integrat per imprimir `Hello FruitCP`mitjançant la cadena de consulta`cName=Fruites`. Això permetrà començar a utilitzar el navegador per visualitzar la sortida del codi, en comptes de fer servir el shell interactiu. Seguim aquests passos:
 
 1. Torneu a obrir el `script.php`fitxer amb l’editor de codi IDE.
 2. Substituim el codi pel següent codi i desem el fitxer:
 
-
-
 ```php
 <?php
-    $name = $_GET['companyName'];
-    echo "Hello". $name;
+    $name = $_GET['cName'];
+    echo "Hola ". $name."!";
 ?>
 ```
 
@@ -163,14 +157,12 @@ En aquest exercici, utilitzarem el servidor integrat per imprimir `Hello FruitCP
 3.  Ara, obrim el navegador i introduim el següent a la barra d’adreces i fem clic a _Enter_ :
 
     ```
-    http://localhost:8085/script.php?companyName=FruitCP
+    http://localhost:8085/script.php?cNamee=FruitesPere
     ```
 
+Observem l’URL al navegador. Després del nom del fitxer, hem afegit `?cName=FruitesPere`. `?`designa que el que segueix és una cadena de consulta o **Query**. Al nostre codi, s'està passant al fitxer PHP una variable anomenada `cName`amb un valor de `FruitesPere`.
 
-
-Observem l’URL al navegador. Després del nom del fitxer, hem afegit `?companyName=FruitCP`. `?`designa que el que segueix és una cadena de consulta o **Query**. Al nostre codi, s'està passant al fitxer PHP una variable anomenada `companyName`amb un valor de `FruitCP`.
-
-A la primera línia del codi, tenim `$_GET['companyName']`. `$_GET`és també una variable predefinida que actúa quan s'executa qualsevol cadena PHP amb una cadena de consulta. Així doncs, amb l’ús `$_GET['companyName']`, obtindrem el valor `FruitCP`, que s’emmagatzemarà a la  variable`$name`. Recordem que podem extreure qualsevol valor de la cadena de consulta mitjançant la clau respectiva.
+A la primera línia del codi, tenim `$_GET['cName']`. `$_GET`és també una variable predefinida que actúa quan s'executa qualsevol cadena PHP amb una cadena de consulta. Així doncs, amb l’ús `$_GET['cName']`, obtindrem el valor `FruitesPere`, que s’emmagatzemarà a la variable`$name`. Recordem que podem extreure qualsevol valor de la cadena de consulta mitjançant la clau respectiva.
 
 ### Mostrar informació del servidor
 
@@ -186,7 +178,7 @@ Preparem el següent script:
 
 Executem servidor integrar des de la carpeta de l'script, doneu el nom **index.php** a l'script, de forma automàtica els servidors busquen aquest nom per executar-lo.
 
-**RECOMANACIÓ => UNA APLICACIÓ  EN UNA CARPETA**
+**RECOMANACIÓ => UNA APLICACIÓ EN UNA CARPETA**
 
 ```php
 $ php -S localhost:8085
@@ -205,7 +197,6 @@ Comproveu la sortida:
 <?php
 
     $name1 = '';
-    
     $name2 = null;
     
     echo 'checking $name1 : ';
@@ -240,8 +231,6 @@ Una funció relacionada amb aquesta és **`unset`**
 
 ## Tipus i operadors
 
-
-
 A continuació es mostren els vuit tipus de dades primitives:
 
 * **Strings**: un valor basat en text senzill
@@ -263,7 +252,7 @@ multiples línies.
 STRING;
 ```
 
-Floats (e vol dir elevat a )
+Floats (numero e vol dir elevat a  ..)
 
 ```php
 $w = 13.3333;
@@ -307,7 +296,6 @@ Array
     [7] => Teresa
     [8] => Toni
 )
-
 ```
 
 {% hint style="info" %}
@@ -355,8 +343,6 @@ Spiderman
 
 ### Conversions de tipus de dades (cast):
 
-
-
 A continuació, es mostra una llista de tots els _casts_ disponibles en PHP:
 
 * (`int`) – integer
@@ -371,9 +357,7 @@ A continuació, es mostra una llista de tots els _casts_ disponibles en PHP:
 Podem utilitzar var\_dump() per veure el tipus de dada d'una variable
 {% endhint %}
 
-
-
-PHP també proporciona  una sèrie de funcions**`is_datatype()`**&#x20;
+PHP també proporciona una sèrie de funcions\*\*`is_datatype()`\*\*
 
 * `is_array`
 * `is_bool`
@@ -431,7 +415,7 @@ Operador -. Es tracta de diferents números separats per un `–` i restarà els
 
 Això ens donarà `22`com a sortida.
 
-Operador \*.  Aquest número té diferents números separats per un `*` i mostrarà el producte:
+Operador \*. Aquest número té diferents números separats per un `*` i mostrarà el producte:
 
 ```php
 <?php echo 24 * 2; ?>
@@ -482,8 +466,6 @@ Assignació de concatenació significa afegir una variable a una que existeix:
   $resultat .= $str;
   echo $resultat;
 ```
-
-
 
 #### Operadors de bits
 
@@ -615,7 +597,7 @@ Els operadors d'arrays PHP s’utilitzen per comparar matrius:
 Els operadors d'assignació condicional de PHP s'utilitzen per establir un valor en funció de les condicions:
 
 * `?`: S'utilitza en comparacions ternàries com ara `$x = expr1 ? expr2 : expr3`
-* `??`: Aquest és un operador **null-coalescing** que significa que si la primera expressió és `true`, utilitzeu-la, o bé, utilitzeu la segona condició, com ara   `$x = expr1 ?? expr2`.
+* `??`: Aquest és un operador **null-coalescing** que significa que si la primera expressió és `true`, utilitzeu-la, o bé, utilitzeu la segona condició, com ara `$x = expr1 ?? expr2`.
 
 ## Sentències de control
 
@@ -643,23 +625,23 @@ Exemples:
 
 ## Funcions
 
-Quan escrivim programari, sovint ens trobem amb situacions en les quals hem de fer una tasca específica en diferents llocs de l’aplicació que estem construint. Sense pensar-ho, pot ser fàcil caure en l’hàbit de reescriure el mateix codi una i altra vegada, provocant repetició de codi i dificultant la depuració d’errors quan apareixen. Tanmateix, com en tots els altres llenguatges de programació, PHP us ofereix la possibilitat d’estructurar codi reutilitzable en allò que es coneix com a **funció** , que a vegades també s’anomena **mètode**.&#x20;
+Quan escrivim programari, sovint ens trobem amb situacions en les quals hem de fer una tasca específica en diferents llocs de l’aplicació que estem construint. Sense pensar-ho, pot ser fàcil caure en l’hàbit de reescriure el mateix codi una i altra vegada, provocant repetició de codi i dificultant la depuració d’errors quan apareixen. Tanmateix, com en tots els altres llenguatges de programació, PHP us ofereix la possibilitat d’estructurar codi reutilitzable en allò que es coneix com a **funció** , que a vegades també s’anomena **mètode**.
 
-Pensem en una funció com un conjunt d'instruccions o instruccions reutilitzables. Després d’escriure-ho una vegada, podem cridar-la tantes vegades com volguem.&#x20;
+Pensem en una funció com un conjunt d'instruccions o instruccions reutilitzables. Després d’escriure-ho una vegada, podem cridar-la tantes vegades com volguem.
 
 Agrupar i aïllar un conjunt d’instruccions dins d’una funció comporta una sèrie de beneficis.
 
 **Reutilització**
 
-El més obvi és l’opció de **reutilitzar-la**: un cop  escrita la  funció, no hem de tornar a reescriure ni reinventar aquest conjunt d’instruccions. Les funcions també **milloren la coherència**: això significa que cada vegada que truqueu a la vostra funció, podeu estar segur que s'aplicarà el mateix conjunt d'instruccions.
+El més obvi és l’opció de **reutilitzar-la**: un cop escrita la funció, no hem de tornar a reescriure ni reinventar aquest conjunt d’instruccions. Les funcions també **milloren la coherència**: això significa que cada vegada que truqueu a la vostra funció, podeu estar segur que s'aplicarà el mateix conjunt d'instruccions.
 
 **Llegibilitat**
 
-Un altre avantatge menys obvi és que el  codi es fa molt **més llegible**, sobretot quan feu nom a les vostres funcions de manera que queda clar què fan.
+Un altre avantatge menys obvi és que el codi es fa molt **més llegible**, sobretot quan feu nom a les vostres funcions de manera que queda clar què fan.
 
 **Àmbit**
 
-Una altra cosa bona sobre una funció és que inclou variables locals dins del seu àmbit, de manera que no contaminin l'àmbit global.&#x20;
+Una altra cosa bona sobre una funció és que inclou variables locals dins del seu àmbit, de manera que no contaminin l'àmbit global.
 
 A continuació, es mostra un exemple d’una funció senzilla:
 
@@ -678,7 +660,7 @@ function average()
 
 #### Què és un Callable?
 
-En poques paraules,  és una part del vostre codi que podeu "cridar". Quan diem que podeu "cridar" alguna cosa, volem dir que podeu dir al programa que l'executi. &#x20;
+En poques paraules, és una part del vostre codi que podeu "cridar". Quan diem que podeu "cridar" alguna cosa, volem dir que podeu dir al programa que l'executi.
 
 Una funció "_**callable**_" es pot escriure amb parèntesis, per exemple, `functionName()`.
 
@@ -698,8 +680,6 @@ Aquesta funció ha d'estar en un script, fixem-nos en l'exemple:
 ### Llistat de funcions built-in PHP
 
 {% embed url="https://www.php.net/manual/es/indexes.functions.php" %}
-
-
 
 #### Trobar funcions integrades
 
@@ -724,19 +704,17 @@ Llistarà totes les extensions instal·lades i habilitades actualment a la insta
 
 ### Introducció a funcions definides per l’usuari
 
-Una funció definida per l’usuari és una funció que un usuari o un altre usuari ha escrit i no està integrat a PHP.&#x20;
+Una funció definida per l’usuari és una funció que un usuari o un altre usuari ha escrit i no està integrat a PHP.
 
 #### Funcions de nom
 
 Posar nom a les coses és difícil. Els noms de funcions molt llargs són il·legibles. Quan llegeixis el nom, idealment hauràs de ser capaç d’endevinar què fa la funció.
 
-&#x20;Les regles per anomenar identificadors a PHP s'apliquen aquí. Els noms de funcions són majúscules i minúscules; tanmateix, per convenció, no cridem  a una funció amb una carcassa  diferent de com es va definir.&#x20;
+Les regles per anomenar identificadors a PHP s'apliquen aquí. Els noms de funcions són majúscules i minúscules; tanmateix, per convenció, no cridem a una funció amb una carcassa diferent de com es va definir.
 
-Al´hora de posar noms, predominen dos formats: `snake_case()`o `camelCase()`. Ara bé, interessa que sigui coherent amb el que fa. La recomanació a seguir la trobem a  [PHP-FIG](https://www.php-fig.org/psr/psr-1/). Tot i que es refereix a funcions com a mètodes (com en mètodes de classe), és possible que suposi que això també s'aplica a les funcions (globals), que tracta aquest punt. Això vol dir que si podem escollir lliurement, podem optar per funcions`camelCase()`.
+Al´hora de posar noms, predominen dos formats: `snake_case()`o `camelCase()`. Ara bé, interessa que sigui coherent amb el que fa. La recomanació a seguir la trobem a [PHP-FIG](https://www.php-fig.org/psr/psr-1/). Tot i que es refereix a funcions com a mètodes (com en mètodes de classe), és possible que suposi que això també s'aplica a les funcions (globals), que tracta aquest punt. Això vol dir que si podem escollir lliurement, podem optar per funcions`camelCase()`.
 
-
-
-#### Documentar les  funcions
+#### Documentar les funcions
 
 Podem afegir un comentari a sobre d’una funció, que s’anomena _**DocBlock**_. Conté anotacions prefixades amb el símbol`@`. També inclou una descripció del que fa la funció.:
 
@@ -775,7 +753,7 @@ Escrivim un `Date.php` que comenci així:
    class Date{}
 ```
 
-Ara, com que les classes viuen al seu propi espai de noms, tenen un anomenat **Nom completament qualificat** ( **FQN** ). Les FQN són `Tu\Date`i `Jo\Date`.&#x20;
+Ara, com que les classes viuen al seu propi espai de noms, tenen un anomenat **Nom completament qualificat** ( **FQN** ). Les FQN són `Tu\Date`i `Jo\Date`.
 
 Les funcions espaiades amb noms són rares, però són possibles. Per escriure una funció en un espai de noms, declareu l’espai de noms a la part superior del fitxer on definiu la funció:
 
@@ -836,7 +814,7 @@ Una funció ha de tenir una única responsabilitat, si volem fer-ne un altre ús
 
 #### Type hints
 
-En versions posteriors a la 5.1 de PHP,  es considera un benefici aportar el tipus de dada dels arguments i les sortides de funcions i mètodes. Mireu l'exemple:
+En versions posteriors a la 5.1 de PHP, es considera un benefici aportar el tipus de dada dels arguments i les sortides de funcions i mètodes. Mireu l'exemple:
 
 ```php
 function createOutOfCreditsWarning(int $maxCredits, string $period, int $waitDays): string
