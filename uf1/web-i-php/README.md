@@ -64,6 +64,55 @@ Una manera de configurar correctament l'enrutament i per tant la navegació és 
 
 Si la fraccionem des del controlador frontal (index.php), podem extreure la informació de la ruta a la qual es vol anar i per tant de quina acció es pot realitzar a continuació.
 
+Mirem el següent exemple:
+
+<pre class="language-php"><code class="lang-php">// Primer definim les rutes permeses en la nostra app
+<strong>// routes.php
+</strong><strong>&#x3C;?php
+</strong>
+    $routes= [
+        '/'=>function(){
+            echo '&#x3C;h1>Hello!&#x3C;/h1>';
+        },
+        '/login'=>function(array $params=[]){
+            echo '&#x3C;h1>Login&#x3C;/h1>';
+            //$params['name']
+        }
+    ];</code></pre>
+
+```php
+// funció d'enrutament, és una mica complexa
+// router.php
+function run(string $url,array $routes):void
+    {
+        $uri=parse_url($url);
+        
+        $path=$uri['path'];
+        
+        if(!array_key_exists($path,$routes)){
+            return ;
+        }
+        $callback=$routes[$path];
+        if(!empty($uri['query'])){
+            $params=[];
+            parse_str($uri['query'],$params);
+        }
+        $callback();
+    }
+    
+```
+
+```php
+// el controlador frontal
+//index.php
+<?php
+
+    require 'functions.php';
+    require 'routes.php';
+
+    run($_SERVER['REQUEST_URI'],$routes);
+```
+
 ## Formularis
 
 Un formulari permet l'intercanvi de dades entre client (navegador) i servidor (backend de l'aplicació).
