@@ -4,15 +4,15 @@ description: Característiques avançades de PHP per a la web
 
 # Web i PHP
 
-Una aplicació web  està dissenyada per retornar una resposta per a cada sol·licitud, que condueix a un **cicle de REQUEST - RESPONSE (sol·licitud - resposta)** . En el món de les aplicacions web, aquest cicle es realitza mitjançant **Hypertext Transfer Protocol** ( **HTTP)**), que és un protocol que garanteix que les dues parts es comuniquen amb el mateix llenguatge o estructura.
+Una aplicació web està dissenyada per retornar una resposta per a cada sol·licitud, que condueix a un **cicle de REQUEST - RESPONSE (sol·licitud - resposta)** . En el món de les aplicacions web, aquest cicle es realitza mitjançant **Hypertext Transfer Protocol** ( **HTTP)**), que és un protocol que garanteix que les dues parts es comuniquen amb el mateix llenguatge o estructura.
 
-## Sessions&#x20;
+## Sessions
 
-Les sessions permeten mantenir i utilitzar informació circulant dels usuaris en el servidor a través  de l'array **`$_SESSION`**
+Les sessions permeten mantenir i utilitzar informació circulant dels usuaris en el servidor a través de l'array **`$_SESSION`**
 
-A cada **`client`** que accedeix a l'aplicació i inicia sessió se li assigna un _**session ID**_** únic** , i és el que li permet identificar la sessió i que estigui disponible per a aquest client en concret. La forma més segura de gestionar sessions és emmagatzemant en el client només aquesta session ID (cookie), i qualsevol informació de la sessió guardar-la al costat de servidor.
+A cada **`client`** que accedeix a l'aplicació i inicia sessió se li assigna un _**session ID**_\*\* únic\*\* , i és el que li permet identificar la sessió i que estigui disponible per a aquest client en concret. La forma més segura de gestionar sessions és emmagatzemant en el client només aquesta session ID (cookie), i qualsevol informació de la sessió guardar-la al costat de servidor.
 
-Es defineix sessió com l'interval de temps d'una comunicació en la que s'intercanvien dades relacionades a la mateixa. En aquest procés de connexió persistent es comprova la cookie **`php_session_id `**amb la id de sessió emmagatzemada al servidor. El tancament de sessió indica la finalització de la comunicació.
+Es defineix sessió com l'interval de temps d'una comunicació en la que s'intercanvien dades relacionades a la mateixa. En aquest procés de connexió persistent es comprova la cookie \*\*`php_session_id` \*\*amb la id de sessió emmagatzemada al servidor. El tancament de sessió indica la finalització de la comunicació.
 
 La funció **`session_start()`** inicia la sessió entre l' **usuari** i el **servidor** , i permet als valors guardats en **$\_SESSION** ser accessibles després.\
 Posteriorment, podem accedir a qualsevol variable sessió mentre la connexió no estigui tancada (fins i tot des d'un altre script).
@@ -50,19 +50,23 @@ session_start();
 session_destroy();
 ```
 
-És molt recomanable que **quan ja no es necessiti la sessió es destrueixi** amb **`session_destroy()`**,  en comptes de **desvincular el valor dels seus valors** amb **`session_unset()`**. Si només es desvinculen els valors la sessió romandrà activa, el que deixa la porta oberta a intrusos.
+És molt recomanable que **quan ja no es necessiti la sessió es destrueixi** amb **`session_destroy()`**, en comptes de **desvincular el valor dels seus valors** amb **`session_unset()`**. Si només es desvinculen els valors la sessió romandrà activa, el que deixa la porta oberta a intrusos.
 
 ## Navegació en la aplicació
 
-Una característica molt agraïda en una aplicació web és la navegació dins l'aplicació.&#x20;
+Una característica molt agraïda en una aplicació web és la navegació dins l'aplicació.
 
 És una forma de conèixer en cada moment on som i quines accions estan disponibles en qualsevol moment. Implica tenir clar el mapa de l'aplicació. És la nostra tasca saber implementar aquesta eina tan profitosa.
 
+### Variable de servidor $\__SERVER\['REQUEST\_URI'_]
 
+Una manera de configurar correctament l'enrutament i per tant la navegació és accedir i consultar la variable de servidor REQUEST\_URI.
+
+Si la fraccionem des del controlador frontal (index.php), podem extreure la informació de la ruta a la qual es vol anar i per tant de quina acció es pot realitzar a continuació.
 
 ## Formularis
 
-Un formulari permet l'intercanvi de dades entre client (navegador) i servidor (backend de  l'aplicació).
+Un formulari permet l'intercanvi de dades entre client (navegador) i servidor (backend de l'aplicació).
 
 ```php
 <html>
@@ -76,9 +80,7 @@ Un formulari permet l'intercanvi de dades entre client (navegador) i servidor (b
 </html>
 ```
 
-En aquest exemple, es vol processar les dades **`$_POST['nom']`** i **`$_POST['email']`** a través de l'escript  **form.php**, seguint el mètode de http  POST. Sent POST permet enviar les dades clau-valor en el cos del missatge HTTP.
-
-
+En aquest exemple, es vol processar les dades **`$_POST['nom']`** i **`$_POST['email']`** a través de l'escript **form.php**, seguint el mètode de http POST. Sent POST permet enviar les dades clau-valor en el cos del missatge HTTP.
 
 Un cop les dades estan en _form.php_ poden mostrar-se, guardar-se en una base de dades o el que es necessiti. En _form.php_ anem a mostrar-los:
 
@@ -90,8 +92,6 @@ El teu email es: <?php echo $_POST["email"]; ?>
 </body>
 </html>
 ```
-
-
 
 Els 10 **tipus d'elements més utilitzats als formularis HTML amb PHP** són ([w3schools](https://www.w3schools.com/html/html\_form\_elements.asp)):
 
@@ -110,11 +110,11 @@ Els 10 **tipus d'elements més utilitzats als formularis HTML amb PHP** són ([w
 
 ### Validació de formularis
 
-La **validació de formularis** és un aspecte  fonamental ja que prevé possibles atacs d'intrusos, a més d'assegurar que les dades que es reben són realment de el tipus desitjat.
+La **validació de formularis** és un aspecte fonamental ja que prevé possibles atacs d'intrusos, a més d'assegurar que les dades que es reben són realment de el tipus desitjat.
 
-Hi **ha dues maneres de validació de formularis** : al costat del client i en el costat de servidor. A la banda de el client la validació sol ser mitjançant **JavaScript** , és més ràpida i evita enviar més feina a servidor.&#x20;
+Hi **ha dues maneres de validació de formularis** : al costat del client i en el costat de servidor. A la banda de el client la validació sol ser mitjançant **JavaScript** , és més ràpida i evita enviar més feina a servidor.
 
-A la banda de servidor s'utilitza **PHP** per verificar que s'envien valors correctes, és més segur però és més lent i fa treballar una  mica al servidor. Aquí vurem aquesta segona forma.
+A la banda de servidor s'utilitza **PHP** per verificar que s'envien valors correctes, és més segur però és més lent i fa treballar una mica al servidor. Aquí vurem aquesta segona forma.
 
 El següent és un senzill **formulari** mica més complex amb les següent dades: Nom, Contrasenya, Nacionalitat, Idiomes, Email i Lloc web:
 
@@ -155,21 +155,19 @@ El següent és un senzill **formulari** mica més complex amb les següent dade
 
 Al contrari que les sessions, les cookies són una eina controlada des de backend o frontend per desar dades al client (navegador).
 
-Les cookies són com **arxius de text que es guarden a l'ordinador** . A petició d'un **servidor web** , el navegador crea un arxiu d'aquest tipus. Una vegada que passa això, el servidor pot llegir i escriure contingut en aquest arxiu.&#x20;
+Les cookies són com **arxius de text que es guarden a l'ordinador** . A petició d'un **servidor web** , el navegador crea un arxiu d'aquest tipus. Una vegada que passa això, el servidor pot llegir i escriure contingut en aquest arxiu.
 
 Pot semblar perillós, però hi ha una sèrie de restriccions per fer-ho el més segur possible:
-
-
 
 * **Els servidors web només poden accedir a cookies creades al seu propi domini** . Aquest domini és establert pel navegador quan el servidor crea un nou cookie, i només pot ser un domini o subdomini de servidor.
 * Segons el **protocol HTTP** , les cookies no poden ser més grans de **4096 Bytes (4KB)** .
 * Hi ha un **límit de cookies per domini** . Depèn del navegador, però solen ser 20 cookies.
-* També hi ha un **límit en el nombre total de cookies al disc dur de el client** . Solen ser  300 cookies. Quan s'arriba a aquest número, una cookie antiga s'elimina abans de crear la nova.
+* També hi ha un **límit en el nombre total de cookies al disc dur de el client** . Solen ser 300 cookies. Quan s'arriba a aquest número, una cookie antiga s'elimina abans de crear la nova.
 
 Les cookies tenen una **data d'expiració** . Aquesta data permet el navegador eliminar cookies antigues quan ja no són requerides pel servidor web. Si la data d'expiració està buida, la cookies s'eliminarà quan finalitzi la connexió amb el servidor. Això passarà quan:
 
-* l'usuari **tanqui la finestra** o pestanya del lloc web,&#x20;
-* o directament tanqui el navegador.&#x20;
+* l'usuari **tanqui la finestra** o pestanya del lloc web,
+* o directament tanqui el navegador.
 
 Aquestes cookies, normalment denominades _**session\_cookies**_ , són usades principalment per guardar ajustos temporals.
 
@@ -187,10 +185,10 @@ setcookie(
 ): bool
 ```
 
-**setcookie ()** defineix una cookie per ser enviada juntament amb la resta de capçaleres HTTP. Com altres capçaleres, cookies han de ser enviades _abans_ de qualsevol sortida (echo) en l'script (aquest és un protocol de restricció).&#x20;
+**setcookie ()** defineix una cookie per ser enviada juntament amb la resta de capçaleres HTTP. Com altres capçaleres, cookies han de ser enviades _abans_ de qualsevol sortida (echo) en l'script (aquest és un protocol de restricció).
 
 {% hint style="danger" %}
-Això requereix es cridi  a aquesta funció abans de qualsevol sortida, incloent etiquetes`<html>`i `<head>`així com qualsevol espai en blanc
+Això requereix es cridi a aquesta funció abans de qualsevol sortida, incloent etiquetes`<html>`i `<head>`així com qualsevol espai en blanc
 {% endhint %}
 
 .**`name`**
@@ -211,7 +209,7 @@ El temps en què la cookie expira. Aquesta és una marca de temps Unix en nombre
 
 > **Nota** :
 >
-> &#x20;Observem  que el paràmetre `expires`pren una marca de temps Unix, en lloc de format de data `Wdy, DD-Mon-YYYY HH:MM:SS GMT`, això és perquè PHP fa la conversió internament.
+> Observem que el paràmetre `expires`pren una marca de temps Unix, en lloc de format de data `Wdy, DD-Mon-YYYY HH:MM:SS GMT`, això és perquè PHP fa la conversió internament.
 
 **`path`**
 
@@ -227,18 +225,17 @@ Indica que la cookie només hauria de transmetre per una connexió segura HTTPS 
 
 **`httponly`**
 
-Quan és **`true`**la galeta serà accessible només a través de l'protocol HTTP. Això vol dir que la galeta no serà accessible per llenguatges de scripting, com JavaScript. S'ha indicat que aquesta configuració ajuda efectivament a reduir el robatori d'identitat a través d'atacs **XSS** (encara que no és suportada per tots els navegadors). Afegit a PHP 5.2.0. Pot ser **`true`**o**`false`**
+Quan és \*\*`true`\*\*la galeta serà accessible només a través de l'protocol HTTP. Això vol dir que la galeta no serà accessible per llenguatges de scripting, com JavaScript. S'ha indicat que aquesta configuració ajuda efectivament a reduir el robatori d'identitat a través d'atacs **XSS** (encara que no és suportada per tots els navegadors). Afegit a PHP 5.2.0. Pot ser **`true`o`false`**
 
 **`options`**
 
 Un array associatiu que pot tenir qualsevol de les claus `expires`, `path`, `domain`, `secure`, `httponly`i `samesite`. Els valors tenen el mateix significat que es descriu per als paràmetres amb el mateix nom. El valor de l'element `samesite`hauria de ser `None`, `Lax`o `Strict`. Si no es dóna cap de les opcions permeses, els seus valors per defecte són els mateixos que els valors per defecte dels paràmetres explícits. Si l'element `samesite`és omès, no s'estableix cap atribut de la `cookie` SameSite.
 
-\
-
+\\
 
 ## Capçaleres HTTP
 
-Donat que la comunicació es realitza a través dels protocols HTTP,  són les capçaleres HTTP les que determinen el què, el com, i el quan, s'està comunicant. En PHP faem servir la funció `header()`.
+Donat que la comunicació es realitza a través dels protocols HTTP, són les capçaleres HTTP les que determinen el què, el com, i el quan, s'està comunicant. En PHP faem servir la funció `header()`.
 
 ```php
 header(header, replace, http_response_code)
@@ -373,13 +370,9 @@ print 'enters wrong login data';
 
 ## Autenticació HTTP
 
-
-
 ## Codis estat HTTP
 
 Com a conseqüència de les operacions realitzades en la comunicació i en el cicle de vida d'una **sol·licitud-resposta (REQ - RESP)**, es va informant contínuament als protocols HTTP de l'estat de la comunicació, es tracta d'uns codis numèrics amb una significació especial.
-
-
 
 #### 1. 1XX Respostes informatives
 
