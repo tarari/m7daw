@@ -4,7 +4,7 @@ description: Accés a bases de dades
 
 # PHP PDO
 
-L'extensió _Objectes de Dades de PHP_ \( PDO per les seves sigles en anglès\) defineix una interfície i capa d'abstracció lleugera per poder accedir a bases de dades en PHP. Cada controlador de bases de dades que implementi la interfície PDO \(**sqlite, mysql, sqlserver, pgsql\)** pot exposar característiques específiques de la base de dades, com les funcions habituals de l'extensió. 
+L'extensió _Objectes de Dades de PHP_ ( PDO per les seves sigles en anglès) defineix una interfície i capa d'abstracció lleugera per poder accedir a bases de dades en PHP. Cada controlador de bases de dades que implementi la interfície PDO (**sqlite, mysql, sqlserver, pgsql)** pot exposar característiques específiques de la base de dades, com les funcions habituals de l'extensió.
 
 Cal instal·lar previament l'extensió necessària per a cada cas.
 
@@ -26,7 +26,6 @@ try{
 } catch (PDOException $e){
     echo $e->getMessage();
     }
-
 ```
 
 ## Select en bucle
@@ -38,8 +37,6 @@ Com fem la selecció de registres? habitualment preparem la consulta i recuperem
 {% hint style="info" %}
 _`Preparació de sentència --> execute() --> FETCH (recòrrer resultats)`_
 {% endhint %}
-
-
 
 Per evitar atacs d'injecció de codi fem servir el mètode **`prepare`** que preprocessa la sentència abans d'executar-la.
 
@@ -58,7 +55,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
 **Esquema de funcionament:**
 
-Preparació de sentència --&gt; execute\(\[array associatiu de paràmetres ":" i valors\]\) --&gt; FETCH o FETCHALL \(recòrrer resultats\).
+Preparació de sentència --> execute(\[array associatiu de paràmetres ":" i valors]) --> FETCH o FETCHALL (recòrrer resultats).
 
 Col1, col2 i col3 són els camps o columnes que extreiem al resultat.
 
@@ -71,13 +68,13 @@ $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $col = $row[0]['col'];
 ```
 
-## Insert \(registre\)
+## Insert (registre)
 
 Com afegim registres a la nostra base de dades?
 
 **Esquema de funcionament:**
 
-Preparació de sentència --&gt; **bind parameters**-&gt; execute\(\)
+Preparació de sentència --> **bind parameters**-> execute()
 
 L'operació **bind**, permet separar php de la consulta sql, això dona més seguretat ja que evita injecció de codi SQL a la nostra sentència.
 
@@ -112,6 +109,12 @@ if($stmt->execute([':nom'=>$nom, ':ciutat'=>$ciutat]) ){
     echo "Nou registre!";
 }
 ```
+
+### Fetching
+
+{% embed url="https://phpdelusions.net/pdo/objects" %}
+Fetching objects with PDO
+{% endembed %}
 
 ## Post PDO
 
@@ -277,6 +280,3 @@ Us deixo aquí una mostra del que podem fer:
             return $rows;   
         }
 ```
-
-
-
