@@ -8,11 +8,9 @@ L’enfocament procedimental és la forma convencional d’escriure codi en llen
 
 En un programa multifunció, malgrat que les funcions poden albergar dades locals, es defineixen moltes dades importants com a dades globals. Algunes funcions poden funcionar amb aquestes dades globals i, per tant, es podrien convertir en vulnerables. A més, aquest enfocament pot no establir una forma segura d’interaccionar amb les dades mitjançant funcions.
 
-La figura següent us mostra com funcionen les funcions en dades globals i com interaccionen entre elles:
+L’enfocament orientat a l’objecte inclou diverses maneres de protegir les vostres dades lligant les dades més a prop de les funcions de manera que es poden evitar modificacions accidentals a les dades de funcions externes.
 
-![Dades i funcions en l’enfocament orientat al procediment](https://s3.amazonaws.com/thinkific/file\_uploads/59347/images/22c/b0a/736/C14196\_05\_01.png)
-
-L’enfocament orientat a l’objecte inclou diverses maneres de protegir les vostres dades lligant les dades més a prop de les funcions de manera que es poden evitar modificacions accidentals a les dades de funcions externes. El plantejament, per naturalesa, ens permet descompondre un gran problema en **entitats** més petites anomenades **objectes** i agrupar les dades i les funcions en aquests objectes. La figura següent mostra com les dades i les funcions s’organitzen en objectes:
+&#x20;El plantejament,  ens permet descompondre un gran problema en **entitats** més petites anomenades **objectes** i agrupar les dades i les funcions en aquests objectes. La figura següent mostra com les dades i les funcions s’organitzen en objectes:
 
 ![Dades i funcions en l'enfocament orientat a objectes](https://s3.amazonaws.com/thinkific/file\_uploads/59347/images/994/c9c/1dc/C14196\_05\_02.png)
 
@@ -22,9 +20,9 @@ Un enfocament de programació hauria de tractar grans preocupacions, com ara, co
 
 L'enfocament orientat a objectes tracta problemes de programació mitjançant els conceptes generalitzats que es proporcionen més endavant. En aquest punt, tractarem detalls d’aquests conceptes amb detall :
 
-* Els **objectes** són entitats amb dades i **interfícies**. Poden representar una persona, un vehicle, un ventilador de taula o, potser, un compte bancari que tingui un paper important en el nostre programa. Les dades i les funcions (o mètodes) conviuen dins d’un objecte.
+* Els **objectes** són entitats amb dades i **interfaces**. Poden representar una persona, un vehicle, un ventilador de taula o, potser, un compte bancari, que tingui un paper important en el nostre programa. Les dades i les funcions (o mètodes) conviuen dins d’un objecte.
 * Les **classes són plantilles** per crear objectes. Les dades són la descripció d’un objecte, mentre que les funcions són els comportaments d’aquest objecte, de manera que aquestes definicions de dades i mètodes es poden escriure mitjançant una classe. Les classes es poden denominar tipus de dades personalitzades.
-* L'**encapsulació de dades és l'embalatge de dades** i funcions en una sola unitat, és a dir, en una classe. Imagineu-vos una càpsula inigualable amb dades i funcions encapsulades al seu interior de manera que el món exterior no pugui accedir a les dades sempre que no exposem mètodes per a elles. Aquest aïllament de les dades d’accés directe pel programa s’anomena amagada de dades. En definitiva, declarar una classe és l'encapsulat de dades.
+* L'**encapsulació de dades és l'embalatge de dades** i funcions en una sola unitat, és a dir, en una classe. Imagineu-vos una càpsula inigualable amb dades i funcions encapsulades al seu interior de manera que el món exterior no pugui accedir a les dades sempre que no exposem mètodes per a elles. Aquest aïllament de les dades d’accés directe pel programa s’anomena encapsulament de dades. En definitiva, declarar una classe és "encapsular  dades".
 * L’**abstracció** de dades és l’acte de representar propietats i característiques essencials sense donar detalls. Així doncs, la descripció de l'entitat continua sent abstracta i la responsabilitat de detallar l'entitat es pot fer a través del procés de creació o herència de l'entitat. Aquesta abstracció permet que tothom "segueixi les pautes i ho faci de la vostra manera".
 * L' **herència** és el procés d’adquisició de propietats i comportaments d’una altra classe de manera que les propietats i comportaments comuns es poden reutilitzar de manera jeràrquica.
 * El **polimorfisme** és el concepte d’utilitzar la mateixa definició per a múltiples propòsits. Per exemple, volar és un comportament polimòrfic, ja que els ocells i els avions tenen les seves diferents maneres de volar.
@@ -90,7 +88,7 @@ $object = new MySimpleClass();
 
 Amb la instanciació, un objecte es crea a la memòria amb còpies dels seus propis atributs. Aquí, la variable `$object` no conté l'objecte real; més aviat, assenyala l'objecte. Només per quedar clar, la variable`$object` és un punter a l'objecte i no té una referència a l'objecte.
 
-El mètode del **constructor** es crida automàticament si es declara. Un constructor de classe i un destructor són dos tipus especials de mètodes; per exemple, \*\*`__construct()`\*\*i **`__destruct()`**, que es criden automàticament en la creació i supressió d’objectes, respectivament.
+El mètode del **constructor** es crida automàticament si es declara. Un constructor de classe i un destructor són dos tipus especials de mètodes; per exemple, **`__construct()`**i **`__destruct()`**, que es criden automàticament en la creació i supressió d’objectes, respectivament.
 
 Per accedir a les propietats i mètodes d'un objecte, podem utilitzar l'operador d'objectes **`->`**, com en els següents casos:
 
@@ -179,11 +177,11 @@ echo SampleClass::NAME; //John Dani
 
 **Operador d'abast (::)**
 
-En comptes d'utilitzar **->** , el doble punt permet accedir a la part estàtica i constant. Aquest operador també s'utilitza per accedir a les funcions de super classe\*\* `parent::.`\*\*
+En comptes d'utilitzar **->** , el doble punt permet accedir a la part estàtica i constant. Aquest operador també s'utilitza per accedir a les funcions de super classe **`parent::.`**
 
-### \*\* 'self' i this\*\*
+### &#x20;'self' i this
 
-En comptes d'utilitzar **$this** , s'utilitza la paraula clau **self** per accedir a constants de la classe. En general, per a tots els accessos nivell de classe utilitzem \*\*self, \*\* per les instàncies de classe utilitzem **$this**.
+En comptes d'utilitzar **$this** , s'utilitza la paraula clau **self** per accedir a constants de la classe. En general, per a tots els accessos nivell de classe utilitzem _self_, per les instàncies de classe utilitzem **$this**.
 
 ```php
 class SampleClass
@@ -330,7 +328,7 @@ Traits
 
 #### **Namespace**
 
-Els espais de noms permeten facilitar la comprensió del codi, de les classes i la seva ubicació.
+Els espais de noms permeten facilitar la comprensió del codi, de les classes i la seva ubicació. L'ús de namespaces estan regulats per la PSR-1 i [PSR-12](https://www.php-fig.org/psr/psr-12/#3-declare-statements-namespace-and-import-statements), que marquen l'estil de codificació al PHP.
 
 Autoloading
 
