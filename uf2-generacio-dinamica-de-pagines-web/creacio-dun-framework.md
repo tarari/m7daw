@@ -94,6 +94,16 @@ Cridem a l'script index.php amb paràmetres $_GET[], url, action i id
 
 Però si estem treballant en un sistema modern, òbviament en OOP (orientat a objecte), aquestes rutes no són adequades. Si seguim el paradigma MVC està clar que necessitem en primer lloc cridar al controlador aquest objecte tindrà una sèrie de mètodes dels quals cridarem com a acció. Per tant es recomana utilitzar _URL friendly_ per a generar rutes en MVC
 
+#### URL friendly
+
+Es denomina una URL amigable aquella que utilitza paraules per definir consultes, sense intervenir cap tipus de símbol:
+
+```
+http://app/user/edit/1
+```
+
+
+
 **.htaccess**
 
 ```
@@ -109,6 +119,8 @@ RewriteRule ^.*$ index.php [NC,L]
 ```
 
 Com s'observa, es tracta de redirigir tota consulta (_query_ ) cap al controlador frontal de l'aplicació (**index.php**).
+
+Aquest fitxer modifica directives del servidor web per aquest directori (document root). Concretament no reescriu si existeix fitxer o directori de ruta i si no existeix es fa una consulta al index.php que actua com a controlador frontal.
 
 Per una bona càrrega de classes fem servir l'estandar **PSR- 4** (autocàrrega de classes) i a més afegim la clàusula files que permet accedir a fitxers de funcions _src/helpers.php_
 
