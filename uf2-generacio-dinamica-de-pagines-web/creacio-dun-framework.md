@@ -13,7 +13,7 @@ Aprofundim el coneixement de la programació orientada a objecte a través de la
 En les aplicacions web és important resoldre els següents problemes :
 
 * Captura del **REQUEST** del client
-* Adaptar **resposta** al tipus de client (HTML, JSON...)
+* Adaptar **resposta (RESPONSE)** al tipus de client (HTML, JSON...)
 
 En el cas de seguir un paradigma MVC (Model View Controller), es poden adoptar els següents elements:
 
@@ -22,10 +22,6 @@ En el cas de seguir un paradigma MVC (Model View Controller), es poden adoptar e
 * Llençament de la instància de l'objecte controlador i posteriorment cridar l'acció corresponent com a mètode del controlador
 * Manteniment de la sessió i sistema d'autenticació i autorització
 * Sistema de vistes (_views_) per al renderitzat i generació de interfície d'usuari.
-
-
-
-
 
 ## **Funcionament bàsic de l'app ( paradigma MVC i altres ginys)**
 
@@ -60,7 +56,7 @@ La carpeta _vendor_/ inclou les llibreries externes que utilitzarem, entre elles
    { 
      "psr-4": 
       {
-         "App\":"src" }, 
+         "App\\":"src/" }, 
          "files": ["src/helpers.php"] 
       }, 
       "require": { 
@@ -71,7 +67,7 @@ La carpeta _vendor_/ inclou les llibreries externes que utilitzarem, entre elles
   }
 ```
 
-&#x20;views incorpora totes les vistes php-html que s'utilitzen a les vistes.
+views incorpora totes les vistes php-html que s'utilitzen a les vistes.
 
 public/ incorpora les característiques estàtiques i de front-end de l'aplicació.
 
@@ -82,6 +78,21 @@ Si seguim el cicle entre client i servidor, podem analitzar com es desenvolupa l
 ![](../.gitbook/assets/fwork.png)
 
 ### **1 Reescriptura de la URI**
+
+Com ja coneixem, l'accés a una aplicació web es fa a través la URL, per exemple:
+
+```
+http://app
+```
+
+Accedirà al fitxer index.php del host amb nom DNS app. El propi ús de les aplicacions i les constants sol·licituds o REQUESTS fan que el sistema d'enrutament sigui determinant. Una sol·licitur URL pot ser complexa però entenible.
+
+```
+http://app/index.php?url=user&&action=edit&&id=1
+Cridem a l'script index.php amb paràmetres $_GET[], url, action i id
+```
+
+Però si estem treballant en un sistema modern, òbviament en OOP (orientat a objecte), aquestes rutes no són adequades. Si seguim el paradigma MVC està clar que necessitem en primer lloc cridar al controlador aquest objecte tindrà una sèrie de mètodes dels quals cridarem com a acció. Per tant es recomana utilitzar _URL friendly_ per a generar rutes en MVC
 
 **.htaccess**
 
@@ -101,7 +112,7 @@ Com s'observa, es tracta de redirigir tota consulta (_query_ ) cap al controlado
 
 Per una bona càrrega de classes fem servir l'estandar **PSR- 4** (autocàrrega de classes) i a més afegim la clàusula files que permet accedir a fitxers de funcions _src/helpers.php_
 
-### 2 Front controller  - index.php
+### 2 Front controller - index.php
 
 El fitxer index.php del nostre projecte actua com a un frontend controller és a dir, totes les Requests, són dirigides a aquest script.
 
@@ -142,10 +153,8 @@ Un cop carregat el PSR-4, definim les constants de l'entorn de l'aplicació, aqu
 ```
 
 {% hint style="info" %}
-**Utilitzem la llibreria  vlucas/phpdotenv  des de composer.json.**
+**Utilitzem la llibreria vlucas/phpdotenv des de composer.json.**
 {% endhint %}
-
-
 
 ```php
 DB_DRIVER='mysql'
@@ -302,8 +311,6 @@ src/App.php
 ```
 
 Mentre que start() és en sí el nucli de l'aplicació, ja que determina i activa quin controlador és el responsable de la "request", cal destacar que en la instància del controlador, també injectem els objectes Session i Request, que ens facilita el desenvolupament de l'aplicació com ja s'observarà.
-
-
 
 ## Elements de la carpeta src/
 
@@ -505,7 +512,7 @@ Mentre que start() és en sí el nucli de l'aplicació, ja que determina i activ
 
 ### App
 
-El nucli  o sistema de l'aplicació: que ja vam veure amb anterioritat.
+El nucli o sistema de l'aplicació: que ja vam veure amb anterioritat.
 
 ### QueryBuilder i Connection
 
@@ -637,7 +644,6 @@ namespace App;
             return join("\n", $this->elements);
         }   
     }
-
 ```
 
 I quan volem utilitzar el formulari, el configurem abans de renderitzar-lo, mirem l'exemple:
@@ -663,8 +669,6 @@ I quan volem utilitzar el formulari, el configurem abans de renderitzar-lo, mire
 ```
 
 El procés de configuració consisteix en crear l'objecte **$form**, i després es completa amb tots el items, afegirem també l'atribut ocult csrf-token per protegir-nos d'atacs **CSRF.**
-
-
 
 ## Procés de resposta
 
@@ -791,16 +795,13 @@ Mirem la plantilla:
 <?php
     include 'footer.tpl.php';
     ?>
-
 ```
 
 El sistema de plantilles creat és una simple composició entre tres scripts que es troben a **templates**. En aquesta plantilla en concret hem passat les dades $user i $data, des del controlador a través d'un array a l'argument de la funció **render** del controlador.
 
 ### El controlador
 
-Proporciona la intermediación entre les capes de persistència i la UI, per tant és qui fa servir els serveis.&#x20;
-
-
+Proporciona la intermediación entre les capes de persistència i la UI, per tant és qui fa servir els serveis.
 
 ```php
 <?php
@@ -838,7 +839,7 @@ El controlador implementa les funcions render del helpers.php:
     }
 ```
 
-Tots els processos segueixen aquest protocol&#x20;
+Tots els processos segueixen aquest protocol
 
 usuari-->-Controlador --->render ---> procés UI --->usuari
 
