@@ -435,10 +435,20 @@ Mentre que start() és en sí el nucli de l'aplicació, ja que determina i activ
         public function setParams($array){
             $this->params=$array;
         }
+        public function get($field){
+            if ($this->method=='POST'){
+               return filter_input(INPUT_POST,$field,FILTER_DEFAULT);
+            }else{
+                return filter_input(INPUT_GET,$field,FILTER_DEFAULT);
+            }
+
+        }
     }
 ```
 
 ### Session
+
+Aquesta classe ens permet accedir a les variables de sessió dins l'app, o modificar-les o bé buidar-les.
 
 ```php
 <?php
@@ -524,9 +534,9 @@ Mentre que start() és en sí el nucli de l'aplicació, ja que determina i activ
 
 ### App
 
-El nucli o sistema de l'aplicació: que ja vam veure amb anterioritat.
+El nucli o sistema de l'aplicació: que ja vam veure amb anterioritat. Prèviament carrega els serveis necessaris a través del bootstrap.
 
-### QueryBuilder i Connection
+### Database DB i Connection
 
 Accedir a la capa de persistència (infraestructura) és fàcil si fem servir aquesta classe, el podem definir com un servei que utilitzen els controladors.
 
@@ -540,12 +550,13 @@ Mirem el codi d'un controlador
     
     use App\Registry;
 
-class IndexController {
+class Controller {
 
         public function index()
         {
             $roles = Registry::get('database')->selectAll('roles');
-            
+            //un cop tenim tota la col·lecció de roles els compactem
+            // equival a fer un $rows[0] del resultat del fethAll
             return view('index', compact('roles'));
         }
     }
@@ -554,49 +565,173 @@ class IndexController {
 I ara observem les classes Connection i QueryBuilder:
 
 ```php
-//Connection
-<?php
-    namespace App\Database;
+//DB class
+namespace App\Database;
+class DB{
+    
+    protected \PDO $pdo;
+    function __construct($pdo){
+      $this->pdo=$pdo;
+    }
 
-    class Connection{
-        public static function make($config){
-          $dsn=$config['connection'].';dbname='.$config['dbname'];
-            try {
-                return new \PDO(
-                   $dsn,
-                    $config['dbuser'],
-                    $config['dbpassword'],
-                    $config['options']
-                );
-            } catch (\PDOException $e) {
-                die($e->getMessage());
+    
+    function selectAll($table,array $fields=null):array
+            {
+                if (is_array($fields)){
+                    $columns=implode(',',$fields);
+                    
+                }else{
+                    $columns="*";
+                }
+                
+                $sql="SELECT {$columns} FROM {$table}";
+               
+                $stmt=$this->pdo->query($sql);
+                $stmt->execute();
+                $rows=$stmt->fetchAll(\PDO::FETCH_OBJ);
+                return $rows;
+            }
+    
+            function selectAllWithJoin($table1,$table2,array $fields=null,string $join1,string $join2):array
+            {
+                if (is_array($fields)){
+                    $columns=implode(',',$fields);
+                    
+                }else{
+                    $columns="*";
+                }
+               
+                $inners="{$table1}.{$join1} = {$table2}.{$join2}";
+                
+                $sql="SELECT {$columns} FROM {$table1} INNER JOIN {$table2} ON {$inners}";
+                
+                $stmt=$this->query($sql);
+                $stmt->execute();
+                $rows=$stmt->fetchAll(\PDO::FETCH_ASSOC);
+                return $rows;
+            }
+            function select($table,$fields=null,$not=null,$condition=null){
+                if($fields==null){
+                    $fields=['*'];
+                }
+
+                $sql="SELECT " 
+                .implode(",",$fields).
+                " FROM {$table} ";
+                
+                if($condition==null){
+                    $sql.='';
+                }else{
+                    $sql.="WHERE ";
+                    if($not!=null){
+                        $sql.=' NOT ';
+                    }
+
+                    $sql.=implode('=',$condition);
+                }
+                
+                $stmt=$this->query($sql);
+                $stmt->execute();
+                $rows=$stmt->fetchAll(\PDO::FETCH_OBJ);
+                return $rows;   
+            }
+            // només una condició
+            function selectWhereWithJoin($table1,$table2,array $fields=null,string $join1,string $join2,array $conditions):array
+            {
+                if (is_array($fields)){
+                    $columns=implode(',',$fields);
+                    
+                }else{
+                    $columns="*";
+                }
+               
+                $inners="{$table1}.{$join1} = {$table2}.{$join2}";
+                $cond="{$conditions[0]}='{$conditions[1]}'";
+                
+            $sql="SELECT {$columns} FROM {$table1} INNER JOIN {$table2} ON {$inners} WHERE {$cond} ";
+            
+               
+                $stmt=$this->query($sql);
+                $stmt->execute();
+                $rows=$stmt->fetchAll(\PDO::FETCH_OBJ);
+                return $rows;   
+            }
+    
+            function update(string $table, array $data,$id)
+            {
+                if ($data){
+                    $keys=array_keys($data);
+                    $values=array_values($data);
+                    $changes="";
+                    for($i=0;$i<count($keys);$i++){
+                        $changes.=$keys[$i]."='".$values[$i]."',";
+                    }
+                    $changes=substr($changes,0,-1);
+                    $cond="id='{$id}'";
+                    $sql="UPDATE {$table} SET {$changes} WHERE {$cond}";
+                    
+                    $stmt=$this->query($sql);
+                    $res=$stmt->execute();
+                    if($res){
+                        return true;
+                    }    
+                }else{
+                    return false;
+                }
+                
+    
+            }
+    
+            function remove($tbl,$id){
+                
+                $sql="DELETE FROM {$tbl} WHERE id='{$id}'";
+                
+                $stmt=$this->query($sql);
+                $res=$stmt->execute();
+                if($res){
+                    return true;
+                }
+                else{
+                    return false;
+                }    
             }
 
-        }
-    }
     
-    // QueryBuilder
-<?php
 
-namespace App\Database;
-class QueryBuilder{
-    private $selectables=[];
-    private $table;
-    private $whereClause;
-    private $limit;
-    protected $pdo;
-
-    function __construct($pdo)
-    {
-        $this->pdo=$pdo;
+    public  function query($sql){
+           return  $statement = $this->pdo->prepare($sql);       
     }
 
-    function selectAll($table){
-        $statement = $this->pdo->prepare("select * from {$table}");
-        $statement->execute();
-        return $statement->fetchAll(\PDO::FETCH_CLASS);
-    }
-    }
+    function insert($table,$data):bool 
+        {
+            
+
+            if (is_array($data)){
+              $columns='';$bindv='';$values=null;
+                foreach ($data as $column => $value) {
+                    $columns.='`'.$column.'`,';
+                    $bindv.='?,';
+                    $values[]=$value;
+                }
+                $columns=substr($columns,0,-1);
+                $bindv=substr($bindv,0,-1);
+
+                $sql="INSERT INTO {$table}({$columns}) VALUES ({$bindv})";
+                
+                    try{
+                        $stmt=$this->query($sql);
+                        $stmt->execute($values);
+                        return $this->pdo->lastInsertId();
+                    }catch(\PDOException $e){
+                        echo $e->getMessage();
+                        return false;
+                    }
+                
+                return true;
+                }
+                return false;
+            }
+  }
 ```
 
 ### FormBuilder
