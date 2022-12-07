@@ -141,7 +141,7 @@ El fitxer index.php del nostre projecte actua com a un frontend controller és a
     $config=require 'config.php';
     
 
-    App::start();
+    new App();
     
 ```
 
@@ -195,22 +195,22 @@ Observem el fitxer boostrap.php, requerit per la nostra App, el que fa es regist
     // register all the services
     
 
-    Registry::bind('config', require 'config.php');
+    Container::bind('config', require 'config.php');
     
-    Registry::bind('database', new QueryBuilder(
+    Container::bind('database', new QueryBuilder(
         Connection::make(Registry::get('config')['db'])
     ));
     
 ```
 
-que requereix la classe Registry
+que requereix la classe Container
 
 ```php
 <?php
 
 namespace App;
 
-class Registry
+class Container
 {
     /**
      * All registered keys.
@@ -256,21 +256,22 @@ src/App.php
     namespace App;
 
     use App\Request;
+    use App\Session;
     
 
     final class App{
-        static protected $action;
-        static protected $req;
+       protected Session $session;
+       protected Request $request;
 
 
-        static function start(){
-            $session=new Session();
+        public function __construct(){
+            $this->session=new Session();
             $routes=self::getRoutes();
            
             
             // obtenir tres parámetres: controlador, accio,[parametres]
             // url friendly :  http://app/controlador/accion/param1/valor1/param2/valor2
-            self::$req=new Request;
+            $this->request=new Request;
             $controller=self::$req->getController();
             
             self::$action=self::$req->getAction();
