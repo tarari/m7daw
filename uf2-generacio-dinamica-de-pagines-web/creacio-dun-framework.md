@@ -73,9 +73,9 @@ public/ incorpora les característiques estàtiques i de front-end de l'aplicaci
 
 ### **El Cicle REQUEST - RESPONSE**
 
-Si seguim el cicle entre client i servidor, podem analitzar com es desenvolupa la resposta, aquesta es dona sempre a nivell de Controlador, ja que estem fent servir paradigmes MVC
+Si seguim el cicle entre client i servidor, podem analitzar com es desenvolupa la resposta, aquesta es dona sempre a nivell de Controlador, ja que estem fent servir paradigmes MVC.
 
-![](../.gitbook/assets/fwork.png)
+<figure><img src="../.gitbook/assets/fwork.png" alt=""><figcaption><p>Del Request al Response</p></figcaption></figure>
 
 ### **1 Reescriptura de la URI**
 

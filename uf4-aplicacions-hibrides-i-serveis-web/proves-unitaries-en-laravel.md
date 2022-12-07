@@ -8,9 +8,9 @@ Busquem les funcions del sistema i el posem a prova per determinar si tal o qual
 
 ## Proves unitàries
 
-Són proves  que ataquen a una part espeífica del sistema (un mètode normalment) i són les proves que s'executen més ràpid.
+Són proves que ataquen a una part espeífica del sistema (un mètode normalment) i són les proves que s'executen més ràpid.
 
-Laravel inclou  un entorn de proves pre-configurat basat en **phpunit**  i amb alguns tests d'exemple.
+Laravel inclou un entorn de proves pre-configurat basat en **phpunit** i amb alguns tests d'exemple.
 
 ## Testant el sistema d'autenticació
 
@@ -22,7 +22,7 @@ php artisan make:auth
 
 Preparem una prova unitària per al sistema login, concretament el mètode que ens porta cap a la _view_ **`login`**
 
-Preparem el controlador, aquest l'ubicarem a **tests/Feature**,&#x20;
+Preparem el controlador, aquest l'ubicarem a **tests/Feature**,
 
 ```php
 php artisan make:test Http/Controllers/Auth/LoginControllerTest
@@ -53,9 +53,9 @@ class LoginControllerTest extends TestCase
 }
 ```
 
-**El nom de la nostra prova automatitzada ha de ser el més descriptiu possible. **
+\*\*El nom de la nostra prova automatitzada ha de ser el més descriptiu possible. \*\*
 
-En el nostre cas, volem assegurar-nos que quan visitem  `/login`, es mostra el formulari d'inici de sessió.
+En el nostre cas, volem assegurar-nos que quan visitem `/login`, es mostra el formulari d'inici de sessió.
 
 ```php
 GET /login ----> view ('auth.login')
@@ -88,7 +88,6 @@ tests/Feature/Http/Controllers/Auth/LoginControllerTest.php
 Time: 00:00.250, Memory: 20.00 MB
 
 OK (1 test, 2 assertions)
-
 ```
 
 Si tot ha anat bé, sortirà OK i en verd.
@@ -119,7 +118,6 @@ PHPUnit 9.5.2 by Sebastian Bergmann and contributors.
 Time: 00:00.253, Memory: 22.00 MB
 
 OK (2 tests, 5 assertions)
-
 ```
 
 Un pas més seria comprovar si amb un usuari de prova (fake) podem accedir i redirigir un cop autenticat:
@@ -143,7 +141,6 @@ Un pas més seria comprovar si amb un usuari de prova (fake) podem accedir i red
 Aquesta prova és molt més completa. Hem utilitzat el helper factory (**database/factoriew/UserFactory.php**) que crea (de forma persistent a la base de dades) un usuari.
 
 ```php
-
 namespace Database\Factories;
 
 use App\Models\User;
@@ -175,6 +172,4 @@ class UserFactory extends Factory
         ];
     }
 }
-
 ```
-

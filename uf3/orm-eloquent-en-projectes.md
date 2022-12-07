@@ -35,7 +35,7 @@ Des de la consola, en el directori arrel del projecte, podem iniciar la actualit
 composer install
 ```
 
-### Configuració del component&#x20;
+### Configuració del component
 
 La configuració prèvia per poder utilitzar les característiquees del ORM, consisteix en crear un arxiu de configuració _**config.php**_ on definirem les constants de la connexió a la base de dades. En el directori arrel,
 
@@ -83,12 +83,11 @@ class DB{
         $capsule->bootEloquent();
     }
 }
-
 ```
 
 ## Introducció a Eloquent
 
-**Eloquent** està inclós  a Laravel i proporciona una forma molt simple de treballar amb la base de dades. La idea bàsica és que cada taula té un **MODEL** corresponent i és l'element que utilitzem per interactuar amb una taula.
+**Eloquent** està inclós a Laravel i proporciona una forma molt simple de treballar amb la base de dades. La idea bàsica és que cada taula té un **MODEL** corresponent i és l'element que utilitzem per interactuar amb una taula.
 
 Suporta una gran varietat de relacions:
 
@@ -143,7 +142,6 @@ A nivell d'esquema, per fer les migracions corresponents, cal afegir els següen
 ....
 $table->unsignedBigInteger('user');
 $table->foreign('user')->references('id')->on('users');
-
 ```
 
 #### Desar un registre
@@ -162,11 +160,9 @@ $user->car;
 $phone->user
 ```
 
-
-
 ### Relacions One to Many
 
-Aquesta relació, estableix una associació  de múltiples objectes a un de sol, per exemple, un únic post d'un blog, estar associat a mútliples comentaris:
+Aquesta relació, estableix una associació de múltiples objectes a un de sol, per exemple, un únic post d'un blog, estar associat a mútliples comentaris:
 
 ```php
 //MODEL
@@ -198,7 +194,7 @@ class Comment extends Model
 }
 ```
 
-Si la clau forània no termina en `_id,`_ _per exemple `post_id`, cal afegir en la funció de relació la clau forània, en aquest cas hi posarem `post`:
+Si la clau forània no termina en `_id,`\_ \_per exemple `post_id`, cal afegir en la funció de relació la clau forània, en aquest cas hi posarem `post`:
 
 ```php
 //return $this->hasMany(Comment::class, 'foreign_key');
@@ -212,7 +208,6 @@ I a la taula comments, a l'esquema quan fem les migracions, cal afegir:
 ....
 $table->unsignedBigInteger('post');
 $table->foreign('post')->references('id')->on('posts');
-
 ```
 
 #### Desar registres
@@ -229,10 +224,6 @@ $post->comments()->save($comment);
 // o associar un comentari a un post
 $comment->post()->associate($post)->save();
 ```
-
-
-
-
 
 ### Relacions Many to Many
 
@@ -306,4 +297,3 @@ $user->roles()->sync([
    $role2->id,
 ]);
 ```
-

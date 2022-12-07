@@ -90,7 +90,6 @@ A connect.php hi posarem la connexió PDO, ja sigui mysql o bé sqlite (depenent
     $controller=getRoute();
     //redirigir a ruta capturada
     require APP.'/controllers/'.$controller.'.php';
-
 ```
 
 La **navegació** interna de l'app és la següent:
@@ -100,7 +99,7 @@ La **navegació** interna de l'app és la següent:
 request ------------------------------------> response
 ```
 
-**En alguns casos necessitem reescriure i adaptar la REQUEST , .htaccess se n'ocupa d'això. Index.php**  localitza el _controller_ en funció de la ruta indicada a través del REQUEST, concretament podem agafar un paràmetre de la QUERY_STRING. Ara cal cridar al controller i aquest farà les feines o accions corresponents.
+**En alguns casos necessitem reescriure i adaptar la REQUEST , .htaccess se n'ocupa d'això. Index.php** localitza el _controller_ en funció de la ruta indicada a través del REQUEST, concretament podem agafar un paràmetre de la QUERY\_STRING. Ara cal cridar al controller i aquest farà les feines o accions corresponents.
 
 L'estructura de la REQUEST és similar a la figura:
 
@@ -109,7 +108,7 @@ QUERY_STRING
 http://app/index.php?url=controlador
 ```
 
-El sistema d'enrutament es basa en capturar el paràmetre url de la query_string i el processa per tal d'obtenir el controlador que s'encarregarà de gestionar la REQUEST.
+El sistema d'enrutament es basa en capturar el paràmetre url de la query\_string i el processa per tal d'obtenir el controlador que s'encarregarà de gestionar la REQUEST.
 
 ### Entorn
 
@@ -168,15 +167,15 @@ En el cas de **Msyql**, requerim un objecte de connexió PDO.
 ```
 
 {% hint style="info" %}
-Per  gestionar la creació de la taula que utilitza la nostra app, podem utilitzar una funció **schemaGen()**, que en esència , executa un comando de creació de taula, distingim també entre sqlite i mysql.
+Per gestionar la creació de la taula que utilitza la nostra app, podem utilitzar una funció **schemaGen()**, que en esència , executa un comando de creació de taula, distingim també entre sqlite i mysql.
 {% endhint %}
 
 ### **Controladors**
 
-Estem seguint el paradigma MVC, Model Vista i Controlador. La gestió de la consulta la fa sempre el controlador, el qual actua a través de les accions (funcions), que  en temes posteriors tractarem com a _objectes_  i **mètodes**.
+Estem seguint el paradigma MVC, Model Vista i Controlador. La gestió de la consulta la fa sempre el controlador, el qual actua a través de les accions (funcions), que en temes posteriors tractarem com a _objectes_ i **mètodes**.
 
 {% hint style="info" %}
-Els controladors són: encarregats de les accions de les pantalles o vistes, per exemple  si tenim vista **home**, també tindrem controlador **home**.
+Els controladors són: encarregats de les accions de les pantalles o vistes, per exemple si tenim vista **home**, també tindrem controlador **home**.
 {% endhint %}
 
 A més el controlador passa dades a vista renderitzada com es pot comprovar a l'exemple:
@@ -194,7 +193,7 @@ A més el controlador passa dades a vista renderitzada com es pot comprovar a l'
 
 ### Renderitzat de plantilles
 
-La forma més elegant de treballar les vistes en PHP és separar codi PHP de codi HTML. Amb aquest mètode que presentem, es pot separar perfectament, ubicant una carpeta  **`templates`** amb plantilles renderitzables.
+La forma més elegant de treballar les vistes en PHP és separar codi PHP de codi HTML. Amb aquest mètode que presentem, es pot separar perfectament, ubicant una carpeta **`templates`** amb plantilles renderitzables.
 
 ```php
 <?php
@@ -211,7 +210,7 @@ La forma més elegant de treballar les vistes en PHP és separar codi PHP de cod
     }
 ```
 
-El responsable del renderitzat és el controlador.  En el renderitzat, fem servir els ob (**output-buffer**). La seva missió és desar les dades que arriben a aquest buffer ( el fitxer de plantilla barrejat amb les dades extretes de $data) i per últim retornar l'string que el controlador s'encarrega de mostrar :
+El responsable del renderitzat és el controlador. En el renderitzat, fem servir els ob (**output-buffer**). La seva missió és desar les dades que arriben a aquest buffer ( el fitxer de plantilla barrejat amb les dades extretes de $data) i per últim retornar l'string que el controlador s'encarrega de mostrar :
 
 ```php
 echo render('home',['title'=>'Home '.$uname]);
@@ -265,7 +264,7 @@ RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^(.*)$ index.php [NC,L]
 ```
 
-Si es demana per "algo" que no és ni fitxer ni directori, reescrivim la **REQUEST_URI **per reenviar-la al index.php.
+Si es demana per "algo" que no és ni fitxer ni directori, reescrivim la \*\*REQUEST\_URI \*\*per reenviar-la al index.php.
 
 ### Gestió de dades persistents
 
@@ -292,7 +291,6 @@ CREATE TABLE `users` (
 );
 
 ALTER TABLE `users` ADD CONSTRAINT `users_fk0` FOREIGN KEY (`role`) REFERENCES `roles`(`id`);
-
 ```
 
 ### Autenticació
@@ -340,7 +338,7 @@ Fixem-nos en la línia 14, aquí es comprova el _hash_ del pasword que passem am
 El _hash_ o funció _hash_, es una funció criptogràfica especial que és utilitzada per generar identificadors únics i irrepetibles.
 {% endhint %}
 
-Per més informació sobre la capa de persistència de dades, podeu consultar: 
+Per més informació sobre la capa de persistència de dades, podeu consultar:
 
 {% content-ref url="../php-pdo.md" %}
 [php-pdo.md](../php-pdo.md)
@@ -350,8 +348,6 @@ Si volem pujar la nostra app a un servidor en remot, podem utilitzar el comando 
 
 ```shell
 scp  -r A1/* usuari@servidor:~/httpdocs/m7/A1/
-
 ```
 
 Com a resultat es crea copia el contingut de la carpeta A1 de local a la carpeta A1 en remot.
-
