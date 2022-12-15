@@ -1,12 +1,24 @@
-# Patrons de disseny
+---
+description: >-
+  Es tracta de comprovar com els patrons de disseny faciliten la tasca de
+  creació d'un framework
+---
+
+# Patrons de disseny aplicats
 
 Amb els patrons de disseny aconseguim donar solució a problemes comuns basant-nos en programació orientada a objectes.
 
 Cada patró és com un plànol que es pot personalitzar per resoldre un problema de disseny particular del codi.\*\* ([refactoring.guru](https://refactoring.guru))
 
-Els que estudiarem:
+Els que estudiarem com a part dels frameworks:
 
 ### Patrons estructurals
+
+#### Despendency Injection
+
+Es tracta d'un dels més utilitzats. Tal i com es defineix, permet desacoblar codi i permet un manteniment mínim i reusabilitat màxima.
+
+
 
 #### Adapter
 
@@ -27,6 +39,12 @@ Delega les peticions del client als objectes apropiats dins del subsistema.  Tam
 El patró Facade s'utilitza habitualment a les aplicacions PHP per simplificar  el treball amb biblioteques o API complexes.&#x20;
 
 ### Patrons de comportament
+
+#### Template Method
+
+La idea d'aquest patró és molt simple, deixa que les subclasses d'una classe abstracta finalitzin els algoritmes de comportament.
+
+
 
 #### Strategy
 
