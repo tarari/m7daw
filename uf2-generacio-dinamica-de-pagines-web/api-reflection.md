@@ -101,3 +101,28 @@ function echoInfoOnClass($object) {
     }
 }
 ```
+
+I quan executem :&#x20;
+
+```php
+echoInfoOnClass(new Person('Yuppy'));
+```
+
+```
+Name: App\Controllers\Person
+Short name: Person
+
+Constants:
+
+NAME_LENGTH_MAX = 50
+
+Properties:
+
+protected name = "Yuppy"
+
+Methods:
+
+public __construct(name)
+public getName()
+public static generateName(length=50(self::NAME_LENGTH_MAX))
+```
