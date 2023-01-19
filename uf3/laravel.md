@@ -63,11 +63,25 @@ Laravel development server started: http://127.0.0.1:8000
 
 ![Quan accedim des del navegador](../.gitbook/assets/captura-de-pantalla-2020-03-02-a-les-21.01.51.png)
 
-## Estructura de carpetes
+## Estructura de Laravel
 
-**Arrel del projecte**: app, bootstrap, config, database, public, resources, routes, storage, tests, vendor.
+Laravel és un framework PHP molt popular que proporciona una estructura per a desenvolupar aplicacions web seguint les millors pràctiques. A continuació, repassem  la estructura bàsica d'una aplicació Laravel:
 
-**Dins d'app**: Broadcasting, Console, Events, Exceptions, Http, Jobs, Listeners, Mail, Notifications, Policies, Providers, Rules.
+1. `app/`: Aquest directori conté les classes de l'aplicació, com les models, els controladors i les vistes.
+2. `config/`: Aquest directori conté els arxius de configuració de l'aplicació, com per exemple, les configuracions de la base de dades, les configuracions d'autenticació i les configuracions dels serveis.
+3. `database/`: Aquest directori conté les migracions de la base de dades i les seeds per a carregar dades d'exemple.
+4. `public/`: Aquest directori conté els arxius que són accessibles des del navegador, com per exemple, les imatges, les hojas de estilo i els scripts.
+5. `resources/`: Aquest directori conté les vistes i els arxius de recursos de l'aplicació, com per exemple, les plantilles i els arxius de traducció.
+6. `routes/`: Aquest directori conté els arxius de rutes de l'aplicació, on es defineixen les rutes de l'aplicació i es associen amb els controladors.
+7. `storage/`: Aquest directori conté els arxius generats per l'aplicació, com per exemple, els arxius de registre i els arxius de caché.
+8. `tests/`: Aquest directori conté els arxius de test de l'aplicació.
+9. `vendor/`: Aquest directori conté les llibreries de tercers que s'utilitzen en l'aplicació.
+10. `.env`: Aquest arxiu conté les variables d'entorn de l'aplicació, com per exemple, les configuracions de la base de dades i les claus d'API.
+11. `.gitignore`: Aquest arxiu conté la llista d'arxius que s'han d'ignorar en el control de versions.
+12. `composer.json`: Aquest arxiu conté la llista de les dependències de l'aplic
+
+\
+
 
 {% hint style="info" %}
 Amb el temps adquirirem l'habilitat de crear qualsevol estructura de carpetes, la que millor s'adapti al projecte que implementem.
@@ -96,9 +110,24 @@ En la carpeta config, establim tots els arxius de configuració que necessitem e
     return ['color'=>'#04a23e'];
 ```
 
-## RECORDATORI: Cicle de vida del REQUEST
+## Cicle de vida del REQUEST
 
-Des que el client envia un REQUEST fins que el sistema envia un RESPONSE, Laravel té com a punt d'entrada del tractament del REQUEST el fitxer **public/index.php**, on hi ha la preparació de l'entorn del sistema. Posteriorment s'envia cap a **bootstrap/app.php**, que actua com a contenidor de serveis ( \_service container \_). Aquest actua com a controlador frontal i reenvia cap als kernels o nuclis, bàsicament HTTP Kernel API kernel i Console Kernel, que acuten com a proveïdors de serveis (**service providers**).
+En Laravel, el cicle de vida d'una sol·licitud (REQUEST) es pot dividir en les següents etapes:
+
+1. Recepció de la sol·licitud: Quan un client envia una sol·licitud HTTP a través del seu navegador, aquesta sol·licitud és rebuda pel servidor web, com Apache o Nginx, que la redirigeix a l'arxiu d'entrada de l'aplicació, normalment `index.php`.
+2. Creació de l'aplicació: A l'arxiu d'entrada de l'aplicació, es crea una instància de la classe `Application` de Laravel, que és l'encarregada de carregar la configuració i la configuració de les rutes de l'aplicació.
+3. Anàlisi de les rutes: Laravel analitza la sol·licitud i la compara amb les rutes definides en l'aplicació per trobar la ruta que s'ha de processar.
+4. Execució del middleware: Si hi ha algun middleware associat amb la ruta seleccionada, es processen abans de continuar amb la ruta.
+5. Execució de la ruta: Es crea una instància del controlador associat a la ruta i es crida al mètode associat amb la ruta. Aquest mètode pot retornar una resposta o una vista.
+6. Enviament de la resposta: La resposta generada en l'etapa anterior es retorna al client.
+7. Finalizació de la sol·licitud: La sol·licitud es finalitza i es tanca la connexió amb el client.
+
+Aquest és un cicle bàsic de la vida d'una sol·licitud en laravel, pot haver-hi altres elements, com ara la gestió de les excepcions, les sessions, la gestió de la cache, entre altres, que també s'executen en el cicle de vida d'una sol·licitud.
+
+\
+De manera més detallada:
+
+Des que el client envia un REQUEST fins que el sistema envia un RESPONSE, Laravel té com a punt d'entrada del tractament del REQUEST el fitxer **public/index.php**, on hi ha la preparació de l'entorn del sistema. Posteriorment s'envia cap a **bootstrap/app.php**, que actua com a contenidor de serveis ( _service container_ ). Aquest actua com a controlador frontal i reenvia cap als kernels o nuclis, bàsicament HTTP Kernel API kernel i Console Kernel, que acuten com a proveïdors de serveis (**service providers**).
 
 Els kernels fan servir el _**middlewares**_ com a filtres específics de les REQUESTS, per exemple un MW verifica si l'usuari s'ha autenticat i actúa en conseqüència, redirigint cap a la pantalla de login o una altra. El tractament final el fa el servei (_service_) que permet obtenir una resposta (RESPONSE)
 
