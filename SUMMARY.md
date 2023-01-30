@@ -26,6 +26,7 @@
 * [Patrons de disseny](uf3/patrons-de-disseny.md)
 * [ORM Eloquent en projectes](uf3/orm-eloquent-en-projectes.md)
 * [Introducció a Laravel](uf3/laravel.md)
+* [Projecte bàsic en Laravel](uf3/projecte-basic-en-laravel.md)
 * [Eloquent](uf3/eloquent.md)
 
 ## UF4 Aplicacions híbrides i serveis web
