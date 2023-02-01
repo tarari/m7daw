@@ -25,7 +25,7 @@ Com s'observa, el nostre sistem funciona amb Blade.
 
 A continuació, per observar si ha funcionat, observem que s'han creat una sèrie de recursos a _resources/views._
 
-Fem ara una instal·lació de paquets JS necessaris per la correcta configuració del sistema.
+Fem ara una instal·lació de paquets JS necessaris per la correcta configuració del sistema. Serà necessari tenir instal·lats el gestor de paquets de NodeJS npm.
 
 ```shell-session
 npm install
@@ -57,6 +57,10 @@ Modifiquem el fitxer de configuració de base de dades per indicar la ruta del f
 
 En storage/ creem el fitxer `piopio.sqlite`.
 
+```shell
+touch piopio.sqlite
+```
+
 Ara posem en marxa les migracions, per donar suport de dades a l'aplicació:
 
 ```bash
@@ -70,3 +74,26 @@ Ara posem en marxa les migracions, per donar suport de dades a l'aplicació:
   2019_08_19_000000_create_failed_jobs_table ........... 28ms DONE
   2019_12_14_000001_create_personal_access_tokens_table  32ms DONE
 ```
+
+## Comencem a desenvolupar
+
+La nostra aplicació tracta de crear "pios" una versió descafeïnada de twitter.
+
+Els pios es desen en una taula, també es poden controlar (crear, mostrar, modificar i eliminar), per tal cosa necessitem un model Pio, una migració de model cap a la base de dades i un controlador de recursos (PioController).
+
+El comando que mostrem a continuació pot fer aquestes tres coses, de fet si necessitem més ajuda dels comandos, li afegirem l'opció `--help`.
+
+<pre class="language-php"><code class="lang-php"><strong>php artisan make:model --help
+</strong><strong>// aquí l'ajuda
+</strong></code></pre>
+
+```php
+php artisan make:model -mrc Pio
+```
+
+Aquesta instrucció crea:
+
+* `app/Models/Pio.php` - El model en Eloquent
+* `database/migrations/<timestamp>_create_pios_table.php` - La database migration que crea la taula a la base de dades.
+* `app/Http/Controller/PioController.php` - The HTTP controller que processa les requests i retorna les respostes.
+
