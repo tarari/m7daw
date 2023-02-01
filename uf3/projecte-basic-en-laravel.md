@@ -97,3 +97,6 @@ Aquesta instrucció crea:
 * `database/migrations/<timestamp>_create_pios_table.php` - La database migration que crea la taula a la base de dades.
 * `app/Http/Controller/PioController.php` - The HTTP controller que processa les requests i retorna les respostes.
 
+### Enrutament
+
+Ara hem de crear les URLs a través de les quals ens comuniquem amb els controladors
