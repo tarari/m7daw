@@ -1,3 +1,7 @@
+---
+description: Crearem un projecte molt simple, però que té una mica de tot.
+---
+
 # Projecte bàsic en Laravel
 
 ## Instal·lació de projecte
@@ -99,4 +103,64 @@ Aquesta instrucció crea:
 
 ### Enrutament
 
-Ara hem de crear les URLs a través de les quals ens comuniquem amb els controladors
+Ara hem de crear les URLs a través de les quals ens comuniquem amb els controladors.
+
+Editem el fitxer routes/web.php que conté les rutes definides en entorn web, utilitza les [_Facades_](https://laravel.com/docs/9.x/facades) de Route, mètode simplificat d'accés estàtic a l'enrutador:
+
+{% code lineNumbers="true" %}
+```php
+// routes/web.php
+<?php
+ 
+use App\Http\Controllers\PioController;
+use Illuminate\Support\Facades\Route;
+ ...
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+ 
+Route::resource('pios', PioController::class)
+    ->only(['index', 'store'])
+    ->middleware(['auth', 'verified']);
+ 
+require __DIR__.'/auth.php';
+```
+{% endcode %}
+
+Per accedir a l'escriptori (dashboard), és necessari passar el filtre 'auth' i 'verified', que indiquen que l'usuari a confirmat el seu email i s'ha autenticat.
+
+Podem observar les rutes creades am el comando artisan:
+
+```shell
+php artisan route:list
+```
+
+| Verb | URI     | Acció | Nom Ruta   |
+| ---- | ------- | ----- | ---------- |
+| GET  | `/pios` | index | pios.index |
+| POST | `/pios` | store | pios.store |
+
+### Controlador
+
+El controlador actua com un controlador de recursos i tot i que s'han creat molts mètodes dins la classe PioController, només donarem pas a '`store`' o desar els pios i a '`index`' que ens mostrarà tots els 'pios'.
+
+```php
+<?php
+ ...
+class PioController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('pios.index');
+    }
+ ...
+}
+```
+
+El mètode index permet la visualització a través de Blade, el nostre motor de plantilles per la vista, de tots els nostres _pios_.
+
