@@ -164,3 +164,40 @@ class PioController extends Controller
 
 El mètode index permet la visualització a través de Blade, el nostre motor de plantilles per la vista, de tots els nostres _pios_.
 
+### Blade
+
+El motor de plantilles per a vistes és Blade, tot i que tenim llibertat a l'hora d'escollir la millor opció per al frontend.
+
+En la versió 9, s'incorpora [tailwindcss](https://tailwindcss.com/) ( un framework CSS) i Alpine.js, framework JS.
+
+L'anterior codi ens porta a retornar uns vista 'pios.index'. Ubicada a resources/views/pios, creem el fitxer (i el directori pios), index.blade.php.
+
+&#x20;
+
+```php
+<x-app-layout>
+    <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+        <form method="POST" action="{{ route('chirps.store') }}">
+            @csrf
+            <textarea
+                name="message"
+                placeholder="{{ __('Què vols piolar?') }}"
+                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+            >{{ old('message') }}</textarea>
+            <x-input-error :messages="$errors->get('message')" class="mt-2" />
+            <x-primary-button class="mt-4">{{ __('Pio') }}</x-primary-button>
+        </form>
+    </div>
+</x-app-layout>
+```
+
+Es basa en l'ús de components `<x-..>` definits en la carpeta components en `resources`. Observem que la resta és combinació html amb tailwindcss i llenguatge [blade](https://laravel.com/docs/9.x/blade).
+
+Activem el frontend amb vite amb el comando&#x20;
+
+```
+npm run dev
+```
+
+&#x20;
+
