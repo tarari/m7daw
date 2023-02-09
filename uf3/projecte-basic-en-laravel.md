@@ -174,22 +174,22 @@ L'anterior codi ens porta a retornar uns vista 'pios.index'. Ubicada a resources
 
 &#x20;
 
-```php
-<x-app-layout>
-    <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-        <form method="POST" action="{{ route('chirps.store') }}">
+<pre class="language-php"><code class="lang-php"><strong>//resources/views/pios/index.blade.php
+</strong><strong>&#x3C;x-app-layout>
+</strong>    &#x3C;div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+        &#x3C;form method="POST" action="{{ route('pios.store') }}">
             @csrf
-            <textarea
+            &#x3C;textarea
                 name="message"
                 placeholder="{{ __('Què vols piolar?') }}"
                 class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-            >{{ old('message') }}</textarea>
-            <x-input-error :messages="$errors->get('message')" class="mt-2" />
-            <x-primary-button class="mt-4">{{ __('Pio') }}</x-primary-button>
-        </form>
-    </div>
-</x-app-layout>
-```
+            >{{ old('message') }}&#x3C;/textarea>
+            &#x3C;x-input-error :messages="$errors->get('message')" class="mt-2" />
+            &#x3C;x-primary-button class="mt-4">{{ __('Pio') }}&#x3C;/x-primary-button>
+        &#x3C;/form>
+    &#x3C;/div>
+&#x3C;/x-app-layout>
+</code></pre>
 
 Es basa en l'ús de components `<x-..>` definits en la carpeta components en `resources`. Observem que la resta és combinació html amb tailwindcss i llenguatge [blade](https://laravel.com/docs/9.x/blade).
 
@@ -199,5 +199,7 @@ Activem el frontend amb vite amb el comando&#x20;
 npm run dev
 ```
 
-&#x20;
+&#x20;Aquest comando l'executem en terminal i crea un entorn frontend amb de manera que els canvis CSS i JS són immediats, no cal construir de nou.
+
+<figure><img src="../.gitbook/assets/vista_edit.png" alt=""><figcaption><p>Formulari creació pio</p></figcaption></figure>
 
