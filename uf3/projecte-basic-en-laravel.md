@@ -203,3 +203,9 @@ npm run dev
 
 <figure><img src="../.gitbook/assets/vista_edit.png" alt=""><figcaption><p>Formulari creació pio</p></figcaption></figure>
 
+Anem a explicar a continuació el full de ruta del que ens queda per fer:
+
+{% hint style="info" %}
+Quan donem al butó es desa el "pio" i torna a la mateixa vista però carregant els últims pios.
+{% endhint %}
+
