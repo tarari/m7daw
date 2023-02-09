@@ -259,3 +259,32 @@ Com es pot observar, es procedeix a validar la request del formulari (camp messa
 
 Un cop creat, redirigiem de nou a la vista index dels pios.
 
+#### Establir les relacions en Eloquent
+
+Com ja hem comentat un comp obtenim l'usuari que està fent el pio, (`$request->user()`), obtenim un objecte `User` que es relaciona amb els pios de la següent manera, "un usuari pot fer molts pios". Aquesta relació és diu `hasMany()`.
+
+```php
+//app/Models/User.php
+....
+ /**
+     * return all pios collection by user
+     *
+     * @return void
+     */
+    public function pios(){
+        return $this->hasMany(Pio::class);
+    }
+
+//app/Models/Pio.php
+...
+/**
+     * returns user owner
+     *
+     * @return User
+     */
+    function user(){
+        return $this->belongsTo(User::class);
+    }
+```
+
+Recordem afegir les dependències amb `use`....
