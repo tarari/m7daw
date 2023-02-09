@@ -209,3 +209,53 @@ Anem a explicar a continuació el full de ruta del que ens queda per fer:
 Quan donem al butó es desa el "pio" i torna a la mateixa vista però carregant els últims pios.
 {% endhint %}
 
+#### Afegir enllaç a menú de navegació
+
+Fiquem un enllaç al menú de navegació del dashboard que ens mostri el llistat de pios.
+
+```php
+//resources/view/layouts/navigation.blade.php
+  <!-- Navigation Links -->
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('pios.index')" :active="request()->routeIs('pios.index')">
+                        {{__('Pios')}}
+                    </x-nav-link>
+                </div>
+```
+
+#### Crear i guardar el pio
+
+Es tracta de donar-li contingut al butó **PIO**.
+
+Per fer-ho, anem al controlador PioController i editem  el mètode `store`.
+
+{% code lineNumbers="true" %}
+```php
+//app/Http/Controllers/PioController.php
+/**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $validated=$request->validate([
+            'message'=>'required|string|max:255',
+        ]);
+
+        $request->user()->pios()->create($validated);
+
+        return redirect(route('pios.index'));
+    }
+
+```
+{% endcode %}
+
+Com es pot observar, es procedeix a validar la request del formulari (camp message a través del mètode POST), i si es compleixen els requeriments es passa a associar el pio creat a l'usuari que fa el request, tot aixó gràcies a les relacions, tal i com veurem.
+
+Un cop creat, redirigiem de nou a la vista index dels pios.
+
