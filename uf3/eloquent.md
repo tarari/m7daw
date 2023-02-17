@@ -63,3 +63,6 @@ class Post extends Model
 
 S'associa de forma automàtica una clau primària `'id'`, si volem modificar fem servir `$primaryKey`.
 
+### Relacions en eloquent
+
+Les relacions entre entitats s'estableixen directament en els models a través dels mètodes següents
