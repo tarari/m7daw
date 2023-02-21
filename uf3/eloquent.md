@@ -119,7 +119,89 @@ La taula details, contindrà un camp que manté la clau forània:
 
 ```
 
+**Store:**
+
+per desar elements:
+
+```php
+// Create relation between Post and Detail.
+$post->detail()->save($post);
+// Create relation between Detail and Post.
+$detail->post()->associate($post)->save();
+```
+
+**Get:**
+
+per extreure elements:
+
+```php
+// Get Post Detail
+$post->detail;
+// Get Detail Post
+$detail->post;
+```
+
 #### One to many
+
+En la relació one to many, un element d'una taula es refereix a molts elements en una altra taula:
+
+Podria ser el cas de Category i Post
+
+```php
+class Category extends Model
+{
+    use HasFactory;
+
+    /**
+     * @return HasMany
+     * @description get all posts for the category
+     */
+    public function posts(): BelongsTo
+    {
+        return $this->hasMany(Post::class);
+    }
+}
+
+class Post extends Model
+{
+    use HasFactory;
+
+    /**
+     * @return BelongsTo
+     * @description get the category for the blog post.
+     */
+    public function category(): HasOne
+    {
+        return $this->belongsTo(Category::class);
+    }
+}
+```
+
+Per poder desar els registres:
+
+```php
+// Create relation between Category and Post.
+$category->posts()->saveMany([
+   $post1, 
+   $post2,
+]);
+// Or use the save() function for single model.
+$thief->cars()->save($car);
+// Create relation between Car and Thief.
+$car->thief()->associate($thief)->save();
+
+```
+
+I  per poder extreure:
+
+```php
+// Get Category Post
+$category->posts;
+// Get Post Category
+$post->category;
+```
+
+
 
 #### Many to many
 
