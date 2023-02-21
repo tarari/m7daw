@@ -65,4 +65,63 @@ S'associa de forma automàtica una clau primària `'id'`, si volem modificar fem
 
 ### Relacions en eloquent
 
-Les relacions entre entitats s'estableixen directament en els models a través dels mètodes següents
+Les relacions entre entitats  i els seus agregats ( DDD ) s'estableixen directament en els models a través dels mètodes següents:
+
+#### One to one
+
+És la relació més bàsica, s'estableix entre dos models o entitats. Exemple: un post i els seus details, un cotxe i el seu  propietari:
+
+S'estableix de la següent manera:
+
+```php
+class Post extends Model
+{
+    use HasFactory;
+
+    /**
+     * @return HasOne
+     * @description get the detail associated with the post
+     */
+    public function detail(): HasOne
+    {
+        return $this->hasOne(Detail::class);
+    }
+}
+```
+
+I la seva inversa:
+
+```php
+class Detail extends Model
+{
+    use HasFactory;
+
+    /**
+     * @return BelongsTo
+     * @description Get the post that owns the details
+     */
+    public function post(): BelongsTo
+    {
+        return $this->belongsTo(Post::class);
+    }
+}
+```
+
+La taula details, contindrà un camp que manté la clau forània:
+
+```php
+
+      // define foreign key
+      $table->foreignId('post_id')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+
+```
+
+#### One to many
+
+#### Many to many
+
+
+
