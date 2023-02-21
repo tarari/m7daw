@@ -1,5 +1,5 @@
 ---
-description: Unes pautes per a la creació d'aplicacions a Laravel (v.7x)
+description: Unes pautes per a la creació d'aplicacions a Laravel (v.7x i posteriors)
 ---
 
 # Crear una aplicació en Laravel
@@ -45,6 +45,8 @@ DB_PASSWORD=xxxxxxxx
 
 ## 3. Activar l'autenticació i sistema _ui_
 
+### _3.1 Versió laravel/ui_
+
 Si utilitzem sistema d'autenticació d'usuaris, caldria configurar-lo:
 
 ```bash
@@ -62,6 +64,16 @@ Si volguèssim definir-lo més tard, simplement acondicionem l'autenticació, co
 ```bash
 $ php artisan ui:auth
 ```
+
+### 3.2 Versió laravel/breeze
+
+Caldria afegir la dependència laravel/breeze
+
+Instal·lar a través de artisan
+
+Fer les migracions corresponents a usuaris, contrasenyes i passwords
+
+Executar vite.js per obtenir les vistes corresponents
 
 ## 4. Definir models i relacions associades i fer les migracions
 
