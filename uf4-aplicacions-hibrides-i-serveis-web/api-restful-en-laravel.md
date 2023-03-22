@@ -301,7 +301,7 @@ La idea és simple, donat que HTTP és un protocol que no desa l'estat i no pode
 
 
 
-[Laravel Passport](https://laravel.com/docs/7.x/passport)
+## [Laravel Passport](https://laravel.com/docs/7.x/passport)
 
 **A mode de resum:**
 
@@ -554,6 +554,12 @@ public function show($id)
         ], 200);
     }
 ```
+
+## Laravel sanctum
+
+Un altre sistema és utilitzar  el paquet laravel/sanctum. Aquest sistema ja ve incorporat amb l'starter kit de laravel/breeze per sistemes d'autenticació.
+
+Sanctum és més versàtil ja que permet encara que no permet OAuth2 (passport), sí que permet autenticació via single-page application, mobile, o API tokens.
 
 ### Testejar
 
