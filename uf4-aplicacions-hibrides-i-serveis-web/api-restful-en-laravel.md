@@ -561,6 +561,45 @@ Un altre sistema és utilitzar  el paquet laravel/sanctum. Aquest sistema ja ve 
 
 Sanctum és més versàtil ja que permet encara que no permet OAuth2 (passport), sí que permet autenticació via single-page application, mobile, o API tokens.
 
+Anem a veure quins serien els passos a seguir per proveïr autenticació via sanctum:
+
+1. Instal·lar sanctum
+
+```
+composer require laravel/sanctum
+```
+
+2. Publicar el service provider:
+
+```
+php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+```
+
+&#x20; 3\. Migrar a la base de dades
+
+4. Utilitzar traits al moder User
+
+```php
+namespace App\Models;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+
+class User extends Authenticatable
+{
+    use HasApiTokens, HasFactory, Notifiable;
+......
+```
+
+5. Definim el controlador API\AuthController
+
+```
+php artisan make:controller Api/AuthController
+```
+
 ### Testejar
 
 Uilitzeu POSTMAN o hoppscotch.io per poder comprovar el correcte funcionament.
