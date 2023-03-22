@@ -619,7 +619,7 @@ class AuthController extends Controller
      * @param Request $request
      * @return User 
      */
-    public function createUser(Request $request)
+    public function register(Request $request)
     {
         try {
             //Validated
@@ -663,7 +663,7 @@ class AuthController extends Controller
      * @param Request $request
      * @return User
      */
-    public function loginUser(Request $request)
+    public function login(Request $request)
     {
         try {
             $validateUser = Validator::make($request->all(), 
@@ -703,6 +703,20 @@ class AuthController extends Controller
         }
     }
 }
+```
+
+6\. Definir rutes en routes/api.php
+
+```php
+Route::post('/api/register', [AuthController::class, 'register']);
+Route::post('/api/login', [AuthController::class, 'login']);
+```
+
+7\. Ara ja podem aplicar protecció per auth a l'accés als recursos
+
+```php
+Route::apiResource('posts', PostController::class)->middleware('auth:sanctum');
+
 ```
 
 ### Testejar
