@@ -70,7 +70,7 @@ Un fitxer PHP té una extensió .php i pot contenir HTML, JavaScript i CSS, junt
     </div>
 </body>
 		
-<script>
+<script defer>
 		
 // codi JS
 		
@@ -149,7 +149,7 @@ En aquest exercici, utilitzarem el servidor integrat per imprimir `Hello FruitCP
 ```
 
 1. Al Terminal, entre, **dins** la carpeta
-2.  Executem la següent comanda per executar el servidor web integrat de PHP:
+2.  Executem la següent comanda per executar el [servidor web integrat de PHP](#user-content-fn-1)[^1]:
 
     ```
     php -S localhost: 8085 
@@ -250,9 +250,10 @@ $longString = <<<STRING
 Cadena que ocupa.
 multiples línies.
 STRING;
+// string acaba amb l'etiqueta
 ```
 
-Floats (numero e vol dir elevat a  ..)
+Floats (numero **e** vol dir elevat a  ..)
 
 ```php
 $w = 13.3333;
@@ -270,7 +271,7 @@ $isAdmin = false;
 
 ### Arrays
 
-Els arrays representen un tipus de dada molt utilitzat, perquè estructura la informació de manera molt semblant a la realitat. Podem imaginar un armari per desar coses, dades. I si parlem d'objectes i de les seves característiques, també podem associar un array per emmagatzemar aquest tipus de dada.
+Els arrays representen un tipus de dada molt utilitzat, perquè estructura la informació de manera molt semblant a la realitat. Podem imaginar un armari per desar coses, dades. I si parlem d'objectes i de les seves característiques, també podem associar un array per emmagatzemar aquest tipus de dades.
 
 Imaginem una variable $noms, que emmagatzema els noms de tots els companys
 
@@ -320,15 +321,15 @@ Realment aquesta notació indexada permet definir un altre tipus d'array, l'asso
 
 Si fessim `print_r($heroInfo)`;
 
-```php
-Array
+<pre class="language-php"><code class="lang-php">Array
 (
     [name] => Peter Parker
     [superHeroName] => Spiderman
     [city] => New York
     [creator] => Stan Lee
 )
-```
+<strong>
+</strong></code></pre>
 
 Podem accedir al valor de cada clau, mireu la sortida de l'script:
 
@@ -431,13 +432,13 @@ Operador /. Aquest número té diferents números separats per un `/`operador i 
 
 Això ens donarà `12`com a sortida.
 
-Operador % (modul) s'utilitza per calcular la resta de la divisió de dos nombres donats:
+Operador **%** (modul) s'utilitza per calcular la resta de la divisió de dos nombres donats:
 
 ```php
 <?php echo 24 % 5 ; ?>
 ```
 
-Això ens donarà `4`com a sortida.
+Això ens donarà `4`com a sortida (la resta).
 
 #### Operadors de cadenes o strings
 
@@ -514,7 +515,7 @@ Quan s'assigna un valor a una variable utilitzant `=`, això constitueix un oper
 
 Per comparar dos valors, s’utilitza l’operador de comparació. Hi ha dos operadors de comparació comuns: `==`és a dir, que és igual a, i `!=`que no és igual a.
 
-> **Nota: l'** operador d'assignació ( `=`) s'utilitza per assignar un valor. No es pot utilitzar per realitzar operacions de comparació, ja que comparar si un valor és el mateix que un altre requereix l'ús de l' `==`operador. Per determinar si dues variables són idèntiques, és a dir, del mateix tipus, utilitzeu l' `===`operador idèntic .
+> **Nota:** l' operador d'assignació ( `=`) s'utilitza per assignar un valor. No es pot utilitzar per realitzar operacions de comparació, ja que comparar si un valor és el mateix que un altre requereix l'ús de l' `==`operador. Per determinar si dues variables són idèntiques, és a dir, del mateix tipus, utilitzeu l' `===`operador idèntic .
 
 Aquí teniu un exemple:
 
@@ -842,3 +843,6 @@ Si recordem la funció **`countMe`** de l'apartat anteriors (globals), era neces
   countMeByReference($count);
   echo $count; // imprimirà 3
 ```
+
+[^1]: PHP bultin web server
+

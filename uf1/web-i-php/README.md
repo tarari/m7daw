@@ -78,7 +78,8 @@ Mirem el següent exemple:
             echo '&#x3C;h1>Login&#x3C;/h1>';
             //$params['name']
         }
-    ];</code></pre>
+    ];
+</code></pre>
 
 ```php
 // funció d'enrutament, és una mica complexa
@@ -500,3 +501,37 @@ El servidor ha fallat a l'completar una sol·licitud aparentment vàlida. Quan e
 Els errors i els gestors d’errors de la programació de programari són un concepte impagable que ajuda als desenvolupadors a identificar punts de fallada en temps de compilació de l’aplicació o en temps d’execució. Poden assenyalar diferents nivells de gravetat.
 
 A PHP, es gestionen i registren els errors mitjançant una sèrie de funcions integrades. Faciliten l’adaptació de la gestió i el registre d’errors per adaptar-se a les necessitats d’una aplicació registrant gestors d’errors personalitzats o configurant informes d’errors per a un rang específic de nivells.
+
+#### die(Missatge)
+
+La forma més simple de controlar un error és aturar-lo, die(), proporciona aquest control.
+
+#### error\_log()
+
+Podem gestionar el registre d'error, enviant un missatge via mail o bé desant-lo al servidor (al directori especificat al php.ini)
+
+#### Excepcions
+
+Tractament d'errors amb l'objecte Exception.
+
+Si una excepció no és tractada, sempre ens apareix com a "uncaught exception".
+
+Ens podem trobar estructures com:
+
+```php
+try{
+   .....
+   } catch (Exception $e){
+   ....
+   }
+```
+
+o bé&#x20;
+
+```php
+if (condició) 
+{
+    throw new Exception();
+    //llença una excepció si passa la condició
+    }
+```

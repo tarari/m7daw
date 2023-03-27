@@ -13,6 +13,6 @@ description: >-
 \
 Desenvolupament d'apps en PHP  by [Toni Jiménez](https://t-jimenez.gitbook.io/desenvolupament-d-apps-en-php/) is licensed under a [Creative Commons Reconocimiento-NoComercial 4.0 Internacional License](http://creativecommons.org/licenses/by-nc/4.0/).
 
-**Toni Jiménez** [**\<t.jimenez@escolesnuria.cat**](mailto:t.jimenez@escolesnuria.cat)**>**
+**Toni Jiménez** [**t.jimenez@escolesnuria.cat**](mailto:t.jimenez@escolesnuria.cat)
 {% endhint %}
 
