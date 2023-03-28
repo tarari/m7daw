@@ -2,11 +2,11 @@
 
 Quan s'hereda un sistema, es recomana fer proves funcionals, si el que fem és començar de 0, aleshores ens hem d'inclinar per fer proves unitàries
 
-## Proves funcionals
+## Proves funcionals (features)
 
 Busquem les funcions del sistema i el posem a prova per determinar si tal o qual funció es desenvolupa correctament.
 
-## Proves unitàries
+## Proves unitàries (unit)
 
 Són proves que ataquen a una part espeífica del sistema (un mètode normalment) i són les proves que s'executen més ràpid.
 
@@ -20,12 +20,20 @@ Suposem que tenim una app en la que ja hem preinstal·lat l'autenticació:
 php artisan make:auth
 ```
 
+o bé amb
+
+```
+php artisan breeze:install
+```
+
 Preparem una prova unitària per al sistema login, concretament el mètode que ens porta cap a la _view_ **`login`**
+
+Els test corren de forma paral·lela a l'aplicació, tenen el seu propi espai de noms Tests\\
 
 Preparem el controlador, aquest l'ubicarem a **tests/Feature**,
 
 ```php
-php artisan make:test Http/Controllers/Auth/LoginControllerTest
+php artisan make:test Auth\LoginControllerTest
 ```
 
 El comando genera una extensió de TestCase com podeu comprovar:
@@ -53,7 +61,7 @@ class LoginControllerTest extends TestCase
 }
 ```
 
-\*\*El nom de la nostra prova automatitzada ha de ser el més descriptiu possible. \*\*
+**El nom de la nostra prova automatitzada ha de ser el més descriptiu possible.**&#x20;
 
 En el nostre cas, volem assegurar-nos que quan visitem `/login`, es mostra el formulari d'inici de sessió.
 
