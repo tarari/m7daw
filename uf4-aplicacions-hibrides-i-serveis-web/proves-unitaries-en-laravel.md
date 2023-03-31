@@ -1,16 +1,16 @@
-# Proves unitàries en Laravel
+# Testing en Laravel
 
 Quan s'hereda un sistema, es recomana fer proves funcionals, si el que fem és començar de 0, aleshores ens hem d'inclinar per fer proves unitàries
 
 ## Proves funcionals (features)
 
-Busquem les funcions del sistema i el posem a prova per determinar si tal o qual funció es desenvolupa correctament.
+Busquem les funcions del sistema i el posem a prova per determinar si tal o qual funció es desenvolupa correctament. Per exemple, procés d'autenticació o el de registre.
 
 ## Proves unitàries (unit)
 
 Són proves que ataquen a una part espeífica del sistema (un mètode normalment) i són les proves que s'executen més ràpid.
 
-Laravel inclou un entorn de proves pre-configurat basat en **phpunit** i amb alguns tests d'exemple.
+Laravel inclou un entorn de proves pre-configurat basat en **phpunit** i amb alguns tests d'exemple. Es pot configurar a través del fitxer _phpunit.xml_
 
 ## Testant el sistema d'autenticació
 
@@ -61,13 +61,23 @@ class LoginControllerTest extends TestCase
 }
 ```
 
-**El nom de la nostra prova automatitzada ha de ser el més descriptiu possible.**&#x20;
+En aquest cas, provem d'accedir a la homepage de l'aplicació.
+
+{% hint style="info" %}
+Les proves o mètodes tenen tres parts:
+
+1. Preparació de l'entorn
+2. Acció, és a dir generar una response
+3. Checking o comprovació amb **assert**
+{% endhint %}
+
+**El nom de la nostra prova automatitzada ha de ser el més descriptiu possible i començar per test\_.**&#x20;
 
 En el nostre cas, volem assegurar-nos que quan visitem `/login`, es mostra el formulari d'inici de sessió.
 
-```php
-GET /login ----> view ('auth.login')
-```
+<pre class="language-php"><code class="lang-php"><strong>Prova::
+</strong><strong>GET /login ----> view ('auth.login')
+</strong></code></pre>
 
 I la funció quedaria de la següent manera, sempre començant per test\_:
 
@@ -87,7 +97,7 @@ I la funció quedaria de la següent manera, sempre començant per test\_:
     }
 ```
 
-I per provar-la:
+I per provar-la (únicament aquesta):
 
 ```php
 vendor/bin/phpunit 
@@ -107,7 +117,6 @@ Una segona prova consisteix en veure si la resposta POST del login s'ajusta a lo
 public function test_login_displays_validation_errors()
 {
     $response = $this->post(route('login'), []);
-
     $response->assertStatus(302);
     $response->assertSessionHasErrors('email');
 }
@@ -135,7 +144,6 @@ Un pas més seria comprovar si amb un usuari de prova (fake) podem accedir i red
     public function test_login_authenticates_and_redirects_user()
     {
         $user = User::factory()->create();
-
         $response = $this->post(route('login'), [
             'email' => $user->email,
             'password' => 'password'
@@ -147,6 +155,8 @@ Un pas més seria comprovar si amb un usuari de prova (fake) podem accedir i red
 ```
 
 Aquesta prova és molt més completa. Hem utilitzat el helper factory (**database/factoriew/UserFactory.php**) que crea (de forma persistent a la base de dades) un usuari.
+
+Podem crear-nos a través del factory() més definicions de models si són necessaris
 
 ```php
 namespace Database\Factories;
@@ -181,3 +191,65 @@ class UserFactory extends Factory
     }
 }
 ```
+
+Com a exemple, també us deixo com es faria la prova de registre d'usuari, incorpora l'acció de visualitzar el formulari i la creació de l'usuari:
+
+{% code lineNumbers="true" %}
+```php
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+ 
+class RegistrationTest extends TestCase
+{
+    use RefreshDatabase;
+ 
+    public function test_registration_screen_can_be_rendered()
+    {
+        $response = $this->get('/register');
+ 
+        $response->assertStatus(200);
+    }
+ 
+    public function test_new_users_can_register()
+    {
+        $response = $this->post('/register', [
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+        ]);
+ 
+        $this->assertAuthenticated();
+        $response->assertRedirect(RouteServiceProvider::HOME);
+    }
+}
+```
+{% endcode %}
+
+{% hint style="info" %}
+[Laravel Assertions](https://laravel.com/docs/9.x/http-tests#available-assertions)
+{% endhint %}
+
+Recordem que les assertions en general van sobre l'objecte TestCase ($this), però les que són específiques de les respostes, com ara la línia 26, van sobre l'objecte $response.
+
+En general si fem servir el trait RefreshDatabase, vol dir que s'utilitza una base de dades paral·lela que no afecta a la normal, per tant si volem buidar seria millor amb un php artisan migrate:fresh sempre i quan sigui una base de dades separada, per tant podem editar el phpunit.xml i canviar la suite per que permeti per exemple una base de dades en sqlite.
+
+{% code lineNumbers="true" %}
+```php
+<php>
+    <env name="APP_ENV" value="testing"/>
+    <env name="BCRYPT_ROUNDS" value="4"/>
+    <env name="CACHE_DRIVER" value="array"/>
+    <!-- <env name="DB_CONNECTION" value="sqlite"/> -->
+    <!-- <env name="DB_DATABASE" value=":memory:"/> -->
+    <env name="MAIL_MAILER" value="array"/>
+    <env name="QUEUE_CONNECTION" value="sync"/>
+    <env name="SESSION_DRIVER" value="array"/>
+    <env name="TELESCOPE_ENABLED" value="false"/>
+</php>
+```
+{% endcode %}
+
+Caldria doncs, descomentar la línia 5.
+
