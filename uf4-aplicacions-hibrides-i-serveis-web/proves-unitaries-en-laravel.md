@@ -242,7 +242,7 @@ En general si fem servir el trait RefreshDatabase, vol dir que s'utilitza una ba
     <env name="BCRYPT_ROUNDS" value="4"/>
     <env name="CACHE_DRIVER" value="array"/>
     <!-- <env name="DB_CONNECTION" value="sqlite"/> -->
-    <!-- <env name="DB_DATABASE" value=":memory:"/> -->
+    <!-- <env name="DB_DATABASE" value="database/testing.sqlite"/> -->
     <env name="MAIL_MAILER" value="array"/>
     <env name="QUEUE_CONNECTION" value="sync"/>
     <env name="SESSION_DRIVER" value="array"/>
@@ -251,5 +251,5 @@ En general si fem servir el trait RefreshDatabase, vol dir que s'utilitza una ba
 ```
 {% endcode %}
 
-Caldria doncs, descomentar la línia 5.
+Caldria doncs, descomentar la línia 5 i 6 i crear el fitxer `testing.sqlite` dins el directori **database**.
 
