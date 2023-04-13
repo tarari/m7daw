@@ -2,7 +2,7 @@
 description: Crearem un projecte molt simple, però que té una mica de tot.
 ---
 
-# Projecte bàsic en Laravel
+# Projecte bàsic en Laravel (v.^9.0)
 
 ## Instal·lació de projecte
 
