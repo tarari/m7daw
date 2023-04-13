@@ -4,7 +4,7 @@
 
 Totes les aplicacions són diferents, així com el seu procés de desplegament. Els passos més habituals per al desplegament de PHP solen ser els següents:
 
-* Aplicació  de proves
+* Aplicació de proves
 * Baixada de dependències (Composer)
 * Compilar recursos (Gulp / Webpack / Grunt)
 * Desplegament al servidor
@@ -15,19 +15,17 @@ Abans de continuar, hi ha dues coses que cal destacar cada vegada que entra en j
 
 **I. Mantingueu-ho tot en control de versions (git)**
 
-Codi  de l'aplicació, fitxers de configuració, documentació, scripts de migració de db: tots ells s'han de mantenir segurs i sans al repositori. Per descomptat, a totes les regles hi ha excepcions (sobretot en informàtica), que ens porten a la segona regla:
+Codi de l'aplicació, fitxers de configuració, documentació, scripts de migració de db: tots ells s'han de mantenir segurs i sans al repositori. Per descomptat, a totes les regles hi ha excepcions (sobretot en informàtica), que ens porten a la segona regla:
 
 **II. No emmagatzemeu mai al repositori dependències ni aplicacions compilades.**
 
-Si guardem dependències i aplicacions compilades al repositori tard o d’hora es produirà un greu embús al  projecte, i això passarà més aviat que tard.
+Si guardem dependències i aplicacions compilades al repositori tard o d’hora es produirà un greu embús al projecte, i això passarà més aviat que tard.
 
 ### Tipus de desplegament
 
-
-
 ### **Desplegueu reposicions sense artefactes i dependències i creeu la vostra aplicació al servidor**
 
-****
+***
 
 1. En primer lloc, hem de crear i provar l’aplicació. Ho podem fer localment, en un servidor de compilació (per exemple, Jenkins) o en núvol (Buddy).
 2. Un cop superades les proves, podem carregar el codi font al servidor (en aquest cas sense dependències ni artefactes) mitjançant FTP, SFTP o Rsync.
@@ -39,12 +37,11 @@ En aquest flux de treball, l’aplicació es compila i prova primer, i després 
 
 ### **La variació de Git**
 
-Això és bàsicament el mateix que el número 1, però requereix Git instal·lat al servidor de producció. El desplegament es fa amb la** càrrega ** de fitxers`git push` en lloc de la normal. A continuació, a Git, el ganxo posterior a la recepció activa la compilació. Mireu [article](https://coderwall.com/p/xczkaq/ftp-is-so-90-s-let-s-deploy-via-git-instead)
+Això és bàsicament el mateix que el número 1, però requereix Git instal·lat al servidor de producció. El desplegament es fa amb la\*\* càrrega \*\* de fitxers`git push` en lloc de la normal. A continuació, a Git, el ganxo posterior a la recepció activa la compilació. Mireu [article](https://coderwall.com/p/xczkaq/ftp-is-so-90-s-let-s-deploy-via-git-instead)
 
-### ** Temps d'inactivitat zero/ desplegament atòmic**
+### \*\* Temps d'inactivitat zero/ desplegament atòmic\*\*
 
-Els fluxos de treball anteriors tenen un defecte: el temps d'inactivitat. Això significa que la vostra aplicació no estarà disponible per al client durant el desplegament. La solució a això és molt senzilla: **desplegueu i creeu l'aplicació en una carpeta diferent a la de la qual s'ha servit** .\
-
+Els fluxos de treball anteriors tenen un defecte: el temps d'inactivitat. Això significa que la vostra aplicació no estarà disponible per al client durant el desplegament. La solució a això és molt senzilla: **desplegueu i creeu l'aplicació en una carpeta diferent a la de la qual s'ha servit** .\\
 
 El procés consisteix a crear un parell de directoris al servidor:
 
@@ -80,8 +77,6 @@ Aquí teniu un exemple de fitxer Docker per a una aplicació PHP:
 
 Docker és un mètode de virtualització que us permet definir l’entorn de treball de la vostra aplicació en un únic fitxer de text (Dockerfile), juntament amb la forma en què s’hauria de construir. El fitxer s'utilitza per crear una imatge de Docker amb la vostra aplicació que es pot iniciar en qualsevol entorn compatible amb Docker (Linux / Mac OS / Windows). Docker és molt ràpid i lleuger, contràriament als mètodes de virtualització "tradicionals".
 
-
-
 El fitxer es pot utilitzar per crear una imatge de Docker:
 
 ```
@@ -101,7 +96,7 @@ A més, les imatges de Docker es poden extreure i extreure d'un registre de Dock
 3. Introduïu l'aplicació al registre Docker
 4. SSH al servidor de producció a. Docker pull b. Docker run
 
-## Desplegament d'aplicació Laravel sobre Heroku
+## (Descatalogat) Desplegament d'aplicació Laravel sobre Heroku
 
 Sobretot caldrà revisar la documentació, atès que aquesta va variant en funció de les [versions](https://devcenter.heroku.com/articles/getting-started-with-laravel) disponibles .
 
@@ -135,19 +130,17 @@ git commit -m "Procfile de heroku"
 
 ### 4. Crear la nova aplicació en Heroku
 
-Si estem loguejats a heroku amb el nostre compte, podem utilitzar el comando**` heroku create`** des de la carpeta de projecte, això genera un canal push per al projecte local amb el projecte remot en Heroku.
+Si estem loguejats a heroku amb el nostre compte, podem utilitzar el comando\*\* `heroku create`\*\* des de la carpeta de projecte, això genera un canal push per al projecte local amb el projecte remot en Heroku.
 
-Ja podem fer servir el comando git push per actualitzar el projecte a Heroku, des de  la carpeta de projecte:
+Ja podem fer servir el comando git push per actualitzar el projecte a Heroku, des de la carpeta de projecte:
 
 ```bash
 git push heroku master
 ```
 
-
-
 ### 5. Variables d'entorn de l'aplicació a Heroku
 
-Es tracta de definir les variables .env de l'aplicació Laravel a Heroku. Tenim dues vies d'entrada, a través de **Heroku cli**,&#x20;
+Es tracta de definir les variables .env de l'aplicació Laravel a Heroku. Tenim dues vies d'entrada, a través de **Heroku cli**,
 
 ```bash
 heroku config:set APP_KEY=$(php artisan key:generate --show)
@@ -165,9 +158,7 @@ Podem canviar el nom de l'aplicació amb el comando :
 
 Això canvia el nom DNS de l'aplicació i el nom de projecte al git de Heroku.
 
-
-
-### 7. Executar comandos de consola  cli en heroku
+### 7. Executar comandos de consola cli en heroku
 
 Si el que volem és executar comandos tipus **`php artisan`** acompanyem al comando el següent: **`heroku run`** , en la carpeta de projecte:
 
@@ -209,7 +200,6 @@ DB_CONNECTION=pgsql
 Si volem afegir característiques de **php.ini** a la nostra aplicació, cal modificar el fitxer Procfile i afegir paràmetres de configuració.
 
 1. Creem fitxer ini al nostre projecte, p.e. custom\_php.ini
-2. Afegim les línies de canvi de configuració p.e. `post_max_size` i `upload_max_filesize`,&#x20;
+2. Afegim les línies de canvi de configuració p.e. `post_max_size` i `upload_max_filesize`,
 3. ho afegim al Procfile: `web: vendor/bin/heroku-php-apache2 -i custom_php.ini`
 4. Fer commit dels canvis: ...... `git push heroku master`
-
