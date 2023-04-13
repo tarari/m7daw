@@ -4,7 +4,7 @@
 
 L'ORM Eloquent inclòs amb Laravel, proporciona una implementació **d'ActiveRecord** bonica i senzilla per treballar amb la vostra base de dades. Cada taula de base de dades té un "Model" corresponent que s'utilitza per interactuar amb aquesta taula. Els models ens permeten consultar dades a les  taules, així com inserir nous registres a la taula.
 
-Abans de començar, ens hem d'assegurar de configurar una connexió de base de dades a `config/database.php`. Repasseu l'apartat de fitxer .[`env`](broken-reference)``
+Abans de començar, ens hem d'assegurar de configurar una connexió de base de dades a `config/database.php`. Repasseu l'apartat de fitxer .[`env`](broken-reference)
 
 ### &#x20;Els models
 

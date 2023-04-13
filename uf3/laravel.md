@@ -252,7 +252,7 @@ Un **component**, semblant a  un controlador, però més flexible.
 
 
 
-Totes les rutes es troben definides en un fitxer _`routes/web.php,`_` ``` totes, es troben aquí definides.
+Totes les rutes es troben definides en un fitxer _`routes/web.php,`_ totes, es troben aquí definides.
 
 A través de les rutes, podem donar servei als mètodes REQUEST **get, post, put i delete**.​ Podem dir que respongui a un mètode determinat, un conjunt de mètode o bé a qualsevol.
 
