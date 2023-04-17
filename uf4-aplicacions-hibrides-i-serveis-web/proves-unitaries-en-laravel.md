@@ -273,7 +273,9 @@ class RegistrationTest extends TestCase
 
 Recordem que les assertions en general van sobre l'objecte TestCase ($this), però les que són específiques de les respostes, com ara la línia 26, van sobre l'objecte $response.
 
-En general si fem servir el trait RefreshDatabase, vol dir que s'utilitza una base de dades paral·lela que no afecta a la normal, per tant si volem buidar seria millor amb un php artisan migrate:fresh sempre i quan sigui una base de dades separada, per tant podem editar el phpunit.xml i canviar la suite per que permeti per exemple una base de dades en sqlite.
+En general si fem servir el trait RefreshDatabase, vol dir que s'utilitza una base de dades paral·lela que no afecta a la normal, per tant si volem buidar seria millor amb un **`php artisan migrate:fresh`** sempre i quan sigui una base de dades separada, per tant podem editar el phpunit.xml i canviar la suite per que permeti per exemple una base de dades en sqlite.
+
+#### Bases de dades de testing
 
 {% code lineNumbers="true" %}
 ```php
@@ -291,5 +293,33 @@ En general si fem servir el trait RefreshDatabase, vol dir que s'utilitza una ba
 ```
 {% endcode %}
 
-Caldria doncs, descomentar la línia 5 i 6 i crear el fitxer `testing.sqlite` dins el directori **database**.
+Caldria doncs, descomentar la línia 5 i 6 i crear el fitxer `testing.sqlite` dins el directori **database**, i definir en el fitxer .env que es fa servir una DATABASE de testing, les classes que treballin amb aquesta base de dades, utilitzaran el trait `use RefreshDatabase;`(línia 4)
+
+```sh
+.....
+DB_DATABASE=testing
+DB_USERNAME=root
+....
+```
+
+{% code lineNumbers="true" %}
+```php
+
+class IndexTest extends TestCase
+{
+    use RefreshDatabase;
+    /**
+     @test
+     */
+    public function test_list_products(): void
+    {
+        $product=Product::factory()->create();
+        $this->get(route('products.index'))
+            ->assertStatus(200)
+            ->assertSee($product->name);
+    }
+}
+
+```
+{% endcode %}
 
