@@ -12,6 +12,46 @@ Són proves que ataquen a una part espeífica del sistema (un mètode normalment
 
 Laravel inclou un entorn de proves pre-configurat basat en **phpunit** i amb alguns tests d'exemple. Es pot configurar a través del fitxer _phpunit.xml_
 
+{% code lineNumbers="true" %}
+```xml
+
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+>
+<testsuites>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./tests/Feature</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory suffix=".php">./app</directory>
+        </include>
+    </source>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="BCRYPT_ROUNDS" value="4"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="DB_CONNECTION" value="mysql"/>
+        <env name="DB_DATABASE" value="test_products"/>
+        <env name="MAIL_MAILER" value="array"/>
+        <env name="QUEUE_CONNECTION" value="sync"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="TELESCOPE_ENABLED" value="false"/>
+    </php>
+</phpunit>
+
+
+```
+{% endcode %}
+
+El fitxer inclou la testsuite en el carpeta _tests_, incorpora source com a codi del qual treballar en les proves, també incorpora un bootstrap o arrencada, amb el sistema de autoload de testing.
+
 ## Testant el sistema d'autenticació
 
 Suposem que tenim una app en la que ja hem preinstal·lat l'autenticació:
