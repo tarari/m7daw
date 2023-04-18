@@ -1,6 +1,6 @@
 # Testing en Laravel
 
-Quan s'hereda un sistema, es recomana fer proves funcionals, si el que fem és començar de 0, aleshores ens hem d'inclinar per fer proves unitàries
+Quan s'hereda un sistema, es recomana fer proves **funcionals**, si el que fem és començar de zero, aleshores ens hem d'inclinar per fer proves unitàries.
 
 ## Proves funcionals (features)
 
@@ -51,6 +51,8 @@ Laravel inclou un entorn de proves pre-configurat basat en **phpunit** i amb alg
 {% endcode %}
 
 El fitxer inclou la testsuite en el carpeta _tests_, incorpora source com a codi del qual treballar en les proves, també incorpora un bootstrap o arrencada, amb el sistema de autoload de testing.
+
+Si accedim a provar dades sobre base de dades, amb **DB\_CONNECTION i DB\_DATABASE**, descomentem i marquem el nom i tipus de la base de dades, aquesta s'ha de crear manualment i amb accés root, i modificar momentàniament el fitxer **.env** amb `DB_DATABASE=testing`, nom simbòlic.
 
 ## Testant el sistema d'autenticació
 
