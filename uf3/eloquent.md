@@ -201,11 +201,116 @@ $category->posts;
 $post->category;
 ```
 
+De vegades és possible que vulguem carregar sempre algunes relacions (de manera ràpida) quan recuperem un model. Per aconseguir-ho, podem definir una propietat `$with` al model:
+
+<pre class="language-php"><code class="lang-php">&#x3C;?php
+ 
+namespace App\Models;
+ 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+ 
+class Book extends Model
+{
+    /**
+     * The relationships that should<a data-footnote-ref href="#user-content-fn-1"> always be loaded</a>.
+     *
+     * @var array
+     */
+    protected $with = ['author'];
+ 
+    /**
+     * Get the author that wrote the book.
+     */
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(Author::class);
+    }
+ 
+    /**
+     * Get the genre of the book.
+     */
+    public function genre(): BelongsTo
+    {
+        return $this->belongsTo(Genre::class);
+    }
+}
+</code></pre>
+
 
 
 #### Many to many
 
-to-do
+Les relacions de **molts a molts** són una mica més complicades que les relacions `hasOne`i `hasMany`. Un exemple de relació de molts a molts és un usuari que té molts rols i aquests rols també són compartitrs amb altres usuaris de l'aplicació.&#x20;
+
+Per exemple, a un usuari se li pot assignar la funció d'Autor" i "Editor"; no obstant això, aquests rols també es poden assignar a altres usuaris. Per tant, un usuari té molts rols i un rol té molts usuaris.
+
+**Model**
+
+Les relacions de molts a molts es defineixen escrivint un mètode que retorna el resultat del mètode `belongsToMany`. El mètode `belongsToMany` el proporciona la classe `Illuminate\Database\Eloquent\Model,` base que utilitzen tots els models Eloquent de l'aplicació.&#x20;
+
+Per exemple, definim un mètode  `roles` al nostre model`User`. El primer argument passat a aquest mètode és el nom de la classe de model relacionada:
+
+```php
+<?php
+ 
+namespace App\Models;
+ 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+ 
+class User extends Model
+{
+    /**
+     * The roles that belong to the user.
+     */
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class);
+    }
+}
+```
+
+**Inversa de la relació**
+
+Per definir la "inversa" d'una relació de molts a molts, hauríem de definir un mètode en el model relacionat que també retorni el resultat del mètode `belongsToMany`. Per completar el nostre exemple d'usuari-rol, definim el mètode`users`al model `Role`:
+
+```php
+<?php
+ 
+namespace App\Models;
+ 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+ 
+class Role extends Model
+{
+    /**
+     * The users that belong to the role.
+     */
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
+    }
+}
+```
+
+**Taula intermitja**
+
+Com ja hem après, treballar amb relacions de molts a molts requereix la presència d'una taula intermèdia. Eloquent ofereix algunes maneres molt útils d'interaccionar amb aquesta taula. Per exemple, suposem que el nostre model `User` té molts models`Role` amb els quals està relacionat. Després d'accedir a aquesta relació, podem accedir a la taula intermitja mitjançant l'atribut  **`pivot`**dels models:
 
 
 
+```php
+use App\Models\User;
+ 
+$user = User::find(1);
+ 
+foreach ($user->roles as $role) {
+    echo $role->pivot->created_at;
+}
+```
+
+Les taules intermitges que utilitzen les marques de temps d'Eloquent que es mantenen automàticament han de tenir les columnes amb les marques de temps `created_at i` `updated_at`.
+
+[^1]: sempre es carreguen
