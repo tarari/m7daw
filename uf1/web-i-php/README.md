@@ -168,6 +168,7 @@ A la banda de servidor s'utilitza **PHP** per verificar que s'envien valors corr
 
 El següent és un senzill **formulari** mica més complex amb les següent dades: Nom, Contrasenya, Nacionalitat, Idiomes, Email i Lloc web:
 
+{% code lineNumbers="true" %}
 ```php
 <h2>Formulari:</h2>
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -200,6 +201,7 @@ El següent és un senzill **formulari** mica més complex amb les següent dade
 </body>
 </html>
 ```
+{% endcode %}
 
 ## Cookies
 
@@ -275,13 +277,13 @@ Indica que la cookie només hauria de transmetre per una connexió segura HTTPS 
 
 **`httponly`**
 
-Quan és \*\*`true`\*\*la galeta serà accessible només a través de l'protocol HTTP. Això vol dir que la galeta no serà accessible per llenguatges de scripting, com JavaScript. S'ha indicat que aquesta configuració ajuda efectivament a reduir el robatori d'identitat a través d'atacs **XSS** (encara que no és suportada per tots els navegadors). Afegit a PHP 5.2.0. Pot ser **`true`o`false`**
+Quan és `true` la cookie serà accessible només a través de l'protocol HTTP. Això vol dir que la cookie no serà accessible per llenguatges de scripting, com JavaScript. S'ha indicat que aquesta configuració ajuda efectivament a reduir el robatori d'identitat a través d'atacs **XSS** (encara que no és suportada per tots els navegadors). Afegit a PHP 5.2.0. Pot ser **`true`o`false`**
 
 **`options`**
 
 Un array associatiu que pot tenir qualsevol de les claus `expires`, `path`, `domain`, `secure`, `httponly`i `samesite`. Els valors tenen el mateix significat que es descriu per als paràmetres amb el mateix nom. El valor de l'element `samesite`hauria de ser `None`, `Lax`o `Strict`. Si no es dóna cap de les opcions permeses, els seus valors per defecte són els mateixos que els valors per defecte dels paràmetres explícits. Si l'element `samesite`és omès, no s'estableix cap atribut de la `cookie` SameSite.
 
-\\
+
 
 ## Capçaleres HTTP
 
@@ -419,6 +421,22 @@ print 'enters wrong login data';
 ```
 
 ## Autenticació HTTP
+
+Exemple d'autenticació bàsica:
+
+```php
+<?php
+if (!isset($_SERVER['PHP_AUTH_USER'])) {
+    header('WWW-Authenticate: Basic realm="My domain"');
+    header('HTTP/1.0 401 Unauthorized');
+    echo 'Text per a enviar si l'usuari prem el botó Cancelar';
+    exit;
+} else {
+    echo "<p>Hola {$_SERVER['PHP_AUTH_USER']}.</p>";
+    echo "<p>Ha introduït {$_SERVER['PHP_AUTH_PW']} com a password.</p>";
+}
+?>
+```
 
 ## Codis estat HTTP
 
