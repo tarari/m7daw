@@ -9,6 +9,7 @@
 * [Web i PHP](uf1/web-i-php/README.md)
   * [Cas pràctic](uf1/web-i-php/cas-practic.md)
 * [Exercicis](uf1/exercicis/README.md)
+  * [Activitat dirigida 1](uf1/exercicis/activitat-dirigida-1.md)
   * [Aplicació todo-list](uf1/exercicis/aplicacio-todo-list.md)
 
 ## UF2 Generació dinàmica de pàgines web
