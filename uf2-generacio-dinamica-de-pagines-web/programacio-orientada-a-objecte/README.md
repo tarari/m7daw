@@ -1,4 +1,11 @@
-# Programació orientada a objecte
+---
+description: >-
+  La programació orientada a objecte ens permet apropar-nos a la realitat a
+  través dels objectes.
+coverY: 0
+---
+
+# Programació orientada a objecte (repàs)
 
 ## Introducció
 
@@ -36,7 +43,7 @@ Hi ha molts tipus diferents de vehicles, com ara cotxes, autobusos, motocicletes
 
 ### Classes
 
-Una classe és un model d'un objecte. Quines dades ha de contenir un objecte i quins mètodes es necessiten per accedir a aquestes dades es poden descriure mitjançant una classe. Una classe actua com una plantilla per a la creació d'objectes. Penseu com a guia, un cotxe dissenyat amb un model. El tipus de vehicle, la marca, el model, la mida del motor, el color, etc. es defineixen a la classe `Car` juntament amb els mètodes per recuperar aquesta informació, com ara obtenir el nom del model, engegar el motor, etc.
+Una classe és un _model d'un objecte._ Quines dades ha de contenir un objecte i quins mètodes es necessiten per accedir a aquestes dades es poden descriure mitjançant una classe. Una classe actua com una plantilla per a la creació d'objectes. Penseu com a guia, un cotxe dissenyat amb un model. El tipus de vehicle, la marca, el model, la mida del motor, el color, etc. es defineixen a la classe **`Car`** juntament amb els mètodes per recuperar aquesta informació, com ara obtenir el nom del model, engegar el motor, etc.
 
 Una classe comença amb la paraula clau `class`seguida del nom indicat i el cos inclòs en un parell de claus. El **cos** de la classe allotja els membres de la classe i són variables, constants, funcions, variables de classe (també conegudes com a propietats de classe o atributs de classe) i les funcions que pertanyen a la classe, conegudes com a mètodes de classe.
 
@@ -66,7 +73,7 @@ Vegem la següent classe `Person` :
 ```php
 class Person
 {
-   public $nom = "Pep Guardia";
+   public $nom = "Pep";
    function sayHello()
    {
         echo "Hola!";
@@ -74,13 +81,13 @@ class Person
 }
 ```
 
-Aquí hi la classe `class Person {…}`. S'ha afegit un atribut únic amb la línia `public $nom= 'Pep Guardia';`i el cos també conté el mètode `sayHello()`, que imprimeix una cadena senzilla.
+Aquí hi la classe **`class Person {…}`**. S'ha afegit un atribut únic amb la línia `public $nom= 'Pep';`i el cos també conté el mètode `sayHello()`, que imprimeix una cadena senzilla.
 
 A la següent secció, discutirem com hem **d’instanciar** una classe i què passa a la memòria quan realitzem aquesta instància.
 
 ### Instanciar una classe
 
-Un objecte és una **instància d’una classe**, per tant, iniciar una classe significa crear un objecte nou mitjançant la classe. Podem iniciar una classe mitjançant la paraula `new`de la següent manera:
+Un **objecte** és una **instància d’una classe**, per tant, iniciar una classe significa crear un objecte nou mitjançant la classe. Podem iniciar una classe mitjançant la paraula **`new`**de la següent manera:
 
 ```php
 $object = new MySimpleClass();
@@ -99,7 +106,7 @@ $object->methodName();
 
 ### Atributs de classe
 
-Com ja hem vist, els atributs i variables de classe contenen dades. Per escriure un atribut de classe en PHP, cal començar amb les paraules clau `public`, `private`o `protected`, i a continuació, la resta, és la instrucció d'assignació de variable de PHP. A l'exemple anterior, a la classe `Person`, **`public $name = 'Pep Guardia'`**`;`s'utilitzava per assignar el nom d'una persona; aquí, `public` és un modificador **d’accés** o paraula clau de **visibilitat** del membre de classe i s’ha utilitzat de manera que es pot accedir a l’atribut **fora de la classe**. Discutirem detalladament els modificadors d’accés en punts posteriors.
+Com ja hem vist, els atributs i variables de classe contenen dades. Per escriure un atribut de classe en PHP, cal començar amb les paraules clau `public`, `private`o `protected`, i a continuació, la resta, és la instrucció d'assignació de variable de PHP. A l'exemple anterior, a la classe `Person`, **`public $name = 'Pep'`**`;`s'utilitzava per assignar el nom d'una persona; aquí, `public` és un modificador **d’accés** o paraula clau de **visibilitat** del membre de classe i s’ha utilitzat de manera que es pot accedir a l’atribut **fora de la classe**. Discutirem detalladament els modificadors d’accés en punts posteriors.
 
 Tingueu en compte que l'estructura de la classe es compila abans de l'execució del fitxer PHP. Quant a l'assignació de valors en atributs de classe, el valor ha de ser **estàtic**, és a dir, **el valor no ha de dependre del temps d'execució.** Per exemple, els atributs de classe següents no funcionaran:
 
@@ -115,7 +122,7 @@ Per tant, els atributs de classe que no impliquen informació en temps d'execuci
 ```php
 public $num = 10
 public $str = 'I am a Fruit';
-public $arr = array('Apple', 'Mango', 'Banana');
+public $arr = ['Apple', 'Mango', 'Banana'];
 ```
 
 {% hint style="info" %}
@@ -123,9 +130,9 @@ public $arr = array('Apple', 'Mango', 'Banana');
 
 Les paraules clau (public, protected, private) determinen com és l'accesibilitat a aquestes propietats/mètodes :
 
-* **public**: accesible des de qualsevol lloc.
-* **protected**: accessible per la classe i subclasses.
-* **private**: només accesible per la classe.
+* **public**: accesible des de qualsevol lloc. FORA
+* **protected**: accessible per la classe i subclasses. FAMÍLIA
+* **private**: només accesible per la classe. DINS
 
 Una propietat sempre s'ha de definir amb una d'aquestes pararules clau.
 
@@ -193,7 +200,7 @@ class SampleClass
         echo self::NAME;
     }
 }
-echo SampleClass::NAME; //Joana C
+echo SampleClass::NAME; // escriu "Joana C"
 ```
 
 ```php
@@ -245,17 +252,17 @@ Els noms dels mètodes [\_\_construct ()](https://www.php.net/manual/es/language
 
 `public`` `**`__toString`**` ``( void ): cadena`
 
-El mètode [\_\_toString ()](https://www.php.net/manual/es/language.oop5.magic.php#object.tostring) permet a una classe decidir com comportar-se quan se li tracta com un string. Per exemple, el que \_**echo $obj;** \_mostraria. Aquest mètode ha de retornar un string, si no s'emetrà un nivell d'error fatal **`E_RECOVERABLE_ERROR`**.
+El mètode [\_\_toString ()](https://www.php.net/manual/es/language.oop5.magic.php#object.tostring) permet a una classe decidir com comportar-se quan se li tracta com un string. Per exemple, el que **echo $obj;** \_mostraria. Aquest mètode ha de retornar un string, si no s'emetrà un nivell d'error fatal **`E_RECOVERABLE_ERROR`**.
 
 #### Sobrecàrrega de propietats
 
-[\_\_set ()](https://www.php.net/manual/es/language.oop5.overloading.php#object.set) s'executa a l'escriure informació sobre propietats inaccessibles (protegides o privades) o inexistents.
+[**\_\_set** ()](https://www.php.net/manual/es/language.oop5.overloading.php#object.set) s'executa a l'escriure informació sobre propietats inaccessibles (protegides o privades) o inexistents.
 
-[\_\_get ()](https://www.php.net/manual/es/language.oop5.overloading.php#object.get) s'utilitza per consultar dades a partir de propietats inaccessibles (protegides o privades) o inexistents.
+[**\_\_get** ()](https://www.php.net/manual/es/language.oop5.overloading.php#object.get) s'utilitza per consultar dades a partir de propietats inaccessibles (protegides o privades) o inexistents.
 
-[\_\_isset ()](https://www.php.net/manual/es/language.oop5.overloading.php#object.isset) es llança a l'trucar a [isset ()](https://www.php.net/manual/es/function.isset.php) o [empty ()](https://www.php.net/manual/es/function.empty.php) sobre propietats inaccessibles (protegides o privades) o inexistents.
+[\_**\_isset ()**](https://www.php.net/manual/es/language.oop5.overloading.php#object.isset) es llença quan es  cridal a [isset()](https://www.php.net/manual/es/function.isset.php) o [empty()](https://www.php.net/manual/es/function.empty.php) sobre propietats inaccessibles (protegides o privades) o inexistents.
 
-[\_\_unset ()](https://www.php.net/manual/es/language.oop5.overloading.php#object.unset) s'invoca quan es fa servir [unset ()](https://www.php.net/manual/es/function.unset.php) sobre propietats inaccessibles (protegides o privades) o inexistents.\\
+[**\_\_unset ()**](https://www.php.net/manual/es/language.oop5.overloading.php#object.unset) s'invoca quan es fa servir [unset ()](https://www.php.net/manual/es/function.unset.php) sobre propietats inaccessibles (protegides o privades) o inexistents.\\
 
 ```php
 public __set ( string $name , mixed $value ) : void
@@ -279,11 +286,11 @@ class MyClass
 }
 ```
 
-La idea clau darrere de l’ús d’un mètode `__construct()` és realitzar el conjunt inicial d’execucions que cal fer immediatament després de la creació d’objectes. En l'enfocament simple anterior, un `__construct()` realitza assignacions d'atributs.
+L'objectiu  de l’ús d’un mètode **`__construct()`** és realitzar el conjunt inicial d’execucions que cal fer immediatament després de la creació d’objectes. En l'enfocament simple anterior, un **`__construct()`** realitza assignacions d'atributs.
 
 ## Destructor
 
-El mètode destructor, `__destruct()`s'invoca automàticament quan es destrueix un objecte. Quan eliminem un objecte o potser un script PHP finalitza la seva execució i allibera la memòria utilitzada per les variables, es crida a `__destruct()`.
+El mètode destructor, `__destruct()`s'invoca automàticament quan es destrueix un objecte. Quan **eliminem un objecte** **o** potser **un script PHP finalitza la seva execució** i allibera la memòria utilitzada per les variables, es crida a `__destruct()`.
 
 La sintaxi d'un destructor de classes és la següent:
 
@@ -302,13 +309,13 @@ class Person
 
 El fet de poder fer que una classe filla heredi atributs i mètodes d'una altra classe que en direm pare, d'això se'n diu herència.
 
-L'herència es pot considerar un tipus de relació entre classes. Aquestes classes filles heredaran tots els atributs i mètodes no privats de la classe pare.
+L'herència es pot considerar un [**tipus de relació**](./#relacions-entre-objectes) entre classes (com ara la composició i l'associació). Aquestes classes filles heredaran tots els atributs i mètodes no privats de la classe pare.
 
 ### Modificadors d'accés
 
 Els dos conceptes bàsics que es troben al centre de l’OOP són la **modularitat** (que permet la reutilització) i l’ **encapsulació** (que agrupa dades i mètodes per ocultar informació).
 
-Els modificadors d’accés proporcionen\*\* protecció d’accés \*\*per a constants d’objecte, atributs i mètodes.
+Els modificadors d’accés proporcionen **protecció d’accés** per a constants d’objecte, atributs i mètodes.
 
 ![Modificadors d'accés segon nivells](../../.gitbook/assets/acces\_mod.png)
 
