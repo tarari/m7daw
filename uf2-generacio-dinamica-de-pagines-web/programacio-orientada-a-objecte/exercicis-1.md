@@ -1,26 +1,34 @@
-# Exercicis
+---
+description: Exercicis dirigits a classe
+---
+
+# Exercicis i activitats dirigides
 
 ## 1. Construir una relació d'objectes per a estudiants i professors
 
-En aquesta activitat, implementarem conceptes OOP per crear `Student`i `Professor`classes amb constructors, atributs i mètodes de paràmetres.
+En aquesta activitat, implementarem conceptes OOP per crear les classes  `Student`i `Professor`amb constructors, atributs i mètodes .
 
-Es recomana, prèviament realitzar un diagrama UML d'entitats per conèixier els tipus de relació existents. Per conèixer més: [https://diagramasuml.com](https://diagramasuml.com)
+Es recomana, prèviament realitzar un diagrama UML d'entitats per conèixier els tipus de relació existents. **Per conèixer més**: [https://diagramasuml.com](https://diagramasuml.com)
 
-Instanciarem les dues classes i establirem una relació entre els objectes. Un professor pot tenir un nombre determinat d’estudiants matriculats a la seva classe. La llista d’estudiants s’ha d’imprimir mitjançant un mètode membre de l’objecte `Professor`.
+Instanciarem les dues classes i establirem una relació entre els objectes.&#x20;
+
+Un professor pot tenir un nombre determinat d’estudiants matriculats a la seva classe.&#x20;
+
+La llista d’estudiants s’ha d’imprimir mitjançant un mètode membre de l’objecte `Professor`.
 
 Els passos a realitzar són els següents:
 
 1. Creeu un directori anomenat `ex1uf2`per incluoure-hi tot el contingut de l’activitat. Aquest ha de ser el nostre directori de treball (feu `cd`al directori).
 2. Creeu un fitxer de script anomenat `activity-classes.php`.
-3.  Crear classes `Professor`i `Student`classificar dins una carpeta amb el mateix nom i dins els fitxers separats de cada classe amb les funcions següents.
+3.  Crear les classes `Professor`i `Student` dins una carpeta amb el mateix nom.
 
-    Ambdues utilitzen el seu propi **espai de noms** per carregar les classes automàticament.
+    Ambdues utilitzen el seu propi **espai de noms** per carregar les classes automàticament. Utilitzem autocàrrega, encara que inicialment no cal que ho fem.
 
 **`spl_autoload_register();`**
 
 Tots dos prenen el nom com a primer argument del constructor; la classe **`Professor`** accepta el segon argument com a **llista d’estudiants (array)**
 
-Tots dos tindran la propietat del **alies**, que per defecte per a la classe `Professor` és **`Professor`**`.`i per a la classe `Estudiant` és **`estudiant`**.
+Tots dos tindran la propietat del **alies**, que per defecte per a la classe `Professor` és **`Professor`**`.`i per a la classe `Student` és **`student`**.
 
 1. Creeu una funció que imprimirà el alies del professor, el nom, el recompte d’estudiants i la llista d’estudiants. Quin tipus de relació entre objectes s'estableix?
 2. Creeu una instància **`Professor`**, que proporcioni un nom i una llista d’estudiants: numero d'estudiants amb el nom.
@@ -38,7 +46,7 @@ Alumnes del Dr. Charles Kingsfield (4):
   4. Alecto Carrow
 ```
 
-### Invasió alienígena
+### 2. Invasió alienígena
 
 _Exemple de funcionament de videojoc._
 
