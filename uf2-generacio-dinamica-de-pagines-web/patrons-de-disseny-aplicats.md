@@ -2,13 +2,16 @@
 description: >-
   Es tracta de comprovar com els patrons de disseny faciliten la tasca de
   creació d'un framework
+cover: >-
+  https://images.unsplash.com/photo-1558244661-d248897f7bc4?crop=entropy&cs=srgb&fm=jpg&ixid=M3wxOTcwMjR8MHwxfHNlYXJjaHwxfHxwYXR0ZXJufGVufDB8fHx8MTY4Nzg4NjU1MXww&ixlib=rb-4.0.3&q=85
+coverY: 0
 ---
 
 # Patrons de disseny aplicats
 
 Amb els patrons de disseny aconseguim donar solució a problemes comuns basant-nos en programació orientada a objectes.
 
-Cada patró és com un plànol que es pot personalitzar per resoldre un problema de disseny particular del codi.\*\* ([refactoring.guru](https://refactoring.guru))
+Cada patró és com un plànol que es pot personalitzar per resoldre un problema de disseny particular del codi.([refactoring.guru](https://refactoring.guru))
 
 Els que estudiarem com a part dels frameworks:
 
@@ -16,21 +19,23 @@ Els que estudiarem com a part dels frameworks:
 
 #### Despendency Injection
 
-Es tracta d'un dels més utilitzats. Tal i com es defineix, permet desacoblar codi i permet un manteniment mínim i reusabilitat màxima.
+Es tracta d'un dels més utilitzats. Tal i com es defineix, permet **desacoblar** codi i permet un manteniment mínim i reusabilitat màxima.
 
 
 
 #### Adapter
 
-De tipus estructural, converteix la instància d'una classe en una altra esperada pel client. &#x20;
+De tipus estructural també, converteix la instància d'una classe en una altra esperada pel client (adaptant-la).&#x20;
 
 
 
 #### Decorator
 
+Permet afegir comportament a un objecte sense afectar el comportament de la resta d'objectes de la mateixa classe.&#x20;
+
 #### Facade
 
-És un patró de disseny estructural que proporciona una interfície simplificada (però limitada) a un sistema complex de classes, biblioteca o marc.
+Proporciona una interfície simplificada (però limitada) a un sistema complex de classes, biblioteca o marc.
 
 Delega les peticions del client als objectes apropiats dins del subsistema.  També s'encarrega de gestionar el seu cicle de vida. Tot això protegeix el client de la complexitat no desitjada del subsistema.
 
@@ -43,8 +48,6 @@ El patró Facade s'utilitza habitualment a les aplicacions PHP per simplificar  
 #### Template Method
 
 La idea d'aquest patró és molt simple, deixa que les subclasses d'una classe abstracta finalitzin els algoritmes de comportament.
-
-
 
 #### Strategy
 
