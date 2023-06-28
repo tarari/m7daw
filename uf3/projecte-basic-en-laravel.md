@@ -135,10 +135,7 @@ Podem observar les rutes creades am el comando artisan:
 php artisan route:list
 ```
 
-| Verb | URI     | Acció | Nom Ruta   |
-| ---- | ------- | ----- | ---------- |
-| GET  | `/pios` | index | pios.index |
-| POST | `/pios` | store | pios.store |
+<table><thead><tr><th width="96">Verb</th><th width="128">URI</th><th>Acció</th><th>Nom Ruta</th></tr></thead><tbody><tr><td>GET</td><td><code>/pios</code></td><td>index</td><td>pios.index</td></tr><tr><td>POST</td><td><code>/pios</code></td><td>store</td><td>pios.store</td></tr></tbody></table>
 
 ### Controlador
 
