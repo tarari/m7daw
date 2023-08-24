@@ -8,17 +8,17 @@ description: Aprofundim i comencem a explicar Programació orientada a l'objecte
 
 En el procés de creació de software de qualitat és molt importat millorar el disseny de les aplicacions, la manera OOP ens indica com fer-ho, però SOLID aporta organització de les classes i de la seva interacció.
 
-Aquest patró va ser promogut per Robert C. Martin, conegut com _Uncle Bob_  el qual és considerat el pare de l'arquitectura de programari ja que gràcies al seu enginy, ens ha posat a disposició tota la seva experiència i bones pràctiques a seguir en pro de desenvolupar sistemes amb arquitectura neta, llegibles, robustos i sobretot, escalables.
+Aquest patró va ser promogut per Robert C. Martin, conegut com _Uncle Bob_ el qual és considerat el pare de l'arquitectura de programari ja que gràcies al seu enginy, ens ha posat a disposició tota la seva experiència i bones pràctiques a seguir en pro de desenvolupar sistemes amb arquitectura neta, llegibles, robustos i sobretot, escalables.
 
-**SOLID** es un acrònim per a simbolitzar els 5 principis bàsics de disseny a l'hora de treballar amb el  paradigma de la programació orientada a objectes. Ajustar-nos a aquests principis ens permetrà desenvolupar arquitectures molt més fàcils de mantindre i esacalables , per tant convé familiaritzar-se amb elles de cara a entendre les seves implicacions i saber com aplicar-les. Recordem, tot és **PRÀCTICA**.
+**SOLID** es un acrònim per a simbolitzar els 5 principis bàsics de disseny a l'hora de treballar amb el paradigma de la programació orientada a objectes. Ajustar-nos a aquests principis ens permetrà desenvolupar arquitectures molt més fàcils de mantindre i esacalables , per tant convé familiaritzar-se amb elles de cara a entendre les seves implicacions i saber com aplicar-les. Recordem, tot és **PRÀCTICA**.
 
-### &#x20;**S: **Single-responsibility principle
+### \*\*S: \*\*Single-responsibility principle
 
 > Una classe només hauria de tenir una única raó per canviar
 >
 > Una classe <==> una responsabilitat
 
-Principi de responsabilitat única: Una classe ha de tenir una i només una raó per canviar o el que és el mateix: **Una classe** ha de tenir** una única responsabilitat**.
+Principi de responsabilitat única: Una classe ha de tenir una i només una raó per canviar o el que és el mateix: **Una classe** ha de tenir\*\* una única responsabilitat\*\*.
 
 Vist en un exemple real, si necessitem exportar un document en diferents formats com HTML i PDF, no podem delegar totes les funcions i implementacions a una única classe, la idea seria repartir **cada tasca a una classe per separat**. Vegem un exemple de coma quedaria una implementació aplicant aquest principi:
 
@@ -90,7 +90,7 @@ class PdfExportableDocument
 
 ### “O”: Open-Closed principle
 
-> Els objectes haurien d'estart oberts per a la seva extensió i tancats per la seva modificació.&#x20;
+> Els objectes haurien d'estart oberts per a la seva extensió i tancats per la seva modificació.
 
 Imaginem que necessitem implementar un sistema de **login**. Inicialment per autenticar al nostre usuari necessitem d'un usuari i una contrasenya, fins aquí tot bé, però què passa si requerim que l'usuari s'autentiqui mitjançant twiter, gmail o facebook ?
 
@@ -143,15 +143,11 @@ class LoginService
 }
 ```
 
-Com podem  observar, la classe **`LoginService`** és indiferent al  mètode d'autenticació (per base de dades, via google o twitter, etc.) que es vagi a utilitzar, tota la lògica aquesta dins de cada Classe dels diferents tipus d'autenticació que puguem tenir.
-
-
+Com podem observar, la classe **`LoginService`** és indiferent al mètode d'autenticació (per base de dades, via google o twitter, etc.) que es vagi a utilitzar, tota la lògica aquesta dins de cada Classe dels diferents tipus d'autenticació que puguem tenir.
 
 ¿Por qué? Porque cada vez que añadamos un nuevo tipo de figura nos veremos obligados a modificar el método `sum` de la clase `AreaCalculator` de cara a añadir el nuevo tipo de figura.
 
 Para resolver este problema una solución sería crear la interfaz `Shape` que declararía el método `area` que todas las figuras deberían implementar para devolver su área.
-
-
 
 ### “L”: Liskov Substitution principle
 
@@ -159,9 +155,7 @@ Para resolver este problema una solución sería crear la interfaz `Shape` que d
 
 El principi de substitució de Liskov (conegut com LSP) és un concepte important quan es tracta de programació orientada a objectes.
 
-**Matemàticament**
-
-> Sigui ϕ**(x)** una propiedad comprovable sobre els objectes **x** de tipus T. Llavors ϕ**(y)** ha de ser cert per a tots els objectes y  del tipus **S** on **S**, és un subtipus de **T**.
+>
 
 El que vol dir és que qualsevol classe filla hauria de poder ser substituïble per la classe pare sense necessitat de conèixer les diferències entre elles.
 
@@ -232,13 +226,11 @@ echo "Spain Total: " . $spainTotal . PHP_EOL . PHP_EOL;
 echo "Italy Total: " . $italyTotal;
 ```
 
-
-
 ### “I”: Interface Segregation principle
 
-> Un client (entenen una classe) mai ha de ser obligat a implementar una interface que no utilitzem o els clients no han de ser forçats a dependre de mètodes que no facin servir.
+> Un client (entenent una classe) mai ha de ser obligat a implementar una interface que no utilitzem o els clients no han de ser forçats a dependre de mètodes que no facin servir.
 
-En aquest punt, estaria bé  esmentar un argot més, els _Fat Interface_. Això és que hem d'evitar fer que les nostres interfaces es tornin grosses quan es manegen gran quantitat de contractes. Una interface grossa viola també el principi de Responsabilitat Única (_Single Responsability Principle_) ja que segurament aquesta interface estaria manejant més d'una responsabilitat alhora.
+En aquest punt, estaria bé esmentar un argot més, els _Fat Interface_. Això és que hem d'evitar fer que les nostres interfaces es tornin grosses quan es manegen gran quantitat de contractes. Una interface grossa viola també el principi de Responsabilitat Única (_Single Responsability Principle_) ja que segurament aquesta interface estaria manejant més d'una responsabilitat alhora.
 
 En resum, hem de garantir separar funcionalitats i definir els contractes mitjançant interfícies la responsabilitat sigui única.
 
@@ -271,13 +263,11 @@ class Developer implements Worker {
 }
 ```
 
-Com es pot observar, la interface  obliga a ambdues classes a implementar mètodes que no necessita, per exemple un Manager no té perquè implementar el mètode « **code (..)»** però si « **attendMeeting (...)** » i un Developer no té perquè implementar el mètode « **attendMeeting (...)** » però si « **code (...)** «. La solució és aplicar SRP i separar responsabilitats (més interfaces).
-
-
+Com es pot observar, la interface obliga a ambdues classes a implementar mètodes que no necessita, per exemple un Manager no té perquè implementar el mètode « **code (..)»** però si « **attendMeeting (...)** » i un Developer no té perquè implementar el mètode « **attendMeeting (...)** » però si « **code (...)** «. La solució és aplicar SRP i separar responsabilitats (més interfaces).
 
 ### “D”: Dependency Inversion principle
 
-Aquest és potser el més simple dels principis i estableix que l_es classes han de dependre d'abstraccions, no de concrecions_. Essencialment, no dependre de classes concretes, i si dependre d'interfaces, de manera que s'afavoreix la reusabilitat davant de l'acoblament.
+Aquest és potser el més simple dels principis i estableix que l\_es classes han de dependre d'abstraccions, no de concrecions\_. Essencialment, no dependre de classes concretes, i si dependre d'interfaces, de manera que s'afavoreix la reusabilitat davant de l'acoblament.
 
 Prenguem el següent exemple:
 
@@ -329,8 +319,8 @@ class PageLoader {
 
 Amb aquesta implementació, va ser possible crear una classe **RedisConnection** i sempre que implementi la interface **ConnectionInterface** , podem usar-lo en la classe **PageLoader** per carregar pàgines.
 
-Aquest enfocament també ens obliga a escriure codi de tal manera que **eviti detalls** **d'implementació **específics en classes que no es preocupen per això. A causa de que hem passat una classe **MySqlConnection** a la nostra classe **PageLoader** , ja no tindríem perquè escriure consultes natives **SQL** a la classe **PageLoader** , o fer sentències IF per determinar quin tipus de connexió és i implementar per exemple una connexió a **Redis** .
+Aquest enfocament també ens obliga a escriure codi de tal manera que **eviti detalls** d'implementació específics en classes que no es preocupen per això. A causa de que hem passat una classe **MySqlConnection** a la nostra classe **PageLoader** , ja no tindríem perquè escriure consultes natives **SQL** a la classe **PageLoader** , o fer sentències IF per determinar quin tipus de connexió és i implementar per exemple una connexió a **Redis** .
 
-Això vol dir que quan passem  un objecte **RedisConnection** es comportarà de la mateixa manera que qualsevol altre tipus de classe de connexió.
+Això vol dir que quan passem un objecte **RedisConnection** es comportarà de la mateixa manera que qualsevol altre tipus de classe de connexió.
 
 ##

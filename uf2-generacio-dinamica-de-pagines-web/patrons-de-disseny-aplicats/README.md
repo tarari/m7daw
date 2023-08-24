@@ -39,8 +39,6 @@ Proporciona una interfície simplificada (però limitada) a un sistema complex d
 
 Delega les peticions del client als objectes apropiats dins del subsistema.  També s'encarrega de gestionar el seu cicle de vida. Tot això protegeix el client de la complexitat no desitjada del subsistema.
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption><p>Facade i els subsistemes</p></figcaption></figure>
-
 El patró Facade s'utilitza habitualment a les aplicacions PHP per simplificar  el treball amb biblioteques o API complexes.&#x20;
 
 ### Patrons de comportament
