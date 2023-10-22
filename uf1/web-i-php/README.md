@@ -285,6 +285,62 @@ Un array associatiu que pot tenir qualsevol de les claus `expires`, `path`, `dom
 
 
 
+### Exemple Cookies - Cookies policy
+
+El cas més clar d'ús de cookies és l'aplicable a la personalització de la navegació. Tot i així pot abarcar múltiples finalitats tal i com recull la llei de cookies i el seu reglament, el RGPD.
+
+És obligatori indicar que s'està utilitzant una determinada política de cookies i indicar quines són i quina finalitat tenen (estadístic, personalització, tècnic...).
+
+Ara veurem com implementar l'entrada inicial al frontend de la nostra política de cookies i com a través la cookie accepted, marcarem l'ús o no de les cookies en l'aplicació.
+
+
+
+#### HTML i js i php
+
+```html
+
+<div id="cookie-banner" 
+    <?php 
+        if (isset($_COOKIE['accepted']) && $_COOKIE['accepted'] === 'true') {
+            echo 'style="display:none"';
+        }else{
+            echo 'style="display:block"';
+        }
+    ?>>
+  <p>Aquest site utilitza cookies. En fer  clic en "Acceptar", aceeptes  la nostra política de cookies.</p>
+  <button id="accept-cookie">Acceptar</button>
+</div>
+
+    <script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const cookieBanner = document.getElementById("cookie-banner");
+  const acceptButton = document.getElementById("accept-cookie");
+
+  // Comprova si la cookie 'accepted' ja està establerta
+  const accepted = document.cookie.includes("accepted=true");
+
+  if (!accepted) {
+    cookieBanner.style.display = "block";
+  }
+
+  acceptButton.addEventListener("click", function () {
+    // Estableix la cookie 'accepted' amb valor true i una data de venciment
+    document.cookie = "accepted=true; expires=Sun, 20 Jan 2030 00:00:00 UTC; path=/";
+    // Oculta el banner de cookies
+    cookieBanner.style.display = "none";
+  });
+});
+
+</script>
+
+```
+
+
+
+####
+
+
+
 ## Capçaleres HTTP
 
 Donat que la comunicació es realitza a través dels protocols HTTP, són les capçaleres HTTP les que determinen el què, el com, i el quan, s'està comunicant. En PHP faem servir la funció `header()`.
