@@ -338,6 +338,27 @@ Fixem-nos en la línia 14, aquí es comprova el _hash_ del pasword que passem am
 El _hash_ o funció _hash_, es una funció criptogràfica especial que és utilitzada per generar identificadors únics i irrepetibles.
 {% endhint %}
 
+### Autenticació en sqlite
+
+L'ús de la funció rowCount() en PDO està restringit, per tant busquem una alternativa com podria ser comptar incidències de l'array de resultats:
+
+
+
+````php
+// ......
+     //comptem array de resultats
+    if($row=$stmt->fetchAll(PDO::FETCH_ASSOC)){
+        $user=$row[0];
+        $res=password_verify($password,$user['password']);
+        if ($res){
+            $_SESSION['user']=$user;
+            return true;
+        }else{
+            return false;
+        }  
+```
+````
+
 Per més informació sobre la capa de persistència de dades, podeu consultar:
 
 {% content-ref url="../php-pdo.md" %}
