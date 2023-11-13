@@ -2,7 +2,7 @@
 
 ## UML i PHP
 
-## [Agregació i Composició](https://objetosweb.wordpress.com/2017/03/12/agregacion-y-composicion/)
+## Agregació i Composició
 
 Aquestes relacions són part-tot, en la qual tenim una classe que es una partícula d’una altra classe.
 
@@ -81,7 +81,7 @@ En el cas de la composició, és necessari crear dins de l’objecte compost els
 * En la composició una classe partícula no pot ser compartida per altres classes compostes, en l’agregació això no és  possible.
 * La relació de vida de la classe partícula i la classe contenidora, és molt  forta, de fet és la relació més forta; tant així que si un objecte de la classe contenidora és destruït la classe partícula també ho  serà. Això no passa en l’agregació.
 
-## [Dependència](https://objetosweb.wordpress.com/2017/03/12/dependencia/)
+## Dependència
 
 La dependència entre dos classes declara que cadascuna d’elles necessita conèixer sobre la classe  que utilitzarà.
 
