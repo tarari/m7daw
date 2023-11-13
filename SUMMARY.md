@@ -15,6 +15,7 @@
 ## UF2 Generació dinàmica de pàgines web
 
 * [Programació orientada a objecte (repàs)](uf2-generacio-dinamica-de-pagines-web/programacio-orientada-a-objecte/README.md)
+  * [UML i PHP](uf2-generacio-dinamica-de-pagines-web/programacio-orientada-a-objecte/uml-i-php.md)
   * [Exercicis i activitats dirigides](uf2-generacio-dinamica-de-pagines-web/programacio-orientada-a-objecte/exercicis-1.md)
 * [Patrons de disseny aplicats](uf2-generacio-dinamica-de-pagines-web/patrons-de-disseny-aplicats/README.md)
   * [Exercicis i activitats dirigides](uf2-generacio-dinamica-de-pagines-web/patrons-de-disseny-aplicats/exercicis-i-activitats-dirigides.md)
