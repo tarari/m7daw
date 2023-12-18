@@ -17,17 +17,19 @@
 * [Programació orientada a objecte (repàs)](uf2-generacio-dinamica-de-pagines-web/programacio-orientada-a-objecte/README.md)
   * [UML i PHP](uf2-generacio-dinamica-de-pagines-web/programacio-orientada-a-objecte/uml-i-php.md)
   * [Exercicis i activitats dirigides](uf2-generacio-dinamica-de-pagines-web/programacio-orientada-a-objecte/exercicis-1.md)
+* [Creació d'un framework](uf2-generacio-dinamica-de-pagines-web/creacio-dun-framework.md)
 * [Patrons de disseny aplicats](uf2-generacio-dinamica-de-pagines-web/patrons-de-disseny-aplicats/README.md)
   * [Exercicis i activitats dirigides](uf2-generacio-dinamica-de-pagines-web/patrons-de-disseny-aplicats/exercicis-i-activitats-dirigides.md)
 * [Refactorització i bones pràctiques en OOP](uf2-generacio-dinamica-de-pagines-web/uf2.-generacio-dinamica-de-pagines-web.md)
 * [API Reflection](uf2-generacio-dinamica-de-pagines-web/api-reflection.md)
-* [Creació d'un framework](uf2-generacio-dinamica-de-pagines-web/creacio-dun-framework.md)
 * [PHPUnit](uf2-generacio-dinamica-de-pagines-web/phpunit.md)
 * [Exercicis i activitats dirigides](uf2-generacio-dinamica-de-pagines-web/exercicis-i-activitats-dirigides.md)
 
 ## UF3 Accés a dades <a href="#uf3" id="uf3"></a>
 
-* [ORM Eloquent en projectes](uf3/orm-eloquent-en-projectes.md)
+* [ORM](uf3/orm.md)
+* [ORM Eloquent en projectes](uf3/orm-eloquent-en-projectes/README.md)
+  * [Active Record vs Data Mapper](uf3/orm-eloquent-en-projectes/active-record-vs-data-mapper.md)
 * [Introducció a Laravel](uf3/laravel.md)
 * [Projecte bàsic en Laravel (v.^9.0)](uf3/projecte-basic-en-laravel.md)
 * [Eloquent](uf3/eloquent.md)
