@@ -27,9 +27,9 @@
 
 ## UF3 Accés a dades <a href="#uf3" id="uf3"></a>
 
-* [ORM](uf3/orm.md)
-* [ORM Eloquent en projectes](uf3/orm-eloquent-en-projectes/README.md)
-  * [Active Record vs Data Mapper](uf3/orm-eloquent-en-projectes/active-record-vs-data-mapper.md)
+* [ORM](uf3/orm/README.md)
+  * [Active Record vs Data Mapper](uf3/orm/active-record-vs-data-mapper.md)
+* [ORM Eloquent en projectes](uf3/orm-eloquent-en-projectes.md)
 * [Introducció a Laravel](uf3/laravel.md)
 * [Projecte bàsic en Laravel (v.^9.0)](uf3/projecte-basic-en-laravel.md)
 * [Eloquent](uf3/eloquent.md)
